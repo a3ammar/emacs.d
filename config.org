@@ -40,10 +40,12 @@ and press =C-h v=.
 *** Package sources
 
 #+BEGIN_SRC emacs-lisp
-  (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-  (unless (assoc-default "melpa" package-archives)
-    (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-    (package-refresh-contents))
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+(unless (assoc-default "melpa" package-archives)
+  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t))
+
+(unless package-archive-contents
+  (package-refresh-contents))
 #+END_SRC
 
 There are some packages that are not available on [[http://melpa.org][melpa]], add [[https://marmalade-repo.org/][marmalade]] for them.
@@ -320,7 +322,7 @@ These are my personal preference to the default Emacs keybindings.
 	   ("C-<tab>" . indent-for-tab-command))
 #+END_SRC
 
-**** Window Movement
+**** Window movement
 
 Use =Shift-Arrows= to move between windows
 
@@ -339,6 +341,27 @@ Use =Shift-Arrows= to move between windows
 	   ("C-x C-o" . my/switch-window-forward))
 
 
+#+END_SRC
+
+**** Window splitting
+
+Copied from http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_tricks/chldury
+#+BEGIN_SRC emacs-lisp
+(defun my/vsplit-last-buffer (prefix)
+  "Split the window vertically and display the previous buffer."
+  (interactive "p")
+  (split-window-vertically)
+  (other-window 1 nil)
+  (if (= prefix 1)
+    (switch-to-next-buffer)))
+(defun my/hsplit-last-buffer (prefix)
+  "Split the window horizontally and display the previous buffer."
+  (interactive "p")
+  (split-window-horizontally)
+  (other-window 1 nil)
+  (if (= prefix 1) (switch-to-next-buffer)))
+(bind-key "C-x 2" 'my/vsplit-last-buffer)
+(bind-key "C-x 3" 'my/hsplit-last-buffer)
 #+END_SRC
 
 ** Appearance Configuration
@@ -470,22 +493,6 @@ Compact mode line
   :defer t
   :init
   (progn
-    (setq-default mode-line-format
-		  '("%e"
-		    mode-line-front-space
-		    mode-line-mule-info
-		    mode-line-client
-		    mode-line-modified
-		    mode-line-remote
-		    mode-line-frame-identification
-		    mode-line-buffer-identification
-		    "   "
-		    mode-line-position
-		    (vc-mode vc-mode)
-		    "   "
-		    mode-line-modes
-		    mode-line-misc-info
-		    mode-line-end-spaces))
     (setq sml/no-confirm-load-theme t)
     (setq  sml/replacer-regexp-list '(("^~/Dropbox/Code/ruby/rails/" ":Code:Rails:")
 				      ("^~/Dropbox/Code/org/" ":Org:")
@@ -505,16 +512,17 @@ Compact mode line
     (sml/setup)))
 #+END_SRC
 
-*** TODO Set up Solarized color theme
+*** Set up Solarized color theme
 
 I use my own customized Solarized theme.
 
-TODO: Use upstream Solarized and modify it here.
+**** DONE Use upstream Solarized and modify it here.
+CLOSED: [2015-03-09 Mon 17:12]
 
 #+BEGIN_SRC emacs-lisp
-(require 'color-theme)
-(require 'color-theme-solarized)
-(load-theme 'solarized-dark)
+(use-package solarized-theme
+  :ensure t
+  :init (load-theme 'solarized-dark))
 #+END_SRC
 
 *** Rainbow Delimiters
@@ -701,7 +709,7 @@ Projectile mode is one the best packages Emacs have, more information is in this
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :ensure t
-  :init
+  :config
   (progn
     (setq projectile-enable-caching t
 	  projectile-cache-file (concat my/history-dir
@@ -712,7 +720,6 @@ Projectile mode is one the best packages Emacs have, more information is in this
 	  projectile-known-projects-file (concat my/history-dir
 						 "projectile-bookmarks.eld")
 	  projectile-mode-line nil
-	  projectile-rails-font-lock-face-name 'font-lock-builtin-face
 	  projectile-remember-window-configs nil)
     (bind-keys :map projectile-mode-map
 	       ("C-c C-p" . projectile-command-map))
@@ -733,16 +740,19 @@ Helm + Projectile = Love
 
 *** Projectile Rails
 
-Extension to Projectile for navigating Rails files.
+Extension to Projectile for navigating Rails files. We also install =rails-log-mode= for log viewing
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile-rails
   :ensure t
+  :commands projectile-rails-on
   :config
   (progn
-    (add-hook 'projectile-mode-hook 'projectile-rails-on)
+    (use-package rails-log-mode
+      :ensure t)
     (bind-keys :map projectile-rails-mode-map
-	       ("C-c t r" . projectile-rails-rake))))
+	       ("C-c t r" . projectile-rails-rake))
+    (setq projectile-rails-font-lock-face-name 'font-lock-builtin-face)))
 #+END_SRC
 
 *** Smart paren mode
@@ -805,6 +815,10 @@ Appearance
 (custom-set-faces
  '(sp-show-pair-match-face ((t (:foreground "#c71b6f"))))
  '(sp-show-pair-mismatch-face ((t (:background "#810160")))))
+
+(setq sp-highlight-pair-overlay nil
+      sp-highlight-wrap-overlay nil
+      sp-highlight-wrap-tag-overlay nil)
 #+END_SRC
 
 *** Magit
@@ -827,6 +841,7 @@ Better interface to Git
 #+BEGIN_SRC emacs-lisp
 (use-package company
   :ensure t
+  :idle (global-company-mode)
   :config
   (progn
     (bind-keys :map company-active-map
@@ -834,8 +849,7 @@ Better interface to Git
     (push 'company-robe company-backends)
     (setq company-global-modes '(not inf-ruby-mode eshell-mode)
 	  company-idle-delay 0.2
-	  company-minimum-prefix-length 3)
-    (global-company-mode)))
+	  company-minimum-prefix-length 3)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -869,6 +883,16 @@ this [[https://www.youtube.com/watch?v%3DT_voB16QxW0][video]] for better explana
   :ensure t
   :defer t
   :idle (winner-mode 1))
+#+END_SRC
+
+*** Discover Major Mode keybindings
+
+#+BEGIN_SRC emacs-lisp
+(use-package discover-my-major
+  :ensure t
+  :defer t
+  :commands discover-my-major
+  :bind ("C-h C-m" . discover-my-major))
 #+END_SRC
 
 *** Minibuffer editing
@@ -1111,6 +1135,8 @@ end tell
 #+BEGIN_SRC emacs-lisp
 (use-package visual-regexp
   :ensure t
+  :defer t
+  :commands vr/query-replace
   :config
   (progn
     (defalias 'qrr 'vr/query-replace)))
@@ -1180,7 +1206,25 @@ Expand region to fit the sexp
   :ensure t
   :init
   (progn
-    (setq persistent-scratch-save-file (concat my/history-dir "persistent-scratch"))))
+    (setq persistent-scratch-save-file (concat my/history-dir "persistent-scratch"))
+    (persistent-scratch-setup-default)))
+#+END_SRC
+
+*** Clone Github projects from Emacs
+
+#+BEGIN_SRC emacs-lisp
+(use-package github-clone
+  :ensure t
+  :defer t
+  :commands github-clone)
+#+END_SRC
+
+*** Control Pow from Emacs
+
+#+BEGIN_SRC emacs-lisp
+  (use-package pow
+    :ensure t
+    :defer t)
 #+END_SRC
 
 ** Writing And Programming Modes
@@ -1281,51 +1325,40 @@ expression, otherwise use regular `eval-last-sexp'"
 
 *** TODO Ruby Mode
 
-
 #+BEGIN_SRC emacs-lisp
-(add-hook 'ruby-mode-hook 'robe-mode)
-(add-hook 'ruby-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
-	    (push '("lambda" . 955) prettify-symbols-alist)))
-
-(font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
-			'(("\\(&&\\|||\\)" . font-lock-builtin-face)))
-(setq ruby-indent-level 2)
-
-#+END_SRC
-
-Inferior Ruby
-
-#+BEGIN_SRC emacs-lisp
-(use-package inf-ruby
-  :ensure t
-  :defer t
+(use-package ruby-mode
+  :mode "\\.rb\\'"
+  :interpreter "ruby"
   :config
   (progn
-    (add-hook 'inf-ruby-mode-hook
+    (use-package inf-ruby
+      :ensure t
+      :defer t
+      :config
+      (progn
+	(add-hook 'inf-ruby-mode-hook
+		  (lambda ()
+		    (setq truncate-lines t)
+		    (company-mode 0)))))
+    (use-package robe
+      :ensure t
+      :commands robe-mode
+      :defer t)
+    (use-package rvm
+      :ensure t
+      :defer t)
+
+    (add-hook 'ruby-mode-hook #'robe-mode)
+    (add-hook 'ruby-mode-hook #'projectile-rails-on)
+    (add-hook 'ruby-mode-hook
 	      (lambda ()
-		(setq truncate-lines t)
-		(company-mode 0)))
+		(local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
+		(push '("lambda" . 955) prettify-symbols-alist)))
 
-    (defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
-      (rvm-activate-corresponding-ruby))
-    (setq inf-ruby-default-implementation "pry")))
-#+END_SRC
+    (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
+			    '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
+    (setq ruby-indent-level 2)))
 
-#+BEGIN_SRC emacs-lisp
-(use-package robe
-  :ensure t
-  :defer t)
-#+END_SRC
-
-
-#+BEGIN_SRC emacs-lisp
-(use-package rvm
-  :ensure t
-  :init
-  (progn
-    (rvm-use-default)))
 #+END_SRC
 
 *** Rake Mode
@@ -1371,16 +1404,15 @@ Inferior Ruby
 *** Yasnippet
 
 #+BEGIN_SRC emacs-lisp
-  (use-package yasnippet
-    :ensure t
-    :defer t
-    :idle
-    (progn
-      (yas-global-mode 1)
-      (eval-after-load "rspec-mode" '(rspec-install-snippets)))
-    :config
-    (progn
-      (add-hook 'ruby-mode-hook #'yas-minor-mode)))
+(use-package yasnippet
+  :ensure t
+  :defer t
+  :commands yas-minor-mode
+  :init (add-hook 'prog-mode-hook #'yas-minor-mode)
+  :config
+  (progn
+    (eval-after-load "rspec-mode" '(rspec-install-snippets))
+    (add-hook 'ruby-mode-hook #'yas-minor-mode)))
 #+END_SRC
 
 *** SQL Mode

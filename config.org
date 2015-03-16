@@ -26,6 +26,7 @@ and press =C-h v=.
       scroll-conservatively 10
       hscroll-step 1
       mouse-wheel-scroll-amount '(0.01)
+      mouse-wheel-progressive-speed nil
       font-lock-maximum-decoration t
       transient-mark-mode t
       delete-by-moving-to-trash t
@@ -60,29 +61,27 @@ Read about [[https://github.com/jwiegley/use-package][use-package]].
 Also install =auto-compile= mode so it byte-compile our init file
 
 #+BEGIN_SRC emacs-lisp
-(defvar my/elisp-dir (expand-file-name "elisp/" user-emacs-directory))
-(defvar my/history-dir (expand-file-name "history/" user-emacs-directory))
+  (defvar my/elisp-dir (expand-file-name "elisp/" user-emacs-directory))
+  (defvar my/history-dir (expand-file-name "history/" user-emacs-directory))
 
-(let ((default-directory my/elisp-dir))
-  (normal-top-level-add-subdirs-to-load-path))
+  (let ((default-directory my/elisp-dir))
+    (normal-top-level-add-subdirs-to-load-path))
 
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-(unless (package-installed-p 'dash)
-  (package-install 'dash))
-(setq use-package-verbose t)
-(require 'use-package)
-(use-package auto-compile
-  :ensure t
-  :init
-  (progn
-    (auto-compile-on-save-mode)
-    (auto-compile-on-load-mode))
-  :config
-  (progn
-    (setq auto-compile-display-buffer nil
-	  auto-compile-mode-line-counter t)))
-(setq load-prefer-newer t)
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package))
+  (unless (package-installed-p 'dash)
+    (package-install 'dash))
+  (setq use-package-verbose t)
+  (require 'use-package)
+  (use-package auto-compile
+    :ensure
+    :config
+    (progn
+      (auto-compile-on-save-mode)
+      (auto-compile-on-load-mode)
+      (setq auto-compile-display-buffer nil
+	    auto-compile-mode-line-counter t)))
+  (setq load-prefer-newer t)
 #+END_SRC
 
 *** Fix Emacs Interaction with OS X and $PATH
@@ -90,12 +89,12 @@ Also install =auto-compile= mode so it byte-compile our init file
 Some Emacs commands don't work properly on OS X, this fixes it.
 
 #+BEGIN_SRC emacs-lisp
-(use-package exec-path-from-shell
-  :ensure t
-  :init
-  (progn
-    (exec-path-from-shell-initialize)
-    (exec-path-from-shell-copy-env "LANG")))
+  (use-package exec-path-from-shell
+    :ensure
+    :init
+    (progn
+      (exec-path-from-shell-initialize)
+      (exec-path-from-shell-copy-env "LANG")))
 #+END_SRC
 
 *** Use Bash as the default shell
@@ -376,23 +375,34 @@ I rarely, if ever, use the mouse in Emacs. This disable the GUI elements
   (menu-bar-mode -1)
   (scroll-bar-mode -1))
 
+#+END_SRC
+
+Don't ever use GUI dialog boxes
+
+#+BEGIN_SRC emacs-lisp
 (setq use-dialog-box nil)
+
+#+END_SRC
+
+Resize Emacs window (called frame in Emacs jargon) as pixels instead of chars resulting in fully sized window.
+
+#+BEGIN_SRC emacs-lisp
+(setq frame-resize-pixelwise t)
 #+END_SRC
 
 *** Fonts and colors
 **** Default font
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#819090" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "nil" :family "Menlo")))))
+(set-face-attribute 'default nil :foreground "#819090" :slant 'normal :weight 'normal :height 120 :width 'normal :family "Menlo")
 #+END_SRC
 
 **** Easy customization colors
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(custom-mode-default ((t (:inherit autoface-default :foreground "#ffffff" :height 130 :family "Inconsolata"))) t)
- '(custom-link ((t (:foreground "#2076c8"))))
- '(custom-variable-tag ((t (:foreground "#2076c8" :weight bold)))))
+;; (custom-set-faces
+;;  '(custom-mode-default ((t (:inherit autoface-default :foreground "#ffffff" :height 130 :family "Inconsolata"))) t)
+;;  '(custom-link ((t (:foreground "#2076c8"))))
+;;  '(custom-variable-tag ((t (:foreground "#2076c8" :weight bold)))))
 
 #+END_SRC
 
@@ -409,17 +419,8 @@ I rarely, if ever, use the mouse in Emacs. This disable the GUI elements
 (custom-set-faces
  '(font-lock-builtin-face ((t (:foreground "#6193B3" :weight bold))))
  '(font-lock-comment-face ((t (:foreground "#53686f" :inverse-video nil :underline nil :slant italic :weight normal))))
- '(font-lock-constant-face ((t (:foreground "DeepSkyBlue3"))))
- '(font-lock-function-name-face ((t (:foreground "#195fa1"))))
- '(font-lock-variable-name-face ((t (:foreground "#2076c8")))))
+ '(font-lock-constant-face ((t (:foreground "DeepSkyBlue3")))))
 
-#+END_SRC
-
-**** Help mode
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(help-mode-default ((t (:inherit special-mode-default))) t))
 #+END_SRC
 
 **** Highlight color
@@ -433,21 +434,15 @@ I rarely, if ever, use the mouse in Emacs. This disable the GUI elements
 
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces
- '(region ((t (:background "#0f3f4e")))))
-#+END_SRC
+ '(region ((t (:background "#175062" :foreground nil)))))
 
-**** Current line highlight color
 
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(hl-line ((t (:background "#072A34")))))
 #+END_SRC
 
 **** Minibuffer
 
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces
- '(minibuffer-inactive-mode-default ((t (:inherit autoface-default))) t)
  '(minibuffer-prompt ((t (:foreground "#2076c8" :inverse-video nil :underline nil :slant normal :weight bold)))))
 #+END_SRC
 
@@ -461,17 +456,7 @@ I rarely, if ever, use the mouse in Emacs. This disable the GUI elements
 **** Variable pitch mode
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(variable-pitch ((t (:slant normal :weight normal :height 130 :width normal :foundry "nil" :family "Menlo")))))
-#+END_SRC
-
-**** Mode Line
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(mode-line ((t (:background "#012B35" :foreground "gray60" :inverse-video nil :box nil :underline nil :slant normal :weight normal))))
- '(mode-line-emphasis ((t nil)))
- '(mode-line-highlight ((t nil))))
+(set-face-attribute 'variable-pitch nil :height 130 :width 'normal :family "Menlo")
 #+END_SRC
 
 *** Add margins on left and right of the window
@@ -488,28 +473,28 @@ I like me some margins
 Compact mode line
 
 #+BEGIN_SRC emacs-lisp
-(use-package smart-mode-line
-  :ensure t
-  :defer t
-  :init
-  (progn
-    (setq sml/no-confirm-load-theme t)
-    (setq  sml/replacer-regexp-list '(("^~/Dropbox/Code/ruby/rails/" ":Code:Rails:")
-				      ("^~/Dropbox/Code/org/" ":Org:")
-				      ("^~/\\.emacs\\.d/" ":ED:")
-				      ("^/sudo:.*:" ":SU:")
-				      ("^~/Documents/" ":Doc:")
-				      ("^~/Dropbox/" ":DB:")
-				      ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
-				      ("^~/[Gg]it/" ":Git:")
-				      ("^~/[Gg]it[Hh]ub/" ":Git:")
-				      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
-				      ("^~/Downloads/" ":DWN:")
-				      ("^~/Dropbox/Code/" ":Code:")
-				      ("^~/Dropbox/Code/gh/" ":Git:"))
-	   sml/shorten-directory t
-	   sml/show-file-name t)
-    (sml/setup)))
+  (use-package smart-mode-line
+    :ensure
+    :defer t
+    :init
+    (progn
+      (setq sml/no-confirm-load-theme t)
+      (setq  sml/replacer-regexp-list '(("^~/Dropbox/Code/ruby/rails/" ":Code:Rails:")
+					("^~/Dropbox/Code/org/" ":Org:")
+					("^~/\\.emacs\\.d/" ":ED:")
+					("^/sudo:.*:" ":SU:")
+					("^~/Documents/" ":Doc:")
+					("^~/Dropbox/" ":DB:")
+					("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
+					("^~/[Gg]it/" ":Git:")
+					("^~/[Gg]it[Hh]ub/" ":Git:")
+					("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
+					("^~/Downloads/" ":DWN:")
+					("^~/Dropbox/Code/" ":Code:")
+					("^~/Dropbox/Code/gh/" ":Git:"))
+	     sml/shorten-directory t
+	     sml/show-file-name t)
+      (sml/setup)))
 #+END_SRC
 
 *** Set up Solarized color theme
@@ -521,7 +506,7 @@ CLOSED: [2015-03-09 Mon 17:12]
 
 #+BEGIN_SRC emacs-lisp
 (use-package solarized-theme
-  :ensure t
+  :ensure
   :init (load-theme 'solarized-dark))
 #+END_SRC
 
@@ -529,7 +514,7 @@ CLOSED: [2015-03-09 Mon 17:12]
 
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
-  :ensure t
+  :ensure
   :config
   (progn
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
@@ -544,7 +529,7 @@ Appearance
 
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces
- '(rainbow-delimiters-depth-1-face ((t (:foreground "#8b134f"))))
+ '(rainbow-delimiters-depth-1-face ((t (:foreground "#A52E66"))))
  '(rainbow-delimiters-depth-3-face ((t (:foreground "#384311"))))
  '(rainbow-delimiters-depth-4-face ((t (:foreground "#384311"))))
  '(rainbow-delimiters-depth-5-face ((t (:foreground "#384311"))))
@@ -583,7 +568,7 @@ Helm is awesome, read this [[http://tuhdo.github.io/helm-intro.html][blog]] post
 
 #+BEGIN_SRC emacs-lisp
 (use-package helm
-  :ensure helm
+  :ensure
   :init
   (progn
     (require 'helm-config)
@@ -606,7 +591,6 @@ Helm is awesome, read this [[http://tuhdo.github.io/helm-intro.html][blog]] post
 	  helm-adaptive-history-file "~/.history_emacs/helm-adaptive-history"
 	  helm-autoresize-max-height 30
 	  helm-autoresize-min-height 30
-	  helm-autoresize-mode t
 	  helm-boring-file-regexp-list '("\\.DS_STORE$" "\\.keep$"
 					 "\\.o$" "~$" "\\.bin$" "\\.lbin$"
 					 "\\.so$" "\\.a$" "\\.ln$" "\\.blg$"
@@ -647,7 +631,7 @@ Helm is awesome, read this [[http://tuhdo.github.io/helm-intro.html][blog]] post
   (progn
     (setq helm-buffers-favorite-modes (append helm-buffers-favorite-modes
 					      '(picture-mode)))
-
+    (helm-autoresize-mode t)
     (bind-keys :map helm-map
 	       ("<tab>" . helm-execute-persistent-action)
 	       ("C-i" . helm-execute-persistent-action)
@@ -677,11 +661,21 @@ Use helm for =desribe-binding= and =where-is=
 
 #+BEGIN_SRC emacs-lisp
 (use-package helm-descbinds
-  :ensure t
+  :ensure
   :defer t
   :bind (("C-h b" . helm-descbinds)
 	 ("C-h w" . helm-descbinds)))
 #+END_SRC
+
+Replace isearch =C-r= with [[https://github.com/ShingoFukuyama/helm-swoop][helm-swoop]]
+
+#+begin_src emacs-lisp
+(use-package helm-swoop
+  :ensure
+  :commands helm-swoop
+  :bind ("C-r" . helm-swoop))
+#+end_src
+
 
 Appearance
 
@@ -708,7 +702,7 @@ Projectile mode is one the best packages Emacs have, more information is in this
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
-  :ensure t
+  :ensure
   :config
   (progn
     (setq projectile-enable-caching t
@@ -731,7 +725,7 @@ Helm + Projectile = Love
 
 #+BEGIN_SRC emacs-lisp
   (use-package helm-projectile
-    :ensure t
+    :ensure
     :config
     (progn
       (helm-projectile-on)))
@@ -744,25 +738,25 @@ Extension to Projectile for navigating Rails files. We also install =rails-log-m
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile-rails
-  :ensure t
+  :ensure
   :commands projectile-rails-on
   :config
   (progn
     (use-package rails-log-mode
-      :ensure t)
+      :ensure)
     (bind-keys :map projectile-rails-mode-map
 	       ("C-c t r" . projectile-rails-rake))
     (setq projectile-rails-font-lock-face-name 'font-lock-builtin-face)))
 #+END_SRC
 
-*** Smart paren mode
+*** Smartparens mode
 
 This package manages pairs for you, so if you insert =(= it automatically inserts
 the closing pair.
 
 #+BEGIN_SRC emacs-lisp
 (use-package smartparens
-  :ensure t
+  :ensure
   :init
   (progn
     (require 'smartparens-config))
@@ -804,9 +798,18 @@ the closing pair.
 	       ("H-s p" . sp-add-to-previous-sexp)
 	       ("H-s n" . sp-add-to-next-sexp)
 	       ("H-s j" . sp-join-sexp)
-	       ("H-s s" . sp-split-sexp))
+	       ("H-s s" . sp-split-sexp)
+	       ("C-w" . my/backward-kill-word))
     (smartparens-global-mode t)
     (setq show-smartparens-global-mode t)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(defun my/backward-kill-word (args)
+  (interactive "P")
+  (if args
+      (command-execute 'sp-backward-kill-symbol)
+    (command-execute 'sp-backward-kill-word)))
 #+END_SRC
 
 Appearance
@@ -827,7 +830,7 @@ Better interface to Git
 
 #+BEGIN_SRC emacs-lisp
 (use-package magit
-  :ensure t
+  :ensure
   :defer t
   :commands magit-status
   :bind ("C-c <return>" . magit-status)
@@ -840,7 +843,7 @@ Better interface to Git
 
 #+BEGIN_SRC emacs-lisp
 (use-package company
-  :ensure t
+  :ensure
   :idle (global-company-mode)
   :config
   (progn
@@ -848,7 +851,7 @@ Better interface to Git
 	       ("C-w" . my/company-abort))
     (push 'company-robe company-backends)
     (setq company-global-modes '(not inf-ruby-mode eshell-mode)
-	  company-idle-delay 0.2
+	  company-idle-delay 0.3
 	  company-minimum-prefix-length 3)))
 #+END_SRC
 
@@ -880,7 +883,7 @@ this [[https://www.youtube.com/watch?v%3DT_voB16QxW0][video]] for better explana
 
 #+BEGIN_SRC emacs-lisp
 (use-package winner
-  :ensure t
+  :ensure
   :defer t
   :idle (winner-mode 1))
 #+END_SRC
@@ -889,7 +892,7 @@ this [[https://www.youtube.com/watch?v%3DT_voB16QxW0][video]] for better explana
 
 #+BEGIN_SRC emacs-lisp
 (use-package discover-my-major
-  :ensure t
+  :ensure
   :defer t
   :commands discover-my-major
   :bind ("C-h C-m" . discover-my-major))
@@ -903,7 +906,7 @@ in the minibuffer so you can edit or read the contents before submitting.
 #+BEGIN_SRC emacs-lisp
 (use-package miniedit
   :defer t
-  :ensure t
+  :ensure
   :commands minibuffer-edit
   :init (miniedit-install))
 #+END_SRC
@@ -914,10 +917,13 @@ As the name suggest, it allows editing over multiple lines
 
 #+BEGIN_SRC emacs-lisp
 (use-package multiple-cursors
-  :ensure t
-  :bind (("M-]" . mc/mark-next-like-this)
-	  ("M-[" . mc/mark-previous-like-this)
-	  ("C-M-SPC" . set-rectangular-region-anchor)))
+  :ensure
+  :bind (("C-c SPC" . mc/edit-lines)
+	 ("M-]" . mc/mark-next-like-this)
+	 ("M-[" . mc/mark-previous-like-this)
+	 ("M-}" . mc/unmark-next-like-this)
+	 ("M-{" . mc/unmark-previous-like-this)
+	 ("C-M-SPC" . set-rectangular-region-anchor)))
 #+END_SRC
 
 *** Abbrev mode
@@ -1011,7 +1017,7 @@ A better undo/redo alternative
 
 #+BEGIN_SRC emacs-lisp
 (use-package undo-tree
-  :ensure t
+  :ensure
   :init
   (progn
     (defadvice undo-tree-make-history-save-file-name
@@ -1031,7 +1037,7 @@ Make you jump to any word using only keys
 
 #+BEGIN_SRC emacs-lisp
 (use-package ace-jump-mode
-  :ensure t
+  :ensure
   :defer t
   :bind ("C-c ." . ace-jump-mode))
 #+END_SRC
@@ -1057,7 +1063,7 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 
 #+BEGIN_SRC emacs-lisp
   (use-package popwin
-    :ensure t
+    :ensure
     :demand t
     :bind ("C-h e" . popwin:messages)
     :commands popwin:special-display-config
@@ -1088,7 +1094,7 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 
 #+BEGIN_SRC emacs-lisp
 (use-package edit-server
-  :ensure t
+  :ensure
   :defer t
   :config
   (progn
@@ -1111,7 +1117,7 @@ end tell
 
 #+BEGIN_SRC emacs-lisp
   (use-package aggressive-indent
-    :ensure t)
+    :ensure)
 #+END_SRC
 
 *** Ediff Mode
@@ -1134,7 +1140,7 @@ end tell
 
 #+BEGIN_SRC emacs-lisp
 (use-package visual-regexp
-  :ensure t
+  :ensure
   :defer t
   :commands vr/query-replace
   :config
@@ -1158,10 +1164,10 @@ whitespaces.
 
 #+BEGIN_SRC emacs-lisp
 (global-whitespace-mode t)
-(setq show-trailing-whitespace nil
-      whitespace-action '(auto-cleanup)
+(setq whitespace-action '(auto-cleanup)
       whitespace-style '(trailing
 			 lines
+			 empty
 			 space-before-tab
 			 indentation
 			 space-after-tab)
@@ -1181,7 +1187,7 @@ Iedit lets you mark all occurrences of a word to edit them at the same time.
 
 #+BEGIN_SRC emacs-lisp
 (use-package iedit
-  :ensure t
+  :ensure
   :defer t
   :commands iedit-mode
   :bind ("C-;" . iedit-mode))
@@ -1194,7 +1200,7 @@ Expand region to fit the sexp
 #+BEGIN_SRC emacs-lisp
 (use-package expand-region
   :defer t
-  :ensure t
+  :ensure
   :commands er/expand-region
   :bind ("M-2" . er/expand-region))
 #+END_SRC
@@ -1203,7 +1209,7 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package persistent-scratch
-  :ensure t
+  :ensure
   :init
   (progn
     (setq persistent-scratch-save-file (concat my/history-dir "persistent-scratch"))
@@ -1214,7 +1220,7 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package github-clone
-  :ensure t
+  :ensure
   :defer t
   :commands github-clone)
 #+END_SRC
@@ -1223,7 +1229,7 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
   (use-package pow
-    :ensure t
+    :ensure
     :defer t)
 #+END_SRC
 
@@ -1250,7 +1256,7 @@ Appearance
 
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
-  :ensure t
+  :ensure
   :defer t)
 #+END_SRC
 
@@ -1262,14 +1268,14 @@ Appearance
 *** Outline Mode
 
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'outline-1 nil :foreground "#2D8CCF" :weight 'bold)
-(set-face-attribute 'outline-2 nil :foreground "#6C73C2" :weight 'bold)
-(set-face-attribute 'outline-3 nil :foreground "#D13A82" :weight 'bold)
-(set-face-attribute 'outline-4 nil :foreground "#C94B22" :weight 'bold)
-(set-face-attribute 'outline-5 nil :foreground "#85981B" :weight 'bold)
-(set-face-attribute 'outline-6 nil :foreground "#31A198" :weight 'bold)
-(set-face-attribute 'outline-7 nil :foreground "#DA3435" :weight 'bold)
-(set-face-attribute 'outline-8 nil :foreground "#B4881C" :weight 'bold)
+;; (set-face-attribute 'outline-1 nil :foreground "#2D8CCF" :weight 'bold)
+;; (set-face-attribute 'outline-2 nil :foreground "#6C73C2" :weight 'bold)
+;; (set-face-attribute 'outline-3 nil :foreground "#D13A82" :weight 'bold)
+;; (set-face-attribute 'outline-4 nil :foreground "#C94B22" :weight 'bold)
+;; (set-face-attribute 'outline-5 nil :foreground "#85981B" :weight 'bold)
+;; (set-face-attribute 'outline-6 nil :foreground "#31A198" :weight 'bold)
+;; (set-face-attribute 'outline-7 nil :foreground "#DA3435" :weight 'bold)
+;; (set-face-attribute 'outline-8 nil :foreground "#B4881C" :weight 'bold)
 #+END_SRC
 
 *** Org Mode
@@ -1285,6 +1291,7 @@ Appearance
       org-src-window-setup 'current-window
       org-goto-interface 'outline
       org-goto-max-level 10
+      org-imenu-depth 5
       org-startup-folded nil)
 #+END_SRC
 
@@ -1332,21 +1339,19 @@ expression, otherwise use regular `eval-last-sexp'"
   :config
   (progn
     (use-package inf-ruby
-      :ensure t
-      :defer t
-      :config
+      :ensure
+      :init
       (progn
 	(add-hook 'inf-ruby-mode-hook
 		  (lambda ()
 		    (setq truncate-lines t)
 		    (company-mode 0)))))
     (use-package robe
-      :ensure t
-      :commands robe-mode
-      :defer t)
+      :ensure
+      :commands robe-mode)
     (use-package rvm
-      :ensure t
-      :defer t)
+      :ensure
+      :init (rvm-use-default))
 
     (add-hook 'ruby-mode-hook #'robe-mode)
     (add-hook 'ruby-mode-hook #'projectile-rails-on)
@@ -1365,7 +1370,7 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package rake
-  :ensure t
+  :ensure
   :defer t
   :config
   (progn
@@ -1377,7 +1382,7 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package bundler
-  :ensure t
+  :ensure
   :defer t
   :commands bundle-install)
 #+END_SRC
@@ -1386,7 +1391,7 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
-  :ensure t
+  :ensure
   :defer t
   :config
   (progn
@@ -1405,14 +1410,15 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
-  :ensure t
+  :ensure
   :defer t
-  :commands yas-minor-mode
-  :init (add-hook 'prog-mode-hook #'yas-minor-mode)
+  :commands yas-global-mode
+  :idle (yas-global-mode)
   :config
   (progn
-    (eval-after-load "rspec-mode" '(rspec-install-snippets))
-    (add-hook 'ruby-mode-hook #'yas-minor-mode)))
+    (use-package helm-c-yasnippet
+      :ensure)
+    (eval-after-load "rspec-mode" '(rspec-install-snippets))))
 #+END_SRC
 
 *** SQL Mode
@@ -1423,19 +1429,11 @@ expression, otherwise use regular `eval-last-sexp'"
 	    (setq truncate-lines t)))
 #+END_SRC
 
-*** Compilation Mode
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'compilation-mode-hook
-	  (lambda ()
-	    (setq truncate-lines t)))
-#+END_SRC
-
 *** Rspec Mode
 
 #+BEGIN_SRC emacs-lisp
 (use-package rspec-mode
-  :ensure t
+  :ensure
   :defer t
   :config
   (progn
@@ -1449,14 +1447,16 @@ expression, otherwise use regular `eval-last-sexp'"
 	   rspec-snippets-fg-syntax 'concise
 	   rspec-use-bundler-when-possible t
 	   rspec-use-rake-when-possible nil
-	   rspec-use-rvm t)))
+	   rspec-use-rvm t)
+
+    (bind-key "C-c C-," rspec-verifiable-mode-keymap)))
 #+END_SRC
 
 *** HAML mode
 
 #+BEGIN_SRC emacs-lisp
 (use-package haml-mode
-  :ensure t
+  :ensure
   :defer t
   :config
   (progn
@@ -1472,7 +1472,7 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
-  :ensure t
+  :ensure
   :defer t
   :config
   (progn
@@ -1483,7 +1483,7 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
-  :ensure t
+  :ensure
   :defer t
   :config
   (progn
@@ -1505,7 +1505,7 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package scss-mode
-  :ensure t
+  :ensure
   :defer t
   :config
   (progn
@@ -1516,7 +1516,7 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package coffee-mode
-  :ensure t
+  :ensure
   :defer t
   :config
   (progn

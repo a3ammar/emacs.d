@@ -1536,6 +1536,23 @@ expression, otherwise use regular `eval-last-sexp'"
       ns-control-modifier 'control)
 #+END_SRC
 
+**** OS X Arabic Keybaord
+
+#+BEGIN_SRC emacs-lisp
+(load (expand-file-name "elisp/arabic-mac.el" user-emacs-directory))
+(setq default-input-method "arabic-mac")
+#+END_SRC
+
+Make the font bigger for Arabic text
+
+#+BEGIN_SRC emacs-lisp
+(defun toggle-font ()
+  (interactive)
+  (if (string-match-p "Menlo" (face-font 'variable-pitch))
+      (set-face-font 'variable-pitch "Sahl Naskh")
+    (set-face-font 'variable-pitch "Menlo")))
+#+END_SRC
+
 *** Focus help window on popup
 
 #+BEGIN_SRC emacs-lisp

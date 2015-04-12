@@ -129,5 +129,3 @@ Based on Arabic table in X Keyboard Configuration DB.
  ("/" ?/))
 
 ;;; Arabic.el ends here
-
-

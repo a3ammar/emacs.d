@@ -33,8 +33,8 @@ and press =C-h v=.
       shift-select-mode nil
       fill-column 85
       comment-style 'multi-line
+      uniquify-buffer-name-style 'forward
       truncate-partial-width-windows nil
-      uniquify-buffer-name-style 'post-forward
       large-file-warning-threshold nil)
 #+END_SRC
 
@@ -75,7 +75,7 @@ Also install =auto-compile= mode so it byte-compile our init file
   (require 'use-package)
   (use-package auto-compile
     :ensure
-    :config
+    :init
     (progn
       (auto-compile-on-save-mode)
       (auto-compile-on-load-mode)
@@ -89,12 +89,13 @@ Also install =auto-compile= mode so it byte-compile our init file
 Some Emacs commands don't work properly on OS X, this fixes it.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package exec-path-from-shell
-    :ensure
-    :init
-    (progn
-      (exec-path-from-shell-initialize)
-      (exec-path-from-shell-copy-env "LANG")))
+(use-package exec-path-from-shell
+  :ensure
+  :init
+  (progn
+    (exec-path-from-shell-initialize)
+    (exec-path-from-shell-copy-env "LANG")
+    (exec-path-from-shell-copy-env "BROWSER")))
 #+END_SRC
 
 *** Use Bash as the default shell
@@ -419,7 +420,8 @@ Resize Emacs window (called frame in Emacs jargon) as pixels instead of chars re
 (custom-set-faces
  '(font-lock-builtin-face ((t (:foreground "#6193B3" :weight bold))))
  '(font-lock-comment-face ((t (:foreground "#53686f" :inverse-video nil :underline nil :slant italic :weight normal))))
- '(font-lock-constant-face ((t (:foreground "DeepSkyBlue3")))))
+ '(font-lock-constant-face ((t (:foreground "DeepSkyBlue3"))))
+ '(font-lock-function-name-face ((t (:weight bold)))))
 
 #+END_SRC
 
@@ -473,28 +475,28 @@ I like me some margins
 Compact mode line
 
 #+BEGIN_SRC emacs-lisp
-  (use-package smart-mode-line
-    :ensure
-    :defer t
-    :init
-    (progn
-      (setq sml/no-confirm-load-theme t)
-      (setq  sml/replacer-regexp-list '(("^~/Dropbox/Code/ruby/rails/" ":Code:Rails:")
-					("^~/Dropbox/Code/org/" ":Org:")
-					("^~/\\.emacs\\.d/" ":ED:")
-					("^/sudo:.*:" ":SU:")
-					("^~/Documents/" ":Doc:")
-					("^~/Dropbox/" ":DB:")
-					("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
-					("^~/[Gg]it/" ":Git:")
-					("^~/[Gg]it[Hh]ub/" ":Git:")
-					("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
-					("^~/Downloads/" ":DWN:")
-					("^~/Dropbox/Code/" ":Code:")
-					("^~/Dropbox/Code/gh/" ":Git:"))
-	     sml/shorten-directory t
-	     sml/show-file-name t)
-      (sml/setup)))
+(use-package smart-mode-line
+  :ensure
+  :init
+  (progn
+    (setq sml/no-confirm-load-theme t)
+    (setq  sml/replacer-regexp-list '(("^~/Dropbox/Code/ruby/rails/" ":Code:Rails:")
+				      ("^~/Dropbox/Code/org/" ":Org:")
+				      ("^~/\\.emacs\\.d/" ":ED:")
+				      ("^/sudo:.*:" ":SU:")
+				      ("^~/Documents/" ":Doc:")
+				      ("^~/Dropbox/" ":DB:")
+				      ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
+				      ("^~/[Gg]it/" ":Git:")
+				      ("^~/[Gg]it[Hh]ub/" ":Git:")
+				      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
+				      ("^~/Downloads/" ":DWN:")
+				      ("^~/Dropbox/Code/" ":Code:")
+				      ("^~/Dropbox/Code/gh/" ":Git:"))
+	   sml/shorten-directory t
+	   sml/show-file-name t
+	   sml/theme 'respectful)
+    (sml/setup)))
 #+END_SRC
 
 *** Set up Solarized color theme
@@ -515,7 +517,7 @@ CLOSED: [2015-03-09 Mon 17:12]
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
   :ensure
-  :config
+  :init
   (progn
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
     (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
@@ -703,7 +705,8 @@ Projectile mode is one the best packages Emacs have, more information is in this
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :ensure
-  :config
+  :bind ("C-c C-p" . projectile-command-map)
+  :init
   (progn
     (setq projectile-enable-caching t
 	  projectile-cache-file (concat my/history-dir
@@ -715,10 +718,8 @@ Projectile mode is one the best packages Emacs have, more information is in this
 						 "projectile-bookmarks.eld")
 	  projectile-mode-line nil
 	  projectile-remember-window-configs nil)
-    (bind-keys :map projectile-mode-map
-	       ("C-c C-p" . projectile-command-map))
-    (projectile-load-known-projects)
-    (projectile-global-mode)))
+    (projectile-global-mode)
+    (projectile-load-known-projects)))
 #+END_SRC
 
 Helm + Projectile = Love
@@ -726,7 +727,7 @@ Helm + Projectile = Love
 #+BEGIN_SRC emacs-lisp
   (use-package helm-projectile
     :ensure
-    :config
+    :init
     (progn
       (helm-projectile-on)))
 
@@ -759,9 +760,7 @@ the closing pair.
   :ensure
   :init
   (progn
-    (require 'smartparens-config))
-  :config
-  (progn
+    (require 'smartparens-config)
     (bind-keys :map sp-keymap
 	       ("C-M-f" . sp-forward-sexp)
 	       ("C-M-b" . sp-backward-sexp)
@@ -798,19 +797,12 @@ the closing pair.
 	       ("H-s p" . sp-add-to-previous-sexp)
 	       ("H-s n" . sp-add-to-next-sexp)
 	       ("H-s j" . sp-join-sexp)
-	       ("H-s s" . sp-split-sexp)
-	       ("C-w" . my/backward-kill-word))
+	       ("H-s s" . sp-split-sexp))
     (smartparens-global-mode t)
-    (setq show-smartparens-global-mode t)))
+    (show-smartparens-global-mode t)
+    (show-paren-mode -1)))
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-(defun my/backward-kill-word (args)
-  (interactive "P")
-  (if args
-      (command-execute 'sp-backward-kill-symbol)
-    (command-execute 'sp-backward-kill-word)))
-#+END_SRC
 
 Appearance
 
@@ -836,6 +828,7 @@ Better interface to Git
   :bind ("C-c <return>" . magit-status)
   :config
   (progn
+    (setq magit-last-seen-setup-instructions "1.4.0")
     (setq magit-restore-window-configuration t)))
 #+END_SRC
 
@@ -844,9 +837,9 @@ Better interface to Git
 #+BEGIN_SRC emacs-lisp
 (use-package company
   :ensure
-  :idle (global-company-mode)
-  :config
+  :init
   (progn
+    (global-company-mode)
     (bind-keys :map company-active-map
 	       ("C-w" . my/company-abort))
     (push 'company-robe company-backends)
@@ -882,10 +875,9 @@ Winner mode gives you the ability to undo and redo your window configuration, wa
 this [[https://www.youtube.com/watch?v%3DT_voB16QxW0][video]] for better explanation.
 
 #+BEGIN_SRC emacs-lisp
-(use-package winner
-  :ensure
-  :defer t
-  :idle (winner-mode 1))
+  (use-package winner
+    :ensure
+    :init (winner-mode 1))
 #+END_SRC
 
 *** Discover Major Mode keybindings
@@ -923,7 +915,9 @@ As the name suggest, it allows editing over multiple lines
 	 ("M-[" . mc/mark-previous-like-this)
 	 ("M-}" . mc/unmark-next-like-this)
 	 ("M-{" . mc/unmark-previous-like-this)
-	 ("C-M-SPC" . set-rectangular-region-anchor)))
+	 ("C-M-SPC" . set-rectangular-region-anchor))
+  :config
+  (setq mc/list-file (concat my/history-dir "mc-lists.el")))
 #+END_SRC
 
 *** Abbrev mode
@@ -1062,32 +1056,30 @@ Appearance
 Popwin makes popup window awesome again, every popup window can be closed by =C-g=.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package popwin
-    :ensure
-    :demand t
-    :bind ("C-h e" . popwin:messages)
-    :commands popwin:special-display-config
-    :config
-    (progn
-      (push '("*rspec-compilation*" :tail nil) popwin:special-display-config)
-      (push "*projectile-rails-server*" popwin:special-display-config)
-      (push "*coffee-compiled*" popwin:special-display-config)
-      (push "*Bundler*" popwin:special-display-config)
-      (push "*projectile-rails-compilation*" popwin:special-display-config)
-      (push "*Ack-and-a-half*" popwin:special-display-config)
-      (push "*ruby*" popwin:special-display-config)
-      (push "*rails*" popwin:special-display-config)
-      (push "*Compile-Log*" popwin:special-display-config)
-      (push "*pry*" popwin:special-display-config)
-      (push "*SQL*" popwin:special-display-config)
-      (push "*projectile-rails-generate*" popwin:special-display-config)
-      (push "*Package Commit List*" popwin:special-display-config)
-      (push "*Compile-Log*" popwin:special-display-config)
-      (push '(" *undo-tree*" :position bottom) popwin:special-display-config)
-      (push "*compilation*" popwin:special-display-config)
-      (push '("^*Org Src.*$" :regexp t :position bottom :height 20 :stick t) popwin:special-display-config)
-      (popwin-mode t)
-      (global-set-key (kbd "C-z") popwin:keymap)))
+(use-package popwin
+  :ensure
+  :bind ("C-h e" . popwin:messages)
+  :commands popwin:special-display-config
+  :config
+  (progn
+    (push '("*rspec-compilation*" :tail nil) popwin:special-display-config)
+    (push "*projectile-rails-server*" popwin:special-display-config)
+    (push "*coffee-compiled*" popwin:special-display-config)
+    (push "*Bundler*" popwin:special-display-config)
+    (push "*projectile-rails-compilation*" popwin:special-display-config)
+    (push "*Ack-and-a-half*" popwin:special-display-config)
+    (push "*ruby*" popwin:special-display-config)
+    (push "*rails*" popwin:special-display-config)
+    (push "*Compile-Log*" popwin:special-display-config)
+    (push "*pry*" popwin:special-display-config)
+    (push "*SQL*" popwin:special-display-config)
+    (push "*projectile-rails-generate*" popwin:special-display-config)
+    (push "*Package Commit List*" popwin:special-display-config)
+    (push "*Compile-Log*" popwin:special-display-config)
+    (push '(" *undo-tree*" :position bottom) popwin:special-display-config)
+    (push "*compilation*" popwin:special-display-config)
+    (popwin-mode t)
+    (global-set-key (kbd "C-z") popwin:keymap)))
 #+END_SRC
 
 *** Edit Server for Chrome
@@ -1142,7 +1134,7 @@ end tell
 (use-package visual-regexp
   :ensure
   :defer t
-  :commands vr/query-replace
+  :commands qrr
   :config
   (progn
     (defalias 'qrr 'vr/query-replace)))
@@ -1225,14 +1217,29 @@ Expand region to fit the sexp
   :commands github-clone)
 #+END_SRC
 
-*** Control Pow from Emacs
+*** Feature Mode
 
 #+BEGIN_SRC emacs-lisp
-  (use-package pow
-    :ensure
-    :defer t)
+(use-package feature-mode
+  :ensure t
+  :defer t
+  :commands feature-mode)
 #+END_SRC
 
+*** Dired Mode
+
+#+BEGIN_SRC emacs-lisp
+(bind-keys :map dired-mode-map
+	   ("C-l" . dired-up-directory))
+#+END_SRC
+
+*** Shell Conf Mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package sh-mode
+  :mode "\\.zsh\\'"
+  :interpreter "zsh")
+#+END_SRC
 ** Writing And Programming Modes
 *** Text mode
 
@@ -1340,18 +1347,37 @@ expression, otherwise use regular `eval-last-sexp'"
   (progn
     (use-package inf-ruby
       :ensure
-      :init
+      :defer
+      :config
       (progn
 	(add-hook 'inf-ruby-mode-hook
 		  (lambda ()
 		    (setq truncate-lines t)
 		    (company-mode 0)))))
+
     (use-package robe
       :ensure
+      :defer
       :commands robe-mode)
+
     (use-package rvm
       :ensure
-      :init (rvm-use-default))
+      :defer
+      :config (rvm-use-default))
+
+    (use-package rake
+      :ensure
+      :defer
+      :config
+      (setq rake-cache-file (concat my/history-dir "rake.cache")
+	    rake-completion-system 'helm))
+
+    (use-package bundler
+      :ensure
+      :defer
+      :commands bundle-install
+      :config
+      (rvm-use-default))
 
     (add-hook 'ruby-mode-hook #'robe-mode)
     (add-hook 'ruby-mode-hook #'projectile-rails-on)
@@ -1364,27 +1390,6 @@ expression, otherwise use regular `eval-last-sexp'"
 			    '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
     (setq ruby-indent-level 2)))
 
-#+END_SRC
-
-*** Rake Mode
-
-#+BEGIN_SRC emacs-lisp
-(use-package rake
-  :ensure
-  :defer t
-  :config
-  (progn
-    (setq rake-cache-file (concat my/history-dir "rake.cache")
-	  rake-completion-system 'helm)))
-#+END_SRC
-
-*** Bundler
-
-#+BEGIN_SRC emacs-lisp
-(use-package bundler
-  :ensure
-  :defer t
-  :commands bundle-install)
 #+END_SRC
 
 *** Javascript Mode
@@ -1411,11 +1416,11 @@ expression, otherwise use regular `eval-last-sexp'"
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
   :ensure
-  :defer t
   :commands yas-global-mode
-  :idle (yas-global-mode)
+  :defer 3
   :config
   (progn
+    (yas-global-mode)
     (use-package helm-c-yasnippet
       :ensure)
     (eval-after-load "rspec-mode" '(rspec-install-snippets))))
@@ -1442,7 +1447,8 @@ expression, otherwise use regular `eval-last-sexp'"
       (let ((shell-file-name "/bin/bash"))
 	ad-do-it))
     (ad-activate 'rspec-compile)
-
+    (add-hook 'rspec-compilation-mode-hook (lambda ()
+					     (toggle-truncate-lines -1)))
     (setq  rspec-compilation-skip-threshold 2
 	   rspec-snippets-fg-syntax 'concise
 	   rspec-use-bundler-when-possible t
@@ -1450,6 +1456,13 @@ expression, otherwise use regular `eval-last-sexp'"
 	   rspec-use-rvm t)
 
     (bind-key "C-c C-," rspec-verifiable-mode-keymap)))
+#+END_SRC
+
+*** Compilation Mode
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'compilation-mode-hook (lambda ()
+				   (toggle-truncate-lines 1)))
 #+END_SRC
 
 *** HAML mode
@@ -1462,7 +1475,8 @@ expression, otherwise use regular `eval-last-sexp'"
   (progn
     (add-hook 'haml-mode-hook
 	      (lambda ()
-		(rspec-mode)))
+		(rspec-mode)
+		(projectile-rails-mode)))
     (add-hook 'haml-mode-hook
 	      (lambda ()
 		(local-set-key (kbd "RET") 'newline-and-indent)))))
@@ -1474,9 +1488,16 @@ expression, otherwise use regular `eval-last-sexp'"
 (use-package web-mode
   :ensure
   :defer t
+  :mode ("\\.html$" "\\.xml$" "\\.erb$")
   :config
   (progn
-    (eval-after-load "web-mode" '(require 'smartparens-html))))
+    (eval-after-load "web-mode" '(require 'smartparens-html))
+    (add-hook 'web-mode-hook 'my/web-mode-hook)))
+
+(defun my/web-mode-hook ()
+  (setq web-mode-css-indent-offset 2
+	web-mode-markup-indent-offset 2
+	web-mode-code-indent-offset 2))
 #+END_SRC
 
 *** YAML mode
@@ -1489,6 +1510,7 @@ expression, otherwise use regular `eval-last-sexp'"
   (progn
     (add-hook 'yaml-mode-hook
 	      (lambda ()
+		(projectile-rails-mode)
 		(local-set-key (kbd "RET") 'newline-and-indent)))))
 #+END_SRC
 
@@ -1498,7 +1520,8 @@ expression, otherwise use regular `eval-last-sexp'"
 (add-hook 'css-mode-hook
 	  (lambda ()
 	    (setq comment-start "//")
-	    (setq comment-end "")))
+	    (setq comment-end "")
+	    (setq css-indent-offset 2)))
 #+END_SRC
 
 *** SCSS Mode
@@ -1509,7 +1532,8 @@ expression, otherwise use regular `eval-last-sexp'"
   :defer t
   :config
   (progn
-    (setq scss-compile-at-save nil)))
+    (setq scss-compile-at-save nil)
+    (add-hook 'scss-mode-hook #'projectile-rails-mode)))
 
 #+END_SRC
 *** Coffeescript Mode
@@ -1524,7 +1548,8 @@ expression, otherwise use regular `eval-last-sexp'"
 	  coffee-tab-width 2)
     (add-hook 'coffee-mode-hook
 	      (lambda ()
-		(rspec-mode)))))
+		(rspec-mode)
+		(projectile-rails-mode)))))
 #+END_SRC
 
 ** Misc Settings

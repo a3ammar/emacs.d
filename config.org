@@ -1062,9 +1062,10 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 (use-package popwin
   :ensure
   :bind ("C-h e" . popwin:messages)
-  :commands popwin:special-display-config
-  :config
+  :commands (popwin-mode)
+  :init
   (progn
+    (popwin-mode t)
     (push '("*rspec-compilation*" :tail nil) popwin:special-display-config)
     (push "*projectile-rails-server*" popwin:special-display-config)
     (push "*coffee-compiled*" popwin:special-display-config)
@@ -1081,7 +1082,6 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
     (push "*Compile-Log*" popwin:special-display-config)
     (push '(" *undo-tree*" :position bottom) popwin:special-display-config)
     (push "*compilation*" popwin:special-display-config)
-    (popwin-mode t)
     (global-set-key (kbd "C-z") popwin:keymap)))
 #+END_SRC
 

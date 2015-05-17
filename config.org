@@ -1346,7 +1346,7 @@ expression, otherwise use regular `eval-last-sexp'"
 (use-package ruby-mode
   :mode "\\.rb\\'"
   :interpreter "ruby"
-  :config
+  :init
   (progn
     (use-package inf-ruby
       :ensure
@@ -1366,7 +1366,7 @@ expression, otherwise use regular `eval-last-sexp'"
     (use-package rvm
       :ensure
       :defer
-      :config (rvm-use-default))
+      :init (rvm-use-default))
 
     (use-package rake
       :ensure

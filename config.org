@@ -1456,6 +1456,7 @@ expression, otherwise use regular `eval-last-sexp'"
 	   rspec-snippets-fg-syntax 'concise
 	   rspec-use-bundler-when-possible t
 	   rspec-use-rake-when-possible nil
+	   compilation-scroll-output t
 	   rspec-use-rvm t)
 
     (bind-key "C-c C-," rspec-verifiable-mode-keymap)))

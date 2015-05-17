@@ -391,6 +391,12 @@ Resize Emacs window (called frame in Emacs jargon) as pixels instead of chars re
 (setq frame-resize-pixelwise t)
 #+END_SRC
 
+Remember cursor position when scrolling
+
+#+BEGIN_SRC emacs-lisp
+(setq scroll-preserve-screen-position 'always)
+#+END_SRC
+
 *** Fonts and colors
 **** Default font
 #+BEGIN_SRC emacs-lisp

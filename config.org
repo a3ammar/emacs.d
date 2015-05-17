@@ -1013,27 +1013,30 @@ A better undo/redo alternative
 (use-package undo-tree
   :ensure
   :init
-  (progn
-    (defadvice undo-tree-make-history-save-file-name
-	(after undo-tree activate)
-      (setq ad-return-value (concat ad-return-value ".gz")))
-    (global-undo-tree-mode t)
-    (setq
-     undo-tree-auto-save-history t
-     undo-tree-history-directory-alist (list
-					(cons "."
-					      (concat my/history-dir "undo-tree"))))))
+  (global-undo-tree-mode t))
 #+END_SRC
 
-*** Ace Jump
+# *** Ace Jump
 
-Make you jump to any word using only keys
+# Make you jump to any word using only keys
+
+# #+BEGIN_SRC emacs-lisp
+# (use-package ace-jump-mode
+#   :ensure
+#   :defer t
+#   :bind ("C-c ." . ace-jump-mode))
+# #+END_SRC
+
+*** Avy
+
+Similar to ace-jump above
 
 #+BEGIN_SRC emacs-lisp
-(use-package ace-jump-mode
+(use-package avy
   :ensure
-  :defer t
-  :bind ("C-c ." . ace-jump-mode))
+  :commands avy-goto-char
+  :bind ("C-." . avy-goto-char)
+  :init (setq avy-style 'at))
 #+END_SRC
 
 *** Git mode

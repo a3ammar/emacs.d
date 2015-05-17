@@ -821,14 +821,15 @@ Appearance
 Better interface to Git
 
 #+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :ensure
-    :defer t
-    :commands magit-status
-    :bind ("C-c <return>" . magit-status)
-    :init
-    (setq magit-last-seen-setup-instructions "1.4.0"
-          magit-restore-window-configuration t))
+(use-package magit
+  :ensure
+  :defer t
+  :commands magit-status
+  :bind ("C-c <return>" . magit-status)
+  :init
+  (setq magit-last-seen-setup-instructions "1.4.0"
+	magit-restore-window-configuration t
+	magit-status-buffer-switch-function 'switch-to-buffer))
 #+END_SRC
 
 *** Company Mode

@@ -1250,6 +1250,13 @@ Expand region to fit the sexp
   :interpreter "zsh")
 #+END_SRC
 ** Writing And Programming Modes
+
+Set the global `fill-column`
+
+#+BEGIN_SRC emacs-lisp
+(setq-default fill-column 88)
+#+END_SRC
+
 *** Text mode
 
 #+BEGIN_SRC emacs-lisp

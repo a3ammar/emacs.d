@@ -31,7 +31,6 @@ and press =C-h v=.
       transient-mark-mode t
       delete-by-moving-to-trash t
       shift-select-mode nil
-      fill-column 85
       comment-style 'multi-line
       uniquify-buffer-name-style 'forward
       truncate-partial-width-windows nil
@@ -104,6 +103,12 @@ I use Zsh as my default shell and Emacs doesn't like that.
 
 #+BEGIN_SRC emacs-lisp
 (setq shell-file-name "/bin/bash")
+#+END_SRC
+
+*** Use Org-mode for *scratch*
+
+#+BEGIN_SRC emacs-lisp
+(setq initial-major-mode 'org-mode)
 #+END_SRC
 
 ** History And Session Configuration

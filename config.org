@@ -60,27 +60,31 @@ Read about [[https://github.com/jwiegley/use-package][use-package]].
 Also install =auto-compile= mode so it byte-compile our init file
 
 #+BEGIN_SRC emacs-lisp
-  (defvar my/elisp-dir (expand-file-name "elisp/" user-emacs-directory))
-  (defvar my/history-dir (expand-file-name "history/" user-emacs-directory))
+(defvar my/elisp-dir (expand-file-name "elisp/" user-emacs-directory))
+(defvar my/history-dir (expand-file-name "history/" user-emacs-directory))
 
-  (let ((default-directory my/elisp-dir))
-    (normal-top-level-add-subdirs-to-load-path))
+(let ((default-directory my/elisp-dir))
+      (normal-top-level-add-subdirs-to-load-path))
 
-  (unless (package-installed-p 'use-package)
-    (package-install 'use-package))
-  (unless (package-installed-p 'dash)
-    (package-install 'dash))
-  (setq use-package-verbose t)
-  (require 'use-package)
-  (use-package auto-compile
-    :ensure
-    :init
-    (progn
-      (auto-compile-on-save-mode)
-      (auto-compile-on-load-mode)
-      (setq auto-compile-display-buffer nil
-	    auto-compile-mode-line-counter t)))
-  (setq load-prefer-newer t)
+(unless (package-installed-p 'use-package)
+      (package-install 'use-package))
+(unless (package-installed-p 'dash)
+      (package-install 'dash))
+
+(setq use-package-verbose t)
+
+(require 'use-package)
+
+(use-package auto-compile
+      :ensure
+      :init
+      (progn
+	(auto-compile-on-save-mode)
+	(auto-compile-on-load-mode)
+	(setq auto-compile-display-buffer nil
+	      auto-compile-mode-line-counter t)))
+
+(setq load-prefer-newer t)
 #+END_SRC
 
 *** Fix Emacs Interaction with OS X and $PATH

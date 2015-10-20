@@ -989,10 +989,9 @@ Useful for defining abbreviations
 A better alternative to =package-list-packages=
 
 #+BEGIN_SRC emacs-lisp
-(setq paradox-github-token "e8b3ccfd9fcb170f2d0467ed5455d5e34cc23db4"
-	  paradox-automatically-star t
-	  paradox-execute-asynchronously t
-	  paradox-lines-per-entry 1)
+(setq paradox-automatically-star t
+      paradox-execute-asynchronously t
+      paradox-lines-per-entry 1)
 (defalias 'pkg 'paradox-list-packages)
 
 #+END_SRC

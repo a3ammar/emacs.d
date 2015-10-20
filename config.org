@@ -329,7 +329,8 @@ When I call emacsclient I'm definitely on Terminal.app
 
 #+BEGIN_SRC emacs-lisp
 (defun focus-terminal ()
-  (do-applescript "tell application \"Terminal\" to activate"))
+  (unless (member 'git-commit-mode minor-mode-list)
+    (do-applescript "tell application \"Terminal\" to activate")))
 
 (add-hook 'server-done-hook #'focus-terminal)
 #+END_SRC

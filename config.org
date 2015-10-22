@@ -65,10 +65,10 @@ Also install =auto-compile= mode so it byte-compile our init file
 (defvar my/history-dir (expand-file-name "history/" user-emacs-directory))
 
 (let ((default-directory my/elisp-dir))
-      (normal-top-level-add-subdirs-to-load-path))
+  (normal-top-level-add-subdirs-to-load-path))
 
 (unless (package-installed-p 'use-package)
-      (package-install 'use-package))
+  (package-install 'use-package))
 (unless (package-installed-p 'dash)
       (package-install 'dash))
 
@@ -316,11 +316,7 @@ Allow to sudo edit files on trqeem.com
 	tramp-default-method "scpx"
 	vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
 				     vc-ignore-dir-regexp
-				     tramp-file-name-regexp))
-  (add-to-list 'tramp-default-proxies-alist
-	       '("trqeem\\.com" "\\`root\\'" "/sshx:bx7@%h#9152:"))
-  (add-to-list 'tramp-default-proxies-alist
-	       '("trqeems" "\\`root\\'" "/sshx:bx7@%h:")))
+				     tramp-file-name-regexp)))
 #+END_SRC
 
 *** Switch back to Terminal.app after emacsclient
@@ -1786,4 +1782,13 @@ This is useful when you want to paste sensitive information and do not want it t
   (yank)
   (setq kill-ring
 	(remove (first kill-ring) kill-ring)))
+#+END_SRC
+
+
+* Load my secrets
+
+These are stuff I dont' want to commit to a public repo
+
+#+BEGIN_SRC emacs-lisp
+(load "~/.emacs.secrets" t)
 #+END_SRC

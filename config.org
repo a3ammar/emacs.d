@@ -448,6 +448,12 @@ Remember cursor position when scrolling
 (setq scroll-preserve-screen-position 'always)
 #+END_SRC
 
+Add a bigger offset to underline property (it makes smart-mode-line looks way nicer)
+
+#+BEGIN_SRC emacs-lisp
+(setq underline-minimum-offset 4)
+#+END_SRC
+
 *** Fonts and colors
 **** Default font
 #+BEGIN_SRC emacs-lisp

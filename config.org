@@ -249,6 +249,12 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 (global-hl-line-mode)
 #+END_SRC
 
+*** Add newline at the end of the file
+
+#+BEGIN_SRC emacs-lisp
+(setq-default require-final-newline t)
+#+END_SRC
+
 *** Disable =magic-mode=
 
 #+BEGIN_SRC emacs-lisp

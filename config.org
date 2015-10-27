@@ -1319,8 +1319,8 @@ Never lose your cursor again
 (use-package beacon
   :ensure t
   :defer t
-  :config
-  (add-hook 'prog-mode-hook #'beacon-mode))
+  :init
+  (beacon-mode t))
 #+END_SRC
 
 

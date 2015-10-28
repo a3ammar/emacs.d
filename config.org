@@ -240,7 +240,7 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 *** Don't use tabs for indentation.
 
 #+BEGIN_SRC emacs-lisp
-(setq-default indent-tab-mode nil)
+(setq-default indent-tabs-mode nil)
 #+END_SRC
 
 *** Highlight the current line

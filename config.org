@@ -70,20 +70,20 @@ Also install =auto-compile= mode so it byte-compile our init file
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 (unless (package-installed-p 'dash)
-      (package-install 'dash))
+  (package-install 'dash))
 
 (setq use-package-verbose t)
 
 (require 'use-package)
 
 (use-package auto-compile
-      :ensure
-      :init
-      (progn
-	(auto-compile-on-save-mode)
-	(auto-compile-on-load-mode)
-	(setq auto-compile-display-buffer nil
-	      auto-compile-mode-line-counter t)))
+  :ensure
+  :init
+  (progn
+    (auto-compile-on-save-mode)
+    (auto-compile-on-load-mode)
+    (setq auto-compile-display-buffer nil
+          auto-compile-mode-line-counter t)))
 
 (setq load-prefer-newer t)
 #+END_SRC
@@ -156,9 +156,9 @@ This saves our position in files other things between Emacs sessions.
       history-delete-duplicates t
       savehist-save-minibuffer-history 1
       savehist-additional-variables '(kill-ring
-				      search-ring
-				      regex-search-ring
-				      extended-command-history)
+                                      search-ring
+                                      regex-search-ring
+                                      extended-command-history)
       save-place-file (concat my/history-dir "saveplace"))
 (savehist-mode 1)
 
@@ -216,7 +216,7 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 #+BEGIN_SRC emacs-lisp
 (setq kill-buffer-query-functions
       (remq 'proccess-kill-buffer-query-function
-	    kill-buffer-query-functions))
+            kill-buffer-query-functions))
 #+END_SRC
 
 *** Allows Emacs to open compressed files and compresses them back when you save the file.
@@ -319,10 +319,10 @@ Allow to sudo edit files on trqeem.com
   :config
   (setq tramp-persistency-file-name (concat my/history-dir "tramp"))
   (setq tramp-process-connection-type nil
-	tramp-default-method "scpx"
-	vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
-				     vc-ignore-dir-regexp
-				     tramp-file-name-regexp)))
+        tramp-default-method "scpx"
+        vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
+                                     vc-ignore-dir-regexp
+                                     tramp-file-name-regexp)))
 #+END_SRC
 
 *** Switch back to Terminal.app after emacsclient
@@ -355,17 +355,17 @@ These are my personal preference to the default Emacs keybindings.
 
 #+BEGIN_SRC emacs-lisp
 (bind-keys ("C-s" . isearch-forward-regexp)
-	   ("C-r" . isearch-backward-regexp)
-	   ("C-M-s" . isearch-forward)
-	   ("C-M-r" . isearch-backward)
-	   ("C-h a" . apropos)
-	   ("C-w" . backward-kill-word)
-	   ("C-x C-k" . kill-region)
-	   ("M-/" . hippie-expand)
-	   ("RET" . reindent-then-newline-and-indent)
-	   ("C-x t l" . toggle-truncate-lines)
-	   ("C-<tab>" . indent-for-tab-command)
-	   ("C-x s" . save-buffer))
+           ("C-r" . isearch-backward-regexp)
+           ("C-M-s" . isearch-forward)
+           ("C-M-r" . isearch-backward)
+           ("C-h a" . apropos)
+           ("C-w" . backward-kill-word)
+           ("C-x C-k" . kill-region)
+           ("M-/" . hippie-expand)
+           ("RET" . reindent-then-newline-and-indent)
+           ("C-x t l" . toggle-truncate-lines)
+           ("C-<tab>" . indent-for-tab-command)
+           ("C-x s" . save-buffer))
 #+END_SRC
 
 **** Window movement
@@ -384,7 +384,7 @@ Use =Shift-Arrows= to move between windows
   (other-window -1))
 
 (bind-keys ("C-x o" . my/switch-window-backward)
-	   ("C-x C-o" . my/switch-window-forward))
+           ("C-x C-o" . my/switch-window-forward))
 
 
 #+END_SRC
@@ -529,21 +529,21 @@ Compact mode line
   (progn
     (setq sml/no-confirm-load-theme t)
     (setq  sml/replacer-regexp-list '(("^~/Dropbox/Code/ruby/rails/" ":Code:Rails:")
-				      ("^~/Dropbox/Code/org/" ":Org:")
-				      ("^~/\\.emacs\\.d/" ":ED:")
-				      ("^/sudo:.*:" ":SU:")
-				      ("^~/Documents/" ":Doc:")
-				      ("^~/Dropbox/" ":DB:")
-				      ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
-				      ("^~/[Gg]it/" ":Git:")
-				      ("^~/[Gg]it[Hh]ub/" ":Git:")
-				      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
-				      ("^~/Downloads/" ":DWN:")
-				      ("^~/Dropbox/Code/" ":Code:")
-				      ("^~/Dropbox/Code/gh/" ":Git:"))
-	   sml/shorten-directory t
-	   sml/show-file-name t
-	   sml/theme 'respectful)
+                                      ("^~/Dropbox/Code/org/" ":Org:")
+                                      ("^~/\\.emacs\\.d/" ":ED:")
+                                      ("^/sudo:.*:" ":SU:")
+                                      ("^~/Documents/" ":Doc:")
+                                      ("^~/Dropbox/" ":DB:")
+                                      ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
+                                      ("^~/[Gg]it/" ":Git:")
+                                      ("^~/[Gg]it[Hh]ub/" ":Git:")
+                                      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
+                                      ("^~/Downloads/" ":DWN:")
+                                      ("^~/Dropbox/Code/" ":Code:")
+                                      ("^~/Dropbox/Code/gh/" ":Git:"))
+           sml/shorten-directory t
+           sml/show-file-name t
+           sml/theme 'respectful)
     (sml/setup)))
 #+END_SRC
 
@@ -625,79 +625,79 @@ Helm is awesome, read this [[http://tuhdo.github.io/helm-intro.html][blog]] post
   (progn
     (require 'helm-config)
     (setq helm-command-prefix-key "C-c h"
-	  helm-candidate-number-limit 200
-	  helm-idle-delay 0.0
-	  helm-input-idle-delay 0.01
-	  helm-quick-update t
-	  helm-buffers-fuzzy-matching t
-	  helm-google-suggest-use-curl-p t
-	  helm-move-to-line-cycle-in-source nil
-	  helm-scroll-amount 4
-	  helm-split-window-default-side 'other
-	  helm-split-window-in-side-p t
-	  ido-use-virtual-buffers t     ; FIXME
-	  helm-M-x-requires-pattern 0
-	  helm-ff-skip-boring-files t
-	  helm-ff-file-name-history-use-recentf t
-	  helm-ack-auto-set-filetype t
-	  helm-adaptive-history-file "~/.history_emacs/helm-adaptive-history"
-	  helm-autoresize-max-height 30
-	  helm-autoresize-min-height 30
-	  helm-boring-file-regexp-list '("\\.DS_STORE$" "\\.keep$"
-					 "\\.o$" "~$" "\\.bin$" "\\.lbin$"
-					 "\\.so$" "\\.a$" "\\.ln$" "\\.blg$"
-					 "\\.bbl$" "\\.elc$" "\\.lof$" "\\.glo$"
-					 "\\.idx$" "\\.lot$" "\\.svn$" "\\.hg$"
-					 "\\.git$" "\\.bzr$" "CVS$" "_darcs$"
-					 "_MTN$" "\\.fmt$" "\\.tfm$" "\\.class$"
-					 "\\.fas$" "\\.lib$" "\\.mem$" "\\.x86f$"
-					 "\\.sparcf$" "\\.dfsl$" "\\.pfsl$"
-					 "\\.d64fsl$" "\\.p64fsl$" "\\.lx64fsl$"
-					 "\\.lx32fsl$" "\\.dx64fsl$" "\\.dx32fsl$"
-					 "\\.fx64fsl$" "\\.fx32fsl$" "\\.sx64fsl$"
-					 "\\.sx32fsl$" "\\.wx64fsl$" "\\.wx32fsl$"
-					 "\\.fasl$" "\\.ufsl$" "\\.fsl$" "\\.dxl$"
-					 "\\.lo$" "\\.la$" "\\.gmo$" "\\.mo$"
-					 "\\.toc$" "\\.aux$" "\\.cp$" "\\.fn$"
-					 "\\.ky$" "\\.pg$" "\\.tp$" "\\.vr$"
-					 "\\.cps$" "\\.fns$" "\\.kys$" "\\.pgs$"
-					 "\\.tps$" "\\.vrs$" "\\.pyc$" "\\.pyo$"
-					 "\\.dropbox$" "\\.CFUserTextEncoding")
-	  helm-external-programs-associations '(("html" . "open"))
-	  helm-ff-newfile-prompt-p nil
-	  helm-ff-skip-boring-files t
-	  helm-input-method-verbose-flag nil
-	  helm-mode-reverse-history t
-	  helm-truncate-lines t
-	  helm-ff-search-library-in-sexp t)
+          helm-candidate-number-limit 200
+          helm-idle-delay 0.0
+          helm-input-idle-delay 0.01
+          helm-quick-update t
+          helm-buffers-fuzzy-matching t
+          helm-google-suggest-use-curl-p t
+          helm-move-to-line-cycle-in-source nil
+          helm-scroll-amount 4
+          helm-split-window-default-side 'other
+          helm-split-window-in-side-p t
+          ido-use-virtual-buffers t     ; FIXME
+          helm-M-x-requires-pattern 0
+          helm-ff-skip-boring-files t
+          helm-ff-file-name-history-use-recentf t
+          helm-ack-auto-set-filetype t
+          helm-adaptive-history-file "~/.history_emacs/helm-adaptive-history"
+          helm-autoresize-max-height 30
+          helm-autoresize-min-height 30
+          helm-boring-file-regexp-list '("\\.DS_STORE$" "\\.keep$"
+                                         "\\.o$" "~$" "\\.bin$" "\\.lbin$"
+                                         "\\.so$" "\\.a$" "\\.ln$" "\\.blg$"
+                                         "\\.bbl$" "\\.elc$" "\\.lof$" "\\.glo$"
+                                         "\\.idx$" "\\.lot$" "\\.svn$" "\\.hg$"
+                                         "\\.git$" "\\.bzr$" "CVS$" "_darcs$"
+                                         "_MTN$" "\\.fmt$" "\\.tfm$" "\\.class$"
+                                         "\\.fas$" "\\.lib$" "\\.mem$" "\\.x86f$"
+                                         "\\.sparcf$" "\\.dfsl$" "\\.pfsl$"
+                                         "\\.d64fsl$" "\\.p64fsl$" "\\.lx64fsl$"
+                                         "\\.lx32fsl$" "\\.dx64fsl$" "\\.dx32fsl$"
+                                         "\\.fx64fsl$" "\\.fx32fsl$" "\\.sx64fsl$"
+                                         "\\.sx32fsl$" "\\.wx64fsl$" "\\.wx32fsl$"
+                                         "\\.fasl$" "\\.ufsl$" "\\.fsl$" "\\.dxl$"
+                                         "\\.lo$" "\\.la$" "\\.gmo$" "\\.mo$"
+                                         "\\.toc$" "\\.aux$" "\\.cp$" "\\.fn$"
+                                         "\\.ky$" "\\.pg$" "\\.tp$" "\\.vr$"
+                                         "\\.cps$" "\\.fns$" "\\.kys$" "\\.pgs$"
+                                         "\\.tps$" "\\.vrs$" "\\.pyc$" "\\.pyo$"
+                                         "\\.dropbox$" "\\.CFUserTextEncoding")
+          helm-external-programs-associations '(("html" . "open"))
+          helm-ff-newfile-prompt-p nil
+          helm-ff-skip-boring-files t
+          helm-input-method-verbose-flag nil
+          helm-mode-reverse-history t
+          helm-truncate-lines t
+          helm-ff-search-library-in-sexp t)
     (helm-mode))
   :bind (("C-x C-m" . helm-M-x)
-	 ("C-x m" . helm-M-x)
-	 ("C-x b" . helm-buffers-list)
-	 ("C-x C-b" . helm-buffers-list)
-	 ("C-x C-f" . helm-find-files)
-	 ("C-x C-i" . helm-semantic-or-imenu)
-	 ("C-c s" . helm-do-ag)
-	 ("M-y" . helm-show-kill-ring))
+         ("C-x m" . helm-M-x)
+         ("C-x b" . helm-buffers-list)
+         ("C-x C-b" . helm-buffers-list)
+         ("C-x C-f" . helm-find-files)
+         ("C-x C-i" . helm-semantic-or-imenu)
+         ("C-c s" . helm-do-ag)
+         ("M-y" . helm-show-kill-ring))
   :config
   (progn
     (setq helm-buffers-favorite-modes (append helm-buffers-favorite-modes
-					      '(picture-mode)))
+                                              '(picture-mode)))
     (helm-autoresize-mode t)
     (bind-keys :map helm-map
-	       ("<tab>" . helm-execute-persistent-action)
-	       ("C-<tab>" . helm-execute-persistent-action)
-	       ("C-i" . helm-execute-persistent-action)
-	       ("C-z" . helm-select-action)
-	       ("C-w" . nil))
+               ("<tab>" . helm-execute-persistent-action)
+               ("C-<tab>" . helm-execute-persistent-action)
+               ("C-i" . helm-execute-persistent-action)
+               ("C-z" . helm-select-action)
+               ("C-w" . nil))
     (bind-keys :map helm-grep-mode-map
-	       ("<return>" . helm-grep-mode-jump-other-window)
-	       ("n" . helm-grep-mode-jump-other-window-forward)
-	       ("p" . helm-grep-mode-jump-other-window-backward))
+               ("<return>" . helm-grep-mode-jump-other-window)
+               ("n" . helm-grep-mode-jump-other-window-forward)
+               ("p" . helm-grep-mode-jump-other-window-backward))
     ;; Disable input-method inheritance inside helm buffers
     (add-hook 'helm-before-initialize-hook (lambda ()
-					     (helm-set-local-variable
-					      'current-input-method nil)))
+                                             (helm-set-local-variable
+                                              'current-input-method nil)))
     (add-hook 'helm-goto-line-before-hook 'helm-save-current-pos-to-mark-ring)))
 #+END_SRC
 
@@ -707,7 +707,7 @@ I much prefer helm's live grep over regular =helm-do-grep=
 (defun my/helm-do-grep (args)
   (interactive "P")
   (let ((current-prefix-arg '(4)))
-	(helm-do-grep)))
+    (helm-do-grep)))
 #+END_SRC
 
 Use helm for =desribe-binding= and =where-is=
@@ -717,7 +717,7 @@ Use helm for =desribe-binding= and =where-is=
   :ensure
   :defer t
   :bind (("C-h b" . helm-descbinds)
-	 ("C-h w" . helm-descbinds)))
+         ("C-h w" . helm-descbinds)))
 #+END_SRC
 
 Replace isearch =C-r= with [[https://github.com/ShingoFukuyama/helm-swoop][helm-swoop]]
@@ -759,15 +759,15 @@ Projectile mode is one the best packages Emacs have, more information is in this
   :init
   (progn
     (setq projectile-enable-caching t
-	  projectile-cache-file (concat my/history-dir
-					"projectile.cache")
-	  projectile-completion-system 'helm
-	  projectile-enable-caching t
-	  projectile-file-exists-remote-cache-expire nil
-	  projectile-known-projects-file (concat my/history-dir
-						 "projectile-bookmarks.eld")
-	  projectile-mode-line nil
-	  projectile-remember-window-configs nil)
+          projectile-cache-file (concat my/history-dir
+                                        "projectile.cache")
+          projectile-completion-system 'helm
+          projectile-enable-caching t
+          projectile-file-exists-remote-cache-expire nil
+          projectile-known-projects-file (concat my/history-dir
+                                                 "projectile-bookmarks.eld")
+          projectile-mode-line nil
+          projectile-remember-window-configs nil)
     (projectile-global-mode)
     (projectile-load-known-projects)))
 #+END_SRC
@@ -796,7 +796,7 @@ Extension to Projectile for navigating Rails files. We also install =rails-log-m
     (use-package rails-log-mode
       :ensure)
     (bind-keys :map projectile-rails-mode-map
-	       ("C-c t r" . projectile-rails-rake))
+               ("C-c t r" . projectile-rails-rake))
     (setq
      projectile-rails-font-lock-face-name 'font-lock-builtin-face
      projectile-rails-stylesheet-re "\\.\\(?:css\\|scss\\|sass\\|less\\)\\'")))
@@ -814,42 +814,42 @@ the closing pair.
   (progn
     (require 'smartparens-config)
     (bind-keys :map sp-keymap
-	       ("C-M-f" . sp-forward-sexp)
-	       ("C-M-b" . sp-backward-sexp)
-	       ("C-M-d" . sp-down-sexp)
-	       ("C-M-a" . my/sp-begging-of-sexp)
-	       ("C-M-e" . my/sp-end-of-sexp)
-	       ("C-S-a" . sp-beginning-of-sexp)
-	       ("C-S-d" . sp-end-of-sexp)
-	       ("C-M-u" . sp-backward-up-sexp)
-	       ("C-M-t" . sp-transpose-sexp)
-	       ("C-M-n" . sp-next-sexp)
-	       ("C-M-p" . sp-previous-sexp)
-	       ("C-M-k" . sp-kill-sexp)
-	       ("C-M-w" . sp-copy-sexp)
-	       ("M-<backspace>" . sp-unwrap-sexp)
-	       ("M-<delete>" . sp-backward-unwrap-sexp)
-	       ("C-<right>" . sp-forward-slurp-sexp)
-	       ("C-<left>" . sp-forward-barf-sexp)
-	       ("C-M-<left>" . sp-backward-slurp-sexp)
-	       ("C-M-<right>" . sp-backward-barf-sexp)
-	       ("C-M-<delete>" . sp-splice-sexp-killing-forward)
-	       ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
-	       ("C-S-<backspace>" . sp-splice-sexp-killing-around)
-	       ("C-]" . sp-select-next-thing-exchange)
-	       ("C-<left_bracket>" . sp-select-previous-thing)
-	       ("C-M-]" . sp-select-next-thing)
-	       ("M-F" . sp-forward-symbol)
-	       ("M-B" . sp-backward-symbol)
-	       ("H-t" . sp-prefix-tag-object)
-	       ("H-p" . sp-prefix-pair-object)
-	       ("H-s c" . sp-convolute-sexp)
-	       ("H-s a" . sp-absorb-sexp)
-	       ("H-s e" . sp-emit-sexp)
-	       ("H-s p" . sp-add-to-previous-sexp)
-	       ("H-s n" . sp-add-to-next-sexp)
-	       ("H-s j" . sp-join-sexp)
-	       ("H-s s" . sp-split-sexp))
+               ("C-M-f" . sp-forward-sexp)
+               ("C-M-b" . sp-backward-sexp)
+               ("C-M-d" . sp-down-sexp)
+               ("C-M-a" . my/sp-begging-of-sexp)
+               ("C-M-e" . my/sp-end-of-sexp)
+               ("C-S-a" . sp-beginning-of-sexp)
+               ("C-S-d" . sp-end-of-sexp)
+               ("C-M-u" . sp-backward-up-sexp)
+               ("C-M-t" . sp-transpose-sexp)
+               ("C-M-n" . sp-next-sexp)
+               ("C-M-p" . sp-previous-sexp)
+               ("C-M-k" . sp-kill-sexp)
+               ("C-M-w" . sp-copy-sexp)
+               ("M-<backspace>" . sp-unwrap-sexp)
+               ("M-<delete>" . sp-backward-unwrap-sexp)
+               ("C-<right>" . sp-forward-slurp-sexp)
+               ("C-<left>" . sp-forward-barf-sexp)
+               ("C-M-<left>" . sp-backward-slurp-sexp)
+               ("C-M-<right>" . sp-backward-barf-sexp)
+               ("C-M-<delete>" . sp-splice-sexp-killing-forward)
+               ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
+               ("C-S-<backspace>" . sp-splice-sexp-killing-around)
+               ("C-]" . sp-select-next-thing-exchange)
+               ("C-<left_bracket>" . sp-select-previous-thing)
+               ("C-M-]" . sp-select-next-thing)
+               ("M-F" . sp-forward-symbol)
+               ("M-B" . sp-backward-symbol)
+               ("H-t" . sp-prefix-tag-object)
+               ("H-p" . sp-prefix-pair-object)
+               ("H-s c" . sp-convolute-sexp)
+               ("H-s a" . sp-absorb-sexp)
+               ("H-s e" . sp-emit-sexp)
+               ("H-s p" . sp-add-to-previous-sexp)
+               ("H-s n" . sp-add-to-next-sexp)
+               ("H-s j" . sp-join-sexp)
+               ("H-s s" . sp-split-sexp))
     (smartparens-global-mode t)
     (show-smartparens-global-mode t)
     (show-paren-mode -1)))
@@ -858,14 +858,14 @@ the closing pair.
   (interactive)
   (let ((beginning (sp-get (sp-get-enclosing-sexp) :beg)))
     (if (and beginning (= (- (point) 1) beginning))
-	(goto-char beginning)
+        (goto-char beginning)
       (sp-beginning-of-sexp))))
 
 (defun my/sp-end-of-sexp ()
   (interactive)
   (let ((end (sp-get (sp-get-enclosing-sexp) :end)))
     (if (and end (= (+ (point) 1) end))
-	(goto-char end)
+        (goto-char end)
       (sp-end-of-sexp))))
 #+END_SRC
 
@@ -894,7 +894,7 @@ Better interface to Git
   :bind ("C-c <return>" . magit-status)
   :init
   (setq magit-push-always-verify nil
-	magit-status-buffer-switch-function 'switch-to-buffer))
+        magit-status-buffer-switch-function 'switch-to-buffer))
 #+END_SRC
 
 *** Company Mode
@@ -904,13 +904,13 @@ Better interface to Git
   :ensure
   :init
   (progn
-	(global-company-mode)
-	(bind-keys :map company-active-map
-		   ("C-w" . my/company-abort))
-	(push 'company-robe company-backends)
-	(setq company-global-modes '(not inf-ruby-mode eshell-mode)
-	  company-idle-delay 0.3
-	  company-minimum-prefix-length 3)))
+        (global-company-mode)
+        (bind-keys :map company-active-map
+                   ("C-w" . my/company-abort))
+        (push 'company-robe company-backends)
+        (setq company-global-modes '(not inf-ruby-mode eshell-mode)
+          company-idle-delay 0.3
+          company-minimum-prefix-length 3)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -941,8 +941,8 @@ this [[https://www.youtube.com/watch?v%3DT_voB16QxW0][video]] for better explana
 
 #+BEGIN_SRC emacs-lisp
   (use-package winner
-	:ensure
-	:init (winner-mode 1))
+        :ensure
+        :init (winner-mode 1))
 #+END_SRC
 
 *** Discover Major Mode keybindings
@@ -976,11 +976,11 @@ As the name suggest, it allows editing over multiple lines
 (use-package multiple-cursors
   :ensure
   :bind (("C-c SPC" . mc/edit-lines)
-	 ("M-]" . mc/mark-next-like-this)
-	 ("M-[" . mc/mark-previous-like-this)
-	 ("M-}" . mc/unmark-next-like-this)
-	 ("M-{" . mc/unmark-previous-like-this)
-	 ("C-M-SPC" . set-rectangular-region-anchor))
+         ("M-]" . mc/mark-next-like-this)
+         ("M-[" . mc/mark-previous-like-this)
+         ("M-}" . mc/unmark-next-like-this)
+         ("M-{" . mc/unmark-previous-like-this)
+         ("C-M-SPC" . set-rectangular-region-anchor))
   :config
   (setq mc/list-file (concat my/history-dir "mc-lists.el")))
 #+END_SRC
@@ -1013,39 +1013,39 @@ Use hunspell because it's more powerful and supports Arabic.
 
 #+BEGIN_SRC emacs-lisp
 (setq ispell-program-name "hunspell"
-	  ispell-really-hunspell t
-	  ispell-keep-choices-win t
-	  ispell-use-framepop-p nil
-	  speck-hunspell-default-dictionary-name "en_US"
-	  speck-hunspell-dictionary-alist '(("en" . "en_US") ("ar" . "ar"))
-	  speck-iso-639-1-alist '(("ar" . "arabic")
-				  ("bg" . "bulgarian")
-				  ("ca" . "catalan")
-				  ("cs" . "czech")
-				  ("da" . "danish")
-				  ("de" . "deutsch")
-				  ("de" . "german")
-				  ("el" . "greek")
-				  ("en" . "english")
-				  ("eo" . "esperanto")
-				  ("es" . "spanish")
-				  ("fi" . "finnish")
-				  ("fr" . "francais")
-				  ("fr" . "french")
-				  ("hu" . "hungarian")
-				  ("it" . "italiano")
-				  ("it" . "italian")
-				  ("la" . "latin")
-				  ("nl" . "dutch")
-				  ("no" . "norwegian")
-				  ("pl" . "polish")
-				  ("pt" . "portuguese")
-				  ("ro" . "romanian")
-				  ("ru" . "russian")
-				  ("sh" . "serbo-croatian")
-				  ("sk" . "slovak")
-				  ("sv" . "swedish")
-				  ("tr" . "turkish")))
+          ispell-really-hunspell t
+          ispell-keep-choices-win t
+          ispell-use-framepop-p nil
+          speck-hunspell-default-dictionary-name "en_US"
+          speck-hunspell-dictionary-alist '(("en" . "en_US") ("ar" . "ar"))
+          speck-iso-639-1-alist '(("ar" . "arabic")
+                                  ("bg" . "bulgarian")
+                                  ("ca" . "catalan")
+                                  ("cs" . "czech")
+                                  ("da" . "danish")
+                                  ("de" . "deutsch")
+                                  ("de" . "german")
+                                  ("el" . "greek")
+                                  ("en" . "english")
+                                  ("eo" . "esperanto")
+                                  ("es" . "spanish")
+                                  ("fi" . "finnish")
+                                  ("fr" . "francais")
+                                  ("fr" . "french")
+                                  ("hu" . "hungarian")
+                                  ("it" . "italiano")
+                                  ("it" . "italian")
+                                  ("la" . "latin")
+                                  ("nl" . "dutch")
+                                  ("no" . "norwegian")
+                                  ("pl" . "polish")
+                                  ("pt" . "portuguese")
+                                  ("ro" . "romanian")
+                                  ("ru" . "russian")
+                                  ("sh" . "serbo-croatian")
+                                  ("sk" . "slovak")
+                                  ("sv" . "swedish")
+                                  ("tr" . "turkish")))
 #+END_SRC
 
 Use both ispell and abbrev together.
@@ -1056,14 +1056,14 @@ Use both ispell and abbrev together.
 With prefix P, create local abbrev. Otherwise it will be global."
   (interactive "P")
   (let ((bef (downcase (or (thing-at-point 'word) ""))) aft)
-	(call-interactively 'ispell-word)
-	(setq aft (downcase (or (thing-at-point 'word) "")))
-	(unless (string= aft bef)
-	  (message "\"%s\" now expands to \"%s\" %sally"
-		   bef aft (if p "loc" "glob"))
-	  (define-abbrev
-	(if p local-abbrev-table global-abbrev-table)
-	bef aft))))
+        (call-interactively 'ispell-word)
+        (setq aft (downcase (or (thing-at-point 'word) "")))
+        (unless (string= aft bef)
+          (message "\"%s\" now expands to \"%s\" %sally"
+                   bef aft (if p "loc" "glob"))
+          (define-abbrev
+        (if p local-abbrev-table global-abbrev-table)
+        bef aft))))
 
 (bind-keys ("C-x t i" . ispell-word-then-abbrev))
 
@@ -1096,9 +1096,9 @@ Similar to ace-jump above
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'git-commit-mode-hook
-	  (lambda ()
-		(variable-pitch-mode nil)
-		(flyspell-mode t)))
+          (lambda ()
+                (variable-pitch-mode nil)
+                (flyspell-mode t)))
 #+END_SRC
 
 Appearance
@@ -1119,25 +1119,25 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
   :commands (popwin-mode)
   :init
   (progn
-	(popwin-mode t)
-	(push '("*rspec-compilation*" :tail nil) popwin:special-display-config)
-	(push "*projectile-rails-server*" popwin:special-display-config)
-	(push "*coffee-compiled*" popwin:special-display-config)
-	(push "*Bundler*" popwin:special-display-config)
-	(push "*projectile-rails-compilation*" popwin:special-display-config)
-	(push "*Ack-and-a-half*" popwin:special-display-config)
-	(push "*ruby*" popwin:special-display-config)
-	(push "*rails*" popwin:special-display-config)
-	(push "*Compile-Log*" popwin:special-display-config)
-	(push "*pry*" popwin:special-display-config)
-	(push "*SQL*" popwin:special-display-config)
-	(push "*projectile-rails-generate*" popwin:special-display-config)
-	(push "*Package Commit List*" popwin:special-display-config)
-	(push "*Compile-Log*" popwin:special-display-config)
-	(push '(" *undo-tree*" :position bottom) popwin:special-display-config)
-	(push "*compilation*" popwin:special-display-config)
-	(push '("RuboCop.*" :regex 't) popwin:special-display-config)
-	(global-set-key (kbd "C-z") popwin:keymap)))
+        (popwin-mode t)
+        (push '("*rspec-compilation*" :tail nil) popwin:special-display-config)
+        (push "*projectile-rails-server*" popwin:special-display-config)
+        (push "*coffee-compiled*" popwin:special-display-config)
+        (push "*Bundler*" popwin:special-display-config)
+        (push "*projectile-rails-compilation*" popwin:special-display-config)
+        (push "*Ack-and-a-half*" popwin:special-display-config)
+        (push "*ruby*" popwin:special-display-config)
+        (push "*rails*" popwin:special-display-config)
+        (push "*Compile-Log*" popwin:special-display-config)
+        (push "*pry*" popwin:special-display-config)
+        (push "*SQL*" popwin:special-display-config)
+        (push "*projectile-rails-generate*" popwin:special-display-config)
+        (push "*Package Commit List*" popwin:special-display-config)
+        (push "*Compile-Log*" popwin:special-display-config)
+        (push '(" *undo-tree*" :position bottom) popwin:special-display-config)
+        (push "*compilation*" popwin:special-display-config)
+        (push '("RuboCop.*" :regex 't) popwin:special-display-config)
+        (global-set-key (kbd "C-z") popwin:keymap)))
 #+END_SRC
 
 *** Edit Server for Chrome
@@ -1148,34 +1148,34 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
   :defer t
   :config
   (progn
-	(edit-server-start)
-	(add-hook 'edit-server-done-hook
-		  (lambda ()
-		(do-applescript "
+        (edit-server-start)
+        (add-hook 'edit-server-done-hook
+                  (lambda ()
+                (do-applescript "
 tell application \"System Events\"
 keystroke tab using command down
 set front_app to name of (info for (path to frontmost application))
 tell application front_app to activate
 end tell
 ")))
-	(setq edit-server-done-hook nil
-	  edit-server-default-major-mode 'markdown-mode
-	  edit-server-verbose t)))
+        (setq edit-server-done-hook nil
+          edit-server-default-major-mode 'markdown-mode
+          edit-server-verbose t)))
 #+END_SRC
 
 *** Aggressive Indent Mode
 
 #+BEGIN_SRC emacs-lisp
   (use-package aggressive-indent
-	:ensure)
+        :ensure)
 #+END_SRC
 
 *** Ediff Mode
 
 #+BEGIN_SRC emacs-lisp
 (setq ediff-merge-split-window-function 'split-window-vertically
-	  ediff-split-window-function  'split-window-horizontally
-	  ediff-window-setup-function 'ediff-setup-windows-plain)
+          ediff-split-window-function  'split-window-horizontally
+          ediff-window-setup-function 'ediff-setup-windows-plain)
 
 #+END_SRC
 
@@ -1195,7 +1195,7 @@ end tell
   :commands qrr
   :config
   (progn
-	(defalias 'qrr 'vr/query-replace)))
+        (defalias 'qrr 'vr/query-replace)))
 #+END_SRC
 
 *** Auto revert mode
@@ -1215,13 +1215,13 @@ whitespaces.
 #+BEGIN_SRC emacs-lisp
 (global-whitespace-mode t)
 (setq whitespace-action '(auto-cleanup)
-	  whitespace-style '(trailing
-			 lines
-			 empty
-			 space-before-tab
-			 indentation
-			 space-after-tab)
-	  whitespace-trailing-regexp "\\([    ]+\\)$")
+          whitespace-style '(trailing
+                         lines
+                         empty
+                         space-before-tab
+                         indentation
+                         space-after-tab)
+          whitespace-trailing-regexp "\\([    ]+\\)$")
 #+END_SRC
 
 Appearance
@@ -1262,8 +1262,8 @@ Expand region to fit the sexp
   :ensure
   :init
   (progn
-	(setq persistent-scratch-save-file (concat my/history-dir "persistent-scratch"))
-	(persistent-scratch-setup-default)))
+        (setq persistent-scratch-save-file (concat my/history-dir "persistent-scratch"))
+        (persistent-scratch-setup-default)))
 #+END_SRC
 
 *** Clone Github projects from Emacs
@@ -1298,7 +1298,7 @@ Easily see changes in the file
 
 #+BEGIN_SRC emacs-lisp
 (bind-keys :map dired-mode-map
-	   ("C-l" . dired-up-directory))
+           ("C-l" . dired-up-directory))
 #+END_SRC
 
 *** Shell Conf Mode
@@ -1309,7 +1309,7 @@ Easily see changes in the file
   :interpreter "zsh"
   :init
   (setq-default sh-indentation 2
-		sh-basic-offset 2))
+                sh-basic-offset 2))
 #+END_SRC
 
 *** Beacon
@@ -1337,10 +1337,10 @@ Set the global `fill-column`
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'text-mode-hook (lambda ()
-			    #'turn-on-auto-fill
-			    #'turn-on-flyspell
-			    (setq word-wrap t
-				  fill-column 85)))
+                            #'turn-on-auto-fill
+                            #'turn-on-flyspell
+                            (setq word-wrap t
+                                  fill-column 85)))
 
 #+END_SRC
 
@@ -1369,17 +1369,17 @@ Appearance
 
 #+BEGIN_SRC emacs-lisp
 (setq org-log-done t
-	  org-adapt-indentation nil
-	  org-edit-src-content-indentation 0
-	  org-fontify-whole-heading-line t
-	  org-pretty-entities t
-	  org-src-fontify-natively t
-	  org-src-tab-acts-natively nil
-	  org-src-window-setup 'current-window
-	  org-goto-interface 'outline
-	  org-goto-max-level 10
-	  org-imenu-depth 5
-	  org-startup-folded nil)
+          org-adapt-indentation nil
+          org-edit-src-content-indentation 0
+          org-fontify-whole-heading-line t
+          org-pretty-entities t
+          org-src-fontify-natively t
+          org-src-tab-acts-natively nil
+          org-src-window-setup 'current-window
+          org-goto-interface 'outline
+          org-goto-max-level 10
+          org-imenu-depth 5
+          org-startup-folded nil)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -1391,8 +1391,8 @@ Appearance
 
 #+BEGIN_SRC emacs-lisp
 (bind-keys :map emacs-lisp-mode-map
-	   ("M-." find-function-at-point)
-	   ("C-x C-e" . eval-dwim))
+           ("M-." find-function-at-point)
+           ("C-x C-e" . eval-dwim))
 
 (add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
@@ -1406,18 +1406,18 @@ Appearance
 expression, otherwise use regular `eval-last-sexp'"
   (interactive "P")
   (if args
-	  (eval-and-replace)
-	(eval-last-sexp nil)))
+          (eval-and-replace)
+        (eval-last-sexp nil)))
 
 (defun eval-and-replace ()
   "Replace the preceding sexp with its value."
   (interactive)
   (backward-kill-sexp)
   (condition-case nil
-	  (prin1 (eval (read (current-kill 0)))
-		 (current-buffer))
-	(error (message "Invalid expression")
-	   (insert (current-kill 0)))))
+          (prin1 (eval (read (current-kill 0)))
+                 (current-buffer))
+        (error (message "Invalid expression")
+           (insert (current-kill 0)))))
 #+END_SRC
 
 *** TODO Ruby Mode
@@ -1428,56 +1428,56 @@ expression, otherwise use regular `eval-last-sexp'"
   :interpreter "ruby"
   :init
   (progn
-	(use-package inf-ruby
-	  :ensure
-	  :defer
-	  :config
-	  (progn
-	(add-hook 'inf-ruby-mode-hook
-		  (lambda ()
-			(company-mode 0)))))
+        (use-package inf-ruby
+          :ensure
+          :defer
+          :config
+          (progn
+        (add-hook 'inf-ruby-mode-hook
+                  (lambda ()
+                        (company-mode 0)))))
 
-	(use-package robe
-	  :ensure
-	  :defer
-	  :commands robe-mode)
+        (use-package robe
+          :ensure
+          :defer
+          :commands robe-mode)
 
-	(use-package rvm
-	  :ensure
-	  :defer
-	  :init (rvm-use-default))
+        (use-package rvm
+          :ensure
+          :defer
+          :init (rvm-use-default))
 
-	(use-package rake
-	  :ensure
-	  :defer
-	  :config
-	  (setq rake-cache-file (concat my/history-dir "rake.cache")
-		rake-completion-system 'helm))
+        (use-package rake
+          :ensure
+          :defer
+          :config
+          (setq rake-cache-file (concat my/history-dir "rake.cache")
+                rake-completion-system 'helm))
 
-	(use-package bundler
-	  :ensure
-	  :defer
-	  :commands bundle-install
-	  :config
-	  (rvm-use-default))
+        (use-package bundler
+          :ensure
+          :defer
+          :commands bundle-install
+          :config
+          (rvm-use-default))
 
-	(use-package rubocop
-	  :ensure
-	  :defer
-	  :commands (rubocop-check-project rubocop-check-current-file)
-	  :bind (("C-c r <" . rubocop-check-project)
-		 ("C-c r , " . rubocop-check-current-file)))
+        (use-package rubocop
+          :ensure
+          :defer
+          :commands (rubocop-check-project rubocop-check-current-file)
+          :bind (("C-c r <" . rubocop-check-project)
+                 ("C-c r , " . rubocop-check-current-file)))
 
-	(add-hook 'ruby-mode-hook #'robe-mode)
-	(add-hook 'ruby-mode-hook #'projectile-rails-mode)
-	(add-hook 'ruby-mode-hook
-		  (lambda ()
-		(local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
-		(push '("lambda" . 955) prettify-symbols-alist)))
+        (add-hook 'ruby-mode-hook #'robe-mode)
+        (add-hook 'ruby-mode-hook #'projectile-rails-mode)
+        (add-hook 'ruby-mode-hook
+                  (lambda ()
+                (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
+                (push '("lambda" . 955) prettify-symbols-alist)))
 
-	(font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
-				'(("\\(&&\\|||\\)" . font-lock-builtin-face)))
-	(setq ruby-indent-level 2)))
+        (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
+                                '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
+        (setq ruby-indent-level 2)))
 
 #+END_SRC
 
@@ -1490,15 +1490,15 @@ expression, otherwise use regular `eval-last-sexp'"
   :mode "\\.js$"
   :config
   (progn
-	(add-hook 'js2-mode-hook
-		  (lambda ()
-		(local-set-key (kbd "RET") 'new-line-dwim)
-		(projectile-rails-mode)))
+        (add-hook 'js2-mode-hook
+                  (lambda ()
+                (local-set-key (kbd "RET") 'new-line-dwim)
+                (projectile-rails-mode)))
 
-	(setq inferior-js-program-command "node"
-	  js2-basic-offset 2
-	  js2-idle-timer-delay 0.2
-	  js2-mode-show-parse-errors t)))
+        (setq inferior-js-program-command "node"
+          js2-basic-offset 2
+          js2-idle-timer-delay 0.2
+          js2-mode-show-parse-errors t)))
 
 #+END_SRC
 
@@ -1511,18 +1511,18 @@ expression, otherwise use regular `eval-last-sexp'"
   :defer 3
   :config
   (progn
-	(yas-global-mode)
-	(use-package helm-c-yasnippet
-	  :ensure)
-	(eval-after-load "rspec-mode" '(rspec-install-snippets))))
+        (yas-global-mode)
+        (use-package helm-c-yasnippet
+          :ensure)
+        (eval-after-load "rspec-mode" '(rspec-install-snippets))))
 #+END_SRC
 
 *** SQL Mode
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'sql-interactive-mode-hook
-	  (lambda ()
-		(setq truncate-lines t)))
+          (lambda ()
+                (setq truncate-lines t)))
 #+END_SRC
 
 *** Rspec Mode
@@ -1533,28 +1533,28 @@ expression, otherwise use regular `eval-last-sexp'"
   :defer t
   :config
   (progn
-	(defadvice rspec-compile (around rspec-compile-around)
-	  "Use BASH shell for running the specs because of ZSH issues"
-	  (let ((shell-file-name "/bin/bash"))
-	ad-do-it))
-	(ad-activate 'rspec-compile)
-	(add-hook 'rspec-compilation-mode-hook (lambda ()
-						 (toggle-truncate-lines -1)))
-	(setq  rspec-compilation-skip-threshold 2
-	   rspec-snippets-fg-syntax 'concise
-	   rspec-use-bundler-when-possible t
-	   rspec-use-rake-when-possible nil
-	   compilation-scroll-output t
-	   rspec-use-rvm t)
+        (defadvice rspec-compile (around rspec-compile-around)
+          "Use BASH shell for running the specs because of ZSH issues"
+          (let ((shell-file-name "/bin/bash"))
+        ad-do-it))
+        (ad-activate 'rspec-compile)
+        (add-hook 'rspec-compilation-mode-hook (lambda ()
+                                                 (toggle-truncate-lines -1)))
+        (setq  rspec-compilation-skip-threshold 2
+           rspec-snippets-fg-syntax 'concise
+           rspec-use-bundler-when-possible t
+           rspec-use-rake-when-possible nil
+           compilation-scroll-output t
+           rspec-use-rvm t)
 
-	(bind-key "C-c C-," rspec-verifiable-mode-keymap)))
+        (bind-key "C-c C-," rspec-verifiable-mode-keymap)))
 #+END_SRC
 
 *** Compilation Mode
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'compilation-mode-hook (lambda ()
-				   (toggle-truncate-lines 1)))
+                                   (toggle-truncate-lines 1)))
 #+END_SRC
 
 *** HAML mode
@@ -1565,13 +1565,13 @@ expression, otherwise use regular `eval-last-sexp'"
   :defer t
   :config
   (progn
-	(add-hook 'haml-mode-hook
-		  (lambda ()
-		(rspec-mode)
-		(projectile-rails-mode)))
-	(add-hook 'haml-mode-hook
-		  (lambda ()
-		(local-set-key (kbd "RET") 'newline-and-indent)))))
+        (add-hook 'haml-mode-hook
+                  (lambda ()
+                (rspec-mode)
+                (projectile-rails-mode)))
+        (add-hook 'haml-mode-hook
+                  (lambda ()
+                (local-set-key (kbd "RET") 'newline-and-indent)))))
 #+END_SRC
 
 *** Web Mode
@@ -1583,14 +1583,14 @@ expression, otherwise use regular `eval-last-sexp'"
   :mode ("\\.html$" "\\.xml$" "\\.erb$")
   :config
   (progn
-	(eval-after-load "web-mode" '(require 'smartparens-html))
-	(add-hook 'web-mode-hook 'my/web-mode-hook)))
+        (eval-after-load "web-mode" '(require 'smartparens-html))
+        (add-hook 'web-mode-hook 'my/web-mode-hook)))
 
 (defun my/web-mode-hook ()
   (progn  (setq web-mode-css-indent-offset 2
-		web-mode-markup-indent-offset 2
-		web-mode-code-indent-offset 2)
-	  (projectile-rails-mode)))
+                web-mode-markup-indent-offset 2
+                web-mode-code-indent-offset 2)
+          (projectile-rails-mode)))
 #+END_SRC
 
 *** YAML mode
@@ -1601,20 +1601,20 @@ expression, otherwise use regular `eval-last-sexp'"
   :defer t
   :config
   (progn
-	(add-hook 'yaml-mode-hook
-		  (lambda ()
-		(projectile-rails-mode)
-		(local-set-key (kbd "RET") 'newline-and-indent)))))
+        (add-hook 'yaml-mode-hook
+                  (lambda ()
+                (projectile-rails-mode)
+                (local-set-key (kbd "RET") 'newline-and-indent)))))
 #+END_SRC
 
 *** CSS Mode
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'css-mode-hook
-	  (lambda ()
-		(setq comment-start "//")
-		(setq comment-end "")
-		(setq css-indent-offset 2)))
+          (lambda ()
+                (setq comment-start "//")
+                (setq comment-end "")
+                (setq css-indent-offset 2)))
 #+END_SRC
 
 *** SCSS Mode
@@ -1626,8 +1626,8 @@ expression, otherwise use regular `eval-last-sexp'"
   :mode "\\.scss\\.erb$"
   :config
   (progn
-	(setq scss-compile-at-save nil)
-	(add-hook 'scss-mode-hook #'projectile-rails-mode)))
+        (setq scss-compile-at-save nil)
+        (add-hook 'scss-mode-hook #'projectile-rails-mode)))
 
 #+END_SRC
 *** Coffeescript Mode
@@ -1639,12 +1639,12 @@ expression, otherwise use regular `eval-last-sexp'"
   :mode "\\.coffee\\.erb$"
   :config
   (progn
-	(setq coffee-compile-jump-to-error nil
-	  coffee-tab-width 2)
-	(add-hook 'coffee-mode-hook
-		  (lambda ()
-		(rspec-mode)
-		(projectile-rails-mode)))))
+        (setq coffee-compile-jump-to-error nil
+          coffee-tab-width 2)
+        (add-hook 'coffee-mode-hook
+                  (lambda ()
+                (rspec-mode)
+                (projectile-rails-mode)))))
 #+END_SRC
 
 ** Misc Settings
@@ -1652,8 +1652,8 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (setq ns-alternate-modifier 'super
-	  ns-command-modifier 'meta
-	  ns-control-modifier 'control)
+          ns-command-modifier 'meta
+          ns-control-modifier 'control)
 #+END_SRC
 
 **** OS X Arabic Keybaord
@@ -1678,15 +1678,15 @@ parentheses, etc.
 (defun my/newline-dwim ()
   (interactive)
   (let ((break-open-pair (or (and (looking-back "{") (looking-at "}"))
-				 (and (looking-back ">") (looking-at "<"))
-				 (and (looking-back "(") (looking-at ")"))
-				 (and (looking-back "\\[") (looking-at "\\]")))))
-	(newline)
-	(when break-open-pair
-	  (save-excursion
-	(newline)
-	(indent-for-tab-command)))
-	(indent-for-tab-command)))
+                                 (and (looking-back ">") (looking-at "<"))
+                                 (and (looking-back "(") (looking-at ")"))
+                                 (and (looking-back "\\[") (looking-at "\\]")))))
+        (newline)
+        (when break-open-pair
+          (save-excursion
+        (newline)
+        (indent-for-tab-command)))
+        (indent-for-tab-command)))
 
 (bind-keys ("M-<return>" . my/newline-dwim))
 #+END_SRC
@@ -1703,8 +1703,8 @@ Better comments, taken from [[http://www.opensubscriber.com/message/emacs-devel@
   (interactive "*P")
   (comment-normalize-vars)
   (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
-	  (comment-or-uncomment-region (line-beginning-position) (line-end-position))
-	(comment-dwim arg)))
+          (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+        (comment-dwim arg)))
 
 (bind-keys ("M-;" . my/comment-dwim))
 #+END_SRC
@@ -1732,17 +1732,17 @@ the content the bracket).
   "duplicate the current line and while saving the current position"
   (interactive "P")
   (let ((column (current-column))
-	(times (prefix-numeric-value args)))
-	(while (> times 0)
-	  (move-beginning-of-line 1)
-	  (kill-line)
-	  (yank)
-	  (open-line 1)
-	  (next-line 1)
-	  (yank)
-	  (move-beginning-of-line 1)
-	  (forward-char column)
-	  (setq times (1- times)))))
+        (times (prefix-numeric-value args)))
+        (while (> times 0)
+          (move-beginning-of-line 1)
+          (kill-line)
+          (yank)
+          (open-line 1)
+          (next-line 1)
+          (yank)
+          (move-beginning-of-line 1)
+          (forward-char column)
+          (setq times (1- times)))))
 
 #+END_SRC
 
@@ -1754,12 +1754,12 @@ the content the bracket).
 (defun my/flip-colons ()
   (interactive)
   (let ((word (current-word))
-	(bounds (bounds-of-thing-at-point 'symbol)))
-	(when (or (s-starts-with-p ":" word) (s-ends-with-p ":" word))
-	  (delete-region (car bounds) (cdr bounds))
-	  (if (s-starts-with-p ":" word)
-	  (insert (s-append ":" (s-chop-prefix ":" word)))
-	(insert (s-prepend ":" (s-chop-suffix ":" word)))))))
+        (bounds (bounds-of-thing-at-point 'symbol)))
+        (when (or (s-starts-with-p ":" word) (s-ends-with-p ":" word))
+          (delete-region (car bounds) (cdr bounds))
+          (if (s-starts-with-p ":" word)
+          (insert (s-append ":" (s-chop-prefix ":" word)))
+        (insert (s-prepend ":" (s-chop-suffix ":" word)))))))
 #+END_SRC
 
 *** Just one space to just no space
@@ -1788,7 +1788,7 @@ This is useful when you want to paste sensitive information and do not want it t
   (interactive)
   (yank)
   (setq kill-ring
-	(remove (first kill-ring) kill-ring)))
+        (remove (first kill-ring) kill-ring)))
 #+END_SRC
 
 

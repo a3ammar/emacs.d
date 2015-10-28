@@ -686,6 +686,7 @@ Helm is awesome, read this [[http://tuhdo.github.io/helm-intro.html][blog]] post
     (helm-autoresize-mode t)
     (bind-keys :map helm-map
 	       ("<tab>" . helm-execute-persistent-action)
+	       ("C-<tab>" . helm-execute-persistent-action)
 	       ("C-i" . helm-execute-persistent-action)
 	       ("C-z" . helm-select-action)
 	       ("C-w" . nil))

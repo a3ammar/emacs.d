@@ -1630,6 +1630,15 @@ expression, otherwise use regular `eval-last-sexp'"
         (add-hook 'scss-mode-hook #'projectile-rails-mode)))
 
 #+END_SRC
+
+*** Jinja Mode
+
+I edit jinja files with names like =example.conf.j2= so I want Emacs to strip the =.j2= extension and choose the proper major mode
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.j2\\'" ignore t))
+#+END_SRC
+
 *** Coffeescript Mode
 
 #+BEGIN_SRC emacs-lisp

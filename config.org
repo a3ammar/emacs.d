@@ -215,7 +215,7 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 
 #+BEGIN_SRC emacs-lisp
 (setq kill-buffer-query-functions
-      (remq 'proccess-kill-buffer-query-function
+      (remq 'process-kill-buffer-query-function
             kill-buffer-query-functions))
 #+END_SRC
 

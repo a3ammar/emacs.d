@@ -1295,6 +1295,11 @@ Never lose your cursor again
   (beacon-mode t))
 #+END_SRC
 
+*** Define word
+
+#+BEGIN_SRC emacs-lisp
+(use-package define-word)
+#+END_SRC
 
 ** Writing And Programming Modes
 

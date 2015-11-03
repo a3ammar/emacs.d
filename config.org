@@ -721,6 +721,9 @@ Replace isearch =C-r= with [[https://github.com/ShingoFukuyama/helm-swoop][helm-
   :bind ("C-M-r" . helm-swoop))
 #+end_src
 
+#+BEGIN_SRC emacs-lisp
+(use-package helm-ag)
+#+END_SRC
 
 Appearance
 

@@ -876,6 +876,7 @@ Better interface to Git
 
 #+BEGIN_SRC emacs-lisp
 (use-package magit
+  :pin melpa-stable
   :defer t
   :commands magit-status
   :bind ("C-c <return>" . magit-status)

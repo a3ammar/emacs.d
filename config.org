@@ -1275,12 +1275,13 @@ Easily see changes in the file
 *** Shell Conf Mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package sh-mode
-  :mode "\\.zsh\\'"
-  :interpreter "zsh"
-  :init
-  (setq-default sh-indentation 2
-                sh-basic-offset 2))
+  (use-package sh-mode
+    :ensure nil
+    :mode "\\.zsh\\'"
+    :interpreter "zsh"
+    :init
+    (setq-default sh-indentation 2
+                  sh-basic-offset 2))
 #+END_SRC
 
 *** Beacon

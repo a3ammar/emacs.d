@@ -72,12 +72,12 @@ Also install =auto-compile= mode so it byte-compile our init file
 (unless (package-installed-p 'dash)
   (package-install 'dash))
 
-(setq use-package-verbose t)
+(setq use-package-verbose t
+      use-package-always-ensure t)
 
 (require 'use-package)
 
 (use-package auto-compile
-  :ensure
   :init
   (progn
     (auto-compile-on-save-mode)
@@ -94,7 +94,6 @@ Some Emacs commands don't work properly on OS X, this fixes it.
 
 #+BEGIN_SRC emacs-lisp
 (use-package exec-path-from-shell
-  :ensure
   :init
   (progn
     (exec-path-from-shell-initialize)
@@ -524,7 +523,6 @@ Compact mode line
 
 #+BEGIN_SRC emacs-lisp
 (use-package smart-mode-line
-  :ensure
   :init
   (progn
     (setq sml/no-confirm-load-theme t)
@@ -555,7 +553,6 @@ I use my own customized Solarized theme.
 
 #+BEGIN_SRC emacs-lisp
 (use-package solarized-theme
-  :ensure
   :config
   (progn
     (setq solarized-scale-org-headlines nil)
@@ -566,7 +563,6 @@ I use my own customized Solarized theme.
 
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
-  :ensure
   :init
   (progn
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
@@ -620,7 +616,6 @@ Helm is awesome, read this [[http://tuhdo.github.io/helm-intro.html][blog]] post
 
 #+BEGIN_SRC emacs-lisp
 (use-package helm
-  :ensure
   :init
   (progn
     (require 'helm-config)
@@ -714,7 +709,6 @@ Use helm for =desribe-binding= and =where-is=
 
 #+BEGIN_SRC emacs-lisp
 (use-package helm-descbinds
-  :ensure
   :defer t
   :bind (("C-h b" . helm-descbinds)
          ("C-h w" . helm-descbinds)))
@@ -724,7 +718,6 @@ Replace isearch =C-r= with [[https://github.com/ShingoFukuyama/helm-swoop][helm-
 
 #+begin_src emacs-lisp
 (use-package helm-swoop
-  :ensure
   :bind ("C-M-r" . helm-swoop))
 #+end_src
 
@@ -754,7 +747,6 @@ Projectile mode is one the best packages Emacs have, more information is in this
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
-  :ensure
   :bind ("C-c C-p" . projectile-command-map)
   :init
   (progn
@@ -776,7 +768,6 @@ Helm + Projectile = Love
 
 #+BEGIN_SRC emacs-lisp
 (use-package helm-projectile
-  :ensure
   :init
   (progn
     (helm-projectile-on)))
@@ -789,12 +780,10 @@ Extension to Projectile for navigating Rails files. We also install =rails-log-m
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile-rails
-  :ensure
   :commands projectile-rails-on
   :config
   (progn
-    (use-package rails-log-mode
-      :ensure)
+    (use-package rails-log-mode)
     (bind-keys :map projectile-rails-mode-map
                ("C-c t r" . projectile-rails-rake))
     (setq
@@ -809,7 +798,6 @@ the closing pair.
 
 #+BEGIN_SRC emacs-lisp
 (use-package smartparens
-  :ensure
   :init
   (progn
     (require 'smartparens-config)
@@ -888,7 +876,6 @@ Better interface to Git
 
 #+BEGIN_SRC emacs-lisp
 (use-package magit
-  :ensure
   :defer t
   :commands magit-status
   :bind ("C-c <return>" . magit-status)
@@ -901,7 +888,6 @@ Better interface to Git
 
 #+BEGIN_SRC emacs-lisp
 (use-package company
-  :ensure
   :init
   (progn
         (global-company-mode)
@@ -940,16 +926,14 @@ Winner mode gives you the ability to undo and redo your window configuration, wa
 this [[https://www.youtube.com/watch?v%3DT_voB16QxW0][video]] for better explanation.
 
 #+BEGIN_SRC emacs-lisp
-  (use-package winner
-        :ensure
-        :init (winner-mode 1))
+(use-package winner
+  :init (winner-mode 1))
 #+END_SRC
 
 *** Discover Major Mode keybindings
 
 #+BEGIN_SRC emacs-lisp
 (use-package discover-my-major
-  :ensure
   :defer t
   :commands discover-my-major
   :bind ("C-h C-m" . discover-my-major))
@@ -963,7 +947,6 @@ in the minibuffer so you can edit or read the contents before submitting.
 #+BEGIN_SRC emacs-lisp
 (use-package miniedit
   :defer t
-  :ensure
   :commands minibuffer-edit
   :init (miniedit-install))
 #+END_SRC
@@ -974,7 +957,6 @@ As the name suggest, it allows editing over multiple lines
 
 #+BEGIN_SRC emacs-lisp
 (use-package multiple-cursors
-  :ensure
   :bind (("C-c SPC" . mc/edit-lines)
          ("M-]" . mc/mark-next-like-this)
          ("M-[" . mc/mark-previous-like-this)
@@ -1075,7 +1057,6 @@ A better undo/redo alternative
 
 #+BEGIN_SRC emacs-lisp
 (use-package undo-tree
-  :ensure
   :init
   (global-undo-tree-mode t))
 #+END_SRC
@@ -1086,7 +1067,6 @@ Similar to ace-jump above
 
 #+BEGIN_SRC emacs-lisp
 (use-package avy
-  :ensure
   :commands avy-goto-char
   :bind ("C-." . avy-goto-char)
   :init (setq avy-style 'at))
@@ -1114,7 +1094,6 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 
 #+BEGIN_SRC emacs-lisp
 (use-package popwin
-  :ensure
   :bind ("C-h e" . popwin:messages)
   :commands (popwin-mode)
   :init
@@ -1144,7 +1123,6 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 
 #+BEGIN_SRC emacs-lisp
 (use-package edit-server
-  :ensure
   :defer t
   :config
   (progn
@@ -1166,8 +1144,7 @@ end tell
 *** Aggressive Indent Mode
 
 #+BEGIN_SRC emacs-lisp
-  (use-package aggressive-indent
-        :ensure)
+(use-package aggressive-indent)
 #+END_SRC
 
 *** Ediff Mode
@@ -1190,7 +1167,6 @@ end tell
 
 #+BEGIN_SRC emacs-lisp
 (use-package visual-regexp
-  :ensure
   :defer t
   :commands qrr
   :config
@@ -1237,7 +1213,6 @@ Iedit lets you mark all occurrences of a word to edit them at the same time.
 
 #+BEGIN_SRC emacs-lisp
 (use-package iedit
-  :ensure
   :defer t
   :commands iedit-mode
   :bind ("C-;" . iedit-mode))
@@ -1250,7 +1225,6 @@ Expand region to fit the sexp
 #+BEGIN_SRC emacs-lisp
 (use-package expand-region
   :defer t
-  :ensure
   :commands er/expand-region
   :bind ("M-2" . er/expand-region))
 #+END_SRC
@@ -1259,7 +1233,6 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package persistent-scratch
-  :ensure
   :init
   (progn
         (setq persistent-scratch-save-file (concat my/history-dir "persistent-scratch"))
@@ -1270,7 +1243,6 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package github-clone
-  :ensure
   :defer t
   :commands github-clone)
 #+END_SRC
@@ -1281,7 +1253,6 @@ Easily see changes in the file
 
 #+BEGIN_SRC emacs-lisp
 (use-package git-gutter
-  :ensure t
   :defer t)
 #+END_SRC
 
@@ -1289,7 +1260,6 @@ Easily see changes in the file
 
 #+BEGIN_SRC emacs-lisp
 (use-package feature-mode
-  :ensure t
   :defer t
   :commands feature-mode)
 #+END_SRC
@@ -1318,7 +1288,6 @@ Never lose your cursor again
 
 #+BEGIN_SRC emacs-lisp
 (use-package beacon
-  :ensure t
   :defer t
   :init
   (beacon-mode t))
@@ -1354,7 +1323,6 @@ Appearance
 
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
-  :ensure
   :defer t
   :init
   (add-hook 'markdown-mode-hook #'projectile-rails-mode))
@@ -1429,8 +1397,7 @@ expression, otherwise use regular `eval-last-sexp'"
   :init
   (progn
         (use-package inf-ruby
-          :ensure
-          :defer
+          :defer t
           :config
           (progn
         (add-hook 'inf-ruby-mode-hook
@@ -1438,32 +1405,27 @@ expression, otherwise use regular `eval-last-sexp'"
                         (company-mode 0)))))
 
         (use-package robe
-          :ensure
-          :defer
+          :defer t
           :commands robe-mode)
 
         (use-package rvm
-          :ensure
-          :defer
+          :defer t
           :init (rvm-use-default))
 
         (use-package rake
-          :ensure
-          :defer
+          :defer t
           :config
           (setq rake-cache-file (concat my/history-dir "rake.cache")
                 rake-completion-system 'helm))
 
         (use-package bundler
-          :ensure
-          :defer
+          :defer t
           :commands bundle-install
           :config
           (rvm-use-default))
 
         (use-package rubocop
-          :ensure
-          :defer
+          :defer t
           :commands (rubocop-check-project rubocop-check-current-file)
           :bind (("C-c r <" . rubocop-check-project)
                  ("C-c r , " . rubocop-check-current-file)))
@@ -1485,7 +1447,6 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
-  :ensure
   :defer t
   :mode "\\.js$"
   :config
@@ -1506,14 +1467,12 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
-  :ensure
   :commands yas-global-mode
   :defer 3
   :config
   (progn
         (yas-global-mode)
-        (use-package helm-c-yasnippet
-          :ensure)
+        (use-package helm-c-yasnippet)
         (eval-after-load "rspec-mode" '(rspec-install-snippets))))
 #+END_SRC
 
@@ -1529,7 +1488,6 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package rspec-mode
-  :ensure
   :defer t
   :config
   (progn
@@ -1561,7 +1519,6 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package haml-mode
-  :ensure
   :defer t
   :config
   (progn
@@ -1578,7 +1535,6 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
-  :ensure
   :defer t
   :mode ("\\.html$" "\\.xml$" "\\.erb$")
   :config
@@ -1597,7 +1553,6 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
-  :ensure
   :defer t
   :config
   (progn
@@ -1621,7 +1576,6 @@ expression, otherwise use regular `eval-last-sexp'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package scss-mode
-  :ensure
   :defer t
   :mode "\\.scss\\.erb$"
   :config
@@ -1643,7 +1597,6 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 
 #+BEGIN_SRC emacs-lisp
 (use-package coffee-mode
-  :ensure
   :defer t
   :mode "\\.coffee\\.erb$"
   :config

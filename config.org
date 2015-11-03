@@ -886,6 +886,12 @@ Better interface to Git
   :init
   (setq magit-push-always-verify nil
         magit-status-buffer-switch-function 'switch-to-buffer))
+*** Git timemachien
+
+Timemachine like interface for git
+
+#+BEGIN_SRC emacs-lisp
+(use-package git-timemachine)
 #+END_SRC
 
 *** Company Mode

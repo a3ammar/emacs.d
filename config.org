@@ -883,9 +883,11 @@ Better interface to Git
   :defer t
   :commands magit-status
   :bind ("C-c <return>" . magit-status)
-  :init
-  (setq magit-push-always-verify nil
-        magit-status-buffer-switch-function 'switch-to-buffer))
+  :config
+  (progn
+    (setq magit-push-always-verify nil)))
+#+END_SRC
+
 *** Git timemachien
 
 Timemachine like interface for git

@@ -1658,6 +1658,12 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 (setq default-input-method "arabic-mac")
 #+END_SRC
 
+**** Emoji
+
+#+BEGIN_SRC emacs-lisp
+(set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
+#+END_SRC
+
 
 *** Focus help window on popup
 

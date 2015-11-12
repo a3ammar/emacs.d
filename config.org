@@ -324,6 +324,14 @@ Allow to sudo edit files on trqeem.com
                                      tramp-file-name-regexp)))
 #+END_SRC
 
+*** Calc
+
+It's so much easier to hit =8= than =*=.
+
+#+BEGIN_SRC emacs-lisp
+(bind-keys* ("C-x 8 q" . quick-calc))
+#+END_SRC
+
 *** Switch back to Terminal.app after emacsclient
 
 When I call emacsclient I'm definitely on Terminal.app

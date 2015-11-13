@@ -805,7 +805,18 @@ Extension to Projectile for navigating Rails files. We also install =rails-log-m
                ("C-c t r" . projectile-rails-rake))
     (setq
      projectile-rails-font-lock-face-name 'font-lock-builtin-face
-     projectile-rails-stylesheet-re "\\.\\(?:css\\|scss\\|sass\\|less\\)\\'")))
+     projectile-rails-stylesheet-re "\\.scss\\'"
+     projectile-rails-javascript-re "\\.js\\.coffee\\'"
+     projectile-rails-resource-name-re-list
+     `("/app/models/\\(?:.+/\\)?\\(.+\\)\\.rb\\'"
+       "/app/controllers/\\(?:.+/\\)?\\(.+\\)_controller\\.rb\\'"
+       "/app/views/\\(?:.+/\\)?\\([^/]+\\)/[^/]+\\'"
+       "/app/helpers/\\(?:.+/\\)?\\(.+\\)_helper\\.rb\\'"
+       ,(concat "/app/assets/javascripts/\\(?:.+/\\)?\\(.+\\)" projectile-rails-javascript-re)
+       ,(concat "/app/assets/stylesheets/\\(?:.+/\\)?\\(.+\\)" projectile-rails-stylesheet-re)
+       "/db/migrate/.*create_\\(.+\\)\\.rb\\'"
+       "/spec/.*/\\([a-z_]+?\\)\\(?:_controller\\)?_spec\\.rb\\'"
+       "/\\(?:test\\|spec\\)/\\(?:fixtures\\|factories\\|fabricators\\)/\\(.+?\\)\\(?:_fabricator\\)?\\.\\(?:yml\\|rb\\)\\'"))))
 #+END_SRC
 
 *** Smartparens mode

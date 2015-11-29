@@ -916,6 +916,8 @@ Better interface to Git
   :commands magit-status
   :bind ("C-c <return>" . magit-status)
   :config
+  (use-package magit-popup
+    :pin melpa-stable)
   (progn
     (setq magit-push-always-verify nil)
     (fullframe magit-status magit-mode-quit-window nil)))

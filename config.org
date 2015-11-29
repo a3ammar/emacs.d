@@ -468,7 +468,13 @@ Add a bigger offset to underline property (it makes smart-mode-line looks way ni
 *** Fonts and colors
 **** Default font
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :foreground "#819090" :slant 'normal :weight 'normal :height 120 :width 'normal :family "Menlo")
+(set-face-attribute 'default nil
+                    :foreground "#819090"
+                    :slant 'normal
+                    :weight 'normal
+                    :height 110
+                    :width 'normal
+                    :family "Menlo")
 #+END_SRC
 
 **** Echo Area

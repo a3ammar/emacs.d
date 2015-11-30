@@ -472,7 +472,7 @@ Add a bigger offset to underline property (it makes smart-mode-line looks way ni
                     :foreground "#819090"
                     :slant 'normal
                     :weight 'normal
-                    :height 110
+                    :height 120
                     :width 'normal
                     :family "Menlo")
 #+END_SRC

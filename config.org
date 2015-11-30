@@ -306,7 +306,7 @@ to the Trash folder.
 
 #+BEGIN_SRC emacs-lisp
 (setq browse-url-browser-function 'browse-url-chromium
-      browse-url-chromium-program "~/Applications/Chromium.app/Contents/MacOS/Chromium")
+      browse-url-chromium-program "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 #+END_SRC
 
 *** Tramp

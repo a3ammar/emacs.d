@@ -944,7 +944,21 @@ Timemachine like interface for git
     (add-to-list 'company-dabbrev-code-modes 'ruby-mode)
     (setq company-global-modes '(not inf-ruby-mode eshell-mode)
           company-idle-delay 0.3
-          company-minimum-prefix-length 3)))
+          company-minimum-prefix-length 3
+          company-backends '(company-robe
+                             company-bbdb
+                             company-nxml
+                             company-css
+                             company-eclim
+                             company-semantic
+                             company-clang
+                             company-xcode
+                             company-cmake
+                             company-capf
+                             (company-dabbrev-code company-keywords)
+                             company-oddmuse
+                             company-files
+                             company-dabbrev))))
 #+END_SRC
 
 

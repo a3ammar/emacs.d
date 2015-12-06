@@ -937,14 +937,16 @@ Timemachine like interface for git
 (use-package company
   :init
   (progn
-        (global-company-mode)
-        (bind-keys :map company-active-map
-                   ("C-w" . my/company-abort))
-        (push 'company-robe company-backends)
-        (setq company-global-modes '(not inf-ruby-mode eshell-mode)
+    (global-company-mode)
+    (bind-keys :map company-active-map
+               ("C-w" . my/company-abort))
+    (push 'company-robe company-backends)
+    (add-to-list 'company-dabbrev-code-modes 'ruby-mode)
+    (setq company-global-modes '(not inf-ruby-mode eshell-mode)
           company-idle-delay 0.3
           company-minimum-prefix-length 3)))
 #+END_SRC
+
 
 #+BEGIN_SRC emacs-lisp
 (defun my/company-abort ()

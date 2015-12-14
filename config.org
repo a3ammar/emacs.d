@@ -397,6 +397,16 @@ Use =Shift-Arrows= to move between windows
 
 #+END_SRC
 
+**** Quickly switch to previous buffer
+
+#+BEGIN_SRC emacs-lisp
+(bind-key "M-`" 'my/previous-buffer)
+
+(defun my/previous-buffer ()
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+#+END_SRC
+
 **** Window splitting
 
 Copied from http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_tricks/chldury

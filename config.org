@@ -1363,6 +1363,14 @@ Never lose your cursor again
 (use-package define-word)
 #+END_SRC
 
+*** Resetclient
+
+#+BEGIN_SRC emacs-lisp
+(use-package restclient
+  :defer t
+  :commands restclient-mode)
+#+END_SRC
+
 ** Writing And Programming Modes
 
 Set the global `fill-column`

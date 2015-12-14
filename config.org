@@ -1161,25 +1161,27 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
   :commands (popwin-mode)
   :init
   (progn
-        (popwin-mode t)
-        (push '("*rspec-compilation*" :tail nil) popwin:special-display-config)
-        (push "*projectile-rails-server*" popwin:special-display-config)
-        (push "*coffee-compiled*" popwin:special-display-config)
-        (push "*Bundler*" popwin:special-display-config)
-        (push "*projectile-rails-compilation*" popwin:special-display-config)
-        (push "*Ack-and-a-half*" popwin:special-display-config)
-        (push "*ruby*" popwin:special-display-config)
-        (push "*rails*" popwin:special-display-config)
-        (push "*Compile-Log*" popwin:special-display-config)
-        (push "*pry*" popwin:special-display-config)
-        (push "*SQL*" popwin:special-display-config)
-        (push "*projectile-rails-generate*" popwin:special-display-config)
-        (push "*Package Commit List*" popwin:special-display-config)
-        (push "*Compile-Log*" popwin:special-display-config)
-        (push '(" *undo-tree*" :position bottom) popwin:special-display-config)
-        (push "*compilation*" popwin:special-display-config)
-        (push '("RuboCop.*" :regex 't) popwin:special-display-config)
-        (global-set-key (kbd "C-z") popwin:keymap)))
+    (popwin-mode t)
+    (push '("*rspec-compilation*" :tail nil) popwin:special-display-config)
+    (push "*projectile-rails-server*" popwin:special-display-config)
+    (push "*coffee-compiled*" popwin:special-display-config)
+    (push "*Bundler*" popwin:special-display-config)
+    (push "*projectile-rails-compilation*" popwin:special-display-config)
+    (push "*Ack-and-a-half*" popwin:special-display-config)
+    (push "*ruby*" popwin:special-display-config)
+    (push "*rails*" popwin:special-display-config)
+    (push "*Compile-Log*" popwin:special-display-config)
+    (push "*pry*" popwin:special-display-config)
+    (push "*SQL*" popwin:special-display-config)
+    (push "*projectile-rails-generate*" popwin:special-display-config)
+    (push "*Package Commit List*" popwin:special-display-config)
+    (push "*Compile-Log*" popwin:special-display-config)
+    (push '(" *undo-tree*" :position bottom) popwin:special-display-config)
+    (push "*compilation*" popwin:special-display-config)
+    (push '("RuboCop.*" :regex 't) popwin:special-display-config)
+    (push '("*HTTP Response*" :position bottom :stick t :height 30)
+          popwin:special-display-config)
+    (global-set-key (kbd "C-z") popwin:keymap)))
 #+END_SRC
 
 *** Edit Server for Chrome
@@ -1363,7 +1365,7 @@ Never lose your cursor again
 (use-package define-word)
 #+END_SRC
 
-*** Resetclient
+*** Restclient
 
 #+BEGIN_SRC emacs-lisp
 (use-package restclient

@@ -1486,50 +1486,54 @@ expression, otherwise use regular `eval-last-sexp'"
   :interpreter "ruby"
   :init
   (progn
-        (use-package inf-ruby
-          :defer t
-          :config
-          (progn
+    (use-package inf-ruby
+      :defer t
+      :commands (inf-ruby-minor-mode ruby-send-block-and-go ruby-send-region-and-go)
+      :config
+      (progn
         (add-hook 'inf-ruby-mode-hook
                   (lambda ()
-                        (company-mode 0)))))
+                    (company-mode 0)))))
 
-        (use-package robe
-          :defer t
-          :commands robe-mode)
+    (use-package robe
+      :defer t
+      :commands robe-mode)
 
-        (use-package rvm
-          :defer t
-          :init (rvm-use-default))
+    (use-package rvm
+      :defer t
+      :init (rvm-use-default))
 
-        (use-package rake
-          :defer t
-          :config
-          (setq rake-cache-file (concat my/history-dir "rake.cache")
-                rake-completion-system 'helm))
+    (use-package rake
+      :defer t
+      :config
+      (setq rake-cache-file (concat my/history-dir "rake.cache")
+            rake-completion-system 'helm))
 
-        (use-package bundler
-          :defer t
-          :commands bundle-install
-          :config
-          (rvm-use-default))
+    (use-package bundler
+      :defer t
+      :commands bundle-install
+      :config
+      (rvm-use-default))
 
-        (use-package rubocop
-          :defer t
-          :commands (rubocop-check-project rubocop-check-current-file)
-          :bind (("C-c r <" . rubocop-check-project)
-                 ("C-c r , " . rubocop-check-current-file)))
+    (use-package rubocop
+      :defer t
+      :commands (rubocop-check-project rubocop-check-current-file)
+      :bind (("C-c r <" . rubocop-check-project)
+             ("C-c r , " . rubocop-check-current-file)))
 
-        (add-hook 'ruby-mode-hook #'robe-mode)
-        (add-hook 'ruby-mode-hook #'projectile-rails-mode)
-        (add-hook 'ruby-mode-hook
-                  (lambda ()
+    (add-hook 'ruby-mode-hook #'robe-mode)
+    (add-hook 'ruby-mode-hook #'projectile-rails-mode)
+    (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
+    (add-hook 'ruby-mode-hook
+              (lambda ()
                 (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
+                (local-set-key (kbd "C-c C-c") 'ruby-send-block-and-go)
+                (local-set-key (kbd "C-c C-r") 'ruby-send-region-and-go)
                 (push '("lambda" . 955) prettify-symbols-alist)))
 
-        (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
-                                '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
-        (setq ruby-indent-level 2)))
+    (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
+                            '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
+    (setq ruby-indent-level 2)))
 
 #+END_SRC
 

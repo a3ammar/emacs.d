@@ -1343,6 +1343,7 @@ Easily see changes in the file
 *** Dired Mode
 
 #+BEGIN_SRC emacs-lisp
+(setq dired-listing-switches "-alh")
 (bind-keys :map dired-mode-map
            ("C-l" . dired-up-directory))
 #+END_SRC

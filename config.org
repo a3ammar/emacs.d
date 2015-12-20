@@ -1190,8 +1190,7 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
     (push '(" *undo-tree*" :position bottom) popwin:special-display-config)
     (push "*compilation*" popwin:special-display-config)
     (push '("RuboCop.*" :regex 't) popwin:special-display-config)
-    (push '("*HTTP Response*" :position bottom :stick t :height 30)
-          popwin:special-display-config)
+    (push '("*HTTP Response*" :position bottom :height 30) popwin:special-display-config)
     (global-set-key (kbd "C-z") popwin:keymap)))
 #+END_SRC
 
@@ -1382,7 +1381,11 @@ Never lose your cursor again
 #+BEGIN_SRC emacs-lisp
 (use-package restclient
   :defer t
-  :commands restclient-mode)
+  :commands restclient-mode
+  :config
+  (progn
+    (add-hook 'restclient-response-loaded-hook #'view-mode)))
+
 #+END_SRC
 
 ** Writing And Programming Modes

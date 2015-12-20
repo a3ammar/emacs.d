@@ -1141,8 +1141,8 @@ Similar to ace-jump above
 
 #+BEGIN_SRC emacs-lisp
 (use-package avy
-  :commands avy-goto-char
-  :bind ("C-." . avy-goto-char)
+  :commands avy-goto-word-or-subword-1
+  :bind ("C-." . avy-goto-word-or-subword-1)
   :init (setq avy-style 'at))
 #+END_SRC
 

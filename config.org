@@ -931,7 +931,13 @@ Better interface to Git
   (progn
     (setq magit-push-always-verify nil
           magit-revert-buffers 'silent)
-    (fullframe magit-status magit-mode-quit-window nil)))
+    (fullframe magit-status magit-mode-quit-window nil)
+    (custom-set-faces
+     '(magit-blame-date ((t (:foreground "#D13A82" :background "#2D393D"))))
+     '(magit-blame-hash ((t (:foreground "#C4A449" :background "#2D393D"))))
+     '(magit-blame-heading ((t (:foreground "#D13A82" :background "#2D393D"))))
+     '(magit-blame-summary ((t (:foreground "#2D8CD0" :background "#2D393D"))))
+     '(magit-blame-name ((t (:foreground "#C4A449" :background "#2D393D")))))))
 #+END_SRC
 
 *** Git timemachien

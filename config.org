@@ -1534,6 +1534,7 @@ expression, otherwise use regular `eval-last-sexp'"
     (add-hook 'ruby-mode-hook #'robe-mode)
     (add-hook 'ruby-mode-hook #'projectile-rails-mode)
     (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
+    (add-hook 'ruby-mode-hook #'subword-mode)
     (add-hook 'ruby-mode-hook
               (lambda ()
                 (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)

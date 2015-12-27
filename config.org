@@ -1644,6 +1644,13 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
                 (projectile-rails-mode)))))
 #+END_SRC
 
+*** Javascript Mode
+
+#+BEGIN_SRC emacs-lisp
+(setq js-indent-level 2)
+#+END_SRC
+
+
 ** Misc Settings
 *** OS X specific settings
 

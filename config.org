@@ -96,9 +96,10 @@ Some Emacs commands don't work properly on OS X, this fixes it.
 (use-package exec-path-from-shell
   :init
   (progn
-    (exec-path-from-shell-initialize)
-    (exec-path-from-shell-copy-env "LANG")
-    (exec-path-from-shell-copy-env "BROWSER")))
+    (setq exec-path-from-shell-variables '("PATH" "MANPATH" "LANG" "BROWSER"))
+    (exec-path-from-shell-initialize)))
+
+
 #+END_SRC
 
 *** Use Bash as the default shell

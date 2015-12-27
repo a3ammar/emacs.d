@@ -635,11 +635,6 @@ Automatically transform symbols like lambda into the greek letter =λ=
 (set-fringe-mode 1)
 #+END_SRC
 
-*** Fullframe
-
-#+BEGIN_SRC emacs-lisp
-(use-package fullframe)
-#+END_SRC
 
 ** Mode Configuration
 *** Helm - Interactive completion
@@ -811,16 +806,13 @@ Helm + Projectile = Love
 
 *** Projectile Rails
 
-Extension to Projectile for navigating Rails files. We also install =rails-log-mode= for log viewing
+Extension to Projectile for navigating Rails files.
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile-rails
   :commands projectile-rails-on
   :config
   (progn
-    (use-package rails-log-mode)
-    (bind-keys :map projectile-rails-mode-map
-               ("C-c t r" . projectile-rails-rake))
     (setq
      projectile-rails-font-lock-face-name 'font-lock-builtin-face
      projectile-rails-stylesheet-re "\\.scss\\'"
@@ -941,6 +933,11 @@ Better interface to Git
      '(magit-blame-name ((t (:foreground "#C4A449" :background "#2D393D")))))))
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+(use-package fullframe)
+#+END_SRC
+
+
 *** Git timemachien
 
 Timemachine like interface for git
@@ -1018,18 +1015,6 @@ this [[https://www.youtube.com/watch?v%3DT_voB16QxW0][video]] for better explana
   :defer t
   :commands discover-my-major
   :bind ("C-h C-m" . discover-my-major))
-#+END_SRC
-
-*** Minibuffer editing
-
-If sometimes I want to edit what I'm entering in the minibuffer, this binds =C-M-e=
-in the minibuffer so you can edit or read the contents before submitting.
-
-#+BEGIN_SRC emacs-lisp
-(use-package miniedit
-  :defer t
-  :commands minibuffer-edit
-  :init (miniedit-install))
 #+END_SRC
 
 *** Multiple Cursors
@@ -1201,28 +1186,6 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
     (global-set-key (kbd "C-z") popwin:keymap)))
 #+END_SRC
 
-*** Edit Server for Chrome
-
-#+BEGIN_SRC emacs-lisp
-(use-package edit-server
-  :defer t
-  :config
-  (progn
-        (edit-server-start)
-        (add-hook 'edit-server-done-hook
-                  (lambda ()
-                (do-applescript "
-tell application \"System Events\"
-keystroke tab using command down
-set front_app to name of (info for (path to frontmost application))
-tell application front_app to activate
-end tell
-")))
-        (setq edit-server-done-hook nil
-          edit-server-default-major-mode 'markdown-mode
-          edit-server-verbose t)))
-#+END_SRC
-
 *** Aggressive Indent Mode
 
 #+BEGIN_SRC emacs-lisp
@@ -1329,15 +1292,6 @@ Expand region to fit the sexp
   :commands github-clone)
 #+END_SRC
 
-*** Git Gutter Mode
-
-Easily see changes in the file
-
-#+BEGIN_SRC emacs-lisp
-(use-package git-gutter
-  :defer t)
-#+END_SRC
-
 *** Feature Mode
 
 #+BEGIN_SRC emacs-lisp
@@ -1375,12 +1329,6 @@ Never lose your cursor again
   :defer t
   :init
   (beacon-mode t))
-#+END_SRC
-
-*** Define word
-
-#+BEGIN_SRC emacs-lisp
-(use-package define-word)
 #+END_SRC
 
 *** Restclient
@@ -1546,26 +1494,6 @@ expression, otherwise use regular `eval-last-sexp'"
     (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
                             '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
     (setq ruby-indent-level 2)))
-
-#+END_SRC
-
-*** Javascript Mode
-
-#+BEGIN_SRC emacs-lisp
-(use-package js2-mode
-  :defer t
-  :mode "\\.js$"
-  :config
-  (progn
-        (add-hook 'js2-mode-hook
-                  (lambda ()
-                (local-set-key (kbd "RET") 'new-line-dwim)
-                (projectile-rails-mode)))
-
-        (setq inferior-js-program-command "node"
-          js2-basic-offset 2
-          js2-idle-timer-delay 0.2
-          js2-mode-show-parse-errors t)))
 
 #+END_SRC
 

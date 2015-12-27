@@ -19,7 +19,8 @@ If you want the meaning of these variables move the point to the desired variabl
 and press =C-h v=.
 
 #+BEGIN_SRC emacs-lisp
-(setq inhibit-startup-message t
+(setq gc-cons-threshold (* 100 1024 1024)
+      inhibit-startup-message t
       inhibit-startup-echo-area-message t
       echo-keystrokes 0.1
       ring-bell-function 'ignore

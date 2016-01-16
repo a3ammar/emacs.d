@@ -1574,8 +1574,9 @@ expression, otherwise use regular `eval-last-sexp'"
   :mode ("\\.html$" "\\.xml$" "\\.erb$")
   :config
   (progn
-        (eval-after-load "web-mode" '(require 'smartparens-html))
-        (add-hook 'web-mode-hook 'my/web-mode-hook)))
+    (eval-after-load "web-mode" '(require 'smartparens-html))
+    (add-hook 'web-mode-hook #'aggressive-indent-mode)
+    (add-hook 'web-mode-hook 'my/web-mode-hook)))
 
 (defun my/web-mode-hook ()
   (progn  (setq web-mode-css-indent-offset 2

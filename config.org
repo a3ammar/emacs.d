@@ -1664,6 +1664,12 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 
 #+END_SRC
 
+*** Java Mode
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'java-mode-hook #'subword-mode)
+#+END_SRC
+
 
 ** Misc Settings
 *** OS X specific settings

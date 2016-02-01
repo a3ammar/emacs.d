@@ -35,7 +35,8 @@ and press =C-h v=.
       comment-style 'multi-line
       uniquify-buffer-name-style 'forward
       truncate-partial-width-windows nil
-      large-file-warning-threshold nil)
+      large-file-warning-threshold nil
+      create-lockfiles nil)
 #+END_SRC
 
 *** Package sources
@@ -1387,17 +1388,18 @@ Appearance
 
 #+BEGIN_SRC emacs-lisp
 (setq org-log-done t
-          org-adapt-indentation nil
-          org-edit-src-content-indentation 0
-          org-fontify-whole-heading-line t
-          org-pretty-entities t
-          org-src-fontify-natively t
-          org-src-tab-acts-natively nil
-          org-src-window-setup 'current-window
-          org-goto-interface 'outline
-          org-goto-max-level 10
-          org-imenu-depth 5
-          org-startup-folded nil)
+      org-adapt-indentation nil
+      org-edit-src-content-indentation 0
+      org-fontify-whole-heading-line t
+      org-pretty-entities t
+      org-src-fontify-natively t
+      org-src-tab-acts-natively nil
+      org-src-window-setup 'current-window
+      org-goto-interface 'outline
+      org-goto-max-level 10
+      org-imenu-depth 5
+      org-startup-folded nil)
+
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp

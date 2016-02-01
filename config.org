@@ -1481,7 +1481,6 @@ expression, otherwise use regular `eval-last-sexp'"
       :bind (("C-c r <" . rubocop-check-project)
              ("C-c r , " . rubocop-check-current-file)))
 
-    (add-hook 'ruby-mode-hook #'robe-mode)
     (add-hook 'ruby-mode-hook #'projectile-rails-mode)
     (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
     (add-hook 'ruby-mode-hook #'subword-mode)

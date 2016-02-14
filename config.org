@@ -534,14 +534,23 @@ Add a bigger offset to underline property (it makes smart-mode-line looks way ni
 **** Parentheses match
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(show-paren-match ((t (:background "#0a2832" :foreground "#c71b6f" :inverse-video nil :underline nil :slant normal :weight bold)))))
+(set-face-attribute 'show-paren-match nil
+                    :background "#0a2832"
+                    :foreground "#c71b6f"
+                    :inverse-video nil :underline nil
+                    :slant 'normal
+                    :weight 'bold)
+
 #+END_SRC
 
 **** Variable pitch mode
 
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'variable-pitch nil :height 140 :width 'normal :family "PT Mono")
+(set-face-attribute 'variable-pitch nil
+                    :height 110
+                    :width 'normal
+                    :font "Kawkab Mono Bold")
+
 (bind-key "C-x t v"  'variable-pitch-mode)
 #+END_SRC
 

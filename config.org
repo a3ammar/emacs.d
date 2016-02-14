@@ -1831,6 +1831,17 @@ This is useful when you want to paste sensitive information and do not want it t
         (remove (first kill-ring) kill-ring)))
 #+END_SRC
 
+*** Insert Arabic Tatweel Character
+
+بعض الأحيان أحتاج أمـــــــــــد بعض الكلمات
+
+#+BEGIN_SRC emacs-lisp
+(bind-keys ("C-x t _" . my/insert-tatweel))
+
+(defun my/insert-tatweel (arg)
+  (interactive "P")
+  (insert-char #x0640 arg))
+#+END_SRC
 
 * Load my secrets
 

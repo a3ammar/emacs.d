@@ -1608,9 +1608,10 @@ expression, otherwise use regular `eval-last-sexp'"
   :defer t
   :config
   (progn
-        (add-hook 'yaml-mode-hook
-                  (lambda ()
+    (add-hook 'yaml-mode-hook
+              (lambda ()
                 (projectile-rails-mode)
+                (variable-pitch-mode nil)
                 (local-set-key (kbd "RET") 'newline-and-indent)))))
 #+END_SRC
 

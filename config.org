@@ -1587,7 +1587,7 @@ expression, otherwise use regular `eval-last-sexp'"
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :defer t
-  :mode ("\\.html$" "\\.xml$" "\\.erb$")
+  :mode ("\\.xml$" "\\.erb$")
   :config
   (progn
     (eval-after-load "web-mode" '(require 'smartparens-html))

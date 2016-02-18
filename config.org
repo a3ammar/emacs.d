@@ -1573,12 +1573,12 @@ expression, otherwise use regular `eval-last-sexp'"
   :defer t
   :config
   (progn
-        (add-hook 'haml-mode-hook
-                  (lambda ()
+    (add-hook 'haml-mode-hook
+              (lambda ()
                 (rspec-mode)
                 (projectile-rails-mode)))
-        (add-hook 'haml-mode-hook
-                  (lambda ()
+    (add-hook 'haml-mode-hook
+              (lambda ()
                 (local-set-key (kbd "RET") 'newline-and-indent)))))
 #+END_SRC
 

@@ -1193,7 +1193,13 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 *** Aggressive Indent Mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package aggressive-indent)
+(use-package aggressive-indent
+  :config
+  (progn
+    (add-to-list 'aggressive-indent-dont-indent-if
+                 '(and (derived-mode-p 'sgml-mode)
+                       (string-match "^[[:space:]]*{%"
+                                     (thing-at-point 'line))))))
 #+END_SRC
 
 *** Ediff Mode

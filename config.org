@@ -1572,6 +1572,14 @@ expression, otherwise use regular `eval-last-sexp'"
                                    (toggle-truncate-lines 1)))
 #+END_SRC
 
+*** HTML mode
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'sgml-mode-hook
+          (lambda ()
+            (variable-pitch-mode nil)))
+#+END_SRC
+
 *** HAML mode
 
 #+BEGIN_SRC emacs-lisp

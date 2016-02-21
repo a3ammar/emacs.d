@@ -1686,7 +1686,6 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 (use-package js2-mode
   :ensure t
   :defer t
-  :mode "\\.js$"
   :config
   (progn
     (setq inferior-js-program-command "node"

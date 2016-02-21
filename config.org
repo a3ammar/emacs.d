@@ -1734,6 +1734,15 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
 #+END_SRC
 
+*** Incremenet/decrement numbers
+
+#+BEGIN_SRC emacs-lisp
+(use-package evil-numbers
+  :pin melpa-stable
+  :ensure t
+  :bind (("M-=" . evil-numbers/inc-at-pt)
+         ("M--" . evil-numbers/dec-at-pt)))
+#+END_SRC
 
 *** Focus help window on popup
 

@@ -1687,7 +1687,10 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 *** Javascript Mode
 
 #+BEGIN_SRC emacs-lisp
-(setq js-indent-level 2)
+(add-hook 'js-mode-hook
+          (lambda ()
+            (setq js-indent-level 2)
+            (subword-mode t)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp

@@ -889,7 +889,9 @@ the closing pair.
                ("H-s s" . sp-split-sexp))
     (smartparens-global-mode t)
     (show-smartparens-global-mode t)
-    (show-paren-mode -1)))
+    (show-paren-mode -1)
+
+    (sp-local-pair 'nxml-mode "<" ">" :actions :rem)))
 
 (defun my/sp-begging-of-sexp ()
   (interactive)

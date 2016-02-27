@@ -889,9 +889,7 @@ the closing pair.
                ("H-s s" . sp-split-sexp))
     (smartparens-global-mode t)
     (show-smartparens-global-mode t)
-    (show-paren-mode -1)
-
-    (sp-local-pair 'nxml-mode "<" ">" :actions :rem)))
+    (show-paren-mode -1)))
 
 (defun my/sp-begging-of-sexp ()
   (interactive)
@@ -1587,7 +1585,8 @@ expression, otherwise use regular `eval-last-sexp'"
 #+BEGIN_SRC emacs-lisp
 (add-hook 'nxml-mode-hook
           (lambda ()
-            (variable-pitch-mode nil)))
+            (variable-pitch-mode nil)
+            (sp-local-pair 'nxml-mode "<" ">" :actions :rem)))
 #+END_SRC
 
 *** HAML mode

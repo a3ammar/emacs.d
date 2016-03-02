@@ -673,7 +673,8 @@ Helm is awesome, read this [[http://tuhdo.github.io/helm-intro.html][blog]] post
           helm-ff-skip-boring-files t
           helm-ff-file-name-history-use-recentf t
           helm-ack-auto-set-filetype t
-          helm-adaptive-history-file "~/.history_emacs/helm-adaptive-history"
+          helm-adaptive-history-file (concat my/history-dir
+                                             "helm-adaptive-history")
           helm-autoresize-max-height 30
           helm-autoresize-min-height 30
           helm-boring-file-regexp-list '("\\.DS_STORE$" "\\.keep$"

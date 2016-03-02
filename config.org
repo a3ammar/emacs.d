@@ -349,6 +349,16 @@ When I call emacsclient I'm definitely on Terminal.app
 (add-hook 'server-done-hook #'focus-terminal)
 #+END_SRC
 
+*** Emacs Client
+
+I want =C-c C-c= to end the editing session.
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'server-visit-hook
+          (lambda ()
+            (local-set-key (kbd "C-c C-c") 'server-edit)))
+#+END_SRC
+
 *** Override Emacs keybinding
 **** Unbinding
 

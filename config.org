@@ -1333,13 +1333,21 @@ Expand region to fit the sexp
 *** Shell Conf Mode
 
 #+BEGIN_SRC emacs-lisp
-  (use-package sh-mode
-    :ensure nil
-    :mode "\\.zsh\\'"
-    :interpreter "zsh"
-    :init
-    (setq-default sh-indentation 2
-                  sh-basic-offset 2))
+(use-package sh-mode
+  :ensure nil
+  :mode "\\.zsh\\'"
+  :interpreter "zsh"
+  :init
+  (setq-default sh-indentation 2
+                sh-basic-offset 2))
+#+END_SRC
+
+I use [[https://github.com/sorin-ionescu/prezto][prezto]] and I want to associate zsh files without extension to =sh-mode=
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'magic-fallback-mode-alist
+             '((lambda () (string-match-p ".*prezto.*" (buffer-file-name))) . sh-mode))
+
 #+END_SRC
 
 *** Beacon

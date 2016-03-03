@@ -1481,6 +1481,21 @@ expression, otherwise use regular `eval-last-sexp'"
   :interpreter "ruby"
   :init
   (progn
+    (add-hook 'ruby-mode-hook #'projectile-rails-mode)
+    (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
+    (add-hook 'ruby-mode-hook #'subword-mode)
+    (add-hook 'ruby-mode-hook #'aggressive-indent-mode)
+    (add-hook 'ruby-mode-hook
+              (lambda ()
+                (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
+                (local-set-key (kbd "C-c C-c") 'ruby-send-block-and-go)
+                (local-set-key (kbd "C-c C-r") 'ruby-send-region-and-go)
+                (push '("lambda" . 955) prettify-symbols-alist)))
+
+    (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
+                            '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
+    (setq ruby-indent-level 2)
+
     (use-package inf-ruby
       :defer t
       :commands (inf-ruby-minor-mode ruby-send-block-and-go ruby-send-region-and-go)
@@ -1514,21 +1529,7 @@ expression, otherwise use regular `eval-last-sexp'"
       :defer t
       :commands (rubocop-check-project rubocop-check-current-file)
       :bind (("C-c r <" . rubocop-check-project)
-             ("C-c r , " . rubocop-check-current-file)))
-
-    (add-hook 'ruby-mode-hook #'projectile-rails-mode)
-    (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
-    (add-hook 'ruby-mode-hook #'subword-mode)
-    (add-hook 'ruby-mode-hook
-              (lambda ()
-                (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
-                (local-set-key (kbd "C-c C-c") 'ruby-send-block-and-go)
-                (local-set-key (kbd "C-c C-r") 'ruby-send-region-and-go)
-                (push '("lambda" . 955) prettify-symbols-alist)))
-
-    (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
-                            '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
-    (setq ruby-indent-level 2)))
+             ("C-c r , " . rubocop-check-current-file)))))
 
 #+END_SRC
 

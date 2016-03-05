@@ -1453,6 +1453,7 @@ Disable variable pitch mode on =git-commit-mode=
       org-imenu-depth 5
       org-startup-folded nil)
 
+(add-hook 'org-mode-hook #'toggle-truncate-lines)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp

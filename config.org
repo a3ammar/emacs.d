@@ -1960,6 +1960,31 @@ Including indent-buffer, which should not be called automatically on save."
   (indent-buffer))
 #+END_SRC
 
+*** Calculate expression and insert it
+
+Useful for quick calculations, based on this reddit [[https://www.reddit.com/r/emacs/comments/445w6s/whats_some_small_thing_in_your_dotemacs_that_you/cznxx9f][post]].
+
+#+BEGIN_SRC emacs-lisp
+(defun my/calc-insert (arg)
+  "Look for two numbers with a symbol between them and calculate their expression and replace them with the result"
+  (interactive "p")
+  (let (start end)
+    (if (use-region-p)
+        (setq start (region-beginning)
+              end (region-end))
+      (save-excursion
+        (setq end (point))
+        (setq start (search-backward-regexp "[0-9]+ ?[-+*/^] ?[0-9]+"
+                                            (line-beginning-position) 1))))
+    (let ((value (calc-eval (buffer-substring-no-properties start end))))
+      (if (= arg 4)
+          (message value)
+        (delete-region start end)
+        (insert value)))))
+
+(bind-key "C-=" 'my/calc-insert)
+#+END_SRC
+
 * Load my secrets
 
 These are stuff I dont' want to commit to a public repo

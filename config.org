@@ -1547,10 +1547,26 @@ expression, otherwise use regular `eval-last-sexp'"
 
     (use-package rubocop
       :defer t
+      :ensure t
       :commands (rubocop-check-project rubocop-check-current-file)
-      :bind (("C-c r <" . rubocop-check-project)
-             ("C-c r , " . rubocop-check-current-file)))))
+      :bind (("C-c r <" . my/rubocop-check-project)
+             ("C-c r , " . my/rubocop-check-current-file)))))
 
+#+END_SRC
+
+
+Override =rubocop= functions so they automatically switch to the compilation buffer
+
+#+BEGIN_SRC emacs-lisp
+(defun my/rubocop-check-current-file ()
+  (interactive)
+  (rubocop-check-current-file)
+  (popwin:select-popup-window))
+
+(defun my/rubocop-check-project ()
+  (interactive)
+  (rubocop-check-project)
+  (popwin:select-popup-window))
 #+END_SRC
 
 *** Yasnippet

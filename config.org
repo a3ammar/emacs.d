@@ -922,7 +922,7 @@ Appearance
 
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces
- '(sp-show-pair-match-face ((t (:foreground "#c71b6f"))))
+ '(sp-show-pair-match-face ((t (:foreground "#d73182"))))
  '(sp-show-pair-mismatch-face ((t (:background "#810160")))))
 
 (setq sp-highlight-pair-overlay nil

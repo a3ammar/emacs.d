@@ -1747,11 +1747,12 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 (use-package js2-mode
   :ensure t
   :defer t
+  :mode "\\.js\\'"
   :config
   (progn
     (setq inferior-js-program-command "node"
           js2-basic-offset 2
-          js2-mode-show-parse-errors nil)))
+          js2-missing-semi-one-line-override t)))
 
 #+END_SRC
 

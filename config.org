@@ -1509,7 +1509,7 @@ expression, otherwise use regular `eval-last-sexp'"
            (insert (current-kill 0)))))
 #+END_SRC
 
-*** TODO Ruby Mode
+*** Ruby Mode
 
 #+BEGIN_SRC emacs-lisp
 (use-package ruby-mode
@@ -1517,6 +1517,11 @@ expression, otherwise use regular `eval-last-sexp'"
   :interpreter "ruby"
   :init
   (progn
+    (setq ruby-indent-level 2
+          ruby-insert-encoding-magic-comment nil)
+    (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
+                            '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
+
     (add-hook 'ruby-mode-hook #'projectile-rails-mode)
     (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
     (add-hook 'ruby-mode-hook #'subword-mode)
@@ -1527,9 +1532,6 @@ expression, otherwise use regular `eval-last-sexp'"
                 (local-set-key (kbd "C-c C-r") 'ruby-send-region-and-go)
                 (push '("lambda" . 955) prettify-symbols-alist)))
 
-    (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
-                            '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
-    (setq ruby-indent-level 2)
 
     (use-package inf-ruby
       :defer t

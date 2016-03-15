@@ -1594,9 +1594,9 @@ Override =rubocop= functions so they automatically switch to the compilation buf
   :defer 3
   :config
   (progn
-        (yas-global-mode)
-        (use-package helm-c-yasnippet)
-        (eval-after-load "rspec-mode" '(rspec-install-snippets))))
+    (yas-global-mode)
+    (use-package helm-c-yasnippet)
+    (eval-after-load "rspec-mode" '(rspec-install-snippets))))
 #+END_SRC
 
 *** SQL Mode

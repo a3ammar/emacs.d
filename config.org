@@ -1767,9 +1767,14 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   :mode "\\.js\\'"
   :config
   (progn
-    (setq inferior-js-program-command "node"
+    (setq js2-global-externs '("jQuery" "$" "_" "d3")
+          inferior-js-program-command "node"
           js2-basic-offset 2
-          js2-missing-semi-one-line-override t)))
+          js2-missing-semi-one-line-override t
+          js2-bounce-indent-p t)
+    (set-face-attribute 'js2-function-param nil
+                        :foreground nil
+                        :inherit 'font-lock-constant-face)))
 
 #+END_SRC
 

@@ -115,8 +115,6 @@ Some Emacs commands don't work properly on OS X, this fixes it.
   (progn
     (setq exec-path-from-shell-variables '("PATH" "MANPATH" "LANG" "BROWSER"))
     (exec-path-from-shell-initialize)))
-
-
 #+END_SRC
 
 *** Use Bash as the default shell
@@ -1798,7 +1796,9 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 #+BEGIN_SRC emacs-lisp
 (use-package lua-mode
   :pin melpa-stable
-  :ensure t)
+  :ensure t
+  :config
+  (setq lua-indent-level 2))
 #+END_SRC
 
 ** Misc Settings

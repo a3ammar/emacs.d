@@ -1172,6 +1172,9 @@ A better undo/redo alternative
 
 #+BEGIN_SRC emacs-lisp
 (use-package undo-tree
+  :pin melpa-stable
+  :ensure t
+  :bind ("C-M-_" . undo-tree-visualize)
   :init
   (global-undo-tree-mode t))
 #+END_SRC

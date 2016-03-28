@@ -1801,7 +1801,8 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   :pin melpa-stable
   :ensure t
   :config
-  (setq lua-indent-level 2))
+  (setq lua-indent-level 2)
+  (add-hook 'lua-mode-hook #'subword-mode))
 #+END_SRC
 
 ** Misc Settings

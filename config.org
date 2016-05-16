@@ -1402,6 +1402,7 @@ Never lose your cursor again
 
 #+END_SRC
 
+
 ** Writing And Programming Modes
 
 Set the global `fill-column`
@@ -1881,6 +1882,7 @@ Better comments, taken from [[http://www.opensubscriber.com/message/emacs-devel@
 
 (bind-keys ("M-;" . my/comment-dwim))
 #+END_SRC
+
 *** Insert a brace with space between them
 
 This I use when I'm programming Ruby to insert a block (blocks have a space between
@@ -1906,6 +1908,30 @@ With 5 as a prefix arguments =C-5 C-{=, it inserts a liquid tag ={%  %}=.
 
 (bind-keys ("C-{" . my/brace-with-space))
 
+#+END_SRC
+
+*** Insert an ERB tag
+
+inserts ~<%= | %>~ where the =|= is the cursors
+
+#+BEGIN_SRC emacs-lisp
+(defun my/insert-erb (args)
+  (interactive "P")
+  (if (null args)
+      (my/erb-without-equal)
+    (my/erb-with-equal)))
+
+(defun my/erb-with-equal ()
+  (execute-kbd-macro "<")
+  (insert "%  %")
+  (backward-char 2))
+
+(defun my/erb-without-equal ()
+  (execute-kbd-macro "<")
+  (insert "%=  %")
+  (backward-char 2))
+
+(bind-keys ("C-<" . my/insert-erb))
 #+END_SRC
 
 *** Duplicate line

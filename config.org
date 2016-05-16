@@ -852,7 +852,7 @@ Extension to Projectile for navigating Rails files.
     (setq
      projectile-rails-font-lock-face-name 'font-lock-builtin-face
      projectile-rails-stylesheet-re "\\.scss\\'"
-     projectile-rails-javascript-re "\\.js\\.coffee\\'"
+     projectile-rails-javascript-re "\\.js\\(?:\\.\\(?:coffee\\|ts\\)\\)?\\'"
      projectile-rails-resource-name-re-list
      `("/app/models/\\(?:.+/\\)?\\(.+\\)\\.rb\\'"
        "/app/controllers/\\(?:.+/\\)?\\(.+\\)_controller\\.rb\\'"

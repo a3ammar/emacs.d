@@ -111,6 +111,8 @@ Some Emacs commands don't work properly on OS X, this fixes it.
 
 #+BEGIN_SRC emacs-lisp
 (use-package exec-path-from-shell
+  :ensure t
+  :pin melpa-stable
   :init
   (progn
     (setq exec-path-from-shell-variables '("PATH" "MANPATH" "LANG" "BROWSER"))
@@ -583,6 +585,8 @@ Compact mode line
 
 #+BEGIN_SRC emacs-lisp
 (use-package smart-mode-line
+  :ensure t
+  :pin melpa-stable
   :init
   (progn
     (setq sml/no-confirm-load-theme t)
@@ -607,12 +611,12 @@ Compact mode line
 
 *** Set up Solarized color theme
 
-I use my own customized Solarized theme.
-
-**** DONE Use upstream Solarized and modify it here.
+Solarized is so good.
 
 #+BEGIN_SRC emacs-lisp
 (use-package solarized-theme
+  :ensure t
+  :pin melpa-stable
   :config
   (progn
     (setq solarized-scale-org-headlines nil)
@@ -623,6 +627,8 @@ I use my own customized Solarized theme.
 
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
+  :ensure t
+  :pin melpa-stable
   :init
   (progn
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
@@ -671,12 +677,43 @@ Automatically transform symbols like lambda into the greek letter =λ=
 
 
 ** Mode Configuration
+*** Pin Depencies to stable versions
+
+#+BEGIN_SRC emacs-lisp
+(let ((packages '((async . "melpa-stable")
+                  (dash . "melpa-stable")
+                  (diminish . "melpa-stable")
+                  (epl . "melpa-stable")
+                  (f . "melpa-stable")
+                  (git-commit . "melpa-stable")
+                  (helm-c-yasnippet . "melpa-stable")
+                  (helm-core . "melpa-stable")
+                  (hydra . "melpa-stable")
+                  (inflections . "melpa-stable")
+                  (logito . "melpa-stable")
+                  (makey . "melpa-stable")
+                  (names . "melpa-stable")
+                  (packed . "melpa-stable")
+                  (pcache . "melpa-stable")
+                  (pkg-info . "melpa-stable")
+                  (popup . "melpa-stable")
+                  (rich-minority . "melpa-stable")
+                  (s . "melpa-stable")
+                  (use-package . "melpa-stable")
+                  (with-editor . "melpa-stable"))))
+  (mapcar (lambda (package)
+            (add-to-list 'package-pinned-packages package))
+          packages))
+#+END_SRC
+
 *** Helm - Interactive completion
 
 Helm is awesome, read this [[http://tuhdo.github.io/helm-intro.html][blog]] post to learn about it.
 
 #+BEGIN_SRC emacs-lisp
 (use-package helm
+  :ensure t
+  :pin melpa-stable
   :init
   (progn
     (require 'helm-config)
@@ -771,6 +808,8 @@ Use helm for =desribe-binding= and =where-is=
 
 #+BEGIN_SRC emacs-lisp
 (use-package helm-descbinds
+  :ensure t
+  :pin melpa-stable
   :defer t
   :bind (("C-h b" . helm-descbinds)
          ("C-h w" . helm-descbinds)))
@@ -780,11 +819,15 @@ Replace isearch =C-r= with [[https://github.com/ShingoFukuyama/helm-swoop][helm-
 
 #+begin_src emacs-lisp
 (use-package helm-swoop
+  :ensure t
+  :pin melpa-stable
   :bind ("C-M-r" . helm-swoop))
 #+end_src
 
 #+BEGIN_SRC emacs-lisp
-(use-package helm-ag)
+(use-package helm-ag
+  :ensure t
+  :pin melpa-stable)
 #+END_SRC
 
 Appearance
@@ -812,6 +855,8 @@ Projectile mode is one the best packages Emacs have, more information is in this
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
+  :ensure t
+  :pin melpa-stable
   :bind ("C-c C-p" . projectile-command-map)
   :init
   (progn
@@ -833,6 +878,8 @@ Helm + Projectile = Love
 
 #+BEGIN_SRC emacs-lisp
 (use-package helm-projectile
+  :ensure t
+  :pin melpa-stable
   :init
   (progn
     (helm-projectile-on)
@@ -846,6 +893,8 @@ Extension to Projectile for navigating Rails files.
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile-rails
+  :ensure t
+  :pin melpa-stable
   :commands projectile-rails-on
   :config
   (progn
@@ -872,6 +921,8 @@ the closing pair.
 
 #+BEGIN_SRC emacs-lisp
 (use-package smartparens
+  :ensure t
+  :pin melpa-stable
   :init
   (progn
     (require 'smartparens-config)
@@ -950,6 +1001,7 @@ Better interface to Git
 
 #+BEGIN_SRC emacs-lisp
 (use-package magit
+  :ensure t
   :pin melpa-stable
   :defer t
   :commands magit-status
@@ -970,7 +1022,9 @@ Better interface to Git
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(use-package fullframe)
+(use-package fullframe
+  :ensure t
+  :pin melpa-stable)
 #+END_SRC
 
 Set the visibility of the =Unmerged into upstream= section to always be hidden, see [[http://emacs.stackexchange.com/questions/20754/change-the-default-visibility-of-a-magit-section/20767][this stackexchange question]].
@@ -991,13 +1045,17 @@ Set the visibility of the =Unmerged into upstream= section to always be hidden, 
 Timemachine like interface for git
 
 #+BEGIN_SRC emacs-lisp
-(use-package git-timemachine)
+  (use-package git-timemachine
+    :ensure t
+    :pin melpa-stable)
 #+END_SRC
 
 *** Company Mode
 
 #+BEGIN_SRC emacs-lisp
 (use-package company
+  :ensure t
+  :pin melpa-stable
   :init
   (progn
     (global-company-mode)
@@ -1061,6 +1119,8 @@ this [[https://www.youtube.com/watch?v%3DT_voB16QxW0][video]] for better explana
 
 #+BEGIN_SRC emacs-lisp
 (use-package discover-my-major
+  :ensure t
+  :pin melpa-stable
   :defer t
   :commands discover-my-major
   :bind ("C-h C-m" . discover-my-major))
@@ -1072,6 +1132,8 @@ As the name suggest, it allows editing over multiple lines
 
 #+BEGIN_SRC emacs-lisp
 (use-package multiple-cursors
+  :ensure t
+  :pin melpa-stable
   :bind (("C-c SPC" . mc/edit-lines)
          ("M-]" . mc/mark-next-like-this)
          ("M-[" . mc/mark-previous-like-this)
@@ -1097,10 +1159,16 @@ Useful for defining abbreviations
 A better alternative to =package-list-packages=
 
 #+BEGIN_SRC emacs-lisp
-(setq paradox-automatically-star t
-      paradox-execute-asynchronously t
-      paradox-lines-per-entry 1)
-(defalias 'pkg 'paradox-list-packages)
+(use-package paradox
+  :ensure t
+  :pin melpa-stable
+  :config
+  (progn
+    (defalias 'pkg 'paradox-list-packages)
+    (setq paradox-automatically-star t
+          paradox-execute-asynchronously t
+          paradox-lines-per-entry 1)))
+
 
 #+END_SRC
 
@@ -1185,6 +1253,8 @@ Similar to ace-jump above
 
 #+BEGIN_SRC emacs-lisp
 (use-package avy
+  :ensure t
+  :pin melpa-stable
   :commands avy-goto-word-or-subword-1
   :bind ("C-." . avy-goto-word-or-subword-1)
   :init (setq avy-style 'at))
@@ -1205,6 +1275,8 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 
 #+BEGIN_SRC emacs-lisp
 (use-package popwin
+  :ensure t
+  :pin melpa-stable
   :bind ("C-h e" . popwin:messages)
   :commands (popwin-mode)
   :init
@@ -1235,6 +1307,8 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 
 #+BEGIN_SRC emacs-lisp
 (use-package aggressive-indent
+  :ensure t
+  :pin melpa-stable
   :config
   (progn
     (add-to-list 'aggressive-indent-dont-indent-if
@@ -1309,6 +1383,8 @@ Iedit lets you mark all occurrences of a word to edit them at the same time.
 
 #+BEGIN_SRC emacs-lisp
 (use-package iedit
+  :ensure t
+  :pin melpa-stable
   :defer t
   :commands iedit-mode
   :bind ("C-;" . iedit-mode))
@@ -1320,6 +1396,8 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package expand-region
+  :ensure t
+  :pin melpa-stable
   :defer t
   :commands er/expand-region
   :bind ("M-2" . er/expand-region))
@@ -1329,6 +1407,8 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package persistent-scratch
+  :ensure t
+  :pin melpa-stable
   :init
   (progn
         (setq persistent-scratch-save-file (concat my/history-dir "persistent-scratch"))
@@ -1339,6 +1419,8 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package github-clone
+  :ensure t
+  :pin melpa-stable
   :defer t
   :commands github-clone)
 #+END_SRC
@@ -1347,6 +1429,8 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package feature-mode
+  :ensure t
+  :pin melpa-stable
   :defer t
   :commands feature-mode)
 #+END_SRC
@@ -1385,6 +1469,8 @@ Never lose your cursor again
 
 #+BEGIN_SRC emacs-lisp
 (use-package beacon
+  :ensure t
+  :pin melpa-stable
   :defer t
   :init
   (beacon-mode t))
@@ -1445,6 +1531,8 @@ Disable variable pitch mode on =git-commit-mode=
 
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
+  :ensure t
+  :pin melpa-stable
   :defer t
   :init
   (add-hook 'markdown-mode-hook #'projectile-rails-mode))
@@ -1537,6 +1625,8 @@ expression, otherwise use regular `eval-last-sexp'"
 
 
     (use-package inf-ruby
+      :ensure t
+      :pin melpa-stable
       :defer t
       :commands (inf-ruby-minor-mode ruby-send-block-and-go ruby-send-region-and-go)
       :config
@@ -1546,28 +1636,37 @@ expression, otherwise use regular `eval-last-sexp'"
                     (company-mode 0)))))
 
     (use-package robe
+      :ensure t
+      :pin melpa-stable
       :defer t
       :commands robe-mode)
 
     (use-package rvm
+      :ensure t
+      :pin melpa-stable
       :defer t
       :init (rvm-use-default))
 
     (use-package rake
+      :ensure t
+      :pin melpa-stable
       :defer t
       :config
       (setq rake-cache-file (concat my/history-dir "rake.cache")
             rake-completion-system 'helm))
 
     (use-package bundler
+      :ensure t
+      :pin melpa-stable
       :defer t
       :commands bundle-install
       :config
       (rvm-use-default))
 
     (use-package rubocop
-      :defer t
       :ensure t
+      :pin melpa-stable
+      :defer t
       :commands (rubocop-check-project rubocop-check-current-file)
       :bind (("C-c r <" . my/rubocop-check-project)
              ("C-c r , " . my/rubocop-check-current-file)))))
@@ -1593,6 +1692,8 @@ Override =rubocop= functions so they automatically switch to the compilation buf
 
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
+  :ensure t
+  :pin melpa-stable
   :commands yas-global-mode
   :defer 3
   :config
@@ -1614,6 +1715,8 @@ Override =rubocop= functions so they automatically switch to the compilation buf
 
 #+BEGIN_SRC emacs-lisp
 (use-package rspec-mode
+  :ensure t
+  :pin melpa-stable
   :defer t
   :config
   (progn
@@ -1662,6 +1765,8 @@ Override =rubocop= functions so they automatically switch to the compilation buf
 
 #+BEGIN_SRC emacs-lisp
 (use-package haml-mode
+  :ensure t
+  :pin melpa-stable
   :defer t
   :config
   (progn
@@ -1679,6 +1784,7 @@ Override =rubocop= functions so they automatically switch to the compilation buf
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :defer t
+  :pin melpa-stable
   :mode ("\\.xml$" "\\.erb$")
   :config
   (progn
@@ -1697,6 +1803,8 @@ Override =rubocop= functions so they automatically switch to the compilation buf
 
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
+  :ensure t
+  :pin melpa-stable
   :defer t
   :config
   (progn
@@ -1721,6 +1829,8 @@ Override =rubocop= functions so they automatically switch to the compilation buf
 
 #+BEGIN_SRC emacs-lisp
 (use-package scss-mode
+  :ensure t
+  :pin melpa-stable
   :defer t
   :mode "\\.scss\\.erb$"
   :config
@@ -1742,14 +1852,16 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 
 #+BEGIN_SRC emacs-lisp
 (use-package coffee-mode
+  :ensure t
+  :pin melpa-stable
   :defer t
   :mode "\\.coffee\\.erb$"
   :config
   (progn
-        (setq coffee-compile-jump-to-error nil
+    (setq coffee-compile-jump-to-error nil
           coffee-tab-width 2)
-        (add-hook 'coffee-mode-hook
-                  (lambda ()
+    (add-hook 'coffee-mode-hook
+              (lambda ()
                 (rspec-mode)
                 (projectile-rails-mode)))))
 #+END_SRC
@@ -1766,6 +1878,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
   :ensure t
+  :pin melpa-stable
   :defer t
   :mode "\\.js\\'"
   :config

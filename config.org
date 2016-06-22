@@ -1812,7 +1812,6 @@ Override =rubocop= functions so they automatically switch to the compilation buf
     (add-hook 'yaml-mode-hook
               (lambda ()
                 (projectile-rails-mode)
-                (variable-pitch-mode nil)
                 (local-set-key (kbd "RET") 'newline-and-indent)))))
 #+END_SRC
 

@@ -1791,13 +1791,13 @@ Override =rubocop= functions so they automatically switch to the compilation buf
   (progn
     (eval-after-load "web-mode" '(require 'smartparens-html))
     (add-hook 'web-mode-hook #'aggressive-indent-mode)
-    (add-hook 'web-mode-hook 'my/web-mode-hook)))
+    (add-hook 'web-mode-hook #'projectile-rails-mode)
+    (add-hook 'web-mode-hook #'my/web-mode-hook)))
 
 (defun my/web-mode-hook ()
-  (progn  (setq web-mode-css-indent-offset 2
-                web-mode-markup-indent-offset 2
-                web-mode-code-indent-offset 2)
-          (projectile-rails-mode)))
+  (setq web-mode-css-indent-offset 2
+        web-mode-markup-indent-offset 2
+        web-mode-code-indent-offset 2))
 #+END_SRC
 
 *** YAML mode

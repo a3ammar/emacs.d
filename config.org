@@ -1735,7 +1735,7 @@ Override =rubocop= functions so they automatically switch to the compilation buf
           compilation-scroll-output t
           rspec-use-rvm t)
 
-    (bind-key "C-c C-," rspec-verifiable-mode-keymap)))
+    (bind-key "C-c C-," rspec-mode-verifiable-keymap)))
 #+END_SRC
 
 *** Compilation Mode

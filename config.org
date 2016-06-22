@@ -333,6 +333,7 @@ Allow to sudo edit files on trqeem.com
 
 #+BEGIN_SRC emacs-lisp
 (use-package tramp
+  :defer t
   :config
   (setq tramp-persistency-file-name (concat my/history-dir "tramp"))
   (setq tramp-process-connection-type nil
@@ -1905,7 +1906,8 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 #+BEGIN_SRC emacs-lisp
 (use-package php-mode
   :pin melpa-stable
-  :ensure t)
+  :ensure t
+  :defer t)
 #+END_SRC
 
 *** Lua mode
@@ -1914,6 +1916,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 (use-package lua-mode
   :pin melpa-stable
   :ensure t
+  :defer t
   :config
   (setq lua-indent-level 2)
   (add-hook 'lua-mode-hook #'subword-mode))

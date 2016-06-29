@@ -1789,15 +1789,15 @@ Override =rubocop= functions so they automatically switch to the compilation buf
   :mode ("\\.xml$" "\\.erb$")
   :config
   (progn
-    (eval-after-load "web-mode" '(require 'smartparens-html))
     (add-hook 'web-mode-hook #'aggressive-indent-mode)
     (add-hook 'web-mode-hook #'projectile-rails-mode)
-    (add-hook 'web-mode-hook #'my/web-mode-hook)))
+    (sp-local-pair 'web-mode "<" nil :actions nil)
+    (setq web-mode-css-indent-offset 2
+          web-mode-markup-indent-offset 2
+          web-mode-code-indent-offset 2
+          web-mode-auto-close-style 2)))
 
-(defun my/web-mode-hook ()
-  (setq web-mode-css-indent-offset 2
-        web-mode-markup-indent-offset 2
-        web-mode-code-indent-offset 2))
+
 #+END_SRC
 
 *** YAML mode

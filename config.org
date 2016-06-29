@@ -2039,13 +2039,13 @@ inserts ~<%= | %>~ where the =|= is the cursors
 
 (defun my/erb-with-equal ()
   (execute-kbd-macro "<")
-  (insert "%  %")
-  (backward-char 2))
+  (insert "%  %>")
+  (backward-char 3))
 
 (defun my/erb-without-equal ()
   (execute-kbd-macro "<")
-  (insert "%=  %")
-  (backward-char 2))
+  (insert "%=  %>")
+  (backward-char 3))
 
 (bind-keys ("C-<" . my/insert-erb))
 #+END_SRC

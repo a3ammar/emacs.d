@@ -1872,7 +1872,8 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 (add-hook 'js-mode-hook
           (lambda ()
             (setq js-indent-level 2)
-            (subword-mode t)))
+            (subword-mode t)
+            (aggressive-indent-mode)))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -1884,6 +1885,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   :config
   (progn
     (add-hook 'js2-mode-hook #'projectile-rails-mode)
+    (add-hook 'js2-mode-hook #'aggressive-indent-mode)
     (setq js2-global-externs '("jQuery" "$" "_" "d3")
           inferior-js-program-command "node"
           js2-basic-offset 2

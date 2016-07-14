@@ -1791,7 +1791,6 @@ Override =rubocop= functions so they automatically switch to the compilation buf
   (progn
     (add-hook 'web-mode-hook #'aggressive-indent-mode)
     (add-hook 'web-mode-hook #'projectile-rails-mode)
-    (sp-local-pair 'web-mode "<" nil :actions nil)
     (setq web-mode-css-indent-offset 2
           web-mode-markup-indent-offset 2
           web-mode-code-indent-offset 2
@@ -2041,13 +2040,13 @@ inserts ~<%= | %>~ where the =|= is the cursors
 
 (defun my/erb-with-equal ()
   (execute-kbd-macro "<")
-  (insert "%  %>")
-  (backward-char 3))
+  (insert "%  %")
+  (backward-char 2))
 
 (defun my/erb-without-equal ()
   (execute-kbd-macro "<")
-  (insert "%=  %>")
-  (backward-char 3))
+  (insert "%=  %")
+  (backward-char 2))
 
 (bind-keys ("C-<" . my/insert-erb))
 #+END_SRC

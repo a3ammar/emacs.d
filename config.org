@@ -1791,6 +1791,7 @@ Override =rubocop= functions so they automatically switch to the compilation buf
   (progn
     (add-hook 'web-mode-hook #'aggressive-indent-mode)
     (add-hook 'web-mode-hook #'projectile-rails-mode)
+    (add-hook 'web-mode-hook #'subword-mode)
     (setq web-mode-css-indent-offset 2
           web-mode-markup-indent-offset 2
           web-mode-code-indent-offset 2

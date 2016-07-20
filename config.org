@@ -2091,6 +2091,37 @@ inserts ~<%= | %>~ where the =|= is the cursors
         (insert (s-prepend ":" (s-chop-suffix ":" word)))))))
 #+END_SRC
 
+*** Toggle inline braces { ... } to multiline
+
+Useful when you want to turn =h1 { font-size: 30px }= into:
+#+BEGIN_SRC css
+h1 {
+  font-size: 30px;
+}
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+(bind-key "C-x t [" 'my/toggle-brace)
+
+(defun my/toggle-brace ()
+  (interactive)
+  (save-excursion
+    (while (not (looking-back "{")) (backward-char))
+    (my/delete-or-insert-newline)
+    (while (not (looking-at "\n? *}")) (forward-char))
+    (my/delete-or-insert-newline)
+    (indent-region (sp-get (sp-get-sexp) :beg)
+                   (sp-get (sp-get-sexp) :end))))
+
+(defun my/delete-or-insert-newline ()
+  (if (looking-at "\n")
+      (progn
+        (delete-char 1)
+        (just-one-space))
+    (insert "\n")))
+#+END_SRC
+
+
 *** Just one space to just no space
 
 I use =just-one-space= all the time to forward delete all spaces, but almost always

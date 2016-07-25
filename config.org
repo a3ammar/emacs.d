@@ -912,7 +912,9 @@ Extension to Projectile for navigating Rails files.
        ,(concat "/app/assets/stylesheets/\\(?:.+/\\)?\\(.+\\)" projectile-rails-stylesheet-re)
        "/db/migrate/.*create_\\(.+\\)\\.rb\\'"
        "/spec/.*/\\([a-z_]+?\\)\\(?:_controller\\)?_spec\\.rb\\'"
-       "/\\(?:test\\|spec\\)/\\(?:fixtures\\|factories\\|fabricators\\)/\\(.+?\\)\\(?:_fabricator\\)?\\.\\(?:yml\\|rb\\)\\'"))))
+       "/\\(?:test\\|spec\\)/\\(?:fixtures\\|factories\\|fabricators\\)/\\(.+?\\)\\(?:_fabricator\\)?\\.\\(?:yml\\|rb\\)\\'"))
+    (set-face-attribute 'projectile-rails-keyword-face nil
+                        :inherit 'font-lock-builtin-face)))
 #+END_SRC
 
 *** Smartparens mode

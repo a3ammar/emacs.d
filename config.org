@@ -1134,7 +1134,6 @@ As the name suggest, it allows editing over multiple lines
 #+BEGIN_SRC emacs-lisp
 (use-package multiple-cursors
   :ensure t
-  :pin melpa-stable
   :bind (("C-c SPC" . mc/edit-lines)
          ("M-]" . mc/mark-next-like-this)
          ("M-[" . mc/mark-previous-like-this)
@@ -1700,8 +1699,7 @@ Override =rubocop= functions so they automatically switch to the compilation buf
   :config
   (progn
     (yas-global-mode)
-    (use-package helm-c-yasnippet)
-    (eval-after-load "rspec-mode" '(rspec-install-snippets))))
+    (use-package helm-c-yasnippet)))
 #+END_SRC
 
 *** SQL Mode
@@ -1717,15 +1715,12 @@ Override =rubocop= functions so they automatically switch to the compilation buf
 #+BEGIN_SRC emacs-lisp
 (use-package rspec-mode
   :ensure t
-  :pin melpa-stable
   :defer t
   :config
   (progn
-    (defadvice rspec-compile (around rspec-compile-around)
-      "Use BASH shell for running the specs because of ZSH issues"
-      (let ((shell-file-name "/bin/bash"))
-        ad-do-it))
     (ad-activate 'rspec-compile)
+    (rspec-install-snippets)
+
     (add-hook 'rspec-compilation-mode-hook (lambda ()
                                              (toggle-truncate-lines -1)))
     (setq rspec-compilation-skip-threshold 2
@@ -1735,7 +1730,12 @@ Override =rubocop= functions so they automatically switch to the compilation buf
           compilation-scroll-output t
           rspec-use-rvm t)
 
-    (bind-key "C-c C-," rspec-mode-verifiable-keymap)))
+    (bind-key "C-c C-," rspec-mode-keymap)))
+
+(defadvice rspec-compile (around rspec-compile-around)
+  "Use BASH shell for running the specs because of ZSH issues"
+  (let ((shell-file-name "/bin/bash"))
+    ad-do-it))
 #+END_SRC
 
 *** Compilation Mode
@@ -2120,7 +2120,6 @@ h1 {
         (just-one-space))
     (insert "\n")))
 #+END_SRC
-
 
 *** Just one space to just no space
 

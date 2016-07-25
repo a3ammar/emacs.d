@@ -2103,8 +2103,13 @@ inserts ~<%= | %>~ where the =|= is the cursors
 
 *** Toggle inline braces { ... } to multiline
 
-Useful when you want to turn =h1 { font-size: 30px }= into:
+Toggle inline rule into multiline:
+
 #+BEGIN_SRC css
+// from this
+h1 { font-size: 30px }
+
+// into this
 h1 {
   font-size: 30px;
 }
@@ -2115,13 +2120,14 @@ h1 {
 
 (defun my/toggle-brace ()
   (interactive)
-  (save-excursion
-    (while (not (looking-back "{")) (backward-char))
-    (my/delete-or-insert-newline)
-    (while (not (looking-at "\n? *}")) (forward-char))
-    (my/delete-or-insert-newline)
-    (indent-region (sp-get (sp-get-sexp) :beg)
-                   (sp-get (sp-get-sexp) :end))))
+  (let (start)
+    (save-excursion
+      (while (not (looking-back "{")) (backward-char))
+      (setq start (point))
+      (my/delete-or-insert-newline)
+      (while (not (looking-at "\n? *}")) (forward-char))
+      (my/delete-or-insert-newline)
+      (indent-region start (line-end-position)))))
 
 (defun my/delete-or-insert-newline ()
   (if (looking-at "\n")

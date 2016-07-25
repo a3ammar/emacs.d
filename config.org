@@ -39,6 +39,14 @@ and press =C-h v=.
       create-lockfiles nil)
 #+END_SRC
 
+*** Enable every disabled command
+
+I just don't want to be prompted about disabled commands
+
+#+BEGIN_SRC emacs-lisp
+(setq disabled-command-function nil)
+#+END_SRC
+
 *** UTF-8 everywhere please
 
 UTF-8 everything. Taken from [[http://stackoverflow.com/questions/2901541/which-coding-system-should-i-use-in-emacs][this answer]].

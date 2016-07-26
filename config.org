@@ -90,6 +90,7 @@ Also install =auto-compile= mode so it byte-compile our init file
 (defvar my/history-dir (expand-file-name "history/" user-emacs-directory))
 
 (let ((default-directory my/elisp-dir))
+  (normal-top-level-add-to-load-path '("."))
   (normal-top-level-add-subdirs-to-load-path))
 
 (unless (package-installed-p 'use-package)
@@ -1946,7 +1947,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 **** OS X Arabic Keybaord
 
 #+BEGIN_SRC emacs-lisp
-(load (expand-file-name "elisp/arabic-mac.el" user-emacs-directory))
+(load "arabic-mac")
 (setq default-input-method "arabic-mac")
 #+END_SRC
 

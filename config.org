@@ -1280,6 +1280,8 @@ Appearance
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces
  '(git-commit-mode-default ((t (:height 120 :family "Menlo"))) t))
+
+(add-hook 'git-commit-mode-hook #'flyspell-mode)
 #+END_SRC
 
 *** Popwin

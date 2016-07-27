@@ -1268,7 +1268,9 @@ Similar to ace-jump above
   :pin melpa-stable
   :commands avy-goto-word-or-subword-1
   :bind ("C-." . avy-goto-word-or-subword-1)
-  :init (setq avy-style 'at))
+  :init (setq avy-style 'at)
+  :config
+  (avy-setup-default))
 #+END_SRC
 
 *** Git mode

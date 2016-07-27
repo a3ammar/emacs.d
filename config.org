@@ -1699,6 +1699,26 @@ Override =rubocop= functions so they automatically switch to the compilation buf
   (popwin:select-popup-window))
 #+END_SRC
 
+*** Setup rcodetools
+
+rcodetools provide a way to evaulate ruby code inside your buffer. The way it works is you add ~# =>~ after an expression and then run ~xmp~ command and it will insert the result after the comment.
+
+#+BEGIN_SRC emacs-lisp
+(use-package rcodetools
+  :ensure nil
+  :commands (xmp)
+  :bind (:map ruby-mode-map ("C-c C-c" . xmp)))
+
+(defadvice my/comment-dwim (around rct-hack activate)
+  "If comment-dwim is successively called, add => mark."
+  (if (and (eq major-mode 'ruby-mode)
+           (eq last-command 'my/comment-dwim))
+      (progn (insert "=>")
+             (xmp))
+    ad-do-it))
+
+#+END_SRC
+
 *** Yasnippet
 
 #+BEGIN_SRC emacs-lisp
@@ -2005,9 +2025,10 @@ Better comments, taken from [[http://www.opensubscriber.com/message/emacs-devel@
  Replaces default behaviour of comment-dwim, when it inserts comment at the end of the line."
   (interactive "*P")
   (comment-normalize-vars)
-  (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
-          (comment-or-uncomment-region (line-beginning-position) (line-end-position))
-        (comment-dwim arg)))
+  (if (and (not (region-active-p))
+           (not (looking-at "[ \t]*$")))
+      (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+    (comment-dwim arg)))
 
 (bind-keys ("M-;" . my/comment-dwim))
 #+END_SRC

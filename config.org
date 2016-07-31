@@ -723,7 +723,6 @@ Helm is awesome, read this [[http://tuhdo.github.io/helm-intro.html][blog]] post
 #+BEGIN_SRC emacs-lisp
 (use-package helm
   :ensure t
-  :pin melpa-stable
   :init
   (progn
     (require 'helm-config)
@@ -1144,6 +1143,7 @@ As the name suggest, it allows editing over multiple lines
 
 #+BEGIN_SRC emacs-lisp
 (use-package multiple-cursors
+  :pin melpa-stable
   :ensure t
   :bind (("C-c SPC" . mc/edit-lines)
          ("M-]" . mc/mark-next-like-this)
@@ -1412,7 +1412,6 @@ Expand region to fit the sexp
 #+BEGIN_SRC emacs-lisp
 (use-package expand-region
   :ensure t
-  :pin melpa-stable
   :defer t
   :commands er/expand-region
   :bind ("M-2" . er/expand-region))

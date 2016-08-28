@@ -1633,8 +1633,6 @@ expression, otherwise use regular `eval-last-sexp'"
     (add-hook 'ruby-mode-hook
               (lambda ()
                 (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
-                (local-set-key (kbd "C-c C-c") 'ruby-send-block-and-go)
-                (local-set-key (kbd "C-c C-r") 'ruby-send-region-and-go)
                 (push '("lambda" . 955) prettify-symbols-alist)))
 
 

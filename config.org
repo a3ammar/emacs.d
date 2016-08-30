@@ -1643,6 +1643,7 @@ expression, otherwise use regular `eval-last-sexp'"
       :commands (inf-ruby-minor-mode ruby-send-block-and-go ruby-send-region-and-go)
       :config
       (progn
+        (setq inf-ruby-default-implementation "pry")
         (add-hook 'inf-ruby-mode-hook
                   (lambda ()
                     (company-mode 0)))))

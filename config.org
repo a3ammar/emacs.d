@@ -2251,6 +2251,22 @@ Useful for quick calculations, based on this reddit [[https://www.reddit.com/r/e
 (bind-key "C-=" 'my/calc-insert)
 #+END_SRC
 
+*** Better =open-line=
+I use =open-line= a lot and most of the time I have to indent the new line. This in autoindent the newline and does not split the current line.
+
+#+BEGIN_SRC emacs-lisp
+(defun my/open-line (args)
+  "Indent the new line after `open-line'"
+  (interactive "p")
+  (beginning-of-line)
+  (newline-and-indent)
+  (previous-line)
+  (indent-according-to-mode))
+
+(bind-key "C-o" 'my/open-line)
+
+#+END_SRC
+
 * Load my secrets
 
 These are stuff I dont' want to commit to a public repo

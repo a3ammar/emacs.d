@@ -223,7 +223,7 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 #+END_SRC
 
 ** Emacs General Configuration
-*** TODO Load customization
+*** Load customization
 
 #+BEGIN_SRC emacs-lisp
 (setq custom-file (expand-file-name "customization.el" user-emacs-directory))
@@ -1627,13 +1627,14 @@ expression, otherwise use regular `eval-last-sexp'"
     (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
                             '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
 
-    (add-hook 'ruby-mode-hook #'projectile-rails-mode)
     (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
     (add-hook 'ruby-mode-hook #'subword-mode)
     (add-hook 'ruby-mode-hook
               (lambda ()
                 (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
-                (push '("lambda" . 955) prettify-symbols-alist)))
+                (push '("lambda" . 955) prettify-symbols-alist)
+                (when (projectile-raisl-p)
+                  (projectile-rails-mode))))
 
 
     (use-package inf-ruby

@@ -1303,7 +1303,7 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
     (push "*Bundler*" popwin:special-display-config)
     (push "*projectile-rails-compilation*" popwin:special-display-config)
     (push "*Ack-and-a-half*" popwin:special-display-config)
-    (push "*ruby*" popwin:special-display-config)
+    (push '("*ruby*" :height 0.75 :position bottom) popwin:special-display-config)
     (push "*rails*" popwin:special-display-config)
     (push "*Compile-Log*" popwin:special-display-config)
     (push "*pry*" popwin:special-display-config)

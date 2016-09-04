@@ -1633,7 +1633,7 @@ expression, otherwise use regular `eval-last-sexp'"
               (lambda ()
                 (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
                 (push '("lambda" . 955) prettify-symbols-alist)
-                (when (projectile-raisl-p)
+                (when (projectile-project-p)
                   (projectile-rails-mode))))
 
 

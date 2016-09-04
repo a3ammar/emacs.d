@@ -269,6 +269,12 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 (setq-default indent-tabs-mode nil)
 #+END_SRC
 
+*** Set tab width
+
+#+BEGIN_SRC emacs-lisp
+(setq-default tab-width 2)
+#+END_SRC
+
 *** Highlight the current line
 
 #+BEGIN_SRC emacs-lisp

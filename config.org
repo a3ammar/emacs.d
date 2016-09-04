@@ -1709,7 +1709,7 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 #+BEGIN_SRC emacs-lisp
 (use-package rcodetools
   :ensure nil
-  :commands (xmp)
+  :commands xmp
   :bind (:map ruby-mode-map ("C-c C-c" . xmp)))
 
 (defadvice my/comment-dwim (around rct-hack activate)

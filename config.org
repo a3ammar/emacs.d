@@ -1024,7 +1024,8 @@ Better interface to Git
     :pin melpa-stable)
   (progn
     (setq magit-push-always-verify nil
-          magit-revert-buffers 'silent)
+          magit-revert-buffers 'silent
+          magit-diff-refine-hunk 't)
     (fullframe magit-status magit-mode-quit-window nil)
     (custom-set-faces
      '(magit-blame-date ((t (:foreground "#D13A82" :background "#2D393D"))))

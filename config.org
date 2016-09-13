@@ -1480,19 +1480,6 @@ I use [[https://github.com/sorin-ionescu/prezto][prezto]] and I want to associat
 
 #+END_SRC
 
-*** Beacon
-
-Never lose your cursor again
-
-#+BEGIN_SRC emacs-lisp
-(use-package beacon
-  :ensure t
-  :pin melpa-stable
-  :defer t
-  :init
-  (beacon-mode t))
-#+END_SRC
-
 *** Restclient
 
 #+BEGIN_SRC emacs-lisp

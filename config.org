@@ -1540,8 +1540,9 @@ Disable variable pitch mode on =git-commit-mode=
   :ensure t
   :pin melpa-stable
   :defer t
-  :init
-  (add-hook 'markdown-mode-hook #'projectile-rails-mode))
+  :config
+  (add-hook 'markdown-mode-hook (lambda ()
+                                  (variable-pitch-mode nil))))
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp

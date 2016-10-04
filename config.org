@@ -1571,7 +1571,13 @@ Disable variable pitch mode on =git-commit-mode=
 
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces
- '(org-todo ((t (:background "#052028" :foreground "#c60007" :inverse-video nil :underline nil :slant normal :weight bold)))))
+ '(org-todo ((t (:background "#052028" :foreground "#c60007" :inverse-video nil :underline nil :slant normal :weight bold))))
+ '(org-level-1 ((t (:font "Menlo"))))
+ '(org-level-2 ((t (:font "Menlo"))))
+ '(org-level-3 ((t (:font "Menlo"))))
+ '(org-level-4 ((t (:font "Menlo"))))
+ '(org-level-5 ((t (:font "Menlo"))))
+ '(org-level-6 ((t (:font "Menlo")))))
 #+END_SRC
 
 *** Emacs Lisp Mode

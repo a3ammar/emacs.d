@@ -1467,7 +1467,7 @@ Expand region to fit the sexp
 #+BEGIN_SRC emacs-lisp
 (use-package sh-mode
   :ensure nil
-  :mode "\\.zsh\\'"
+  :mode ("\\.zsh\\'" "\\.gitignore\\'")
   :interpreter "zsh"
   :init
   (setq-default sh-indentation 2

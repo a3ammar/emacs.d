@@ -2277,6 +2277,14 @@ Quickly toggle between =""= and =''=
   :bind (("C-'" . toggle-quotes)))
 #+END_SRC
 
+*** Better keybinding for =revert-buffer=
+
+No one likes =s-u=
+
+#+BEGIN_SRC emacs-lisp
+(bind-key "C-x t r" 'revert-buffer)
+#+END_SRC
+
 * Load my secrets
 
 These are stuff I dont' want to commit to a public repo

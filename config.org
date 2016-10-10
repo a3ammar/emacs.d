@@ -1856,16 +1856,7 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 *** SCSS Mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package scss-mode
-  :ensure t
-  :pin melpa-stable
-  :defer t
-  :mode "\\.scss\\.erb$"
-  :config
-  (progn
-        (setq scss-compile-at-save nil)
-        (add-hook 'scss-mode-hook #'projectile-rails-mode)))
-
+(add-hook 'scss-mode-hook #'projectile-rails-mode)
 #+END_SRC
 
 *** Jinja Mode

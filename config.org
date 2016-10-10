@@ -1027,20 +1027,14 @@ Better interface to Git
   (progn
     (setq magit-push-always-verify nil
           magit-revert-buffers 'silent
-          magit-diff-refine-hunk 't)
-    (fullframe magit-status magit-mode-quit-window nil)
+          magit-diff-refine-hunk 't
+          magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
     (custom-set-faces
      '(magit-blame-date ((t (:foreground "#D13A82" :background "#2D393D"))))
      '(magit-blame-hash ((t (:foreground "#C4A449" :background "#2D393D"))))
      '(magit-blame-heading ((t (:foreground "#D13A82" :background "#2D393D"))))
      '(magit-blame-summary ((t (:foreground "#2D8CD0" :background "#2D393D"))))
      '(magit-blame-name ((t (:foreground "#C4A449" :background "#2D393D")))))))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(use-package fullframe
-  :ensure t
-  :pin melpa-stable)
 #+END_SRC
 
 Set the visibility of the =Unmerged into upstream= section to always be hidden, see [[http://emacs.stackexchange.com/questions/20754/change-the-default-visibility-of-a-magit-section/20767][this stackexchange question]].

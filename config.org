@@ -59,7 +59,12 @@ UTF-8 everything. Taken from [[http://stackoverflow.com/questions/2901541/which-
 (set-selection-coding-system 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
+#+END_SRC
 
+*** Set LANG environment variable
+
+#+BEGIN_SRC emacs-lisp
+(setenv "LANG" "en_US.UTF-8")
 #+END_SRC
 
 *** Package sources
@@ -1188,39 +1193,10 @@ Use hunspell because it's more powerful and supports Arabic.
 
 #+BEGIN_SRC emacs-lisp
 (setq ispell-program-name "hunspell"
-          ispell-really-hunspell t
-          ispell-keep-choices-win t
-          ispell-use-framepop-p nil
-          speck-hunspell-default-dictionary-name "en_US"
-          speck-hunspell-dictionary-alist '(("en" . "en_US") ("ar" . "ar"))
-          speck-iso-639-1-alist '(("ar" . "arabic")
-                                  ("bg" . "bulgarian")
-                                  ("ca" . "catalan")
-                                  ("cs" . "czech")
-                                  ("da" . "danish")
-                                  ("de" . "deutsch")
-                                  ("de" . "german")
-                                  ("el" . "greek")
-                                  ("en" . "english")
-                                  ("eo" . "esperanto")
-                                  ("es" . "spanish")
-                                  ("fi" . "finnish")
-                                  ("fr" . "francais")
-                                  ("fr" . "french")
-                                  ("hu" . "hungarian")
-                                  ("it" . "italiano")
-                                  ("it" . "italian")
-                                  ("la" . "latin")
-                                  ("nl" . "dutch")
-                                  ("no" . "norwegian")
-                                  ("pl" . "polish")
-                                  ("pt" . "portuguese")
-                                  ("ro" . "romanian")
-                                  ("ru" . "russian")
-                                  ("sh" . "serbo-croatian")
-                                  ("sk" . "slovak")
-                                  ("sv" . "swedish")
-                                  ("tr" . "turkish")))
+      ispell-dictionary "en_US"
+      ispell-really-hunspell t
+      ispell-keep-choices-win t
+      ispell-use-framepop-p nil)
 #+END_SRC
 
 Use both ispell and abbrev together.

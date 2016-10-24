@@ -1957,6 +1957,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 #+BEGIN_SRC emacs-lisp
 (setq help-window-select t)
 #+END_SRC
+
 *** Newline do what I mean
 
 This I took from somewhere, it insert a space if I do =M-return= between bracket or
@@ -1965,16 +1966,16 @@ parentheses, etc.
 #+BEGIN_SRC emacs-lisp
 (defun my/newline-dwim ()
   (interactive)
-  (let ((break-open-pair (or (and (looking-back "{") (looking-at "}"))
-                                 (and (looking-back ">") (looking-at "<"))
-                                 (and (looking-back "(") (looking-at ")"))
-                                 (and (looking-back "\\[") (looking-at "\\]")))))
-        (newline)
-        (when break-open-pair
-          (save-excursion
+  (let ((break-open-pair (or (and (looking-back "{ ?") (looking-at " ?}"))
+                             (and (looking-back ">") (looking-at "<"))
+                             (and (looking-back "(") (looking-at ")"))
+                             (and (looking-back "\\[") (looking-at "\\]")))))
+    (newline)
+    (when break-open-pair
+      (save-excursion
         (newline)
         (indent-for-tab-command)))
-        (indent-for-tab-command)))
+    (indent-for-tab-command)))
 
 (bind-keys ("M-<return>" . my/newline-dwim))
 #+END_SRC

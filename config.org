@@ -1702,7 +1702,8 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
   :config
   (progn
     (yas-global-mode)
-    (use-package helm-c-yasnippet)))
+    (use-package helm-c-yasnippet)
+    (add-hook 'snippet-mode-hook (lambda () (variable-pitch-mode nil)))))
 #+END_SRC
 
 *** SQL Mode

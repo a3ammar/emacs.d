@@ -1893,6 +1893,12 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 
 #+END_SRC
 
+In =js2-mode= prettify symbols changes ~=>~, ~<=~, and ~>=~ to =⇒=, =≥=, and =≤= and I don't like that
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'js2-mode-hook (lambda () (setq prettify-symbols-alist nil)))
+#+END_SRC
+
 *** Java Mode
 
 #+BEGIN_SRC emacs-lisp

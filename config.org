@@ -1241,8 +1241,7 @@ Similar to ace-jump above
 (use-package avy
   :ensure t
   :pin melpa-stable
-  :commands avy-goto-word-or-subword-1
-  :bind ("C-." . avy-goto-word-or-subword-1)
+  :bind ("C-." . avy-goto-char-timer)
   :init (setq avy-style 'at)
   :config
   (avy-setup-default))

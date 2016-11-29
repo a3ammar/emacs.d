@@ -1220,6 +1220,12 @@ With prefix P, create local abbrev. Otherwise it will be global."
 
 #+END_SRC
 
+unbind =C-.= from flyspell, I use it for avy damnit.
+
+#+BEGIN_SRC emacs-lisp
+(unbind-key "C-." flyspell-mode-map)
+#+END_SRC
+
 *** Undo Tree
 
 A better undo/redo alternative

@@ -403,7 +403,6 @@ Unbinding these keys because they are used for something else
 #+BEGIN_SRC emacs-lisp
 (unbind-key "C-;")
 (unbind-key "C-x m")
-;;(unbind-key "C-;" flyspell-mode-map)
 #+END_SRC
 
 **** Bindings
@@ -1223,7 +1222,10 @@ With prefix P, create local abbrev. Otherwise it will be global."
 unbind =C-.= from flyspell, I use it for avy damnit.
 
 #+BEGIN_SRC emacs-lisp
-(unbind-key "C-." flyspell-mode-map)
+(add-hook 'flyspell-mode-hook
+          (lambda ()
+            (unbind-key "C-." flyspell-mode-map)
+            (unbind-key "C-;" flyspell-mode-map)))
 #+END_SRC
 
 *** Undo Tree

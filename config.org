@@ -2097,11 +2097,12 @@ inserts ~<%= | %>~ where the =|= is the cursors
 
 (defun my/flip-colons ()
   (interactive)
-  (let ((word (current-word))
-        (bounds (bounds-of-thing-at-point 'symbol)))
-        (when (or (s-starts-with-p ":" word) (s-ends-with-p ":" word))
-          (delete-region (car bounds) (cdr bounds))
-          (if (s-starts-with-p ":" word)
+  (let ((word (thing-at-point 'sexp))
+        (bounds (bounds-of-thing-at-point 'sexp)))
+    (when (or (s-starts-with-p ":" word)
+              (s-ends-with-p ":" word))
+      (delete-region (car bounds) (cdr bounds))
+      (if (s-starts-with-p ":" word)
           (insert (s-append ":" (s-chop-prefix ":" word)))
         (insert (s-prepend ":" (s-chop-suffix ":" word)))))))
 #+END_SRC

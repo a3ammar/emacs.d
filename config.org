@@ -1032,7 +1032,7 @@ Better interface to Git
     (setq magit-push-always-verify nil
           magit-revert-buffers 'silent
           magit-diff-refine-hunk 't
-          magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+          magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
     (custom-set-faces
      '(magit-blame-date ((t (:foreground "#D13A82" :background "#2D393D"))))
      '(magit-blame-hash ((t (:foreground "#C4A449" :background "#2D393D"))))

@@ -1487,7 +1487,6 @@ Set the global `fill-column`
           (lambda ()
             #'turn-on-auto-fill
             #'turn-on-flyspell
-            (my/variable-pitch-mode)
             (setq word-wrap t
                   fill-column 85)))
 

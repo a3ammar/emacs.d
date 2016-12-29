@@ -1001,6 +1001,14 @@ the closing pair.
       (sp-end-of-sexp))))
 #+END_SRC
 
+Insert space between the pair if you add a space right after opening the pair
+
+#+BEGIN_SRC emacs-lisp
+(sp-pair "(" nil :post-handlers '(("| " "SPC")))
+(sp-pair "[" nil :post-handlers '(("| " "SPC")))
+(sp-pair "{" nil :post-handlers '(("| " "SPC")))
+#+END_SRC
+
 
 Appearance
 

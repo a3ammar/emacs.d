@@ -1952,7 +1952,8 @@ In =js2-mode= prettify symbols changes ~=>~, ~<=~, and ~>=~ to =⇒=, =≥=, and
   :pin melpa-stable
   :bind (("RET" . newline-and-indent))
   :config
-  (add-to-list 'company-backends 'company-elm))
+  (add-to-list 'company-backends 'company-elm)
+  (add-hook 'elm-mode-hook #'subword-mode))
 #+END_SRC
 
 *** Haskell mode

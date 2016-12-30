@@ -1950,6 +1950,7 @@ In =js2-mode= prettify symbols changes ~=>~, ~<=~, and ~>=~ to =⇒=, =≥=, and
 #+BEGIN_SRC emacs-lisp
 (use-package elm-mode
   :pin melpa-stable
+  :bind (("RET" . newline-and-indent))
   :config
   (add-to-list 'company-backends 'company-elm))
 #+END_SRC

@@ -1524,11 +1524,7 @@ Disable variable pitch mode on =git-commit-mode=
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
   :ensure t
-  :pin melpa-stable
-  :defer t
-  :config
-  (add-hook 'markdown-mode-hook (lambda ()
-                                  (variable-pitch-mode nil))))
+  :pin melpa-stable)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
@@ -1771,11 +1767,6 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 
 *** HTML mode
 
-#+BEGIN_SRC emacs-lisp
-(add-hook 'sgml-mode-hook
-          (lambda ()
-            (variable-pitch-mode nil)))
-#+END_SRC
 
 *** nXML mode
 
@@ -1836,7 +1827,6 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
     (add-hook 'yaml-mode-hook
               (lambda ()
                 (projectile-rails-mode)
-                (variable-pitch-mode nil)
                 (local-set-key (kbd "RET") 'newline-and-indent)))))
 #+END_SRC
 

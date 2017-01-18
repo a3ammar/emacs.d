@@ -54,8 +54,8 @@ Based on Arabic table in X Keyboard Configuration DB.
  ("9" ?٩)
  ("0" ?٠)
 
- ("(" ?\))
- (")" ?()
+ ("(" ?\()
+ (")" ?\))
 
 
  ("Q" ?َ)
@@ -66,10 +66,10 @@ Based on Arabic table in X Keyboard Configuration DB.
  ("Y" ?ٌ)
  ("U" ?ْ)
  ("I" ?ّ)
- ("O" ?])
- ("P" ?[)
- ("{" ?})
- ("}" ?{)
+ ("O" ?[)
+ ("P" ?])
+ ("{" ?{)
+ ("}" ?})
 
  ("A" ?«)
  ("S" ?»)

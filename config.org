@@ -1968,7 +1968,6 @@ Make smartparens mode not escape closing parens in swift string
 #+BEGIN_SRC emacs-lisp
 (sp-local-pair 'swift-mode "\\(" nil :actions nil)
 (sp-local-pair 'swift-mode "\\(" ")")
-(sp-local-pair 'swift-mode "<" ">")
 #+END_SRC
 
 ** Misc Settings

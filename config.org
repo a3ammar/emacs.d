@@ -2282,14 +2282,13 @@ I use =open-line= a lot and most of the time I have to manually indent the new l
 
 #+END_SRC
 
-*** Toggle quotes
-Quickly toggle between =""= and =''=
+*** Embrace mode
+[[https://github.com/cute-jumper/embrace.el][Embrace mode]] makes surrounding words with pairs so easy
 
 #+BEGIN_SRC emacs-lisp
-(use-package toggle-quotes
+(use-package embrace
   :ensure t
-  :commands toggle-quotes
-  :bind (("C-'" . toggle-quotes)))
+  :bind (("C-'" . embrace-commander)))
 #+END_SRC
 
 *** Better keybinding for =revert-buffer=

@@ -1958,7 +1958,17 @@ In =js2-mode= prettify symbols changes ~=>~, ~<=~, and ~>=~ to =⇒=, =≥=, and
 
 #+BEGIN_SRC emacs-lisp
 (use-package swift-mode
-  :pin melpa-stable)
+  :pin melpa-stable
+  :config
+  (add-hook 'swift-mode-hook (lambda () (subword-mode))))
+#+END_SRC
+
+Make smartparens mode not escape closing parens in swift string
+
+#+BEGIN_SRC emacs-lisp
+(sp-local-pair 'swift-mode "\\(" nil :actions nil)
+(sp-local-pair 'swift-mode "\\(" ")")
+(sp-local-pair 'swift-mode "<" ">")
 #+END_SRC
 
 ** Misc Settings

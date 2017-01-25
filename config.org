@@ -1960,6 +1960,7 @@ In =js2-mode= prettify symbols changes ~=>~, ~<=~, and ~>=~ to =⇒=, =≥=, and
 (use-package swift-mode
   :pin melpa-stable
   :config
+  (setq swift-mode:basic-offset 2)
   (add-hook 'swift-mode-hook (lambda () (subword-mode))))
 #+END_SRC
 

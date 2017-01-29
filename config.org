@@ -1612,6 +1612,8 @@ expression, otherwise use regular `eval-last-sexp'"
     (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
                             '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
 
+    (sp-local-pair 'ruby-mode "{" nil :post-handlers '(("| " "SPC")))
+
     (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
     (add-hook 'ruby-mode-hook #'subword-mode)
     (add-hook 'ruby-mode-hook

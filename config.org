@@ -1775,7 +1775,6 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 #+BEGIN_SRC emacs-lisp
 (add-hook 'nxml-mode-hook
           (lambda ()
-            (variable-pitch-mode nil)
             (sp-local-pair 'nxml-mode "<" ">" :actions :rem)))
 #+END_SRC
 

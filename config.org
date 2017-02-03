@@ -1805,13 +1805,17 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
   :mode ("\\.xml$" "\\.erb$")
   :config
   (progn
-    (add-hook 'web-mode-hook #'aggressive-indent-mode)
-    (add-hook 'web-mode-hook #'projectile-rails-mode)
-    (add-hook 'web-mode-hook #'subword-mode)
     (setq web-mode-css-indent-offset 2
           web-mode-markup-indent-offset 2
           web-mode-code-indent-offset 2
-          web-mode-auto-close-style 2)))
+          web-mode-auto-close-style 2)
+    (add-hook 'web-mode-hook #'aggressive-indent-mode)
+    (add-hook 'web-mode-hook #'projectile-rails-mode)
+    (add-hook 'web-mode-hook #'subword-mode)
+
+    (sp-local-pair 'web-mode "<" ">" :actions nil)
+    (sp-local-pair 'web-mode "<%" "%>"  :post-handlers '(("| " "SPC")))
+    (sp-local-pair 'web-mode "<%=" "%>" :post-handlers '(("| " "SPC")))))
 
 
 #+END_SRC
@@ -2076,30 +2080,6 @@ With 5 as a prefix arguments =C-5 C-{=, it inserts a liquid tag ={%  %}=.
 
 (bind-keys ("C-{" . my/brace-with-space))
 
-#+END_SRC
-
-*** Insert an ERB tag
-
-inserts ~<%= | %>~ where the =|= is the cursors
-
-#+BEGIN_SRC emacs-lisp
-(defun my/insert-erb (args)
-  (interactive "P")
-  (if (null args)
-      (my/erb-without-equal)
-    (my/erb-with-equal)))
-
-(defun my/erb-with-equal ()
-  (execute-kbd-macro "<")
-  (insert "%  %")
-  (backward-char 2))
-
-(defun my/erb-without-equal ()
-  (execute-kbd-macro "<")
-  (insert "%=  %")
-  (backward-char 2))
-
-(bind-keys ("C-<" . my/insert-erb))
 #+END_SRC
 
 *** Duplicate line

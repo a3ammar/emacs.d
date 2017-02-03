@@ -1808,14 +1808,15 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
     (setq web-mode-css-indent-offset 2
           web-mode-markup-indent-offset 2
           web-mode-code-indent-offset 2
-          web-mode-auto-close-style 2)
+          web-mode-auto-close-style 2
+          web-mode-enable-auto-pairing nil)
     (add-hook 'web-mode-hook #'aggressive-indent-mode)
     (add-hook 'web-mode-hook #'projectile-rails-mode)
     (add-hook 'web-mode-hook #'subword-mode)
 
-    (sp-local-pair 'web-mode "<" ">" :actions nil)
-    (sp-local-pair 'web-mode "<%" "%>"  :post-handlers '(("| " "SPC")))
-    (sp-local-pair 'web-mode "<%=" "%>" :post-handlers '(("| " "SPC")))))
+    (sp-local-pair 'web-mode "<" nil :actions :rem)
+    (sp-local-pair 'web-mode "<%" "%>" :post-handlers '(("| " "SPC")
+                                                        (" | " "=")))))
 
 
 #+END_SRC

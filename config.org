@@ -1605,7 +1605,7 @@ expression, otherwise use regular `eval-last-sexp'"
 (use-package ruby-mode
   :mode "\\.rb\\'"
   :interpreter "ruby"
-  :init
+  :config
   (progn
     (setq ruby-indent-level 2
           ruby-insert-encoding-magic-comment nil)

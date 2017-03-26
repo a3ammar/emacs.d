@@ -700,9 +700,7 @@ Automatically transform symbols like lambda into the greek letter =λ=
 *** Pin Depencies to stable versions
 
 #+BEGIN_SRC emacs-lisp
-(let ((packages '((async . "melpa-stable")
-                  (dash . "melpa-stable")
-                  (diminish . "melpa-stable")
+(let ((packages '((diminish . "melpa-stable")
                   (epl . "melpa-stable")
                   (f . "melpa-stable")
                   (git-commit . "melpa-stable")

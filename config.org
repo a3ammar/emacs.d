@@ -1899,12 +1899,11 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   :config
   (progn
     (add-hook 'js2-mode-hook #'projectile-rails-mode)
-    (setq js2-global-externs '("jQuery" "$" "_" "d3")
-          js2-include-node-externs t
+    (setq js2-mode-show-parse-errors nil
+          js2-mode-show-strict-warnings nil
           js2-mode-assume-strict t
           inferior-js-program-command "node"
           js2-basic-offset 2
-          js2-missing-semi-one-line-override t
           js2-bounce-indent-p t)
     (font-lock-add-keywords 'js2-mode
                             '(("require([^)]*)" . font-lock-builtin-face)))

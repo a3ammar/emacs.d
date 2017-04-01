@@ -1129,6 +1129,20 @@ Company Appearance
  '(company-tooltip-selection ((t (:inherit company-tooltip :background "#022028")))))
 #+END_SRC
 
+*** Flycheck
+
+Flycheck is a modern lint runner
+
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck
+  :pin melpa-stable
+  :config
+  (global-flycheck-mode)
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (add-to-list 'flycheck-disabled-checkers 'emacs-lisp-checkdoc)
+  (setq flycheck-indication-mode 'right-fringe))
+#+END_SRC
+
 *** Winner
 
 Winner mode gives you the ability to undo and redo your window configuration, watch

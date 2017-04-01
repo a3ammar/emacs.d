@@ -1140,7 +1140,9 @@ Flycheck is a modern lint runner
   :config
   (global-flycheck-mode)
   (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (add-to-list 'flycheck-disabled-checkers 'emacs-lisp-checkdoc)
+  (add-hook 'org-src-mode
+            (lambda ()
+              (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
   (setq flycheck-indication-mode 'right-fringe))
 #+END_SRC
 

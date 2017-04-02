@@ -1134,7 +1134,14 @@ Company Appearance
 
 *** Flycheck
 
-Flycheck is a modern lint runner
+Flycheck is a modern lint runner.
+
+A litte helper with identifying file names.
+#+BEGIN_SRC emacs-lisp
+(defun my/current-buffer-is-a (extension)
+  (let ((file (buffer-file-name (current-buffer))))
+    (s-ends-with? extension file)))
+#+END_SRC
 
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck
@@ -1161,11 +1168,6 @@ Flycheck is a modern lint runner
                     (when (my/current-buffer-is-js-test-p)
                       (setq-local flycheck-disabled-checkers '(javascript-flow)))))))))
 
-
-(defun my/current-buffer-is-js-test-p ()
-  (let ((file (file-name-nondirectory (buffer-file-name (current-buffer)))))
-    (or (s-ends-with? ".spec.js" file)
-        (s-ends-with? ".test.js" file))))
 
 #+END_SRC
 

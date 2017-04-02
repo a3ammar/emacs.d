@@ -1149,7 +1149,24 @@ Flycheck is a modern lint runner
                 (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
     (setq flycheck-indication-mode 'right-fringe)
 
-    (use-package flycheck-flow)))
+    (use-package flycheck-flow
+      :config
+      (progn
+        (add-hook 'js-mode-hook
+                  (lambda ()
+                    ;; Disable checker for json files
+                    (setq-local flycheck-disabled-checkers '(javascript-flow))))
+        (add-hook 'js2-mode-hook
+                  (lambda ()
+                    (when (my/current-buffer-is-js-test-p)
+                      (setq-local flycheck-disabled-checkers '(javascript-flow)))))))))
+
+
+(defun my/current-buffer-is-js-test-p ()
+  (let ((file (file-name-nondirectory (buffer-file-name (current-buffer)))))
+    (or (s-ends-with? ".spec.js" file)
+        (s-ends-with? ".test.js" file))))
+
 #+END_SRC
 
 *** Winner

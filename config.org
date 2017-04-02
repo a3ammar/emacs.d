@@ -1137,13 +1137,14 @@ Flycheck is a modern lint runner
 (use-package flycheck
   :pin melpa-stable
   :bind (("C-c ! ," . flycheck-list-errors))
+  :init (global-flycheck-mode)
   :config
-  (global-flycheck-mode)
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (add-hook 'org-src-mode
-            (lambda ()
-              (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
-  (setq flycheck-indication-mode 'right-fringe))
+  (progn
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    (add-hook 'org-src-mode-hook
+              (lambda ()
+                (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
+    (setq flycheck-indication-mode 'right-fringe)))
 #+END_SRC
 
 *** Winner

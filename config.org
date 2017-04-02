@@ -1145,7 +1145,9 @@ Flycheck is a modern lint runner
     (add-hook 'org-src-mode-hook
               (lambda ()
                 (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
-    (setq flycheck-indication-mode 'right-fringe)))
+    (setq flycheck-indication-mode 'right-fringe)
+
+    (use-package flycheck-flow)))
 #+END_SRC
 
 *** Winner

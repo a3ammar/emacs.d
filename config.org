@@ -883,6 +883,7 @@ Projectile mode is one the best packages Emacs have, more information is in this
                                                  "projectile-bookmarks.eld")
           projectile-mode-line nil
           projectile-remember-window-configs nil)
+    (add-to-list 'projectile-globally-ignored-directories "node_modules")
     (projectile-global-mode)
     (projectile-load-known-projects)))
 #+END_SRC

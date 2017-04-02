@@ -1969,6 +1969,15 @@ In =js2-mode= prettify symbols changes ~=>~, ~<=~, and ~>=~ to =⇒=, =≥=, and
 (add-hook 'js2-mode-hook (lambda () (setq prettify-symbols-alist nil)))
 #+END_SRC
 
+Add autocompletion based on [[https://flow.org/en/][flowtype]]
+
+#+BEGIN_SRC emacs-lisp
+(use-package company-flow
+  :config
+  (progn
+    (add-to-list 'company-backends 'company-flow)))
+#+END_SRC
+
 *** Java Mode
 
 #+BEGIN_SRC emacs-lisp

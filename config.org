@@ -1936,7 +1936,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   :ensure t
   :pin melpa-stable
   :defer t
-  :mode "\\.js\\'"
+  :mode ("\\.js$" "\\.json")
   :config
   (progn
     (add-hook 'js2-mode-hook #'projectile-rails-mode)

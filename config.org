@@ -1845,7 +1845,7 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 (use-package web-mode
   :defer t
   :pin melpa-stable
-  :mode ("\\.xml$" "\\.erb$")
+  :mode ("\\.html$" "\\.xml$" "\\.erb$" "\\.jsx$")
   :config
   (progn
     (setq web-mode-css-indent-offset 2

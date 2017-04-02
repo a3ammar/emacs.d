@@ -1152,9 +1152,13 @@ A litte helper with identifying file names.
   (progn
     (setq flycheck-indication-mode 'right-fringe)
 
+    (add-hook 'js2-mode-hook
+              (lambda ()
+                (setq-local flycheck-checker 'javascript-eslint)))
+
     (add-hook 'org-src-mode-hook
               (lambda ()
-                (setq-local flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
+                (add-to-list 'flycheck-disabled-checkers 'emacs-lisp-checkdoc)))
 
     (add-hook 'web-mode-hook
               (lambda ()
@@ -1170,13 +1174,13 @@ A litte helper with identifying file names.
     (use-package flycheck-flow
       :config
       (progn
+        (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)
         (add-hook 'js2-mode-hook
                   (lambda ()
                     (when (or (my/current-buffer-is-a ".spec.js")
                               (my/current-buffer-is-a ".test.js")
                               (my/current-buffer-is-a ".json"))
-                      (add-to-list 'flycheck-disabled-checkers 'javascript-flow))))))))
-
+                      (add-to-list 'flycheck-disabled-checkers 'javascript-flow t))))))))
 
 #+END_SRC
 

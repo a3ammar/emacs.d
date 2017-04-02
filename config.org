@@ -1812,8 +1812,6 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
                                    (toggle-truncate-lines 1)))
 #+END_SRC
 
-*** HTML mode
-
 
 *** nXML mode
 

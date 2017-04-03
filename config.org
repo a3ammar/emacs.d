@@ -1956,6 +1956,16 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 
 #+END_SRC
 
+Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
+
+#+BEGIN_SRC emacs-lisp
+(use-package rjsx-mode
+  :config
+  (progn
+    (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+    (flycheck-add-mode 'javascript-flow 'rjsx-mode)))
+#+END_SRC
+
 In =js2-mode= prettify symbols changes ~=>~, ~<=~, and ~>=~ to =⇒=, =≥=, and =≤= and I don't like that
 
 #+BEGIN_SRC emacs-lisp

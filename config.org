@@ -1160,17 +1160,6 @@ A litte helper with identifying file names.
               (lambda ()
                 (add-to-list 'flycheck-disabled-checkers 'emacs-lisp-checkdoc)))
 
-    (add-hook 'web-mode-hook
-              (lambda ()
-                (flycheck-add-mode 'javascript-eslint 'web-mode)
-                (when (or (my/current-buffer-is-a ".html")
-                          (my/current-buffer-is-a ".xml")
-                          (my/current-buffer-is-a ".erb"))
-                  (add-to-list 'flycheck-disabled-checkers 'javascript-eslint))))
-
-    (when (my/current-buffer-is-a ".jsx")
-      (add-to-list 'flycheck-enabled-checkers 'javascript-flow))
-
     (use-package flycheck-flow
       :config
       (progn
@@ -1858,7 +1847,7 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 (use-package web-mode
   :defer t
   :pin melpa-stable
-  :mode ("\\.html$" "\\.xml$" "\\.erb$" "\\.jsx$")
+  :mode ("\\.html$" "\\.xml$" "\\.erb$")
   :config
   (progn
     (setq web-mode-css-indent-offset 2

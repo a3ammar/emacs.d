@@ -609,23 +609,24 @@ Compact mode line
   :pin melpa-stable
   :init
   (progn
-    (setq sml/no-confirm-load-theme t)
-    (setq  sml/replacer-regexp-list '(("^~/Dropbox/Code/ruby/rails/" ":Code:Rails:")
-                                      ("^~/Dropbox/Code/org/" ":Org:")
-                                      ("^~/\\.emacs\\.d/" ":ED:")
-                                      ("^/sudo:.*:" ":SU:")
-                                      ("^~/Documents/" ":Doc:")
-                                      ("^~/Dropbox/" ":DB:")
-                                      ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
-                                      ("^~/[Gg]it/" ":Git:")
-                                      ("^~/[Gg]it[Hh]ub/" ":Git:")
-                                      ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
-                                      ("^~/Downloads/" ":DWN:")
-                                      ("^~/Dropbox/Code/" ":Code:")
-                                      ("^~/Dropbox/Code/gh/" ":Git:"))
-           sml/shorten-directory t
-           sml/show-file-name t
-           sml/theme 'respectful)
+    (setq sml/no-confirm-load-theme t
+          sml/shorten-directory t
+          sml/show-file-name t
+          sml/theme 'respectful
+          rm-whitelist " FlyC*"
+          sml/replacer-regexp-list '(("^~/Dropbox/Code/ruby/rails/" ":Code:Rails:")
+                                     ("^~/Dropbox/Code/org/" ":Org:")
+                                     ("^~/\\.emacs\\.d/" ":ED:")
+                                     ("^/sudo:.*:" ":SU:")
+                                     ("^~/Documents/" ":Doc:")
+                                     ("^~/Dropbox/" ":DB:")
+                                     ("^:\\([^:]*\\):Documento?s/" ":\\1/Doc:")
+                                     ("^~/[Gg]it/" ":Git:")
+                                     ("^~/[Gg]it[Hh]ub/" ":Git:")
+                                     ("^~/[Gg]it\\([Hh]ub\\|\\)-?[Pp]rojects/" ":Git:")
+                                     ("^~/Downloads/" ":DWN:")
+                                     ("^~/Dropbox/Code/" ":Code:")
+                                     ("^~/Dropbox/Code/gh/" ":Git:")))
     (sml/setup)))
 #+END_SRC
 

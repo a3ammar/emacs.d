@@ -119,6 +119,15 @@ Also install =auto-compile= mode so it byte-compile our init file
 (setq load-prefer-newer t)
 #+END_SRC
 
+*** Load Dash and S libraries
+
+This configuration depends on [[https://github.com/magnars/dash.el][dash.el]] and [[https://github.com/magnars/s.el][s.el]] so load them early.
+
+#+BEGIN_SRC emacs-lisp
+(use-package dash)
+(use-package s)
+#+END_SRC
+
 *** Fix Emacs Interaction with OS X and $PATH
 
 Some Emacs commands don't work properly on OS X, this fixes it.

@@ -362,14 +362,14 @@ Allow to sudo edit files on trqeem.com
 
 #+BEGIN_SRC emacs-lisp
 (use-package tramp
-  :defer t
   :config
-  (setq tramp-persistency-file-name (concat my/history-dir "tramp"))
-  (setq tramp-process-connection-type nil
-        tramp-default-method "scpx"
-        vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
-                                     vc-ignore-dir-regexp
-                                     tramp-file-name-regexp)))
+  (progn
+    (setq tramp-persistency-file-name (concat my/history-dir "tramp")
+          tramp-process-connection-type nil
+          tramp-default-method "scpx"
+          vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
+                                       vc-ignore-dir-regexp
+                                       tramp-file-name-regexp))))
 #+END_SRC
 
 *** Calc
@@ -1039,19 +1039,16 @@ Better interface to Git
 
 #+BEGIN_SRC emacs-lisp
 (use-package magit
-  :ensure t
   :pin melpa-stable
-  :defer t
   :commands magit-status
   :bind ("C-c <return>" . magit-status)
   :config
-  (use-package magit-popup
-    :pin melpa-stable)
   (progn
     (setq magit-push-always-verify nil
           magit-revert-buffers 'silent
           magit-diff-refine-hunk 't
           magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
+
     (custom-set-faces
      '(magit-diff-context-highlight ((t (:background "#0b3b46"))))
      '(magit-blame-date ((t (:foreground "#D13A82" :background "#2D393D"))))
@@ -1060,7 +1057,10 @@ Better interface to Git
      '(magit-blame-summary ((t (:foreground "#2D8CD0" :background "#2D393D"))))
      '(magit-blame-name ((t (:foreground "#C4A449" :background "#2D393D"))))
      '(smerge-refined-added ((t (:inherit magit-diff-added-highlight))))
-     '(smerge-refined-removed ((t (:inherit magit-diff-removed)))))))
+     '(smerge-refined-removed ((t (:inherit magit-diff-removed)))))
+
+    (use-package magit-popup
+      :pin melpa-stable)))
 
 #+END_SRC
 
@@ -1238,8 +1238,6 @@ A better alternative to =package-list-packages=
 
 #+BEGIN_SRC emacs-lisp
 (use-package paradox
-  :ensure t
-  :pin melpa-stable
   :config
   (progn
     (defalias 'pkg 'paradox-list-packages)

@@ -1166,7 +1166,7 @@ A litte helper with identifying file names.
               (lambda ()
                 (setq-local flycheck-checker 'javascript-eslint)))
 
-    (add-hook 'org-src-mode-hook
+    (add-hook 'emacs-lisp-mode-hook
               (lambda ()
                 (add-to-list 'flycheck-disabled-checkers 'emacs-lisp-checkdoc)))
 

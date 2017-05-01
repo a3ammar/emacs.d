@@ -747,6 +747,7 @@ Ivy is a lightweight completion system
   (progn
     (setq ivy-use-virtual-buffers t
           ivy-count-format "%d/%d "
+          ivy-height 15
           ivy-extra-directories nil
           ivy-initial-inputs-alist (-remove
                                     (lambda (element) (-contains? element 'counsel-M-x))
@@ -763,11 +764,15 @@ Ivy is a lightweight completion system
              ("C-x C-f" . counsel-find-file)
              ("C-x C-i" . counsel-imenu)
              ("C-x c p" . counsel-list-processes)
+             ("M-?" . counsel-company)
              ("C-h f" . counsel-describe-function)
              ("C-h v" . counsel-describe-variable)
              ("C-h l" . counsel-find-library)
              ("C-h i" . counsel-info-lookup-symbol)
-             ("C-h u" . counsel-unicode-char)))))
+             ("C-h u" . counsel-unicode-char))
+      :config
+      (progn
+        (setq counsel-yank-pop-separator "\n\n")))))
 #+END_SRC
 
 *** Projectile

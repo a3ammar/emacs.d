@@ -75,6 +75,8 @@ UTF-8 everything. Taken from [[http://stackoverflow.com/questions/2901541/which-
   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
   (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t))
 
+(package-initialize)
+
 (unless package-archive-contents
   (package-refresh-contents))
 #+END_SRC

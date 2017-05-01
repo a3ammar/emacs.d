@@ -716,8 +716,6 @@ Automatically transform symbols like lambda into the greek letter =λ=
                   (epl . "melpa-stable")
                   (f . "melpa-stable")
                   (git-commit . "melpa-stable")
-                  (helm-c-yasnippet . "melpa-stable")
-                  (helm-core . "melpa-stable")
                   (hydra . "melpa-stable")
                   (inflections . "melpa-stable")
                   (logito . "melpa-stable")
@@ -736,141 +734,40 @@ Automatically transform symbols like lambda into the greek letter =λ=
           packages))
 #+END_SRC
 
-*** Helm - Interactive completion
+*** Ivy - Interactive Completion
 
-Helm is awesome, read this [[http://tuhdo.github.io/helm-intro.html][blog]] post to learn about it.
+Ivy is a lightweight completion system
 
 #+BEGIN_SRC emacs-lisp
-(use-package helm
-  :ensure t
-  :pin melpa-stable
-  :bind (("C-x C-m" . helm-M-x)
-         ("C-x m" . helm-M-x)
-         ("C-x b" . helm-buffers-list)
-         ("C-x C-b" . helm-buffers-list)
-         ("C-x C-f" . helm-find-files)
-         ("C-x C-i" . helm-semantic-or-imenu)
-         ("C-c s" . helm-do-ag)
-         ("M-y" . helm-show-kill-ring))
+(use-package ivy
+  :bind (("C-s" . swiper)
+         ("C-x c b" . ivy-resume))
+  :init (ivy-mode 1)
   :config
   (progn
-    (require 'helm-config)
-    (helm-mode)
-    (setq helm-command-prefix-key "C-c h"
-          helm-candidate-number-limit 200
-          helm-idle-delay 0.0
-          helm-input-idle-delay 0.01
-          helm-quick-update t
-          helm-buffers-fuzzy-matching t
-          helm-google-suggest-use-curl-p t
-          helm-move-to-line-cycle-in-source nil
-          helm-scroll-amount 4
-          helm-split-window-default-side 'other
-          helm-split-window-in-side-p t
-          ido-use-virtual-buffers t     ; FIXME
-          helm-M-x-requires-pattern 0
-          helm-ff-skip-boring-files t
-          helm-ff-file-name-history-use-recentf t
-          helm-ack-auto-set-filetype t
-          helm-adaptive-history-file (concat my/history-dir "helm-adaptive-history")
-          helm-autoresize-max-height 30
-          helm-autoresize-min-height 30
-          helm-boring-file-regexp-list '("\\.DS_STORE$" "\\.keep$"
-                                         "\\.o$" "~$" "\\.bin$" "\\.lbin$"
-                                         "\\.so$" "\\.a$" "\\.ln$" "\\.blg$"
-                                         "\\.bbl$" "\\.elc$" "\\.lof$" "\\.glo$"
-                                         "\\.idx$" "\\.lot$" "\\.svn$" "\\.hg$"
-                                         "\\.git$" "\\.bzr$" "CVS$" "_darcs$"
-                                         "_MTN$" "\\.fmt$" "\\.tfm$" "\\.class$"
-                                         "\\.fas$" "\\.lib$" "\\.mem$" "\\.x86f$"
-                                         "\\.sparcf$" "\\.dfsl$" "\\.pfsl$"
-                                         "\\.d64fsl$" "\\.p64fsl$" "\\.lx64fsl$"
-                                         "\\.lx32fsl$" "\\.dx64fsl$" "\\.dx32fsl$"
-                                         "\\.fx64fsl$" "\\.fx32fsl$" "\\.sx64fsl$"
-                                         "\\.sx32fsl$" "\\.wx64fsl$" "\\.wx32fsl$"
-                                         "\\.fasl$" "\\.ufsl$" "\\.fsl$" "\\.dxl$"
-                                         "\\.lo$" "\\.la$" "\\.gmo$" "\\.mo$"
-                                         "\\.toc$" "\\.aux$" "\\.cp$" "\\.fn$"
-                                         "\\.ky$" "\\.pg$" "\\.tp$" "\\.vr$"
-                                         "\\.cps$" "\\.fns$" "\\.kys$" "\\.pgs$"
-                                         "\\.tps$" "\\.vrs$" "\\.pyc$" "\\.pyo$"
-                                         "\\.dropbox$" "\\.CFUserTextEncoding")
-          helm-external-programs-associations '(("html" . "open"))
-          helm-ff-newfile-prompt-p nil
-          helm-ff-skip-boring-files t
-          helm-input-method-verbose-flag nil
-          helm-mode-reverse-history t
-          helm-truncate-lines t
-          helm-ff-search-library-in-sexp t)
-    (helm-autoresize-mode t)
-    (bind-keys :map helm-map
-               ("<tab>" . helm-execute-persistent-action)
-               ("C-<tab>" . helm-execute-persistent-action)
-               ("C-i" . helm-execute-persistent-action)
-               ("C-z" . helm-select-action)
-               ("C-w" . nil))
-    (bind-keys :map helm-grep-mode-map
-               ("<return>" . helm-grep-mode-jump-other-window)
-               ("n" . helm-grep-mode-jump-other-window-forward)
-               ("p" . helm-grep-mode-jump-other-window-backward))
-    ;; Disable input-method inheritance inside helm buffers
-    (add-hook 'helm-before-initialize-hook (lambda ()
-                                             (helm-set-local-variable
-                                              'current-input-method nil)))
-    (add-hook 'helm-goto-line-before-hook 'helm-save-current-pos-to-mark-ring)))
-#+END_SRC
+    (setq ivy-use-virtual-buffers t
+          ivy-count-format "%d/%d "
+          ivy-extra-directories nil
+          ivy-initial-inputs-alist (-remove
+                                    (lambda (element) (-contains? element 'counsel-M-x))
+                                    ivy-initial-inputs-alist))
 
-I much prefer helm's live grep over regular =helm-do-grep=
+    (custom-set-faces
+     '(ivy-current-match ((t (:background "#0D4553")))))
 
-#+BEGIN_SRC emacs-lisp
-(defun my/helm-do-grep (args)
-  (interactive "P")
-  (let ((current-prefix-arg '(4)))
-    (helm-do-grep)))
-#+END_SRC
-
-Use helm for =desribe-binding= and =where-is=
-
-#+BEGIN_SRC emacs-lisp
-(use-package helm-descbinds
-  :ensure t
-  :pin melpa-stable
-  :defer t
-  :bind (("C-h b" . helm-descbinds)
-         ("C-h w" . helm-descbinds)))
-#+END_SRC
-
-Replace isearch =C-r= with [[https://github.com/ShingoFukuyama/helm-swoop][helm-swoop]]
-
-#+begin_src emacs-lisp
-(use-package helm-swoop
-  :ensure t
-  :pin melpa-stable
-  :bind ("C-M-r" . helm-swoop))
-#+end_src
-
-#+BEGIN_SRC emacs-lisp
-(use-package helm-ag
-  :ensure t
-  :pin melpa-stable)
-#+END_SRC
-
-Appearance
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(helm-buffer-file ((t (:inherit font-lock-constant-face))))
- '(helm-ff-directory ((t (:foreground "#2076c8"))))
- '(helm-ff-dotted-directory ((t (:foreground "#2778C5"))))
- '(helm-ff-executable ((t (:foreground "#a67721"))))
- '(helm-ff-file ((t (:inherit default))))
- '(helm-ff-symlink ((t (:foreground "#259185"))))
- '(helm-match ((t (:foreground "#a67721"))))
- '(helm-selection ((t (:background "#0f3f4e" :underline t))))
- '(helm-selection-line ((t (:background "#0f3f4e"))))
- '(helm-source-header ((t (:background "#22083397778B" :foreground "white" :weight extra-bold :height 1.3 :family "Sans Serif"))))
- '(helm-visible-mark ((t (:background "#4d5b17")))))
-
+    (use-package counsel
+      :bind (("C-x C-m" . counsel-M-x)
+             ("C-x m" . counsel-M-x)
+             ("C-c s" . counsel-ag)
+             ("M-y" . counsel-yank-pop)
+             ("C-x C-f" . counsel-find-file)
+             ("C-x C-i" . counsel-imenu)
+             ("C-x c p" . counsel-list-processes)
+             ("C-h f" . counsel-describe-function)
+             ("C-h v" . counsel-describe-variable)
+             ("C-h l" . counsel-find-library)
+             ("C-h i" . counsel-info-lookup-symbol)
+             ("C-h u" . counsel-unicode-char)))))
 #+END_SRC
 
 *** Projectile
@@ -888,8 +785,7 @@ Projectile mode is one the best packages Emacs have, more information is in this
     (setq projectile-enable-caching t
           projectile-cache-file (concat my/history-dir
                                         "projectile.cache")
-          projectile-completion-system 'helm
-          projectile-enable-caching t
+          projectile-completion-system 'ivy
           projectile-file-exists-remote-cache-expire nil
           projectile-known-projects-file (concat my/history-dir
                                                  "projectile-bookmarks.eld")
@@ -902,17 +798,15 @@ Projectile mode is one the best packages Emacs have, more information is in this
     (add-to-list 'projectile-globally-ignored-directories "node_modules")))
 #+END_SRC
 
-Helm + Projectile = Love
+A better integrate Projectile with ivy
 
 #+BEGIN_SRC emacs-lisp
-(use-package helm-projectile
-  :ensure t
-  :pin melpa-stable
-  :init
+(use-package counsel-projectile
+  :bind (:map counsel-projectile-map
+              ("C-SPC" . counsel-projectile-drop-to-switch-project))
+  :config
   (progn
-    (helm-projectile-on)
-    (setq helm-projectile-fuzzy-match nil)))
-
+    (counsel-projectile-on)))
 #+END_SRC
 
 *** Projectile Rails
@@ -1049,6 +943,7 @@ Better interface to Git
     (setq magit-push-always-verify nil
           magit-revert-buffers 'silent
           magit-diff-refine-hunk 't
+          magit-completing-read-function 'ivy-completing-read
           magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
 
     (custom-set-faces
@@ -1364,7 +1259,8 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
              "*xcrun swift*"
              ("*HTTP Response*" :position bottom :height 30)
              "*Flycheck errors*"
-             ("*Flycheck error messages*" :noselect t))
+             ("*Flycheck error messages*" :noselect t)
+             ("\*ivy-occur.*" :regexp 't))
       (lambda (buffer) (push buffer popwin:special-display-config)))))
 
 #+END_SRC
@@ -1713,7 +1609,7 @@ expression, otherwise use regular `eval-last-sexp'"
       :defer t
       :config
       (setq rake-cache-file (concat my/history-dir "rake.cache")
-            rake-completion-system 'helm))
+            rake-completion-system 'ivy))
 
     (use-package bundler
       :ensure t
@@ -1779,7 +1675,6 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
   :config
   (progn
     (yas-global-mode)
-    (use-package helm-c-yasnippet)
     (add-hook 'snippet-mode-hook (lambda () (variable-pitch-mode nil)))))
 #+END_SRC
 

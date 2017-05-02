@@ -1244,6 +1244,7 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
   (progn
     (global-set-key (kbd "C-z") popwin:keymap)
     (-each '(("*rspec-compilation*" :tail nil)
+             "*Apropos*"
              "*projectile-rails-server*"
              "*coffee-compiled*"
              "*Bundler*"

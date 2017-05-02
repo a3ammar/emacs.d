@@ -770,7 +770,9 @@ Ivy is a lightweight completion system
              ("C-h v" . counsel-describe-variable)
              ("C-h l" . counsel-find-library)
              ("C-h i" . counsel-info-lookup-symbol)
-             ("C-h u" . counsel-unicode-char))
+             ("C-h u" . counsel-unicode-char)
+             :map counsel-find-file-map
+             ("C-l" . ivy-backward-delete-char))
       :config
       (progn
         (setq counsel-yank-pop-separator "\n\n"

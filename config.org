@@ -741,12 +741,13 @@ Ivy is a lightweight completion system
 #+BEGIN_SRC emacs-lisp
 (use-package ivy
   :bind (("C-s" . swiper)
-         ("C-x c b" . ivy-resume))
+         ("C-x c b" . ivy-resume)
+         :map ivy-minibuffer-map
+         ("<return>" . ivy-alt-done))
   :init (ivy-mode 1)
   :config
   (progn
     (setq ivy-use-virtual-buffers t
-          ivy-count-format "%d/%d "
           ivy-height 15
           ivy-extra-directories nil
           ivy-initial-inputs-alist (-remove

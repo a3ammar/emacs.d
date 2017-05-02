@@ -772,7 +772,8 @@ Ivy is a lightweight completion system
              ("C-h u" . counsel-unicode-char))
       :config
       (progn
-        (setq counsel-yank-pop-separator "\n\n")))))
+        (setq counsel-yank-pop-separator "\n\n"
+              counsel-find-file-ignore-regexp "\\`\\.")))))
 #+END_SRC
 
 *** Projectile

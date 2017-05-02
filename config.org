@@ -1120,8 +1120,7 @@ As the name suggest, it allows editing over multiple lines
          ("M-]" . mc/mark-next-like-this)
          ("M-[" . mc/mark-previous-like-this)
          ("M-}" . mc/unmark-next-like-this)
-         ("M-{" . mc/unmark-previous-like-this)
-         ("C-M-SPC" . set-rectangular-region-anchor))
+         ("M-{" . mc/unmark-previous-like-this))
   :config
   (setq mc/list-file (concat my/history-dir "mc-lists.el")))
 #+END_SRC

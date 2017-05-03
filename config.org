@@ -102,8 +102,6 @@ Also install =auto-compile= mode so it byte-compile our init file
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
-(unless (package-installed-p 'dash)
-  (package-install 'dash))
 
 (setq use-package-verbose t
       use-package-always-ensure t)
@@ -122,13 +120,13 @@ Also install =auto-compile= mode so it byte-compile our init file
 (setq load-prefer-newer t)
 #+END_SRC
 
-*** Load Dash and S libraries
+*** Require Dash.el and S.el libraries
 
 This configuration depends on [[https://github.com/magnars/dash.el][dash.el]] and [[https://github.com/magnars/s.el][s.el]] so load them early.
 
 #+BEGIN_SRC emacs-lisp
-(use-package dash)
 (use-package s)
+(use-package dash :init (dash-enable-font-lock))
 #+END_SRC
 
 *** Fix Emacs Interaction with OS X and $PATH

@@ -243,7 +243,6 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 #+BEGIN_SRC emacs-lisp
 (setq custom-file (expand-file-name "customization.el" user-emacs-directory))
 (load custom-file)
-
 #+END_SRC
 
 *** Start Emacs server
@@ -378,7 +377,7 @@ Allow to sudo edit files on trqeem.com
 It's so much easier to hit =8= than =*=.
 
 #+BEGIN_SRC emacs-lisp
-(bind-keys* ("C-x 8 q" . quick-calc))
+(bind-keys ("C-x 8 q" . quick-calc))
 #+END_SRC
 
 *** Switch back to Terminal.app after emacsclient
@@ -451,40 +450,39 @@ Use =Shift-Arrows= to move between windows
 
 (bind-keys ("C-x o" . my/switch-window-backward)
            ("C-x C-o" . my/switch-window-forward))
-
-
 #+END_SRC
 
 **** Quickly switch to previous buffer
 
 #+BEGIN_SRC emacs-lisp
-(bind-key "M-`" 'my/previous-buffer)
-
 (defun my/previous-buffer ()
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+(bind-key "M-`" 'my/previous-buffer)
 #+END_SRC
 
 **** Window splitting
 
-Copied from http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_tricks/chldury
+Copied from [[http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_tricks/chldury][reddit comment]]
+
 #+BEGIN_SRC emacs-lisp
-(defun my/vsplit-last-buffer (prefix)
+(defun my/vertical-split-buffer (prefix)
   "Split the window vertically and display the previous buffer."
   (interactive "p")
   (split-window-vertically)
   (other-window 1 nil)
   (if (= prefix 1) (switch-to-next-buffer)))
 
-(defun my/hsplit-last-buffer (prefix)
+(defun my/horizontal-split-buffer (prefix)
   "Split the window horizontally and display the previous buffer."
   (interactive "p")
   (split-window-horizontally)
   (other-window 1 nil)
   (if (= prefix 1) (switch-to-next-buffer)))
 
-(bind-key "C-x 2" 'my/vsplit-last-buffer)
-(bind-key "C-x 3" 'my/hsplit-last-buffer)
+(bind-keys ("C-x 2" . my/vertical-split-buffer)
+           ("C-x 3" . my/horizontal-split-buffer))
 #+END_SRC
 
 **** Eshell
@@ -505,14 +503,12 @@ I rarely, if ever, use the mouse in Emacs. This disable the GUI elements
   (tool-bar-mode -1)
   (menu-bar-mode -1)
   (scroll-bar-mode -1))
-
 #+END_SRC
 
 Don't ever use GUI dialog boxes
 
 #+BEGIN_SRC emacs-lisp
 (setq use-dialog-box nil)
-
 #+END_SRC
 
 Resize Emacs window (called frame in Emacs jargon) as pixels instead of chars resulting in fully sized window.
@@ -560,7 +556,6 @@ Add a bigger offset to underline property (it makes smart-mode-line looks way ni
  '(font-lock-comment-face ((t (:foreground "#53686f" :inverse-video nil :underline nil :slant italic :weight normal))))
  '(font-lock-constant-face ((t (:foreground "DeepSkyBlue3"))))
  '(font-lock-function-name-face ((t (:weight bold)))))
-
 #+END_SRC
 
 **** Highlight color
@@ -575,8 +570,6 @@ Add a bigger offset to underline property (it makes smart-mode-line looks way ni
 #+BEGIN_SRC emacs-lisp
 (custom-set-faces
  '(region ((t (:background "#175062" :foreground nil)))))
-
-
 #+END_SRC
 
 **** Minibuffer
@@ -595,7 +588,6 @@ Add a bigger offset to underline property (it makes smart-mode-line looks way ni
                     :inverse-video nil :underline nil
                     :slant 'normal
                     :weight 'bold)
-
 #+END_SRC
 
 **** Variable pitch mode
@@ -1670,7 +1662,6 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
       (progn (insert "=>")
              (xmp))
     ad-do-it))
-
 #+END_SRC
 
 *** Yasnippet
@@ -1966,8 +1957,8 @@ Make smartparens mode not escape closing parens in swift string
 
 #+BEGIN_SRC emacs-lisp
 (setq ns-alternate-modifier 'super
-          ns-command-modifier 'meta
-          ns-control-modifier 'control)
+      ns-command-modifier 'meta
+      ns-control-modifier 'control)
 #+END_SRC
 
 **** OS X Arabic Keybaord
@@ -1978,6 +1969,8 @@ Make smartparens mode not escape closing parens in swift string
 #+END_SRC
 
 **** Emoji
+
+See my [[https://github.com/a3ammar/homebrew-emacs-emoji][homebrew formula]]
 
 #+BEGIN_SRC emacs-lisp
 (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") nil 'prepend)
@@ -2149,13 +2142,12 @@ I use =just-one-space= all the time to forward delete all spaces, but almost alw
 what I want is delete all spaces to =point=
 
 #+BEGIN_SRC emacs-lisp
-(bind-keys ("M-\\" . just-no-space))
-
 (defun just-no-space ()
   (interactive)
   (re-search-forward "[ \t]+" nil t)
   (replace-match "" nil nil))
 
+(bind-keys ("M-\\" . just-no-space))
 #+END_SRC
 
 *** Yank and delete from kill-ring
@@ -2163,13 +2155,13 @@ what I want is delete all spaces to =point=
 This is useful when you want to paste sensitive information and do not want it to stay in the =kill-ring= variable. Like pasting a password to =tramp=.
 
 #+BEGIN_SRC emacs-lisp
-(bind-keys ("C-M-y" . yank-and-remove-from-killring))
-
 (defun yank-and-remove-from-killring ()
   (interactive)
   (yank)
   (setq kill-ring
         (remove (first kill-ring) kill-ring)))
+
+(bind-keys ("C-M-y" . yank-and-remove-from-killring))
 #+END_SRC
 
 *** Insert Arabic Tatweel Character
@@ -2177,11 +2169,11 @@ This is useful when you want to paste sensitive information and do not want it t
 بعض الأحيان أحتاج أمـــــــــــد بعض الكلمات
 
 #+BEGIN_SRC emacs-lisp
-(bind-keys ("C-x t _" . my/insert-tatweel))
-
 (defun my/insert-tatweel (arg)
   (interactive "P")
   (insert-char #x0640 arg))
+
+(bind-keys ("C-x t _" . my/insert-tatweel))
 #+END_SRC
 
 *** Indent buffer

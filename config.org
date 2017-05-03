@@ -109,15 +109,14 @@ Also install =auto-compile= mode so it byte-compile our init file
 (eval-when-compile
   (require 'use-package))
 
+(setq load-prefer-newer t)
+
 (use-package auto-compile
   :init
-  (progn
-    (auto-compile-on-save-mode)
-    (auto-compile-on-load-mode)
-    (setq auto-compile-display-buffer nil
-          auto-compile-mode-line-counter t)))
+  (setq auto-compile-display-buffer nil
+        auto-compile-mode-line-counter t)
 
-(setq load-prefer-newer t)
+  (auto-compile-on-load-mode))
 #+END_SRC
 
 *** Require Dash.el and S.el libraries

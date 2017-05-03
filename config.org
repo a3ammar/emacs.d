@@ -191,17 +191,17 @@ And save lots.
 This saves our position in files other things between Emacs sessions.
 
 #+BEGIN_SRC emacs-lisp
-(setq savehist-file (concat my/history-dir "savehist")
-      history-length t
+(setq history-length t
       history-delete-duplicates t
       savehist-save-minibuffer-history 1
+      savehist-file (concat my/history-dir "savehist")
       savehist-additional-variables '(kill-ring
                                       search-ring
                                       regex-search-ring
                                       extended-command-history)
       save-place-file (concat my/history-dir "saveplace"))
-(savehist-mode 1)
 
+(savehist-mode)
 #+END_SRC
 
 *** Recentf

@@ -263,7 +263,7 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 *** Allows Emacs to open compressed files and compresses them back when you save the file.
 
 #+BEGIN_SRC emacs-lisp
-(auto-compression-mode t)
+(auto-compression-mode)
 #+END_SRC
 
 *** Set the cursor to be a line
@@ -275,7 +275,7 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 *** Highlight matching parentheses when the cursor is on them.
 
 #+BEGIN_SRC emacs-lisp
-(show-paren-mode 1)
+(show-paren-mode)
 #+END_SRC
 
 *** Don't use tabs for indentation.
@@ -317,7 +317,7 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 *** Enable subword mode
 
 #+BEGIN_SRC emacs-lisp
-(subword-mode t)
+(subword-mode)
 #+END_SRC
 
 *** Sentence end
@@ -689,7 +689,7 @@ Appearance
 *** Highlight the current line
 
 #+BEGIN_SRC emacs-lisp
-(global-hl-line-mode t)
+(global-hl-line-mode)
 #+END_SRC
 
 *** Prettify symbols
@@ -697,7 +697,7 @@ Appearance
 Automatically transform symbols like lambda into the greek letter =λ=
 
 #+BEGIN_SRC emacs-lisp
-(global-prettify-symbols-mode t)
+(global-prettify-symbols-mode)
 #+END_SRC
 
 *** Set Fringe Mode to 1 pixels and remove newline indicators

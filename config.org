@@ -222,12 +222,6 @@ Remembers visited files.
 (setq bookmark-default-file (concat my/history-dir "bookmarks"))
 #+END_SRC
 
-*** Eshell History File
-
-#+BEGIN_SRC emacs-lisp
-(setq eshell-history-file-name (concat my/history-dir "eshell/history"))
-#+END_SRC
-
 *** Misc history files
 
 These files show up in my =.emacs.d=, so lets stick them in the history file
@@ -481,8 +475,12 @@ Copied from [[http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_t
 **** Eshell
 
 #+BEGIN_SRC emacs-lisp
-(setq eshell-glob-case-insensitive t
-      eshell-cmpl-ignore-case t)
+(use-package eshell
+  :commands eshell
+  :config
+  (setq eshell-history-file-name (concat my/history-dir "eshell/history")
+        eshell-glob-case-insensitive t
+        eshell-cmpl-ignore-case t))
 #+END_SRC
 
 ** Appearance Configuration

@@ -358,18 +358,12 @@ to the Trash folder.
 
 *** Tramp
 
-Allow to sudo edit files on trqeem.com
-
 #+BEGIN_SRC emacs-lisp
-(use-package tramp
-  :config
-  (progn
-    (setq tramp-persistency-file-name (concat my/history-dir "tramp")
-          tramp-process-connection-type nil
-          tramp-default-method "scpx"
-          vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
-                                       vc-ignore-dir-regexp
-                                       tramp-file-name-regexp))))
+(setq tramp-persistency-file-name (concat my/history-dir "tramp")
+      tramp-default-method "ssh"
+      vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
+                                   vc-ignore-dir-regexp
+                                   tramp-file-name-regexp))
 #+END_SRC
 
 *** Calc

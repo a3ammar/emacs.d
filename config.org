@@ -625,12 +625,10 @@ Solarized is so good.
 
 #+BEGIN_SRC emacs-lisp
 (use-package solarized-theme
-  :ensure t
-  :pin melpa-stable
-  :config
-  (progn
-    (setq solarized-scale-org-headlines nil)
-    (load-theme 'solarized-dark)))
+  :init
+  (setq solarized-scale-org-headlines nil)
+
+  (load-theme 'solarized-dark))
 #+END_SRC
 
 *** Rainbow Delimiters

@@ -635,15 +635,14 @@ Solarized is so good.
 
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
-  :ensure t
-  :pin melpa-stable
-  :init
-  (progn
-    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
-    (add-hook 'emacs-lisp-mode-hook #'rainbow-delimiters-mode)
-    (add-hook 'org-mode-hook #'rainbow-delimiters-mode)
-    (add-hook 'markdown-mode-hook #'rainbow-delimiters-mode)
-    (setq rainbow-delimiters-max-face-count 1)))
+  :config
+  (setq rainbow-delimiters-max-face-count 1)
+
+  (--each '(prog-mode-hook
+            emacs-lisp-mode-hook
+            org-mode-hook
+            markdown-mode-hook)
+    (add-hook it #'rainbow-delimiters-mode)))
 
 #+END_SRC
 

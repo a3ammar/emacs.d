@@ -249,7 +249,7 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 *** Start Emacs server
 
 #+BEGIN_SRC emacs-lisp
-(server-start)
+(if window-system (add-hook 'after-init-hook 'server-start t))
 #+END_SRC
 
 *** Don't ask when I kill a buffer that has a process running

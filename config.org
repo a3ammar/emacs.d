@@ -639,24 +639,18 @@ Solarized is so good.
             emacs-lisp-mode-hook
             org-mode-hook
             markdown-mode-hook)
-    (add-hook it #'rainbow-delimiters-mode)))
+    (add-hook it #'rainbow-delimiters-mode))
 
-#+END_SRC
+  (set-face-attribute 'rainbow-delimiters-depth-1-face nil :foreground "#A52E66")
+  (set-face-attribute 'rainbow-delimiters-depth-3-face nil :foreground "#384311")
+  (set-face-attribute 'rainbow-delimiters-depth-4-face nil :foreground "#384311")
+  (set-face-attribute 'rainbow-delimiters-depth-5-face nil :foreground "#384311")
+  (set-face-attribute 'rainbow-delimiters-depth-6-face nil :foreground "#384311")
+  (set-face-attribute 'rainbow-delimiters-depth-7-face nil :foreground "#384311")
+  (set-face-attribute 'rainbow-delimiters-depth-8-face nil :foreground "#384311")
+  (set-face-attribute 'rainbow-delimiters-depth-9-face nil :inherit 'rainbow-delimiters-depth-1-face)
 
-Appearance
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(rainbow-delimiters-depth-1-face ((t (:foreground "#A52E66"))))
- '(rainbow-delimiters-depth-3-face ((t (:foreground "#384311"))))
- '(rainbow-delimiters-depth-4-face ((t (:foreground "#384311"))))
- '(rainbow-delimiters-depth-5-face ((t (:foreground "#384311"))))
- '(rainbow-delimiters-depth-6-face ((t (:foreground "#384311"))))
- '(rainbow-delimiters-depth-7-face ((t (:foreground "#384311"))))
- '(rainbow-delimiters-depth-8-face ((t (:foreground "#384311"))))
- '(rainbow-delimiters-depth-9-face ((t (:inherit rainbow-delimiters-depth-1-face :foreground "#384311"))))
- '(rainbow-delimiters-unmatched-face ((t (:foreground "#d11a24")))))
-
+  (set-face-attribute 'rainbow-delimiters-unmatched-face nil :foreground "#d11a24"))
 #+END_SRC
 
 *** Highlight the current line

@@ -213,7 +213,7 @@ Remembers visited files.
       recentf-max-saved-items 100
       recentf-save-file (concat my/history-dir "recentf"))
 
-(recentf-mode 1)
+(recentf-mode)
 #+END_SRC
 
 *** Bookmarks File

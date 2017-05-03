@@ -108,7 +108,8 @@ Also install =auto-compile= mode so it byte-compile our init file
 (setq use-package-verbose t
       use-package-always-ensure t)
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 
 (use-package auto-compile
   :init

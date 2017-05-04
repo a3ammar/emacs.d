@@ -1252,7 +1252,7 @@ Whenever a file opened by Emacs changed by an external program, this mode
 automatically reload the file
 
 #+BEGIN_SRC emacs-lisp
-(global-auto-revert-mode t)
+(global-auto-revert-mode)
 #+END_SRC
 
 *** Whitespace mode

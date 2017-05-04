@@ -1003,41 +1003,38 @@ Add Flow integration with company-mode
 
 Flycheck is a modern lint runner.
 
-A litte helper with identifying file names.
 #+BEGIN_SRC emacs-lisp
 (defun my/current-buffer-is-a (extension)
+  "Return true if current buffer name ends with `extension'"
   (let ((file (buffer-file-name (current-buffer))))
     (s-ends-with? extension file)))
-#+END_SRC
 
-#+BEGIN_SRC emacs-lisp
 (use-package flycheck
   :pin melpa-stable
   :bind (("C-c ! ," . flycheck-list-errors))
-  :init (global-flycheck-mode)
+  :init
+  (setq flycheck-indication-mode 'right-fringe)
+
+  (add-hook 'js2-mode-hook
+            (lambda () (setq-local flycheck-checker 'javascript-eslint)))
+
+  (add-hook 'emacs-lisp-mode-hook
+            (lambda () (add-to-list 'flycheck-disabled-checkers 'emacs-lisp-checkdoc)))
+
+  (global-flycheck-mode))
+#+END_SRC
+
+Add Flow integration with flycheck
+
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck-flow
   :config
-  (progn
-    (setq flycheck-indication-mode 'right-fringe)
-
-    (add-hook 'js2-mode-hook
-              (lambda ()
-                (setq-local flycheck-checker 'javascript-eslint)))
-
-    (add-hook 'emacs-lisp-mode-hook
-              (lambda ()
-                (add-to-list 'flycheck-disabled-checkers 'emacs-lisp-checkdoc)))
-
-    (use-package flycheck-flow
-      :config
-      (progn
-        (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)
-        (add-hook 'js2-mode-hook
-                  (lambda ()
-                    (when (or (my/current-buffer-is-a ".spec.js")
-                              (my/current-buffer-is-a ".test.js")
-                              (my/current-buffer-is-a ".json"))
-                      (add-to-list 'flycheck-disabled-checkers 'javascript-flow t))))))))
-
+  (add-hook 'js2-mode-hook
+            (lambda ()
+              (let ((file (buffer-file-name (current-buffer))))
+                (when (--any? (s-ends-with? it file)
+                              '(".js" ".jsx")))
+                (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)))))
 #+END_SRC
 
 *** Winner

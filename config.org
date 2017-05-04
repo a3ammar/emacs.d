@@ -1080,9 +1080,9 @@ As the name suggest, it allows editing over multiple lines
 Useful for defining abbreviations
 
 #+BEGIN_SRC emacs-lisp
-(setq save-abbrevs t)
+(setq save-abbrevs t
+      abbrev-file-name (concat my/history-dir "abbrev_defs"))
 (setq-default abbrev-mode t)
-(setq abbrev-file-name (concat my/history-dir "abbrev_defs"))
 #+END_SRC
 
 *** Paradox

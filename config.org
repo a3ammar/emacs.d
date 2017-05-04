@@ -1086,14 +1086,14 @@ A better alternative to =package-list-packages=
 
 #+BEGIN_SRC emacs-lisp
 (use-package paradox
+  :commands pkg
   :config
-  (progn
-    (defalias 'pkg 'paradox-list-packages)
-    (setq paradox-automatically-star t
-          paradox-execute-asynchronously t
-          paradox-lines-per-entry 1)))
+  (setq paradox-automatically-star t
+        paradox-execute-asynchronously t
+        paradox-lines-per-entry 1
+        paradox-github-token t)
 
-
+  (defalias 'pkg 'paradox-list-packages))
 #+END_SRC
 
 *** Ispell

@@ -135,12 +135,12 @@ Some Emacs commands don't work properly on OS X, this fixes it.
 
 #+BEGIN_SRC emacs-lisp
 (use-package exec-path-from-shell
-  :ensure t
-  :pin melpa-stable
+  :config
   :init
-  (progn
-    (setq exec-path-from-shell-variables '("PATH" "MANPATH" "LANG" "BROWSER" "DICPATH"))
-    (exec-path-from-shell-initialize)))
+  (setq exec-path-from-shell-arguments nil)
+  (setq exec-path-from-shell-variables '("PATH" "MANPATH" "LANG" "BROWSER" "DICPATH"))
+
+  (exec-path-from-shell-initialize))
 #+END_SRC
 
 *** Use Bash as the default shell

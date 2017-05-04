@@ -1261,22 +1261,19 @@ Automatically cleans buffers of useless whitespaces and highlights trailing
 whitespaces.
 
 #+BEGIN_SRC emacs-lisp
-(global-whitespace-mode t)
+(global-whitespace-mode)
+
 (setq whitespace-action '(auto-cleanup)
-          whitespace-style '(trailing
+      whitespace-style '(trailing
                          lines
                          empty
                          space-before-tab
                          indentation
-                         space-after-tab)
-          whitespace-trailing-regexp "\\([    ]+\\)$")
-#+END_SRC
+                         space-after-tab))
 
-Appearance
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(whitespace-trailing ((t (:background "#20546d" :foreground "#c60007" :inverse-video nil :underline nil :slant normal :weight bold)))))
+(set-face-attribute 'whitespace-trailing nil
+                    :background "#20546d"
+                    :foreground "#c60007")
 #+END_SRC
 
 *** Iedit mode

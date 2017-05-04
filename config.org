@@ -1282,9 +1282,6 @@ Iedit lets you mark all occurrences of a word to edit them at the same time.
 
 #+BEGIN_SRC emacs-lisp
 (use-package iedit
-  :ensure t
-  :pin melpa-stable
-  :defer t
   :commands iedit-mode
   :bind ("C-;" . iedit-mode))
 #+END_SRC

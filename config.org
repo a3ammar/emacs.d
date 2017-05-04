@@ -760,36 +760,35 @@ Projectile mode is one the best packages Emacs have, more information is in this
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
-  :ensure t
-  :pin melpa-stable
   :bind ("C-c C-p" . projectile-command-map)
   :init
-  (progn
-    (setq projectile-enable-caching t
-          projectile-cache-file (concat my/history-dir
-                                        "projectile.cache")
-          projectile-completion-system 'ivy
-          projectile-file-exists-remote-cache-expire nil
-          projectile-known-projects-file (concat my/history-dir
-                                                 "projectile-bookmarks.eld")
-          projectile-mode-line nil
-          projectile-remember-window-configs nil)
-    (projectile-global-mode)
-    (projectile-load-known-projects))
-  :config
-  (progn
-    (add-to-list 'projectile-globally-ignored-directories "node_modules")))
+  (projectile-global-mode)
+
+  (setq projectile-enable-caching t
+        projectile-cache-file (concat my/history-dir "projectile.cache")
+        projectile-completion-system 'ivy
+        projectile-file-exists-remote-cache-expire nil
+        projectile-known-projects-file (concat my/history-dir "projectile-bookmarks.eld"))
+
+  (setq projectile-ignored-project-function
+        (lambda (project)
+          (--any? (s-starts-with? (expand-file-name it) project)
+                  '("~/.zprezto/modules/"
+                    "/usr/loca/"
+                    "~/.rbenv/"))))
+
+  (push "node_modules" projectile-globally-ignored-directories)
+
+  (projectile-load-known-projects))
 #+END_SRC
 
-A better integrate Projectile with ivy
+Add even more integration between Projectile and Ivy
 
 #+BEGIN_SRC emacs-lisp
 (use-package counsel-projectile
   :bind (:map counsel-projectile-map
               ("C-SPC" . counsel-projectile-drop-to-switch-project))
-  :config
-  (progn
-    (counsel-projectile-on)))
+  :init (counsel-projectile-on))
 #+END_SRC
 
 *** Projectile Rails

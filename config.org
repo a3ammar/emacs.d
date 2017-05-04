@@ -309,7 +309,7 @@ These files show up in my =.emacs.d=, so lets stick them in the history file
 *** Enable subword mode
 
 #+BEGIN_SRC emacs-lisp
-(subword-mode)
+(global-subword-mode)
 #+END_SRC
 
 *** Sentence end

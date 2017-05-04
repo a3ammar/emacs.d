@@ -1155,11 +1155,11 @@ Similar to ace-jump above
 
 #+BEGIN_SRC emacs-lisp
 (use-package avy
-  :ensure t
-  :pin melpa-stable
+  :commands avy-goto-char-timer
   :bind ("C-." . avy-goto-char-timer)
-  :init (setq avy-style 'at)
   :config
+  (setq avy-style 'at)
+
   (avy-setup-default))
 #+END_SRC
 

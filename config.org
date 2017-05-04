@@ -1241,11 +1241,9 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 
 #+BEGIN_SRC emacs-lisp
 (use-package visual-regexp
-  :defer t
   :commands qrr
   :config
-  (progn
-        (defalias 'qrr 'vr/query-replace)))
+  (defalias 'qrr 'vr/query-replace))
 #+END_SRC
 
 *** Auto revert mode

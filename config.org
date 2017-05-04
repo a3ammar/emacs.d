@@ -1051,9 +1051,6 @@ this [[https://www.youtube.com/watch?v%3DT_voB16QxW0][video]] for better explana
 
 #+BEGIN_SRC emacs-lisp
 (use-package discover-my-major
-  :ensure t
-  :pin melpa-stable
-  :defer t
   :commands discover-my-major
   :bind ("C-h C-m" . discover-my-major))
 #+END_SRC

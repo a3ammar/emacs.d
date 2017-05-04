@@ -1292,8 +1292,6 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package expand-region
-  :ensure t
-  :defer t
   :commands er/expand-region
   :bind ("M-2" . er/expand-region))
 #+END_SRC

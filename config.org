@@ -1499,6 +1499,7 @@ Disable variable pitch mode on =git-commit-mode=
 
 #+BEGIN_SRC emacs-lisp
 (setq org-log-done t
+      org-src-strip-leading-and-trailing-blank-lines t
       org-adapt-indentation nil
       org-edit-src-content-indentation 0
       org-fontify-whole-heading-line t

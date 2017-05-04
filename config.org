@@ -1061,8 +1061,6 @@ As the name suggest, it allows editing over multiple lines
 
 #+BEGIN_SRC emacs-lisp
 (use-package multiple-cursors
-  :pin melpa-stable
-  :ensure t
   :bind (("C-c SPC" . mc/edit-lines)
          ("M-]" . mc/mark-next-like-this)
          ("M-[" . mc/mark-previous-like-this)

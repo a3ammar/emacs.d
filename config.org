@@ -1111,9 +1111,11 @@ Use hunspell because it's more powerful and supports Arabic.
       ispell-really-hunspell t
       ispell-keep-choices-win t
       ispell-use-framepop-p nil)
+
+(add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
 #+END_SRC
 
-Use both ispell and abbrev together.
+Use both Ispell and abbrev together. ([[http://endlessparentheses.com/ispell-and-abbrev-the-perfect-auto-correct.html][source]])
 
 #+BEGIN_SRC emacs-lisp
 (defun ispell-word-then-abbrev (p)
@@ -1131,10 +1133,11 @@ With prefix P, create local abbrev. Otherwise it will be global."
         bef aft))))
 
 (bind-keys ("C-x t i" . ispell-word-then-abbrev))
-
 #+END_SRC
 
-unbind =C-.= from flyspell, I use it for avy damnit.
+*** Flyspell
+
+Unbind those keys from flyspell-mode
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'flyspell-mode-hook

@@ -1300,12 +1300,10 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package persistent-scratch
-  :ensure t
-  :pin melpa-stable
-  :init
-  (progn
-        (setq persistent-scratch-save-file (concat my/history-dir "persistent-scratch"))
-        (persistent-scratch-setup-default)))
+  :config
+  (setq persistent-scratch-save-file (concat my/history-dir "persistent-scratch"))
+
+  (persistent-scratch-setup-default))
 #+END_SRC
 
 *** Clone Github projects from Emacs
@@ -1367,7 +1365,6 @@ I use [[https://github.com/sorin-ionescu/prezto][prezto]] and I want to associat
     (add-hook 'restclient-response-loaded-hook #'view-mode)))
 
 #+END_SRC
-
 
 ** Writing And Programming Modes
 

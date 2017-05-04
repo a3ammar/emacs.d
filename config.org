@@ -797,27 +797,19 @@ Extension to Projectile for navigating Rails files.
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile-rails
-  :ensure t
-  :pin melpa-stable
-  :commands projectile-rails-on
   :config
-  (progn
-    (setq
-     projectile-rails-font-lock-face-name 'font-lock-builtin-face
-     projectile-rails-stylesheet-re "\\.scss\\'"
-     projectile-rails-javascript-re "\\.js\\(?:\\.\\(?:coffee\\|ts\\)\\)?\\'"
-     projectile-rails-resource-name-re-list
-     `("/app/models/\\(?:.+/\\)?\\(.+\\)\\.rb\\'"
-       "/app/controllers/\\(?:.+/\\)?\\(.+\\)_controller\\.rb\\'"
-       "/app/views/\\(?:.+/\\)?\\([^/]+\\)/[^/]+\\'"
-       "/app/helpers/\\(?:.+/\\)?\\(.+\\)_helper\\.rb\\'"
-       ,(concat "/app/assets/javascripts/\\(?:.+/\\)?\\(.+\\)" projectile-rails-javascript-re)
-       ,(concat "/app/assets/stylesheets/\\(?:.+/\\)?\\(.+\\)" projectile-rails-stylesheet-re)
-       "/db/migrate/.*create_\\(.+\\)\\.rb\\'"
-       "/spec/.*/\\([a-z_]+?\\)\\(?:_controller\\)?_spec\\.rb\\'"
-       "/\\(?:test\\|spec\\)/\\(?:fixtures\\|factories\\|fabricators\\)/\\(.+?\\)\\(?:_fabricator\\)?\\.\\(?:yml\\|rb\\)\\'"))
-    (set-face-attribute 'projectile-rails-keyword-face nil
-                        :inherit 'font-lock-builtin-face)))
+  (setq projectile-rails-font-lock-face-name 'font-lock-builtin-face
+        projectile-rails-stylesheet-re "\\.scss\\'")
+
+  (set-face-attribute 'projectile-rails-keyword-face nil
+                      :inherit 'font-lock-builtin-face)
+
+  (--each '(ruby-mode-hook
+            web-mode-hook
+            yaml-mode-hook
+            scss-mode-hook
+            js2-mode-hook)
+    (add-hook it (lambda () (when (projectile-project-p) (projectile-rails-on))))))
 #+END_SRC
 
 *** Smartparens mode
@@ -1569,9 +1561,7 @@ expression, otherwise use regular `eval-last-sexp'"
     (add-hook 'ruby-mode-hook
               (lambda ()
                 (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
-                (push '("lambda" . 955) prettify-symbols-alist)
-                (when (projectile-project-p)
-                  (projectile-rails-mode))))
+                (push '("lambda" . 955) prettify-symbols-alist)))
 
 
     (use-package inf-ruby
@@ -1735,8 +1725,7 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
   (progn
     (add-hook 'haml-mode-hook
               (lambda ()
-                (rspec-mode)
-                (projectile-rails-mode)))
+                (rspec-mode)))
     (add-hook 'haml-mode-hook
               (lambda ()
                 (local-set-key (kbd "RET") 'newline-and-indent)))))
@@ -1759,7 +1748,6 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
           web-mode-script-padding 0)
 
     (add-hook 'web-mode-hook #'aggressive-indent-mode)
-    (add-hook 'web-mode-hook #'projectile-rails-mode)
     (add-hook 'web-mode-hook #'subword-mode)
 
     (sp-local-pair 'web-mode "<" nil :actions :rem)
@@ -1780,7 +1768,6 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
   (progn
     (add-hook 'yaml-mode-hook
               (lambda ()
-                (projectile-rails-mode)
                 (local-set-key (kbd "RET") 'newline-and-indent)))))
 #+END_SRC
 
@@ -1797,7 +1784,6 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 *** SCSS Mode
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'scss-mode-hook #'projectile-rails-mode)
 #+END_SRC
 
 *** Jinja Mode
@@ -1822,8 +1808,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
           coffee-tab-width 2)
     (add-hook 'coffee-mode-hook
               (lambda ()
-                (rspec-mode)
-                (projectile-rails-mode)))))
+                (rspec-mode)))))
 #+END_SRC
 
 *** Javascript Mode
@@ -1844,7 +1829,6 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   :mode ("\\.js$" "\\.json")
   :config
   (progn
-    (add-hook 'js2-mode-hook #'projectile-rails-mode)
     (setq js2-mode-show-parse-errors nil
           js2-mode-show-strict-warnings nil
           js2-mode-assume-strict t

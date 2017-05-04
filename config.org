@@ -603,17 +603,6 @@ Set the default font
 
 #+END_SRC
 
-**** Variable pitch mode
-
-#+BEGIN_SRC emacs-lisp
-(set-face-attribute 'variable-pitch nil
-                    :height 110
-                    :width 'normal
-                    :font "Kawkab Mono Bold")
-
-(bind-key "C-x t v"  'variable-pitch-mode)
-#+END_SRC
-
 *** Smart Mode Line
 
 Compact mode line
@@ -1456,6 +1445,18 @@ Set the global `fill-column`
 
 #+BEGIN_SRC emacs-lisp
 (setq-default fill-column 88)
+#+END_SRC
+
+*** Variable pitch mode
+
+#+BEGIN_SRC emacs-lisp
+(set-face-attribute 'variable-pitch nil
+                    :font "Sahl Naskh"
+                    :height 160
+                    :width 'normal
+                    :weight 'normal)
+
+(bind-keys ("C-x t v" . variable-pitch-mode))
 #+END_SRC
 
 *** Text mode

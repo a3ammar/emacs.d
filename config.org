@@ -951,14 +951,13 @@ Set the visibility of the =Unmerged into upstream= section to always be hidden, 
 (add-hook 'magit-section-set-visibility-hook #'my/magit-initially-hide-unmerged)
 #+END_SRC
 
-*** Git timemachien
+*** Git Time Machine
 
-Timemachine like interface for git
+Time machine like interface for git
 
 #+BEGIN_SRC emacs-lisp
-  (use-package git-timemachine
-    :ensure t
-    :pin melpa-stable)
+(use-package git-timemachine
+  :commands git-timemachien)
 #+END_SRC
 
 *** Company Mode

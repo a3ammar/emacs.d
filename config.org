@@ -819,88 +819,75 @@ the closing pair.
 
 #+BEGIN_SRC emacs-lisp
 (use-package smartparens
-  :ensure t
   :pin melpa-stable
   :bind (:map sp-keymap
-              ("C-M-f" . sp-forward-sexp)
-              ("C-M-b" . sp-backward-sexp)
-              ("C-M-d" . sp-down-sexp)
-              ("C-M-a" . my/sp-begging-of-sexp)
-              ("C-M-e" . my/sp-end-of-sexp)
-              ("C-S-a" . sp-beginning-of-sexp)
-              ("C-S-d" . sp-end-of-sexp)
-              ("C-M-u" . sp-backward-up-sexp)
-              ("C-M-t" . sp-transpose-sexp)
-              ("C-M-n" . sp-next-sexp)
-              ("C-M-p" . sp-previous-sexp)
-              ("C-M-k" . sp-kill-sexp)
-              ("C-M-w" . sp-copy-sexp)
               ("M-<backspace>" . sp-unwrap-sexp)
-              ("M-<delete>" . sp-backward-unwrap-sexp)
               ("M-." . sp-forward-slurp-sexp)
               ("M-," . sp-forward-barf-sexp)
-              ("C-M-<left>" . sp-backward-slurp-sexp)
-              ("C-M-<right>" . sp-backward-barf-sexp)
-              ("C-M-<delete>" . sp-splice-sexp-killing-forward)
-              ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
-              ("C-S-<backspace>" . sp-splice-sexp-killing-around)
-              ("C-]" . sp-select-next-thing-exchange)
-              ("C-<left_bracket>" . sp-select-previous-thing)
-              ("C-M-]" . sp-select-next-thing)
-              ("M-F" . sp-forward-symbol)
-              ("M-B" . sp-backward-symbol)
-              ("H-t" . sp-prefix-tag-object)
-              ("H-p" . sp-prefix-pair-object)
-              ("H-s c" . sp-convolute-sexp)
-              ("H-s a" . sp-absorb-sexp)
-              ("H-s e" . sp-emit-sexp)
-              ("H-s p" . sp-add-to-previous-sexp)
-              ("H-s n" . sp-add-to-next-sexp)
-              ("H-s j" . sp-join-sexp)
-              ("H-s s" . sp-split-sexp))
+              ("C-M-." . sp-backward-slurp-sexp)
+              ("C-M-," . sp-backward-barf-sexp))
   :init
-  (progn
-    (require 'smartparens-config)
-    (smartparens-global-mode t))
+  (smartparens-global-mode)
   :config
-  (progn
-    (show-paren-mode -1)
-    (show-smartparens-global-mode t)))
+  (setq sp-base-key-bindings 'sp
+        sp-highlight-pair-overlay nil
+        sp-highlight-wrap-overlay nil
+        sp-highlight-wrap-tag-overlay nil)
 
-(defun my/sp-begging-of-sexp ()
+  (use-package smartparens-config :ensure nil)
+  (sp-use-smartparens-bindings)
+
+  (sp-pair "(" nil :post-handlers '(("| " "SPC")))
+  (sp-pair "[" nil :post-handlers '(("| " "SPC")))
+  (sp-pair "{" nil :post-handlers '(("| " "SPC")))
+
+  (add-hook 'nxml-mode-hook
+            (lambda ()
+              (sp-local-pair 'nxml-mode "<" ">" :actions :rem)))
+
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (sp-local-pair 'web-mode "<" nil :actions :rem)
+              (sp-local-pair 'web-mode "<%" "%>" :post-handlers '(("| " "SPC") (" | " "=")))))
+
+  ;; Do not escape closing pair in string interpolation
+  (add-hook 'swift-mode-hook
+            (lambda ()
+              (sp-local-pair 'swift-mode "\\(" nil :actions :rem)
+              (sp-local-pair 'swift-mode "\\(" ")")))
+
+  (set-face-attribute 'sp-show-pair-match-face nil
+                      :foreground "#d73182")
+  (set-face-attribute 'sp-show-pair-mismatch-face nil
+                      :background "#810160")
+
+  (show-smartparens-global-mode))
+#+END_SRC
+
+Change beginning/end of s-expression movement to go outside of the s-expression when the =point= is at the beginning/end of the s-expression.
+
+#+BEGIN_SRC emacs-lisp
+(defun my/sp-beginning-of-sexp ()
+  "Move to the beginning of sexp, if at beginning then move before it"
   (interactive)
-  (let ((beginning (sp-get (sp-get-enclosing-sexp) :beg)))
-    (if (and beginning (= (- (point) 1) beginning))
-        (goto-char beginning)
+  (let* ((sexp (or (sp-get-enclosing-sexp) (sp-get-sexp)))
+         (beginning (sp-get sexp :beg-in)))
+    (if (= beginning (point))
+        (goto-char (1- beginning))
       (sp-beginning-of-sexp))))
 
 (defun my/sp-end-of-sexp ()
+  "Move to the end of sexp, if at end then move after it"
   (interactive)
-  (let ((end (sp-get (sp-get-enclosing-sexp) :end)))
-    (if (and end (= (+ (point) 1) end))
-        (goto-char end)
+  (let* ((sexp (or (sp-get-enclosing-sexp) (sp-get-sexp)))
+         (end (sp-get sexp :end-in)))
+    (if (= end (point))
+        (goto-char (1+ end))
       (sp-end-of-sexp))))
-#+END_SRC
 
-Insert space between the pair if you add a space right after opening the pair
-
-#+BEGIN_SRC emacs-lisp
-(sp-pair "(" nil :post-handlers '(("| " "SPC")))
-(sp-pair "[" nil :post-handlers '(("| " "SPC")))
-(sp-pair "{" nil :post-handlers '(("| " "SPC")))
-#+END_SRC
-
-
-Appearance
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(sp-show-pair-match-face ((t (:foreground "#d73182"))))
- '(sp-show-pair-mismatch-face ((t (:background "#810160")))))
-
-(setq sp-highlight-pair-overlay nil
-      sp-highlight-wrap-overlay nil
-      sp-highlight-wrap-tag-overlay nil)
+(bind-keys :map sp-keymap
+           ("C-M-a" . my/sp-beginning-of-sexp)
+           ("C-M-e" . my/sp-end-of-sexp))
 #+END_SRC
 
 *** Magit
@@ -1554,8 +1541,6 @@ expression, otherwise use regular `eval-last-sexp'"
     (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
                             '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
 
-    (sp-local-pair 'ruby-mode "{" nil :post-handlers '(("| " "SPC")))
-
     (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
     (add-hook 'ruby-mode-hook #'subword-mode)
     (add-hook 'ruby-mode-hook
@@ -1705,15 +1690,6 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
                                    (toggle-truncate-lines 1)))
 #+END_SRC
 
-
-*** nXML mode
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'nxml-mode-hook
-          (lambda ()
-            (sp-local-pair 'nxml-mode "<" ">" :actions :rem)))
-#+END_SRC
-
 *** HAML mode
 
 #+BEGIN_SRC emacs-lisp
@@ -1748,11 +1724,7 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
           web-mode-script-padding 0)
 
     (add-hook 'web-mode-hook #'aggressive-indent-mode)
-    (add-hook 'web-mode-hook #'subword-mode)
-
-    (sp-local-pair 'web-mode "<" nil :actions :rem)
-    (sp-local-pair 'web-mode "<%" "%>" :post-handlers '(("| " "SPC")
-                                                        (" | " "=")))))
+    (add-hook 'web-mode-hook #'subword-mode)))
 
 
 #+END_SRC
@@ -1921,13 +1893,6 @@ Add autocompletion based on [[https://flow.org/en/][flowtype]]
   :config
   (setq swift-mode:basic-offset 2)
   (add-hook 'swift-mode-hook (lambda () (subword-mode))))
-#+END_SRC
-
-Make smartparens mode not escape closing parens in swift string
-
-#+BEGIN_SRC emacs-lisp
-(sp-local-pair 'swift-mode "\\(" nil :actions nil)
-(sp-local-pair 'swift-mode "\\(" ")")
 #+END_SRC
 
 ** Misc Settings

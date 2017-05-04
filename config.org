@@ -1169,39 +1169,38 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 
 #+BEGIN_SRC emacs-lisp
 (use-package popwin
-  :pin melpa-stable
   :bind ("C-h e" . popwin:messages)
-  :commands (popwin-mode)
-  :init (popwin-mode t)
+  :bind-keymap ("C-z" . popwin:keymap)
+  :init
+  (autoload 'popwin-mode "popwin.el" nil t)
+  (popwin-mode)
   :config
-  (progn
-    (global-set-key (kbd "C-z") popwin:keymap)
-    (-each '(("*rspec-compilation*" :tail nil)
-             "*Apropos*"
-             "*projectile-rails-server*"
-             "*coffee-compiled*"
-             "*Bundler*"
-             "*projectile-rails-compilation*"
-             "*Ack-and-a-half*"
-             ("*ruby*" :height 0.75 :position bottom)
-             "*rails*"
-             "*Compile-Log*"
-             "*pry*"
-             "*SQL*"
-             "*projectile-rails-generate*"
-             "*Package Commit List*"
-             "*Compile-Log*"
-             (" *undo-tree*" :position bottom)
-             "*compilation*"
-             ("RuboCop.*" :regexp 't)
-             "*elm*"
-             "*xcrun swift*"
-             ("*HTTP Response*" :position bottom :height 30)
-             "*Flycheck errors*"
-             ("*Flycheck error messages*" :noselect t)
-             ("\*ivy-occur.*" :regexp 't))
-      (lambda (buffer) (push buffer popwin:special-display-config)))))
-
+  (--each '(("*rspec-compilation*" :tail nil)
+            "*Apropos*"
+            "*Warnings*"
+            "*projectile-rails-server*"
+            "*coffee-compiled*"
+            "*Bundler*"
+            "*projectile-rails-compilation*"
+            "*Ack-and-a-half*"
+            ("*ruby*" :height 0.75)
+            ("*rails*" :height 0.75)
+            "*Compile-Log*"
+            "*pry*"
+            "*SQL*"
+            "*projectile-rails-generate*"
+            "*Package Commit List*"
+            "*Compile-Log*"
+            (" *undo-tree*" :position bottom)
+            "*compilation*"
+            ("RuboCop.*" :regexp 't)
+            "*elm*"
+            "*xcrun swift*"
+            ("*HTTP Response*" :position bottom :height 30)
+            "*Flycheck errors*"
+            ("*Flycheck error messages*" :noselect t)
+            ("\*ivy-occur.*" :regexp 't))
+    (push it popwin:special-display-config)))
 #+END_SRC
 
 *** Aggressive Indent Mode

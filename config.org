@@ -1310,9 +1310,6 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package github-clone
-  :ensure t
-  :pin melpa-stable
-  :defer t
   :commands github-clone)
 #+END_SRC
 

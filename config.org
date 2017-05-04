@@ -1044,7 +1044,7 @@ this [[https://www.youtube.com/watch?v%3DT_voB16QxW0][video]] for better explana
 
 #+BEGIN_SRC emacs-lisp
 (use-package winner
-  :init (winner-mode 1))
+  :init (winner-mode))
 #+END_SRC
 
 *** Discover Major Mode keybindings

@@ -133,7 +133,11 @@ This configuration depends on [[https://github.com/magnars/dash.el][dash.el]] an
 Some Emacs commands don't work properly on OS X, this fixes it.
 
 #+BEGIN_SRC emacs-lisp
+(defun on-osx-p ()
+  (eq system-type 'darwin))
+
 (use-package exec-path-from-shell
+  :if (on-osx-p)
   :config
   :init
   (setq exec-path-from-shell-arguments nil)
@@ -334,12 +338,12 @@ I =trash= command installed from homebrew, this makes files deleted from Emacs g
 to the Trash folder.
 
 #+BEGIN_SRC emacs-lisp
-(defalias 'move-file-to-trash 'system-move-file-to-trash)
-
-(defun system-move-file-to-trash (file)
+(defun my/system-move-file-to-trash (file)
   "Use \"trash\" to move FILE to the system trash"
   (call-process (executable-find "trash") nil 0 nil file))
 
+(if (on-osx-p)
+    (defalias 'move-file-to-trash 'my/system-move-file-to-trash))
 #+END_SRC
 
 *** Set the default browser
@@ -372,13 +376,14 @@ It's so much easier to hit =8= than =*=.
 When I call emacsclient I'm definitely on Terminal.app
 
 #+BEGIN_SRC emacs-lisp
-(defun focus-terminal ()
+(defun my/focus-terminal ()
   ;; Don't switch if we are committing to git
   (unless (or (get-buffer "COMMIT_EDITMSG")
               (get-buffer "git-rebase-todo"))
     (do-applescript "tell application \"Terminal\" to activate")))
 
-(add-hook 'server-done-hook #'focus-terminal)
+(if (on-osx-p)
+    (add-hook 'server-done-hook #'my/focus-terminal))
 #+END_SRC
 
 *** Emacs Client

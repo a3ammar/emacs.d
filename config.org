@@ -1226,17 +1226,15 @@ Popwin makes popup window awesome again, every popup window can be closed by =C-
 *** Ediff Mode
 
 #+BEGIN_SRC emacs-lisp
+(add-hook 'ediff-mode-hook
+          (lambda ()
 (setq ediff-merge-split-window-function 'split-window-vertically
-          ediff-split-window-function  'split-window-horizontally
-          ediff-window-setup-function 'ediff-setup-windows-plain)
+      ediff-split-window-function  'split-window-horizontally
+      ediff-window-setup-function 'ediff-setup-windows-plain)
 
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(ediff-current-diff-C ((t (:background "#41421c"))))
- '(ediff-fine-diff-A ((t (:background "#630813"))))
- '(ediff-fine-diff-B ((t (:background "#0a4c1b" :inverse-video nil)))))
+(set-face-attribute 'ediff-current-diff-C nil :background "#41421c")
+(set-face-attribute 'ediff-fine-diff-A nil :background "#630813")
+(set-face-attribute 'ediff-fine-diff-B nil :background "#0a4c1b")            ))
 #+END_SRC
 
 *** A better query regexp replace

@@ -531,63 +531,76 @@ Add a bigger offset to underline property (it makes smart-mode-line looks way ni
 
 *** Fonts and colors
 **** Default font
+
+First, themes and other modes can overwrrite our =set-face-attributes=. Lets write a helper
+
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil
-                    :foreground "#819090"
-                    :slant 'normal
-                    :weight 'normal
-                    :height 120
-                    :width 'normal
-                    :family "Menlo")
+(defmacro after-init (&rest args)
+  `(add-hook 'after-init-hook
+             (lambda () ,@args)))
 #+END_SRC
 
-**** Echo Area
+Set the default font
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(echo-area ((t (:stipple nil :strike-through nil :underline nil :slant normal :weight normal :height 120 :width normal :family "Menlo"))) t))
+(after-init
+ (set-face-attribute 'default nil
+                     :height 120
+                     :family "Menlo"
+                     :foreground "#819090"))
 #+END_SRC
 
 **** Font lock faces
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(font-lock-builtin-face ((t (:foreground "#6193B3" :weight bold))))
- '(font-lock-comment-face ((t (:foreground "#53686f" :inverse-video nil :underline nil :slant italic :weight normal))))
- '(font-lock-constant-face ((t (:foreground "DeepSkyBlue3"))))
- '(font-lock-function-name-face ((t (:weight bold)))))
+(after-init
+ (set-face-attribute 'font-lock-builtin-face nil
+                     :foreground "#6193B3")
+
+ (set-face-attribute 'font-lock-comment-face nil
+                     :foreground "#53686f")
+
+ (set-face-attribute 'font-lock-constant-face nil
+                     :foreground "DeepSkyBlue3")
+
+ (set-face-attribute 'font-lock-function-name-face nil
+                     :weight 'bold))
 #+END_SRC
 
 **** Highlight color
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(highlight ((t (:background "#1c4c5e")))))
+(after-init
+ (set-face-attribute 'highlight nil
+                     :background "#1c4c5e"))
 #+END_SRC
 
 **** Region color
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(region ((t (:background "#175062" :foreground nil)))))
+(after-init
+ (set-face-attribute 'region nil
+                     :background "#175062"))
+
 #+END_SRC
 
 **** Minibuffer
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(minibuffer-prompt ((t (:foreground "#2076c8" :inverse-video nil :underline nil :slant normal :weight bold)))))
+(after-init
+ (set-face-attribute 'minibuffer-prompt nil
+                     :foreground "#2076c8"))
+
 #+END_SRC
 
 **** Parentheses match
 
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'show-paren-match nil
-                    :background "#0a2832"
-                    :foreground "#c71b6f"
-                    :inverse-video nil :underline nil
-                    :slant 'normal
-                    :weight 'bold)
+(after-init
+ (set-face-attribute 'show-paren-match nil
+                     :foreground "#c71b6f"
+                     :background "#0a2832"))
+
 #+END_SRC
 
 **** Variable pitch mode

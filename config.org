@@ -1354,12 +1354,7 @@ I use [[https://github.com/sorin-ionescu/prezto][prezto]] and I want to associat
 
 #+BEGIN_SRC emacs-lisp
 (use-package restclient
-  :defer t
-  :commands restclient-mode
-  :config
-  (progn
-    (add-hook 'restclient-response-loaded-hook #'view-mode)))
-
+  :commands restclient-mode)
 #+END_SRC
 
 ** Writing And Programming Modes

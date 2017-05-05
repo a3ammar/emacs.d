@@ -766,7 +766,23 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
   (setq counsel-yank-pop-separator "\n\n"
         counsel-find-file-ignore-regexp "\\`\\.")
 
-  (defalias 'cpkg 'counsel-package))
+  (defalias 'cpkg 'counsel-package)
+
+  ;; Add copy, move, and delete commands to counsel-find-file
+  (defun given-file (command prompt)
+    "Run `command' with `prompt', `source', and `target'. `source' is set from `ivy' and `target' is set from prompting the user"
+    (apply-partially
+     '(lambda (command prompt source)
+        (let ((target (read-file-name (format "%s %s to:" prompt source))))
+          (funcall command source target 1)))
+     command prompt))
+
+
+  (ivy-add-actions
+   'counsel-find-file
+   `(("c" ,(given-file #'copy-file "Copy") "cp")
+     ("d" move-file-to-trash "rm")
+     ("m" ,(given-file #'rename-file "Move") "mv"))))
 #+END_SRC
 
 *** Projectile

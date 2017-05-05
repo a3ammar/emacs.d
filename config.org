@@ -1323,9 +1323,12 @@ Expand region to fit the sexp
 *** Dired Mode
 
 #+BEGIN_SRC emacs-lisp
-(setq dired-listing-switches "-alh")
-(bind-keys :map dired-mode-map
-           ("C-l" . dired-up-directory))
+(use-package dired
+  :ensure nil
+  :bind (:map dired-mode-map
+              ("C-l" . dired-up-directory))
+  :config
+  (setq dired-listing-switches "-alh"))
 #+END_SRC
 
 *** Shell Conf Mode

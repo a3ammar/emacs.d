@@ -669,6 +669,17 @@ Solarized is so good.
 Automatically transform symbols like lambda into the greek letter =λ=
 
 #+BEGIN_SRC emacs-lisp
+(--each '(org-mode-hook
+          ruby-mode-hook)
+  (add-hook it
+            (lambda () (add-to-list 'prettify-symbols-alist '("lambda" . ?λ)))))
+
+(--each '(js-mode-hook
+          js2-mode-hook
+          rjsx-mode-hook)
+  (add-hook it
+            (lambda () (setq-local prettify-symbols-alist nil))))
+
 (global-prettify-symbols-mode)
 #+END_SRC
 

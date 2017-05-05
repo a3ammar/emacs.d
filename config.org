@@ -1317,10 +1317,7 @@ Expand region to fit the sexp
 
 #+BEGIN_SRC emacs-lisp
 (use-package feature-mode
-  :ensure t
-  :pin melpa-stable
-  :defer t
-  :commands feature-mode)
+  :mode "\\.feature\\'")
 #+END_SRC
 
 *** Dired Mode

@@ -1347,8 +1347,7 @@ I use [[https://github.com/sorin-ionescu/prezto][prezto]] and I want to associat
 
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'magic-fallback-mode-alist
-             '((lambda () (string-match-p ".*prezto.*" (buffer-file-name))) . sh-mode))
-
+             '((lambda () (s-match ".*prezto.*" (buffer-file-name))) . sh-mode))
 #+END_SRC
 
 *** Restclient

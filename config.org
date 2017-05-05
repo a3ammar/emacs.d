@@ -1380,30 +1380,16 @@ Set the global `fill-column`
 *** Text mode
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'text-mode-hook
-          (lambda ()
-            #'turn-on-auto-fill
-            #'turn-on-flyspell
-            (setq word-wrap t
-                  fill-column 85)))
-
-#+END_SRC
-
-Appearance
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(text-mode-default ((t (:foreground "#819090" :height 180 :family "Helvetica"))) t))
-#+END_SRC
-
-Disable variable pitch mode on =git-commit-mode=
-
-#+BEGIN_SRC emacs-lisp
-(defun my/variable-pitch-mode ()
-  "run variable pitch mode unless the current mode is `git-commit-mode'"
-  (unless (or (get-buffer "COMMIT_EDITMSG")
-              (get-buffer "git-rebase-todo"))
-    (variable-pitch-mode t)))
+(use-package text-mode
+  :preface (provide 'text-mode)
+  :ensure nil
+  :mode ("\\.txt" "\\.text\\'")
+  :config
+  (add-hook 'text-mode-hook
+            (lambda ()
+              (turn-on-auto-fill)
+              (turn-on-flyspell)
+              (setq-local word-wrap t))))
 #+END_SRC
 
 *** Markdown mode

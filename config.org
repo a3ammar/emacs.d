@@ -1407,13 +1407,11 @@ Set the global `fill-column`
 
 #+BEGIN_SRC emacs-lisp
 (use-package markdown-mode
-  :ensure t
-  :pin melpa-stable)
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(markdown-bold-face ((t (:inherit font-lock-variable-name-face :weight extra-bold)))))
+  :mode ("\\.md\\'" "\\.markdown\\'")
+  :config
+  (set-face-attribute 'markdown-bold-face nil
+                      :weight 'bold
+                      :inherit 'font-lock-builtin-face))
 #+END_SRC
 
 *** Org Mode

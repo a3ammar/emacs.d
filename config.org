@@ -70,18 +70,18 @@ UTF-8 everything. Taken from [[http://stackoverflow.com/questions/2901541/which-
 *** Package sources
 
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(unless (assoc-default "melpa" package-archives)
-  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-  (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t))
+(setq package--init-file-ensured t)
 
 (package-initialize)
+
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("melpa" . "http://melpa.org/packages/")
+        ("melpa-stable" . "http://stable.melpa.org/packages/")))
 
 (unless package-archive-contents
   (package-refresh-contents))
 #+END_SRC
-
-There are some packages that are not available on [[http://melpa.org][melpa]], add [[https://marmalade-repo.org/][marmalade]] for them.
 
 *** Setup load path and use-package
 

@@ -1769,7 +1769,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
 #+BEGIN_SRC emacs-lisp
 (use-package haskell-mode
-  :pin melpa-stable)
+  :mode "\\.hs\\'")
 #+END_SRC
 
 *** Swift mode

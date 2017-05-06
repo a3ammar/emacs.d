@@ -1864,24 +1864,23 @@ Better comments, taken from [[http://www.opensubscriber.com/message/emacs-devel@
 *** Duplicate line
 
 #+BEGIN_SRC emacs-lisp
-(bind-keys ("C-x C-y" . my/duplicate-line))
-
 (defun my/duplicate-line (&optional args)
   "duplicate the current line and while saving the current position"
   (interactive "P")
   (let ((column (current-column))
         (times (prefix-numeric-value args)))
-        (while (> times 0)
-          (move-beginning-of-line 1)
-          (kill-line)
-          (yank)
-          (open-line 1)
-          (next-line 1)
-          (yank)
-          (move-beginning-of-line 1)
-          (forward-char column)
-          (setq times (1- times)))))
+    (-dotimes times
+      (lambda (n)
+        (move-beginning-of-line 1)
+        (kill-line)
+        (yank)
+        (open-line 1)
+        (next-line 1)
+        (yank)
+        (move-beginning-of-line 1)
+        (forward-char column)))))
 
+(bind-keys ("C-x C-y" . my/duplicqate-line))
 #+END_SRC
 
 *** Flip colon

@@ -1680,16 +1680,11 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 *** CSS Mode
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'css-mode-hook
-          (lambda ()
-                (setq comment-start "//")
-                (setq comment-end "")
-                (setq css-indent-offset 2)))
-#+END_SRC
-
-*** SCSS Mode
-
-#+BEGIN_SRC emacs-lisp
+(use-package css-mode
+  :ensure nil
+  :mode "\\'.css\\'"
+  :config
+  (setq css-indent-offset 2))
 #+END_SRC
 
 *** Jinja Mode

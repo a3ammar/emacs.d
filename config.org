@@ -1915,7 +1915,12 @@ h1 {
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-(bind-key "C-x t [" 'my/toggle-brace)
+(defun my/delete-or-insert-newline ()
+  (if (looking-at "\n")
+      (progn
+        (delete-char 1)
+        (just-one-space))
+    (insert "\n")))
 
 (defun my/toggle-brace ()
   (interactive)
@@ -1928,12 +1933,7 @@ h1 {
       (my/delete-or-insert-newline)
       (indent-region start (line-end-position)))))
 
-(defun my/delete-or-insert-newline ()
-  (if (looking-at "\n")
-      (progn
-        (delete-char 1)
-        (just-one-space))
-    (insert "\n")))
+(bind-key "C-x t [" 'my/toggle-brace)
 #+END_SRC
 
 *** Just one space to just no space

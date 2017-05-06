@@ -1861,33 +1861,6 @@ Better comments, taken from [[http://www.opensubscriber.com/message/emacs-devel@
 (bind-keys ("M-;" . my/comment-dwim))
 #+END_SRC
 
-*** Insert a brace with space between them
-
-This I use when I'm programming Ruby to insert a block (blocks have a space between
-the content the bracket).
-With 5 as a prefix arguments =C-5 C-{=, it inserts a liquid tag ={%  %}=.
-
-#+BEGIN_SRC emacs-lisp
-(defun my/brace-with-space (&optional args)
-  (interactive "p")
-  (if (= args 5)
-      (my/insert-liquid-tag)
-    (my/insert-brace)))
-
-(defun my/insert-brace ()
-  (execute-kbd-macro "{")
-  (insert "  ")
-  (backward-char 1))
-
-(defun my/insert-liquid-tag ()
-  (execute-kbd-macro "{")
-  (insert "%  %")
-  (backward-char 2))
-
-(bind-keys ("C-{" . my/brace-with-space))
-
-#+END_SRC
-
 *** Duplicate line
 
 #+BEGIN_SRC emacs-lisp

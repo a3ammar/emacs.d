@@ -1612,9 +1612,10 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 *** SQL Mode
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'sql-interactive-mode-hook
-          (lambda ()
-                (setq truncate-lines t)))
+(use-package sql
+  :mode "\\.sql"
+  :config
+  (add-hook 'sql-interactive-mode-hook #'toggle-truncate-lines))
 #+END_SRC
 
 *** Rspec Mode

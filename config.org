@@ -1758,11 +1758,11 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
 #+BEGIN_SRC emacs-lisp
 (use-package elm-mode
-  :pin melpa-stable
-  :bind (("RET" . newline-and-indent))
+  :mode "\\.elm\\'"
+  :bind (:map elm-mode-map
+              ("<return>" . newline-and-indent))
   :config
-  (add-to-list 'company-backends 'company-elm)
-  (add-hook 'elm-mode-hook #'subword-mode))
+  (add-to-list 'company-backends 'company-elm))
 #+END_SRC
 
 *** Haskell mode

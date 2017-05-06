@@ -1749,12 +1749,9 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
 #+BEGIN_SRC emacs-lisp
 (use-package lua-mode
-  :pin melpa-stable
-  :ensure t
-  :defer t
+  :mode "\\.lua\\'"
   :config
-  (setq lua-indent-level 2)
-  (add-hook 'lua-mode-hook #'subword-mode))
+  (setq lua-indent-level 2))
 #+END_SRC
 
 *** Elm mode

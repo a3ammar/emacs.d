@@ -1672,14 +1672,9 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 
 #+BEGIN_SRC emacs-lisp
 (use-package yaml-mode
-  :ensure t
-  :pin melpa-stable
-  :defer t
-  :config
-  (progn
-    (add-hook 'yaml-mode-hook
-              (lambda ()
-                (local-set-key (kbd "RET") 'newline-and-indent)))))
+  :mode "\\.yaml\\'"
+  :bind (:map yaml-mode-map
+              ("<return>" . newline-and-indent)))
 #+END_SRC
 
 *** CSS Mode

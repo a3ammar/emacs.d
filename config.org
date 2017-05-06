@@ -1638,8 +1638,7 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 *** Compilation Mode
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'compilation-mode-hook (lambda ()
-                                   (toggle-truncate-lines 1)))
+(add-hook 'compilation-mode-hook (lambda () (setq-local truncate-lines nil)))
 #+END_SRC
 
 *** HAML mode

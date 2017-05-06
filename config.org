@@ -1742,9 +1742,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
 #+BEGIN_SRC emacs-lisp
 (use-package php-mode
-  :pin melpa-stable
-  :ensure t
-  :defer t)
+  :mode "\\.php\\'")
 #+END_SRC
 
 *** Lua mode

@@ -1656,22 +1656,16 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
-  :defer t
-  :pin melpa-stable
   :mode ("\\.html$" "\\.xml$" "\\.erb$" "\\.vue$")
   :config
-  (progn
-    (setq web-mode-css-indent-offset 2
-          web-mode-markup-indent-offset 2
-          web-mode-code-indent-offset 2
-          web-mode-auto-close-style 2
-          web-mode-enable-auto-pairing nil
-          web-mode-script-padding 0)
+  (setq web-mode-css-indent-offset 2
+        web-mode-markup-indent-offset 2
+        web-mode-code-indent-offset 2
+        web-mode-auto-close-style 2
+        web-mode-enable-auto-pairing nil
+        web-mode-script-padding 0)
 
-    (add-hook 'web-mode-hook #'aggressive-indent-mode)
-    (add-hook 'web-mode-hook #'subword-mode)))
-
-
+  (add-hook 'web-mode-hook #'aggressive-indent-mode))
 #+END_SRC
 
 *** YAML mode

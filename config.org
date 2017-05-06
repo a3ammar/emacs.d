@@ -1809,8 +1809,7 @@ See my [[https://github.com/a3ammar/homebrew-emacs-emoji][homebrew formula]]
 
 #+BEGIN_SRC emacs-lisp
 (use-package evil-numbers
-  :pin melpa-stable
-  :ensure t
+  :commands (evil-numbers/inc-at-pt evil-numbers/dec-at-pt)
   :bind (("M-=" . evil-numbers/inc-at-pt)
          ("M--" . evil-numbers/dec-at-pt)))
 #+END_SRC

@@ -1645,17 +1645,11 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 
 #+BEGIN_SRC emacs-lisp
 (use-package haml-mode
-  :ensure t
-  :pin melpa-stable
-  :defer t
+  :mode ("\\.haml\\'" "\\.haml\\.erb\\'")
+  :bind (:map haml-mode-map
+              ("<return>" . newline-and-indent))
   :config
-  (progn
-    (add-hook 'haml-mode-hook
-              (lambda ()
-                (rspec-mode)))
-    (add-hook 'haml-mode-hook
-              (lambda ()
-                (local-set-key (kbd "RET") 'newline-and-indent)))))
+  (add-hook 'haml-mode-hook #'rspec-mode))
 #+END_SRC
 
 *** Web Mode

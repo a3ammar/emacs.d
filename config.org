@@ -1603,14 +1603,10 @@ rcodetools provide a way to evaulate ruby code inside your buffer. The way it wo
 
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
-  :ensure t
-  :pin melpa-stable
-  :commands yas-global-mode
-  :defer 3
+  :defer 1
   :config
-  (progn
-    (yas-global-mode)
-    (add-hook 'snippet-mode-hook (lambda () (variable-pitch-mode nil)))))
+  (add-hook 'snippet-mode-hook (lambda () (variable-pitch-mode nil)))
+  (yas-global-mode))
 #+END_SRC
 
 *** SQL Mode

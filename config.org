@@ -2045,8 +2045,7 @@ I use =open-line= a lot and most of the time I have to manually indent the new l
 
 #+BEGIN_SRC emacs-lisp
 (use-package embrace
-  :ensure t
-  :bind (("C-'" . embrace-change)))
+  :bind ("C-'" . embrace-change))
 #+END_SRC
 
 *** Better keybinding for =revert-buffer=

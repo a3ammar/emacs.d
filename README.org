@@ -1455,7 +1455,7 @@ General org-mode configuration
 
   (add-hook 'org-mode-hook
             (lambda ()
-              (variable-pitch-mode nil)
+              (buffer-face-mode -1)
               (toggle-truncate-lines)))
 
   (set-face-attribute 'org-level-1 nil :font "Menlo" :weight 'bold)

@@ -1416,37 +1416,40 @@ Set the global `fill-column`
 
 *** Org Mode
 
-#+BEGIN_SRC emacs-lisp
-(setq org-log-done t
-      org-src-strip-leading-and-trailing-blank-lines t
-      org-adapt-indentation nil
-      org-edit-src-content-indentation 0
-      org-fontify-whole-heading-line t
-      org-pretty-entities t
-      org-src-fontify-natively t
-      org-src-tab-acts-natively nil
-      org-src-window-setup 'current-window
-      org-goto-interface 'outline
-      org-goto-max-level 10
-      org-imenu-depth 5
-      org-startup-folded nil)
-
-(add-hook 'org-mode-hook
-          (lambda ()
-            (org-indent-mode)
-            (variable-pitch-mode nil)
-            (toggle-truncate-lines)))
-#+END_SRC
+General org-mode configuration
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(org-todo ((t (:background "#052028" :foreground "#c60007" :inverse-video nil :underline nil :slant normal :weight bold))))
- '(org-level-1 ((t (:font "Menlo"))))
- '(org-level-2 ((t (:font "Menlo"))))
- '(org-level-3 ((t (:font "Menlo"))))
- '(org-level-4 ((t (:font "Menlo"))))
- '(org-level-5 ((t (:font "Menlo"))))
- '(org-level-6 ((t (:font "Menlo")))))
+(use-package org
+  :mode ("\\.org\\'" . org-mode)
+  :config
+  (setq org-log-done t
+        org-adapt-indentation nil
+        org-fontify-whole-heading-line t
+        org-pretty-entities t
+        org-goto-interface 'outline
+        org-goto-max-level 10
+        org-imenu-depth 5
+        org-src-fontify-natively t
+        org-src-tab-acts-natively nil
+        org-src-window-setup 'current-window
+        org-src-strip-leading-and-trailing-blank-lines t
+        org-edit-src-content-indentation 0
+        org-startup-folded nil)
+
+  (add-hook 'org-mode-hook
+            (lambda ()
+              (variable-pitch-mode nil)
+              (toggle-truncate-lines)))
+
+  (set-face-attribute 'org-level-1 nil :font "Menlo" :weight 'bold)
+  (set-face-attribute 'org-level-2 nil :inherit 'org-level-1)
+  (set-face-attribute 'org-level-3 nil :inherit 'org-level-1)
+  (set-face-attribute 'org-level-4 nil :inherit 'org-level-1)
+  (set-face-attribute 'org-level-5 nil :inherit 'org-level-1)
+  (set-face-attribute 'org-level-6 nil :inherit 'org-level-1)
+  (set-face-attribute 'org-todo nil
+                      :background "#052028"
+                      :foreground "#c60007"))
 #+END_SRC
 
 *** Emacs Lisp Mode

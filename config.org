@@ -1710,49 +1710,32 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 *** Javascript Mode
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'js-mode-hook
-          (lambda ()
-            (setq js-indent-level 2)
-            (subword-mode t)
-            (aggressive-indent-mode)))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
 (use-package js2-mode
-  :ensure t
-  :pin melpa-stable
-  :defer t
   :mode ("\\.js$" "\\.json")
   :config
-  (progn
-    (setq js2-mode-show-parse-errors nil
-          js2-mode-show-strict-warnings nil
-          js2-mode-assume-strict t
-          inferior-js-program-command "node"
-          js2-basic-offset 2
-          js2-bounce-indent-p t)
-    (font-lock-add-keywords 'js2-mode
-                            '(("require([^)]*)" . font-lock-builtin-face)))
-    (set-face-attribute 'js2-function-param nil
-                        :foreground nil
-                        :inherit 'font-lock-constant-face)))
+  (setq js2-mode-show-parse-errors nil
+        js2-mode-show-strict-warnings nil
+        js2-mode-assume-strict t
+        inferior-js-program-command "node"
+        js2-basic-offset 2
+        js2-bounce-indent-p t)
 
+  ;; Highlight `require()' as a buildtin javascript keyword
+  (font-lock-add-keywords 'js2-mode
+                          '(("require([^)]*)" . font-lock-builtin-face)))
+
+  (set-face-attribute 'js2-function-param nil
+                      :foreground nil
+                      :inherit 'font-lock-constant-face))
 #+END_SRC
 
 Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
 #+BEGIN_SRC emacs-lisp
 (use-package rjsx-mode
+  :mode "\\.jsx\\'"
   :config
-  (progn
-    (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
-    (flycheck-add-mode 'javascript-flow 'rjsx-mode)))
-#+END_SRC
-
-In =js2-mode= prettify symbols changes ~=>~, ~<=~, and ~>=~ to =⇒=, =≥=, and =≤= and I don't like that
-
-#+BEGIN_SRC emacs-lisp
-(add-hook 'js2-mode-hook (lambda () (setq prettify-symbols-alist nil)))
+  (flycheck-add-mode 'javascript-eslint 'rjsx-mode))
 #+END_SRC
 
 *** Java Mode

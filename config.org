@@ -964,55 +964,39 @@ Time machine like interface for git
 
 #+BEGIN_SRC emacs-lisp
 (use-package company
-  :ensure t
   :pin melpa-stable
   :init
-  (progn
-    (global-company-mode)
-    (bind-keys :map company-active-map
-               ("C-w" . my/company-abort))
-    (push 'company-robe company-backends)
-    (add-to-list 'company-dabbrev-code-modes 'ruby-mode)
-    (setq company-global-modes '(not inf-ruby-mode eshell-mode)
-          company-idle-delay 0.3
-          company-minimum-prefix-length 3
-          company-dabbrev-downcase nil
-          company-backends '(company-robe
-                             company-bbdb
-                             company-nxml
-                             company-css
-                             company-eclim
-                             company-semantic
-                             company-clang
-                             company-xcode
-                             company-cmake
-                             company-capf
-                             (company-dabbrev-code company-keywords)
-                             company-oddmuse
-                             company-files
-                             company-dabbrev))))
+  (setq company-global-modes '(not inf-ruby-mode eshell-mode)
+        company-idle-delay 0.3
+        company-minimum-prefix-length 3
+        company-dabbrev-downcase nil)
+
+  (global-company-mode))
 #+END_SRC
 
+When Company suggestions is shown pressing =C-w= will be captured by Company and will not execute =backward-kill-word=.
 
 #+BEGIN_SRC emacs-lisp
 (defun my/company-abort ()
+  "Make company mode not steal C-w and instead pass it down"
   (interactive)
   (company-abort)
   (execute-kbd-macro (kbd "C-w")))
+
+(bind-keys :map company-active-map
+          ("C-w" . my/company-abort))
 #+END_SRC
 
-Company Appearance
+Add Flow integration with company-mode
 
 #+BEGIN_SRC emacs-lisp
-(custom-set-faces
- '(company-preview ((t (:foreground "wheat"))))
- '(company-preview-common ((t (:inherit company-preview :foreground "#465b62"))))
- '(company-scrollbar-bg ((t (:inherit company-tooltip :background "#092832"))))
- '(company-scrollbar-fg ((t (:background "#eae3cc"))))
- '(company-tooltip ((t (:background "#13394c" :foreground "#839496"))))
- '(company-tooltip-common ((t (:inherit company-tooltip :foreground "#821117"))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :foreground "#d11a24"))))
- '(company-tooltip-selection ((t (:inherit company-tooltip :background "#022028")))))
+(use-package company-flow
+  :functions company-flow
+  :config
+  (--each '(js2-mode-hook
+            rjsx-mode-hook)
+    (add-hook it
+              (lambda () (add-to-list 'company-backends 'company-flow)))))
 #+END_SRC
 
 *** Flycheck
@@ -1545,6 +1529,8 @@ expression, otherwise use regular `eval-last-sexp'"
     (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
                             '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
 
+    (add-to-list 'company-dabbrev-code-modes 'ruby-mode)
+
     (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
     (add-hook 'ruby-mode-hook #'subword-mode)
     (add-hook 'ruby-mode-hook
@@ -1833,15 +1819,6 @@ In =js2-mode= prettify symbols changes ~=>~, ~<=~, and ~>=~ to =⇒=, =≥=, and
 
 #+BEGIN_SRC emacs-lisp
 (add-hook 'js2-mode-hook (lambda () (setq prettify-symbols-alist nil)))
-#+END_SRC
-
-Add autocompletion based on [[https://flow.org/en/][flowtype]]
-
-#+BEGIN_SRC emacs-lisp
-(use-package company-flow
-  :config
-  (progn
-    (add-to-list 'company-backends 'company-flow)))
 #+END_SRC
 
 *** Java Mode

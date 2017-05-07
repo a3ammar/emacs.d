@@ -2056,6 +2056,13 @@ No one likes =s-u=
 (bind-key "C-x t r" 'revert-buffer)
 #+END_SRC
 
+*** ESUP - Emacs Start Up Profiler
+
+#+BEGIN_SRC emacs-lisp
+(use-package esup
+  :commands esup)
+#+END_SRC
+
 * Load my secrets
 
 These are stuff I dont' want to commit to a public repo

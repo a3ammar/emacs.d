@@ -1452,37 +1452,62 @@ General org-mode configuration
                       :foreground "#c60007"))
 #+END_SRC
 
+When I'm editing org documents, sometimes I like to narrow to an org-mode section and use Next Section and Previous Section to move between the sections. (taken from this [[https://www.reddit.com/r/emacs/comments/60nb8b/favorite_builtin_emacs_commands/df8b7vm/][reddit comment]])
+
+#+BEGIN_SRC emacs-lisp
+(defun my/org-next ()
+  (interactive)
+  (when (buffer-narrowed-p)
+    (beginning-of-buffer)
+    (widen)
+    (org-forward-heading-same-level 1))
+  (org-narrow-to-subtree))
+
+(defun my/org-previous ()
+  (interactive)
+  (when (buffer-narrowed-p)
+    (beginning-of-buffer)
+    (widen)
+    (org-backward-heading-same-level 1))
+  (org-narrow-to-subtree))
+
+(bind-keys :map org-mode-map
+           ("C-x t n" . my/org-next)
+           ("C-x t p" . my/org-previous))
+#+END_SRC
+
 *** Emacs Lisp Mode
 
 #+BEGIN_SRC emacs-lisp
-(bind-keys :map emacs-lisp-mode-map
-           ("M-." find-function-at-point)
-           ("C-x C-e" . eval-dwim))
-
-(add-hook 'emacs-lisp-mode-hook #'aggressive-indent-mode)
-(add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
-(add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
-
+(add-hook 'emacs-lisp-mode-hook
+          (lambda ()
+            (aggressive-indent-mode)
+            (turn-on-eldoc-mode)))
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
-(defun eval-dwim (args)
-  "If invoked with C-u then evaluate and replace the current
-expression, otherwise use regular `eval-last-sexp'"
-  (interactive "P")
-  (if args
-          (eval-and-replace)
-        (eval-last-sexp nil)))
+Sometimes I use elisp as a calculator, this evaluates the current s-expression and
+if =universal-argument= is supplied it replaces it s-expression with its result.
 
+#+BEGIN_SRC emacs-lisp
 (defun eval-and-replace ()
   "Replace the preceding sexp with its value."
   (interactive)
   (backward-kill-sexp)
   (condition-case nil
-          (prin1 (eval (read (current-kill 0)))
-                 (current-buffer))
-        (error (message "Invalid expression")
+      (prin1 (eval (read (current-kill 0)))
+             (current-buffer))
+    (error (message "Invalid expression")
            (insert (current-kill 0)))))
+
+(defun eval-dwim (args)
+  "If invoked with C-u then evaluate and replace the current expression, otherwise use regular `eval-last-sexp'"
+  (interactive "P")
+  (if args
+      (eval-and-replace)
+    (eval-last-sexp nil)))
+
+(bind-keys :map emacs-lisp-mode-map
+           ("C-x C-e" . eval-dwim))
 #+END_SRC
 
 *** Ruby Mode

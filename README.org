@@ -792,6 +792,7 @@ Projectile mode is one the best packages Emacs have, more information is in this
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
+  :pin melpa-stable
   :bind ("C-c C-p" . projectile-command-map)
   :init
   (projectile-global-mode)

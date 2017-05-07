@@ -1881,7 +1881,7 @@ Better comments, taken from [[http://www.opensubscriber.com/message/emacs-devel@
         (move-beginning-of-line 1)
         (forward-char column)))))
 
-(bind-keys ("C-x C-y" . my/duplicqate-line))
+(bind-keys ("C-x C-y" . my/duplicate-line))
 #+END_SRC
 
 *** Flip colon

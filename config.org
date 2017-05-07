@@ -1516,71 +1516,37 @@ if =universal-argument= is supplied it replaces it s-expression with its result.
 (use-package ruby-mode
   :mode "\\.rb\\'"
   :interpreter "ruby"
+  :bind (:map ruby-mode-map
+              ("<return>" . reindent-then-newline-and-indent))
   :config
-  (progn
-    (setq ruby-indent-level 2
-          ruby-insert-encoding-magic-comment nil)
-    (font-lock-add-keywords 'ruby-mode      ; Highlight && and || as builtin keywords
-                            '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
+  (setq ruby-indent-level 2
+        ruby-insert-encoding-magic-comment nil)
 
-    (add-to-list 'company-dabbrev-code-modes 'ruby-mode)
+  (add-to-list 'company-dabbrev-code-modes 'ruby-mode)
 
-    (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode)
-    (add-hook 'ruby-mode-hook #'subword-mode)
-    (add-hook 'ruby-mode-hook
-              (lambda ()
-                (local-set-key (kbd "RET") 'reindent-then-newline-and-indent)
-                (push '("lambda" . 955) prettify-symbols-alist)))
+  ;; Highlight `&&' and `||' as a builtin ruby keywords
+  (font-lock-add-keywords 'ruby-mode
+                          '(("\\(&&\\|||\\)" . font-lock-builtin-face)))
 
+  (use-package inf-ruby
+    :commands (ruby-send-block-and-go ruby-send-region-and-go)
+    :config
+    (setq inf-ruby-default-implementation "pry")
+    (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode))
 
-    (use-package inf-ruby
-      :ensure t
-      :pin melpa-stable
-      :defer t
-      :commands (inf-ruby-minor-mode ruby-send-block-and-go ruby-send-region-and-go)
-      :config
-      (progn
-        (setq inf-ruby-default-implementation "pry")
-        (add-hook 'inf-ruby-mode-hook
-                  (lambda ()
-                    (company-mode 0)))))
+  (use-package rake
+    :commands rake
+    :config
+    (setq rake-cache-file (concat my/history-dir "rake.cache")
+          rake-completion-system 'ivy-read))
 
-    (use-package robe
-      :ensure t
-      :pin melpa-stable
-      :defer t
-      :commands robe-mode)
+  (use-package bundler
+    :commands bundle-install)
 
-    (use-package rvm
-      :ensure t
-      :pin melpa-stable
-      :defer t
-      :init (rvm-use-default))
-
-    (use-package rake
-      :ensure t
-      :pin melpa-stable
-      :defer t
-      :config
-      (setq rake-cache-file (concat my/history-dir "rake.cache")
-            rake-completion-system 'ivy))
-
-    (use-package bundler
-      :ensure t
-      :pin melpa-stable
-      :defer t
-      :commands bundle-install
-      :config
-      (rvm-use-default))
-
-    (use-package rubocop
-      :ensure t
-      :pin melpa-stable
-      :defer t
-      :commands (rubocop-check-project rubocop-check-current-file)
-      :bind (("C-c r <" . my/rubocop-check-project)
-             ("C-c r , " . my/rubocop-check-current-file)))))
-
+  (use-package rubocop
+    :commands (rubocop-check-project rubocop-check-current-file)
+    :bind (("C-c r <" . my/rubocop-check-project)
+           ("C-c r , " . my/rubocop-check-current-file))))
 #+END_SRC
 
 

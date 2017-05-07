@@ -1458,15 +1458,16 @@ General org-mode configuration
               (buffer-face-mode -1)
               (toggle-truncate-lines)))
 
-  (set-face-attribute 'org-level-1 nil :font "Menlo" :weight 'bold)
-  (set-face-attribute 'org-level-2 nil :inherit 'org-level-1)
-  (set-face-attribute 'org-level-3 nil :inherit 'org-level-1)
-  (set-face-attribute 'org-level-4 nil :inherit 'org-level-1)
-  (set-face-attribute 'org-level-5 nil :inherit 'org-level-1)
-  (set-face-attribute 'org-level-6 nil :inherit 'org-level-1)
-  (set-face-attribute 'org-todo nil
-                      :background "#052028"
-                      :foreground "#c60007"))
+  (--each '(org-document-title
+            org-level-1
+            org-level-2
+            org-level-3
+            org-level-4
+            org-level-5
+            org-level-6
+            org-level-7
+            org-level-8)
+    (set-face-attribute it nil :font "Roboto" :height 180 :weight 'bold)))
 #+END_SRC
 
 When I'm editing org documents, sometimes I like to narrow to an org-mode section and use Next Section and Previous Section to move between the sections. (taken from this [[https://www.reddit.com/r/emacs/comments/60nb8b/favorite_builtin_emacs_commands/df8b7vm/][reddit comment]])

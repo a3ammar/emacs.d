@@ -680,6 +680,18 @@ Automatically transform symbols like lambda into the greek letter =λ=
   (add-hook it
             (lambda () (setq-local prettify-symbols-alist nil))))
 
+(add-hook 'org-mode-hook
+          (lambda ()
+            (--each '(("*"        . ?●)
+                      ("**"       . ?●)
+                      ("***"      . ?●)
+                      ("****"     . ?●)
+                      ("*****"    . ?●)
+                      ("******"   . ?●)
+                      ("*******"  . ?●)
+                      ("********" . ?●))
+              (add-to-list 'prettify-symbols-alist it))))
+
 (global-prettify-symbols-mode)
 #+END_SRC
 

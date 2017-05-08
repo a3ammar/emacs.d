@@ -630,7 +630,10 @@ Solarized is so good.
   :init
   (setq solarized-scale-org-headlines nil)
 
-  (load-theme 'solarized-dark))
+  (load-theme 'solarized-dark)
+
+  ;; Fix solarized region face by default has foreground set to black.
+  (set-face-attribute 'region nil :foreground nil))
 #+END_SRC
 
 *** Rainbow Delimiters

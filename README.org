@@ -1484,7 +1484,7 @@ General org-mode configuration
             org-level-6
             org-level-7
             org-level-8)
-    (set-face-attribute it nil :font "Roboto" :height 180 :weight 'bold)))
+    (set-face-attribute it nil :font "Raleway" :height 180 :weight 'bold)))
 #+END_SRC
 
 When I'm editing org documents, sometimes I like to narrow to an org-mode section and use Next Section and Previous Section to move between the sections. (taken from this [[https://www.reddit.com/r/emacs/comments/60nb8b/favorite_builtin_emacs_commands/df8b7vm/][reddit comment]])

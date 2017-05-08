@@ -1511,6 +1511,18 @@ When I'm editing org documents, sometimes I like to narrow to an org-mode sectio
            ("C-x t p" . my/org-previous))
 #+END_SRC
 
+Exit org source edit and save the buffer
+
+#+BEGIN_SRC emacs-lisp
+(defun my/org-edit-src-exit-and-save ()
+  (interactive)
+  (org-edit-src-exit)
+  (save-buffer))
+
+(bind-keys :map org-src-mode-map
+           ("C-x C-s" . my/org-edit-src-exit-and-save))
+#+END_SRC
+
 *** Emacs Lisp Mode
 
 #+BEGIN_SRC emacs-lisp

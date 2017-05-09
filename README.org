@@ -1434,11 +1434,10 @@ Configuration to modes that are associated with file extensions.
 (use-package text-mode
   :preface (provide 'text-mode)
   :ensure nil
-  :mode ("\\.txt" "\\.text\\'")
+  :mode ("\\.txt\\'" "\\.text\\'")
   :config
   (add-hook 'text-mode-hook
             (lambda ()
-              (turn-on-auto-fill)
               (turn-on-flyspell)
               (setq-local word-wrap t))))
 #+END_SRC

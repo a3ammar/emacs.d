@@ -1093,6 +1093,16 @@ Add Flow integration with flycheck
   (global-undo-tree-mode))
 #+END_SRC
 
+** Smex
+[[https://github.com/nonsequitur/smex][Smex]] sorts used commands by frequency. Ivy automatically uses it for sorting when it's present.
+
+#+BEGIN_SRC emacs-lisp
+(use-package smex
+  :config
+  (setq smex-history-length 10
+        smex-save-file (concat my/history-dir "smex-items")))
+#+END_SRC
+
 
 * Project Management & Navigation
 Modes and configuration specific to managing and navigating projects.

@@ -1266,10 +1266,7 @@ Add even more integration between Projectile and Ivy
 
   (use-package git-commit
     :config
-    (setq git-commit-setup-hook
-          (-replace 'git-commit-turn-on-auto-fill
-                    'git-commit-turn-on-flyspell
-                    git-commit-setup-hook))))
+    (add-to-list 'git-commit-setup-hook 'git-commit-turn-on-flyspell)))
 #+END_SRC
 
 Set the visibility of the =Unmerged into upstream= section to always be hidden, see [[http://emacs.stackexchange.com/questions/20754/change-the-default-visibility-of-a-magit-section/20767][this stackexchange question]].

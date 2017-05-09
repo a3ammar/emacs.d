@@ -149,20 +149,6 @@ This is important to set early on so Emacs initializes with the correct language
 (setenv "LANG" "en_US.UTF-8")
 #+END_SRC
 
-** TODO [DELETEME] Use Bash as the Default Shell
-I use Zsh as my default shell and Emacs doesn't like that.
-
-#+BEGIN_SRC emacs-lisp
-;; (setq shell-file-name "/bin/bash")
-#+END_SRC
-
-** TODO [DELETEME] Use Bash for Inferior Shells
-This will make Emacs commands like =shell= use bash instead of the default shell.
-
-#+BEGIN_SRC emacs-lisp
-;; (setq explicit-shell-file-name "/bin/bash")
-#+END_SRC
-
 ** Set the Scratch Buffer's Default Mode
 #+BEGIN_SRC emacs-lisp
 (setq initial-major-mode 'org-mode)

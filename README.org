@@ -1466,6 +1466,9 @@ General org-mode configuration
         org-edit-src-content-indentation 0
         org-startup-folded nil)
 
+  (add-to-list 'org-structure-template-alist
+               '("se" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+
   (add-hook 'org-mode-hook
             (lambda ()
               (toggle-truncate-lines)))

@@ -271,6 +271,13 @@ ask fro confirmation if you really want to kill the buffer. This will disable th
 (setq-default tab-width 2)
 #+END_SRC
 
+** Set the Default Fill Column
+For wrapping text with =M-q= and auto-fill-mode
+
+#+BEGIN_SRC emacs-lisp
+(setq-default fill-column 90)
+#+END_SRC
+
 ** Ensure Edited Files End with a New Line
 In UNIX, a healthy file always ends with a new line.
 

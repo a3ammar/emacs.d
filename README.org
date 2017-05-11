@@ -1040,17 +1040,13 @@ Focus help popup so we can exit it easily with popwin.
   (global-flycheck-mode))
 #+END_SRC
 
-Add Flow integration with flycheck
+Add flow integration to Flycheck javascript checker
 
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck-flow
   :config
-  (add-hook 'js2-mode-hook
-            (lambda ()
-              (let ((file (buffer-file-name (current-buffer))))
-                (when (--any? (s-ends-with? it file)
-                              '(".js" ".jsx")))
-                (flycheck-add-next-checker 'javascript-eslint 'javascript-flow)))))
+  (flycheck-add-mode 'javascript-flow 'rjsx-mode)
+  (flycheck-add-next-checker 'javascript-eslint 'javascript-flow))
 #+END_SRC
 
 ** Aggressive Indent

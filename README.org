@@ -1707,7 +1707,9 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 (use-package yaml-mode
   :mode "\\.yaml\\'"
   :bind (:map yaml-mode-map
-              ("<return>" . newline-and-indent)))
+              ("<return>" . newline-and-indent))
+  :config
+  (add-hook 'yaml-mode-hook #'turn-off-flyspell))
 #+END_SRC
 
 ** Lua Mode

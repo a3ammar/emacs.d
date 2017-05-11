@@ -1733,7 +1733,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 #+BEGIN_SRC emacs-lisp
 (use-package sh-mode
   :ensure nil
-  :mode ("\\.zsh\\'" "\\.gitignore\\'" "\\.envrc\\'")
+  :mode ("\\.zsh\\'" "\\.gitignore\\'" "\\.envrc\\'" "\\.flowconfig\\'")
   :interpreter "zsh"
   :init
   (setq-default sh-indentation 2

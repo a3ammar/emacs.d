@@ -1478,7 +1478,10 @@ General org-mode configuration
             org-level-5
             org-level-6
             org-level-7
-            org-level-8)
+            org-level-8
+            ;; Not part of org-mode but I'd like it to have the saem face as org-mode.
+            custom-group-tag
+            custom-variable-tag)
     (set-face-attribute it nil :font "Raleway" :height 180 :weight 'bold)))
 #+END_SRC
 

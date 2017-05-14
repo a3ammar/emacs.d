@@ -1202,7 +1202,9 @@ Add even more integration between Projectile and Ivy
 (use-package counsel-projectile
   :bind (:map counsel-projectile-map
               ("C-SPC" . counsel-projectile-drop-to-switch-project))
-  :init (counsel-projectile-on))
+  :init (counsel-projectile-on)
+  :config
+  (setq projectile-switch-project-action #'counsel-projectile-find-file))
 #+END_SRC
 
 ** Projectile Rails

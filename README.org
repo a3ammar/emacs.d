@@ -995,6 +995,7 @@ Add Flow integration with company-mode
             ("*HTTP Response*" :position bottom :height 30)
             "*Flycheck errors*"
             ("*Flycheck error messages*" :noselect t)
+            "*js*"
             ("\*ivy-occur.*" :regexp 't))
     (push it popwin:special-display-config)))
 #+END_SRC
@@ -1654,7 +1655,6 @@ For [[http://emacsblog.org/2007/07/21/package-faves-rcodetools/][more informatio
   (setq js2-mode-show-parse-errors nil
         js2-mode-show-strict-warnings nil
         js2-mode-assume-strict t
-        inferior-js-program-command "node"
         js2-basic-offset 2
         js2-bounce-indent-p t)
 
@@ -1664,7 +1664,9 @@ For [[http://emacsblog.org/2007/07/21/package-faves-rcodetools/][more informatio
 
   (set-face-attribute 'js2-function-param nil
                       :foreground nil
-                      :inherit 'font-lock-constant-face))
+                      :inherit 'font-lock-constant-face)
+
+  (use-package js-comint))
 #+END_SRC
 
 Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files

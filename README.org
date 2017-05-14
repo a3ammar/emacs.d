@@ -1285,6 +1285,16 @@ Set the visibility of the =Unmerged into upstream= section to always be hidden, 
 (add-hook 'magit-section-set-visibility-hook #'my/magit-initially-hide-unmerged)
 #+END_SRC
 
+** Dirnev — Load Project Specific Environment Variables
+Integrating Emacs with [[https://direnv.net/][direnv]] allows us to put project specific environment variables in =.envrc=
+
+#+BEGIN_SRC emacs-lisp
+(use-package direnv
+  :defer 1
+  :config (direnv-mode))
+#+END_SRC
+
+
 ** Git Time Machine
 [[https://github.com/pidu/git-timemachine][Git Time Machine]] allows you to step through your changes like a time machine.
 

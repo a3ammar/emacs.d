@@ -948,18 +948,6 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
           ("C-w" . my/company-abort))
 #+END_SRC
 
-Add Flow integration with company-mode
-
-#+BEGIN_SRC emacs-lisp
-(use-package company-flow
-  :functions company-flow
-  :config
-  (--each '(js2-mode-hook
-            rjsx-mode-hook)
-    (add-hook it
-              (lambda () (add-to-list 'company-backends 'company-flow)))))
-#+END_SRC
-
 ** Popwin
 [[https://github.com/m2ym/popwin-el][Popwin]] makes popup window awesome again, every popup window can be closed by =C-g=.
 

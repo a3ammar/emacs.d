@@ -1,29 +1,5 @@
 ;;; arabic.el --- Quail package for inputting Arabic	-*- coding: utf-8;-*-
 
-;; Copyright (C) 2007-2014 Free Software Foundation, Inc.
-
-;; Author: James Cloos <cloos@jhcloos.com>
-;; Keywords: mule, input method, Arabic
-
-;; This file is part of GNU Emacs.
-
-;; GNU Emacs is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; GNU Emacs is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
-
-;;; Commentary:
-
-;;; Code:
-
 (require 'quail)
 
 (quail-define-package
@@ -34,7 +10,7 @@ Based on Arabic table in X Keyboard Configuration DB.
 
 ;;  ذّ 1! 2@ 3# 4$ 5% 6^ 7& 8* 9) 0( -_ =+
 ;;      ضَ صً ثُ قٌ فﻹ غإ ع` ه÷ خ× ح؛ ج< د> <>
-;;       شِ سٍ ي] ب[ لﻷ اأ تـ ن، م/ ك: ط"
+;;       شِ سٍ ي] ب[ لﻷ اأ تـ ن، م; ك: '"
 ;;        ئ~ ءْ ؤ} ر{ ﻻﻵ ىآ ة' و, ز. ظ؟
 ;;
 
@@ -79,7 +55,8 @@ Based on Arabic table in X Keyboard Configuration DB.
  ("H" ?آ)
  ("J" ?ت)
  ("K" ?ن)
- ("L" ?م)
+ ("L" ?\;)
+ (":" ?:)
 
  ("Z" ?')
  ("X" ?ط)
@@ -115,7 +92,7 @@ Based on Arabic table in X Keyboard Configuration DB.
  ("k" ?ن)
  ("l" ?م)
  (";" ?ك)
- ("'" ?؛)
+ ("'" ?')
 
  ("z" ?ظ)
  ("x" ?ط)

@@ -307,6 +307,13 @@ Sentence end with only one space.
 (setq sentence-end-double-space nil)
 #+END_SRC
 
+** Replace selection on typing
+By default Emacs doesn't change the content of the selection when you type or yank something. This fixes that.
+
+#+BEGIN_SRC emacs-lisp
+(delete-selection-mode)
+#+END_SRC
+
 ** Use =y= And =n= for Confirmation
 No one likes to type a full =yes=, =y= is enough as a confirmation.
 

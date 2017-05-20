@@ -1699,7 +1699,10 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   :ensure nil
   :mode "\\'.css\\'"
   :config
-  (setq css-indent-offset 2))
+  (setq css-indent-offset 2)
+
+  (add-hook 'css-mode-hook
+            (lambda () (subword-mode -1))))
 #+END_SRC
 
 ** YAML Mode

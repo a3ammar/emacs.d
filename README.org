@@ -880,6 +880,10 @@ the closing pair.
   (sp-pair "[" nil :post-handlers '(("| " "SPC")))
   (sp-pair "{" nil :post-handlers '(("| " "SPC")))
 
+  (add-hook 'ruby-mode-hook
+            (lambda ()
+              (sp-local-pair 'ruby-mode "{" nil :post-handlers '(("| " "SPC")))))
+
   (add-hook 'nxml-mode-hook
             (lambda ()
               (sp-local-pair 'nxml-mode "<" ">" :actions :rem)))

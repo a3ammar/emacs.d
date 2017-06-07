@@ -1763,7 +1763,9 @@ I use [[https://github.com/sorin-ionescu/prezto][prezto]] and I want to associat
 
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'magic-fallback-mode-alist
-             '((lambda () (s-match ".*prezto.*" (buffer-file-name))) . sh-mode))
+             '((lambda () (and (buffer-file-name)
+                          (s-match ".*prezto.*" (buffer-file-name))))
+               . sh-mode))
 #+END_SRC
 
 ** HAML Mode

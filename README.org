@@ -804,6 +804,10 @@ Automatically transform symbols like lambda into the greek letter =λ=
   (add-hook it
             (lambda () (setq-local prettify-symbols-alist nil))))
 
+(--each '(python-mode-hook)
+  (add-hook it
+            (lambda () (setq-local prettify-symbols-alist '(("lambda" . ?λ))))))
+
 (add-hook 'org-mode-hook
           (lambda ()
             (--each '(("*"        . ?●)

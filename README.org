@@ -1693,6 +1693,13 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   (flycheck-add-mode 'javascript-eslint 'rjsx-mode))
 #+END_SRC
 
+** Python Mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package python
+  :bind (("RET" . newline-and-indent)))
+#+END_SRC
+
 ** Web Mode
 
 #+BEGIN_SRC emacs-lisp

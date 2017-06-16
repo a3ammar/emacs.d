@@ -1117,6 +1117,7 @@ Modes and configuration specific to managing and navigating projects.
         ivy-height 15
         ivy-extra-directories nil
         ivy-initial-inputs-alist nil
+        ivy-magic-tilde nil
         ivy-re-builders-alist '((t . ivy--regex-ignore-order))
         ivy-switch-buffer-faces-alist '((dired-mode . ivy-subdir)
                                         (org-mode . org-macro)))

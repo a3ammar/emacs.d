@@ -1755,9 +1755,14 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 (use-package markdown-mode
   :mode ("\\.md\\'" "\\.markdown\\'")
   :config
+  (setq markdown-fontify-code-blocks-natively t)
   (set-face-attribute 'markdown-bold-face nil
                       :weight 'bold
-                      :inherit 'font-lock-builtin-face))
+                      :inherit 'font-lock-builtin-face)
+  (set-face-attribute 'markdown-header-face nil
+                      :font "Raleway"
+                      :height 180
+                      :weight 'bold))
 #+END_SRC
 
 ** Shell Conf Mode

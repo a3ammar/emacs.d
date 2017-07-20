@@ -1439,6 +1439,15 @@ Configuration to modes that are run by a keybinding or from =M-x=.
   :commands esup)
 #+END_SRC
 
+** Shrink Whitespace
+[[https://github.com/jcpetkovich/shrink-whitespace.el][It's a better]] replacement for the =just-one-space= command
+
+#+BEGIN_SRC emacs-lisp
+(use-package shrink-whitespace
+  :commands shrink-whitespace
+  :bind ("M-\\" . shrink-whitespace))
+#+END_SRC
+
 
 * Associative Modes
 Configuration to modes that are associated with file extensions.
@@ -1983,19 +1992,6 @@ h1 {
       (indent-region start (line-end-position)))))
 
 (bind-key "C-x t [" 'my/toggle-brace)
-#+END_SRC
-
-** Just One Space to Just No Space
-I use =just-one-space= all the time to forward delete all spaces, but almost always
-what I want is delete all spaces to =point=
-
-#+BEGIN_SRC emacs-lisp
-(defun just-no-space ()
-  (interactive)
-  (re-search-forward "[ \t]+" nil t)
-  (replace-match "" nil nil))
-
-(bind-keys ("M-\\" . just-no-space))
 #+END_SRC
 
 ** Yank and Remove From History

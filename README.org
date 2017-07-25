@@ -245,13 +245,6 @@ Prevent Emacs from appending Easy Customization to our configuration file.
 (load custom-file 'noerror)
 #+END_SRC
 
-** Load Private Information
-This file contains private information, like API keys, that I want to keep out of this repo.
-
-#+BEGIN_SRC emacs-lisp
-(load "~/.emacs.secrets" t)
-#+END_SRC
-
 ** Prevent Confirmation Prompt When Killing Process Buffers
 When you kill a buffer that has a process attached to it, a repl for example, Emacs will
 ask fro confirmation if you really want to kill the buffer. This will disable that.
@@ -2087,4 +2080,12 @@ Sometimes when editing I like to insert a space after the point without moving i
   (save-excursion (insert " ")))
 
 (bind-keys ("S-SPC" . my/insert-space-after-point))
+#+END_SRC
+
+
+* Load Private Information
+This file contains private information, like API keys, that I want to keep out of this repo.
+
+#+BEGIN_SRC emacs-lisp
+(load "~/.emacs.secrets" t)
 #+END_SRC

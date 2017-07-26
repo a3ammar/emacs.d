@@ -1730,6 +1730,11 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
         web-mode-script-padding 0
         web-mode-style-padding 0)
 
+  (setq-default web-mode-comment-formats
+                '(("java" . "/*")
+                  ("javascript" . "//")
+                  ("php" . "/*")))
+
   (add-hook 'web-mode-hook #'aggressive-indent-mode))
 #+END_SRC
 

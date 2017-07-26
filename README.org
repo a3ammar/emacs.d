@@ -2124,8 +2124,8 @@ The =my/counsel-projectile-switch-to-buffer= is exactly the same as the original
   (if (and (null prefix)
            (projectile-project-p)
            (> (length (projectile-project-buffers)) 1))
-      (call-interactively (my/counsel-projectile-switch-to-buffer))
-    (call-interactively (ivy-switch-buffer))))
+      (call-interactively 'my/counsel-projectile-switch-to-buffer)
+    (call-interactively 'ivy-switch-buffer)))
 
 (bind-keys ("C-x b" . my/switch-buffer-dwim)
            ("C-x C-b" . my/switch-buffer-dwim))

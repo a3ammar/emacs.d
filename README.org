@@ -1101,7 +1101,6 @@ Modes and configuration specific to managing and navigating projects.
 #+BEGIN_SRC emacs-lisp
 (use-package ivy
   :bind (("C-s" . swiper)
-         ("C-x C-b" . ivy-switch-buffer)
          ("C-x c b" . ivy-resume)
          :map ivy-minibuffer-map
          ("<return>" . ivy-alt-done))
@@ -2099,6 +2098,22 @@ Sometimes when editing I like to insert a space after the point without moving i
   (save-excursion (insert " ")))
 
 (bind-keys ("S-SPC" . my/insert-space-after-point))
+#+END_SRC
+
+** Switch Buffer — Do What I Mean
+If we are inside a project and have multiple buffers open then use =projectile-switch-buffer= otherwise fallback to the normal =switch-buffer=
+
+#+BEGIN_SRC emacs-lisp
+(defun my/switch-buffer-dwim (&optional prefix)
+  (interactive "P")
+  (if (and (null prefix)
+           (projectile-project-p)
+           (> (length (projectile-project-buffers)) 1))
+      (call-interactively (counsel-projectile-switch-to-buffer))
+    (call-interactively (ivy-switch-buffer))))
+
+(bind-keys ("C-x b" . my/switch-buffer-dwim)
+           ("C-x C-b" . my/switch-buffer-dwim))
 #+END_SRC
 
 

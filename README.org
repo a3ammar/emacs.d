@@ -859,7 +859,7 @@ the closing pair.
   :pin melpa-stable
   :bind (:map sp-keymap
               ("M-<backspace>" . sp-unwrap-sexp)
-              ("M-." . sp-forward-slurp-sexp)
+              ("M-." . sp-slurp-hybrid-sexp)
               ("M-," . sp-forward-barf-sexp)
               ("C-M-." . sp-backward-slurp-sexp)
               ("C-M-," . sp-backward-barf-sexp))

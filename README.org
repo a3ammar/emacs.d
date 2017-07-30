@@ -709,6 +709,7 @@ Add a one pixel padding to the edges of Emacs window.
         sml/shorten-directory t
         sml/show-file-name t
         sml/theme 'respectful
+        sml/use-projectile-p 'before-prefixes
         rm-whitelist " FlyC*"
         rm-blacklist " Fly\\'")
 

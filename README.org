@@ -1298,7 +1298,7 @@ Integrating Emacs with [[https://direnv.net/][direnv]] allows us to put project 
 
 #+BEGIN_SRC emacs-lisp
 (use-package git-timemachine
-  :commands git-timemachien)
+  :commands git-timemachine)
 #+END_SRC
 
 ** Clone Github Projects From Emacs

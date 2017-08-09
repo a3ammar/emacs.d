@@ -775,7 +775,7 @@ it to change all the delimiters colors to one.
             rainbow-delimiters-depth-7-face
             rainbow-delimiters-depth-8-face
             rainbow-delimiters-depth-9-face)
-    (set-face-attribute it nil :foreground "#A52E66"))
+    (set-face-attribute it nil :foreground "#c43062"))
 
   (set-face-attribute 'rainbow-delimiters-unmatched-face nil
                       :foreground "#A52E66"

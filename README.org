@@ -1688,7 +1688,8 @@ For [[http://emacsblog.org/2007/07/21/package-faves-rcodetools/][more informatio
         js2-mode-show-strict-warnings nil
         js2-mode-assume-strict t
         js2-basic-offset 2
-        js2-bounce-indent-p t)
+        js2-bounce-indent-p t
+        js-switch-indent-offset 2)
 
   ;; Highlight `require()' as a buildtin javascript keyword
   (font-lock-add-keywords 'js2-mode

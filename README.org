@@ -1401,6 +1401,7 @@ Configuration to modes that are run by a keybinding or from =M-x=.
 
 #+BEGIN_SRC emacs-lisp
 (use-package restclient
+  :mode ("\\.restclient" . restclient-mode)
   :commands restclient-mode)
 #+END_SRC
 

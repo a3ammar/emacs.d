@@ -1144,7 +1144,7 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
          ("C-l" . ivy-backward-delete-char))
   :config
   (setq counsel-yank-pop-separator "\n\n"
-        counsel-find-file-ignore-regexp "\\`\\.")
+        counsel-find-file-ignore-regexp "\\(\\`\\.\\|.*\\.pyc\\'\\)")
 
   (defalias 'cpkg 'counsel-package)
 

@@ -1112,7 +1112,8 @@ Modes and configuration specific to managing and navigating projects.
         ivy-initial-inputs-alist nil
         ivy-magic-tilde nil
         ivy-switch-buffer-faces-alist '((dired-mode . ivy-subdir)
-                                        (org-mode . org-macro)))
+                                        (org-mode . org-macro))
+        ivy-ignore-buffers '("\\*HTTP Response\\*" "\\*magit.*"))
 
   (set-face-attribute 'ivy-current-match nil
                       :background "#0D4553")

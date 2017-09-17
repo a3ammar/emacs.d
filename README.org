@@ -2122,7 +2122,7 @@ The =my/counsel-projectile-switch-to-buffer= is exactly the same as the original
             :preselect (buffer-name (other-buffer (current-buffer)))
             :require-match t
             :keymap counsel-projectile-map
-            :action #'counsel-projectile-action-switch-buffer
+            :action #'counsel-projectile-switch-to-buffer-action
             :caller 'counsel-projectile-switch-to-buffer))
 
 (defun my/switch-buffer-dwim (&optional prefix)

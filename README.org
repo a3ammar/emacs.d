@@ -1326,6 +1326,8 @@ Configuration to modes that are run by a keybinding or from =M-x=.
          ("M-}" . mc/unmark-next-like-this)
          ("M-{" . mc/unmark-previous-like-this))
   :config
+  (unbind-key "<return>" mc/keymap)
+
   (setq mc/list-file (concat my/history-dir "mc-lists.el"))
 
   (set-face-attribute 'mc/cursor-bar-face nil

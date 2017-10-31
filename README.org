@@ -1792,7 +1792,9 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   (set-face-attribute 'markdown-header-face nil
                       :font "Raleway"
                       :height 180
-                      :weight 'bold))
+                      :weight 'bold)
+  (set-face-attribute 'markdown-pre-face nil
+                      :inherit 'default))
 #+END_SRC
 
 ** Shell Conf Mode

@@ -364,9 +364,15 @@ Tramp allows Emacs to edit files over SSH.
 
 ** Eshell
 #+BEGIN_SRC emacs-lisp
-(setq eshell-history-file-name (concat my/history-dir "eshell/history")
-      eshell-glob-case-insensitive t
-      eshell-cmpl-ignore-case t)
+(use-package eshell
+  :config
+  (setq eshell-history-file-name (concat my/history-dir "eshell/history")
+        eshell-scroll-to-bottom-on-input 'all
+        eshell-error-if-no-glob t
+        eshell-hist-ignoredups t
+        eshell-save-history-on-exit t
+        eshell-glob-case-insensitive t
+        eshell-cmpl-ignore-case t))
 #+END_SRC
 
 ** Ediff
@@ -934,8 +940,7 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
 
 #+BEGIN_SRC emacs-lisp
 (use-package company
-  :pin melpa-stable
-  :init
+  :config
   (setq company-global-modes '(not inf-ruby-mode eshell-mode)
         company-idle-delay 0.3
         company-minimum-prefix-length 3

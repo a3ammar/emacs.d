@@ -946,7 +946,15 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
         company-minimum-prefix-length 3
         company-dabbrev-downcase nil)
 
-  (global-company-mode))
+  (global-company-mode)
+
+  (use-package company-web
+    :config
+    (add-to-list 'company-backends 'company-web-html))
+
+  (use-package company-restclient
+    :config
+    (add-to-list 'company-backends 'company-restclient)))
 #+END_SRC
 
 When Company suggestions is shown pressing =C-w= will be captured by Company and will not execute =backward-kill-word=.

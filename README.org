@@ -1764,7 +1764,8 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
                   ("javascript" . "//")
                   ("php" . "/*")))
 
-  (add-hook 'web-mode-hook #'aggressive-indent-mode))
+  (add-hook 'web-mode-hook #'aggressive-indent-mode)
+  (add-hook 'web-mode-hook #'whitespace-mode))
 #+END_SRC
 
 ** CSS Mode

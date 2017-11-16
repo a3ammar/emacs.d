@@ -1298,6 +1298,14 @@ Integrating Emacs with [[https://direnv.net/][direnv]] allows us to put project 
   :config (direnv-mode))
 #+END_SRC
 
+** Ranger - A Better Dired
+[[https://github.com/ralesi/ranger.el][Ranger]] brings Vim's ranger to Dired
+
+#+BEGIN_SRC emacs-lisp
+(use-package ranger
+  :config
+  (setq ranger-show-literal nil))
+#+END_SRC
 
 ** Git Time Machine
 [[https://github.com/pidu/git-timemachine][Git Time Machine]] allows you to step through your changes like a time machine.

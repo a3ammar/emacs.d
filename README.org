@@ -970,6 +970,15 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
           ("C-w" . my/company-abort))
 #+END_SRC
 
+** Ace Window
+[[https://github.com/abo-abo/ace-window][ace-window]] is a replacment for the =other-window= command
+
+#+BEGIN_SRC emacs-lisp
+(use-package ace-window
+  :bind (("C-x C-o" . ace-window)
+         ("C-x o" . ace-window)))
+#+END_SRC
+
 ** Popwin
 [[https://github.com/m2ym/popwin-el][Popwin]] makes popup window awesome again, every popup window can be closed by =C-g=.
 

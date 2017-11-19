@@ -486,6 +486,17 @@ I want =C-c C-c= to end the editing session.
             (local-set-key (kbd "C-c C-c") 'server-edit)))
 #+END_SRC
 
+** View Mode
+The built in view-mode is useful when you just want to read a file. This ease the file navigation
+
+#+BEGIN_SRC emacs-lisp
+(use-package view-mode
+  :ensure nil
+  :bind (:map view-mode-map
+              ("n" . next-line)
+              ("p" . previous-line)))
+#+END_SRC
+
 ** Change Emacs Keybinding
 *** Unbinding
 Unbind these keys because they are used for something else.

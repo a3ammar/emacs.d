@@ -495,7 +495,8 @@ The built in view-mode is useful when you just want to read a file. This ease th
   :bind (("C-x C-q" . view-mode)
          :map view-mode-map
          ("n" . next-line)
-         ("p" . previous-line)))
+         ("p" . previous-line)
+         ("/" . swiper)))
 #+END_SRC
 
 ** Change Emacs Keybinding

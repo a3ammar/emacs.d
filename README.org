@@ -492,9 +492,10 @@ The built in view-mode is useful when you just want to read a file. This ease th
 #+BEGIN_SRC emacs-lisp
 (use-package view-mode
   :ensure nil
-  :bind (:map view-mode-map
-              ("n" . next-line)
-              ("p" . previous-line)))
+  :bind (("C-x C-q" . view-mode)
+         :map view-mode-map
+         ("n" . next-line)
+         ("p" . previous-line)))
 #+END_SRC
 
 ** Change Emacs Keybinding

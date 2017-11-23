@@ -1729,7 +1729,7 @@ For [[http://emacsblog.org/2007/07/21/package-faves-rcodetools/][more informatio
 
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
-  :mode ("\\.js$" "\\.json")
+  :mode ("\\.js$")
   :config
   (setq js2-mode-show-parse-errors nil
         js2-mode-show-strict-warnings nil
@@ -1747,6 +1747,14 @@ For [[http://emacsblog.org/2007/07/21/package-faves-rcodetools/][more informatio
                       :inherit 'font-lock-constant-face)
 
   (use-package js-comint))
+#+END_SRC
+
+Use regular =js-mode= for JSON files
+
+#+BEGIN_SRC emacs-lisp
+(use-package js-mode
+  :ensure nil
+  :mode ("\\.json$"))
 #+END_SRC
 
 Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files

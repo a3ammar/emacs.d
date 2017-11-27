@@ -1811,6 +1811,12 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
             (lambda () (subword-mode -1))))
 #+END_SRC
 
+** Scala Mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package scala-mode)
+#+END_SRC
+
 ** YAML Mode
 
 #+BEGIN_SRC emacs-lisp

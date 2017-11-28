@@ -1754,7 +1754,9 @@ Use regular =js-mode= for JSON files
 #+BEGIN_SRC emacs-lisp
 (use-package js-mode
   :ensure nil
-  :mode ("\\.json$"))
+  :mode ("\\.json$")
+  :config
+  (setq js-indent-level 2))
 #+END_SRC
 
 Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files

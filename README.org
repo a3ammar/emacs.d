@@ -1796,6 +1796,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
         web-mode-code-indent-offset 2
         web-mode-auto-close-style 2
         web-mode-enable-auto-pairing nil
+        web-mode-enable-auto-indentation nil
         web-mode-script-padding 0
         web-mode-style-padding 0)
 
@@ -1805,6 +1806,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
                   ("php" . "/*")))
 
   (add-hook 'web-mode-hook #'aggressive-indent-mode)
+  (add-hook 'web-mode-hook (lambda () (electric-indent-mode -1)))
   (add-hook 'web-mode-hook #'whitespace-mode))
 #+END_SRC
 

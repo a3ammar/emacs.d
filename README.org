@@ -1341,7 +1341,8 @@ Integrating Emacs with [[https://direnv.net/][direnv]] allows us to put project 
 #+BEGIN_SRC emacs-lisp
 (use-package ranger
   :config
-  (setq ranger-show-literal nil))
+  (setq ranger-show-literal nil
+        ranger-override-dired 't))
 #+END_SRC
 
 ** Git Time Machine

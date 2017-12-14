@@ -521,7 +521,8 @@ These are my personal preference to the default Emacs keybindings.
            ("C-x t l" . toggle-truncate-lines)
            ("C-<tab>" . indent-for-tab-command)
            ("C-x s" . save-buffer)
-           ("C-h a" . apropos))
+           ("C-h a" . apropos)
+           ("C-x C-<tab>" . indent-rigidly))
 #+END_SRC
 
 *** Window Movement

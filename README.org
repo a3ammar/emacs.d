@@ -492,13 +492,16 @@ The built in view-mode is useful when you just want to read a file. This ease th
 #+BEGIN_SRC emacs-lisp
 (use-package view-mode
   :ensure nil
-  :bind (("C-x C-q" . view-mode)
-         :map view-mode-map
-         ("n" . next-line)
-         ("j" . next-line)
-         ("p" . previous-line)
-         ("k" . previous-line)
-         ("/" . swiper)))
+  :bind ("C-x C-q" . view-mode)
+  :init
+  (add-hook 'view-mode-hook
+            (lambda ()
+              (bind-keys :map view-mode-map
+                         ("n" . next-line)
+                         ("j" . next-line)
+                         ("p" . previous-line)
+                         ("k" . previous-line)
+                         ("/" . swiper)))))
 #+END_SRC
 
 ** Change Emacs Keybinding

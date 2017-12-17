@@ -1766,7 +1766,7 @@ Use regular =js-mode= for JSON files
 (use-package js-mode
   :ensure nil
   :mode ("\\.json$")
-  :config
+  :init
   (setq js-indent-level 2))
 #+END_SRC
 

@@ -1783,7 +1783,9 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
 #+BEGIN_SRC emacs-lisp
 (use-package python
-  :bind (("RET" . newline-and-indent))
+  :bind (("RET" . newline-and-indent)
+         ("M-n" . python-nav-forward-block)
+         ("M-p" . python-nav-backward-block))
   :config
   (unbind-key "C-c C-p" python-mode-map))
 #+END_SRC

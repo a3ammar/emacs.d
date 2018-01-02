@@ -497,10 +497,10 @@ The built in view-mode is useful when you just want to read a file. This ease th
   (add-hook 'view-mode-hook
             (lambda ()
               (bind-keys :map view-mode-map
-                         ("n" . next-line)
-                         ("j" . next-line)
-                         ("p" . previous-line)
-                         ("k" . previous-line)
+                         ("n" . scroll-up-line)
+                         ("j" . scroll-up-line)
+                         ("p" . scroll-down-line)
+                         ("k" . scroll-down-line)
                          ("/" . swiper)))))
 #+END_SRC
 

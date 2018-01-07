@@ -1343,6 +1343,8 @@ Integrating Emacs with [[https://direnv.net/][direnv]] allows us to put project 
 (use-package ranger
   :config
   (setq ranger-show-literal nil
+        ranger-hide-cursor nil
+        ranger-preview-file nil
         ranger-override-dired 't))
 #+END_SRC
 

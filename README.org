@@ -1244,11 +1244,10 @@ Add even more integration between Projectile and Ivy
 
 #+BEGIN_SRC emacs-lisp
 (use-package counsel-projectile
-  :bind (:map counsel-projectile-map
-              ("C-SPC" . counsel-projectile-drop-to-switch-project))
-  :init (counsel-projectile-on)
   :config
-  (setq projectile-switch-project-action #'counsel-projectile-find-file))
+  (setq projectile-switch-project-action #'counsel-projectile-find-file)
+
+  (counsel-projectile-mode))
 #+END_SRC
 
 ** Projectile Rails
@@ -2196,11 +2195,10 @@ The =my/counsel-projectile-switch-to-buffer= is exactly the same as the original
   "Switch to a project buffer."
   (interactive)
   (ivy-read (projectile-prepend-project-name "Switch to buffer: ")
-            (counsel-projectile--buffer-list)
+            (counsel-projectile--project-buffers)
             :matcher #'ivy--switch-buffer-matcher
             :preselect (buffer-name (other-buffer (current-buffer)))
             :require-match t
-            :keymap counsel-projectile-map
             :action #'counsel-projectile-switch-to-buffer-action
             :caller 'counsel-projectile-switch-to-buffer))
 

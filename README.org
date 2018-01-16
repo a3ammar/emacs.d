@@ -1784,7 +1784,8 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 #+BEGIN_SRC emacs-lisp
 (use-package json-mode
   :config
-  (setq json-reformat:indent-width 2))
+  (setq json-reformat:indent-width 2)
+  (unbind-key "C-c C-p" json-mode-map))
 #+END_SRC
 
 ** Python Mode

@@ -1416,7 +1416,8 @@ Configuration to modes that are run by a keybinding or from =M-x=.
   :commands avy-goto-char-timer
   :bind ("C-r" . avy-goto-char-timer)
   :config
-  (setq avy-style 'at)
+  ;; Displays the full of the match `af' instead of `a' then `f'.
+  (setq avy-style 'de-bruijn)
 
   (avy-setup-default))
 #+END_SRC

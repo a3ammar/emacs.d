@@ -1202,11 +1202,14 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
           (funcall command source target 1)))
      command prompt))
 
+  (defun my/kill-buffer-and-trash-file (file)
+    (and (kill-buffer (get-file-buffer file))
+         (move-file-to-trash file)))
 
   (ivy-add-actions
    'counsel-find-file
    `(("c" ,(given-file #'copy-file "Copy") "cp")
-     ("d" move-file-to-trash "rm")
+     ("d" my/kill-buffer-and-trash-file "rm")
      ("m" ,(given-file #'rename-file "Move") "mv"))))
 #+END_SRC
 

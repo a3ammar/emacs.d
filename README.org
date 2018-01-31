@@ -1116,6 +1116,12 @@ Add flow integration to Flycheck javascript checker
   (yas-global-mode))
 #+END_SRC
 
+Use the [[https://github.com/AndreaCrotti/yasnippet-snippets][Yasnippet official snippet collections]]
+
+#+BEGIN_SRC emacs-lisp
+(use-package yasnippet-snippets)
+#+END_SRC
+
 ** Undo Tree
 [[http://www.dr-qubit.org/Emacs_Undo_Tree_package.html][Undo Tree]] is a better undo/redo alternative.
 

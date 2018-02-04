@@ -1737,13 +1737,13 @@ For [[http://emacsblog.org/2007/07/21/package-faves-rcodetools/][more informatio
   :commands xmp
   :bind (:map ruby-mode-map ("C-c C-c" . xmp)))
 
-(defadvice my/comment-dwim (around rct-hack activate)
-  "If comment-dwim is successively called, add => mark."
-  (if (and (eq major-mode 'ruby-mode)
-           (eq last-command 'my/comment-dwim))
-      (progn (insert "=>")
-             (xmp))
-    ad-do-it))
+;; (defadvice my/comment-dwim (around rct-hack activate)
+;;   "If comment-dwim is successively called, add => mark."
+;;   (if (and (eq major-mode 'ruby-mode)
+;;            (eq last-command 'my/comment-dwim))
+;;       (progn (insert "=>")
+;;              (xmp))
+;;     ad-do-it))
 #+END_SRC
 
 ** Javascript Mode

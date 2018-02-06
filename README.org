@@ -1812,7 +1812,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
-  :mode ("\\.html$" "\\.xml$" "\\.erb$" "\\.vue$" "\\.svg$")
+  :mode ("\\.html$" "\\.xml$" "\\.erb$" "\\.vue$" "\\.svg$" "\\.ts$")
   :config
   (setq web-mode-css-indent-offset 2
         web-mode-markup-indent-offset 2

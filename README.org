@@ -2196,11 +2196,13 @@ Useful for quick calculations, based on this reddit [[https://www.reddit.com/r/e
 I use =open-line= a lot and most of the time I have to manually indent the new line, lets fix this:
 
 #+BEGIN_SRC emacs-lisp
-(defun my/open-line (args)
+(defun my/open-line (prefix)
   "Indent the new line after `open-line'"
-  (interactive "p")
+  (interactive "P")
   (save-excursion
-    (newline-and-indent))
+    (if prefix
+        (newline)
+      (newline-and-indent)))
   (indent-according-to-mode))
 
 (bind-key "C-o" 'my/open-line)

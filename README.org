@@ -1775,10 +1775,7 @@ For [[http://emacsblog.org/2007/07/21/package-faves-rcodetools/][more informatio
 Set the built-in js-mode's indentation
 
 #+BEGIN_SRC emacs-lisp
-(use-package js-mode
-  :ensure nil
-  :init
-  (setq js-indent-level 2))
+(setq js-indent-level 2)
 #+END_SRC
 
 Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files

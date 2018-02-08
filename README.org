@@ -365,6 +365,7 @@ Tramp allows Emacs to edit files over SSH.
 ** Eshell
 #+BEGIN_SRC emacs-lisp
 (use-package eshell
+  :commands eshell
   :config
   (setq eshell-history-file-name (concat my/history-dir "eshell/history")
         eshell-scroll-to-bottom-on-input 'all
@@ -1110,7 +1111,7 @@ Add flow integration to Flycheck javascript checker
 
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
-  :defer 1
+  :defer t
   :config
   (add-hook 'snippet-mode-hook (lambda () (variable-pitch-mode nil)))
   (yas-global-mode))
@@ -1119,7 +1120,8 @@ Add flow integration to Flycheck javascript checker
 Use the [[https://github.com/AndreaCrotti/yasnippet-snippets][Yasnippet official snippet collections]]
 
 #+BEGIN_SRC emacs-lisp
-(use-package yasnippet-snippets)
+(use-package yasnippet-snippets
+  :defer t)
 #+END_SRC
 
 ** Undo Tree
@@ -1792,6 +1794,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
 #+BEGIN_SRC emacs-lisp
 (use-package json-mode
+  :mode "\\.json$"
   :config
   (setq json-reformat:indent-width 2)
   (unbind-key "C-c C-p" json-mode-map))
@@ -1849,7 +1852,8 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 ** Scala Mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package scala-mode)
+(use-package scala-mode
+  :mode "\\.scala$")
 #+END_SRC
 
 ** YAML Mode
@@ -1995,13 +1999,15 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 ** GraphQL Mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package graphql-mode)
+(use-package graphql-mode
+  :mode "\\.\\(graphql\\|gql\\)$")
 #+END_SRC
 
 ** Dockerfile Mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package dockerfile-mode)
+(use-package dockerfile-mode
+  :mode "Dockerfile")
 #+END_SRC
 
 

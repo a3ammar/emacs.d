@@ -995,7 +995,9 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
 #+BEGIN_SRC emacs-lisp
 (use-package ace-window
   :bind (("C-x C-o" . ace-window)
-         ("C-x o" . ace-window)))
+         ("C-x o" . ace-window))
+  :config
+  (setq aw-keys '(?l ?k ?j ?h ?a ?s ?d ?f ?g)))
 #+END_SRC
 
 ** Popwin

@@ -1239,7 +1239,7 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
 (use-package projectile
   :pin melpa-stable
   :bind ("C-c C-p" . projectile-command-map)
-  :init
+  :config
   (projectile-global-mode)
 
   (setq projectile-enable-caching t

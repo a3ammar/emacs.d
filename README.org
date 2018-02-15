@@ -116,6 +116,7 @@ and press =C-h v=.
       delete-by-moving-to-trash t
       shift-select-mode nil
       comment-style 'multi-line
+      comment-column 0
       uniquify-buffer-name-style 'forward
       truncate-partial-width-windows nil
       large-file-warning-threshold nil

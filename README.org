@@ -1006,7 +1006,9 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
   :bind (("C-x C-o" . ace-window)
          ("C-x o" . ace-window))
   :config
-  (setq aw-keys '(?l ?k ?j ?h ?a ?s ?d ?f ?g)))
+  (setq aw-keys '(?l ?k ?j ?h ?a ?s ?d ?f ?g))
+
+  (set-face-attribute 'aw-leading-char-face nil :height 180))
 #+END_SRC
 
 ** Popwin

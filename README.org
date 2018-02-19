@@ -1536,6 +1536,14 @@ Configuration to modes that are run by a keybinding or from =M-x=.
                       :inherit font-lock-preprocessor-face))
 #+END_SRC
 
+** Writable Grep
+
+[[https://github.com/mhayashi1120/Emacs-wgrep/][wgrep]] makes [[http://manuel-uberti.github.io/emacs/2018/02/10/occur/][refactoring]] easier
+
+#+BEGIN_SRC emacs-lisp
+(use-package wgrep-ag)
+#+END_SRC
+
 
 * Associative Modes
 Configuration to modes that are associated with file extensions.

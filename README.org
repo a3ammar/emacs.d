@@ -1096,7 +1096,6 @@ Add flow integration to Flycheck javascript checker
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck-flow
   :config
-  (flycheck-add-mode 'javascript-flow 'rjsx-mode)
   (flycheck-add-next-checker 'javascript-eslint 'javascript-flow))
 #+END_SRC
 

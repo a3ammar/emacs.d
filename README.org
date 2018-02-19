@@ -2229,17 +2229,6 @@ I use =open-line= a lot and most of the time I have to manually indent the new l
 (bind-key "C-o" 'my/open-line)
 #+END_SRC
 
-** Insert Space After Point
-Sometimes when editing I like to insert a space after the point without moving it
-
-#+BEGIN_SRC emacs-lisp
-(defun my/insert-space-after-point ()
-  (interactive)
-  (save-excursion (insert " ")))
-
-(bind-keys ("S-SPC" . my/insert-space-after-point))
-#+END_SRC
-
 ** Switch Buffer — Do What I Mean
 If we are inside a project and have multiple buffers open then use =projectile-switch-buffer= otherwise fallback to the normal =switch-buffer=
 

@@ -1124,7 +1124,7 @@ Add flow integration to Flycheck javascript checker
 #+BEGIN_SRC emacs-lisp
 (use-package yasnippet
   :defer t
-  :config
+  :init
   (add-hook 'snippet-mode-hook (lambda () (variable-pitch-mode nil)))
   (yas-global-mode))
 #+END_SRC

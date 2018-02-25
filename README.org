@@ -789,7 +789,8 @@ it to change all the delimiters colors to one.
   (--each '(prog-mode-hook
             emacs-lisp-mode-hook
             org-mode-hook
-            markdown-mode-hook)
+            markdown-mode-hook
+            web-mode-hook)
     (add-hook it #'rainbow-delimiters-mode))
 
   (--each '(rainbow-delimiters-depth-1-face

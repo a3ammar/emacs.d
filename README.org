@@ -1126,7 +1126,6 @@ Add flow integration to Flycheck javascript checker
 (use-package yasnippet
   :defer t
   :init
-  (add-hook 'snippet-mode-hook (lambda () (variable-pitch-mode nil)))
   (yas-global-mode))
 #+END_SRC
 

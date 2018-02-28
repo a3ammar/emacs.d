@@ -1857,6 +1857,9 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
         web-mode-script-padding 0
         web-mode-style-padding 0)
 
+  ;; Don't let web-mode align JS methods call
+  (setq web-mode-indentation-params (remove '("lineup-calls" . t) web-mode-indentation-params))
+
   (setq-default web-mode-comment-formats
                 '(("java" . "/*")
                   ("javascript" . "//")

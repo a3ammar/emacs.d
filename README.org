@@ -2277,6 +2277,25 @@ The =my/counsel-projectile-switch-to-buffer= is exactly the same as the original
            ("C-x C-b" . my/switch-buffer-dwim))
 #+END_SRC
 
+** Rename File — Do What I Mean
+
+Taken from [[http://emacsredux.com/blog/2013/05/04/rename-file-and-buffer/][this blog post]] makes renaming files less painful.
+
+#+BEGIN_SRC emacs-lisp
+(defun my/rename-file-dwim ()
+  "Rename the current buffer and file it is visiting."
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (message "Buffer is not visiting a file!")
+      (let ((new-name (read-file-name "New name: " filename)))
+        (cond
+         ((vc-backend filename) (vc-rename-file filename new-name))
+         (t
+          (rename-file filename new-name t)
+          (set-visited-file-name new-name t t)))))))
+#+END_SRC
+
 
 * Load Private Information
 This file contains private information, like API keys, that I want to keep out of this repo.

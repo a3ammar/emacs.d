@@ -55,7 +55,7 @@ This whole configuration depends on [[https://github.com/magnars/dash.el][dash.e
 
 #+BEGIN_SRC emacs-lisp
 (use-package s)
-(use-package dash :init (dash-enable-font-lock))
+(use-package dash :config (dash-enable-font-lock))
 #+END_SRC
 
 ** Pin Depencies to stable versions

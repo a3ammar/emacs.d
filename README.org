@@ -1156,6 +1156,16 @@ Use the [[https://github.com/AndreaCrotti/yasnippet-snippets][Yasnippet official
         smex-save-file (concat my/history-dir "smex-items")))
 #+END_SRC
 
+** Startup Wisdom
+[[https://github.com/gonewest818/adafruit-wisdom.el][A package]] that displays a quote from adafuit.com
+
+#+BEGIN_SRC emacs-lisp
+(use-package adafruit-wisdom
+  :init
+  (setq inhibit-startup-message t
+        initial-scratch-message (format ";; %s\n" (adafruit-wisdom-select))))
+#+END_SRC
+
 
 * Project Management & Navigation
 Modes and configuration specific to managing and navigating projects.

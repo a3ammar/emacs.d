@@ -1892,7 +1892,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
                          ("Watch" "^\\s-*\\(watch:\\s-*{\\)" 1)
                          ("Computed" "^\\s-*\\(computed:\\s-*{\\)" 1)
                          ("Props" "^\\s-*\\(props:\\s-*{\\)" 1)
-                         ("Components" "^\\s*\\(components:\\s*{\\)" 1)
+                         ("Components" "^\\s-*\\(components:\\s-*{\\)" 1)
                          ("Script" "^\\(<script>\\)" 1)
                          ("Template" "^\\(<template>\\)" 1)))))))
 #+END_SRC

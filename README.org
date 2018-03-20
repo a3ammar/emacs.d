@@ -1889,6 +1889,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
                 (lambda () (imenu--generic-function
                        '(("Style" "^\\(<style.*>\\)" 1)
                          ("Function" "^\\s-*\\([[:alnum:]]+(.*)\\)\\s-*{" 1)
+                         ("Localization" "^\\s-*\\(i18n:\\s-*{\\)" 1)
                          ("Methods" "^\\s-*\\(methods:\\s-*{\\)" 1)
                          ("Watch" "^\\s-*\\(watch:\\s-*{\\)" 1)
                          ("Computed" "^\\s-*\\(computed:\\s-*{\\)" 1)

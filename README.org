@@ -506,6 +506,33 @@ The built in view-mode is useful when you just want to read a file. This ease th
                          ("/" . swiper)))))
 #+END_SRC
 
+** Imenu Mode
+
+#+BEGIN_SRC emacs-lisp
+(defun my/vue-imenu-index ()
+  (when (equal "vue" (file-name-extension (buffer-file-name)))
+    (setq-local imenu-create-index-function
+                (lambda () (imenu--generic-function
+                       '(("Style" "^\\(<style.*>\\)" 1)
+                         ("Function" "^\\s-*\\([[:alnum:]]+(.*)\\)\\s-*{" 1)
+                         ("Localization" "^\\s-*\\(i18n:\\s-*{\\)" 1)
+                         ("Methods" "^\\s-*\\(methods:\\s-*{\\)" 1)
+                         ("Watch" "^\\s-*\\(watch:\\s-*{\\)" 1)
+                         ("Computed" "^\\s-*\\(computed:\\s-*{\\)" 1)
+                         ("Props" "^\\s-*\\(props:\\s-*{\\)" 1)
+                         ("Components" "^\\s-*\\(components:\\s-*{\\)" 1)
+                         ("Script" "^\\(<script.*>\\)" 1)
+                         ("Template" "^\\(<template.*>\\)" 1)))))))
+
+(defun my/imenu-default-goto-function (name position &rest args)
+  (imenu-default-goto-function name position args)
+  (recenter))
+
+(add-hook 'web-mode-hook #'my/vue-imenu-index)
+(setq-default imenu-default-goto-function 'my/imenu-default-goto-function)
+#+END_SRC
+
+
 ** Change Emacs Keybinding
 *** Unbinding
 Unbind these keys because they are used for something else.
@@ -1868,25 +1895,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
   (add-hook 'web-mode-hook #'aggressive-indent-mode)
   (add-hook 'web-mode-hook (lambda () (electric-indent-mode -1)))
-  (add-hook 'web-mode-hook #'whitespace-mode)
-  (add-hook 'web-mode-hook #'my/vue-imenu-index))
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-(defun my/vue-imenu-index ()
-  (when (equal "vue" (file-name-extension (buffer-file-name)))
-    (setq-local imenu-create-index-function
-                (lambda () (imenu--generic-function
-                       '(("Style" "^\\(<style.*>\\)" 1)
-                         ("Function" "^\\s-*\\([[:alnum:]]+(.*)\\)\\s-*{" 1)
-                         ("Localization" "^\\s-*\\(i18n:\\s-*{\\)" 1)
-                         ("Methods" "^\\s-*\\(methods:\\s-*{\\)" 1)
-                         ("Watch" "^\\s-*\\(watch:\\s-*{\\)" 1)
-                         ("Computed" "^\\s-*\\(computed:\\s-*{\\)" 1)
-                         ("Props" "^\\s-*\\(props:\\s-*{\\)" 1)
-                         ("Components" "^\\s-*\\(components:\\s-*{\\)" 1)
-                         ("Script" "^\\(<script.*>\\)" 1)
-                         ("Template" "^\\(<template.*>\\)" 1)))))))
+  (add-hook 'web-mode-hook #'whitespace-mode))
 #+END_SRC
 
 ** CSS Mode

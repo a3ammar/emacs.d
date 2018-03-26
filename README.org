@@ -2072,6 +2072,12 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   :mode "Dockerfile")
 #+END_SRC
 
+** Go Mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package go-mode)
+#+END_SRC
+
 
 * Extra Functionality
 Miscellaneous and extra functionality. The dump of my little functions.

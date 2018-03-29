@@ -2095,6 +2095,54 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
               (add-to-list 'company-backends 'company-go))))
 #+END_SRC
 
+Override the =go-goto-*= methods to push to the mark ring before jumping
+
+#+BEGIN_SRC emacs-lisp
+(defun my/go-goto-arguments ()
+  (interactive)
+  (push-mark)
+  (go-goto-arguments))
+
+(defun my/go-goto-docstring ()
+  (interactive)
+  (push-mark)
+  (go-goto-docstring))
+
+(defun my/go-goto-imports ()
+  (interactive)
+  (push-mark)
+  (go-goto-imports))
+
+(defun my/go-goto-function ()
+  (interactive)
+  (push-mark)
+  (go-goto-function))
+
+(defun my/go-goto-function-name ()
+  (interactive)
+  (push-mark)
+  (go-goto-function-name))
+
+(defun my/go-goto-return-value ()
+  (interactive)
+  (push-mark)
+  (go-goto-return-values))
+
+(defun my/go-goto-method-receiver ()
+  (interactive)
+  (push-mark)
+  (go-goto-method-receiver))
+
+(bind-keys :map go-goto-map
+           ("a" . my/go-goto-arguments)
+           ("d" . my/go-goto-docstring)
+           ("f" . my/go-goto-function)
+           ("i" . my/go-goto-imports)
+           ("m" . my/go-goto-method-receiver)
+           ("n" . my/go-goto-function-name)
+           ("r" . my/go-goto-return-value))
+#+END_SRC
+
 
 * Extra Functionality
 Miscellaneous and extra functionality. The dump of my little functions.

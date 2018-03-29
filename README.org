@@ -1122,6 +1122,14 @@ Focus help popup so we can exit it easily with popwin.
   (global-flycheck-mode))
 #+END_SRC
 
+Show flycheck errors in a popup
+
+#+BEGIN_SRC emacs-lisp
+(use-package flycheck-popup-tip
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode))
+#+END_SRC
+
 Add flow integration to Flycheck javascript checker
 
 #+BEGIN_SRC emacs-lisp

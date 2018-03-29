@@ -1127,7 +1127,10 @@ Show flycheck errors in a popup
 #+BEGIN_SRC emacs-lisp
 (use-package flycheck-popup-tip
   :config
-  (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode))
+  (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
+  (set-face-attribute 'popup-tip-face nil
+                      :background "#073642"
+                      :foreground "#2aa198"))
 #+END_SRC
 
 Add flow integration to Flycheck javascript checker

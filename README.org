@@ -1130,7 +1130,7 @@ Show flycheck errors in a popup
   (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
   (set-face-attribute 'popup-tip-face nil
                       :background "#073642"
-                      :foreground "#2aa198"))
+                      :foreground "#e46283"))
 #+END_SRC
 
 Add flow integration to Flycheck javascript checker

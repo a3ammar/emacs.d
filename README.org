@@ -2086,7 +2086,12 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 ** Go Mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package go-mode)
+(use-package go-mode
+  :config
+  (add-hook 'before-save-hook
+            (lambda ()
+              (when (string= major-mode "go-mode")
+                (gofmt-before-save)))))
 
 (use-package company-go
   :config

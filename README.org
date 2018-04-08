@@ -350,10 +350,148 @@ lines, etc.
                          space-after-tab))
 
 (global-whitespace-mode)
+#+END_SRC
 
-(set-face-attribute 'whitespace-trailing nil
-                    :background "#20546d"
-                    :foreground "#c60007")
+** Set the Cursor Look
+I like my cursor to be a thin line.
+
+#+BEGIN_SRC emacs-lisp
+(setq-default cursor-type 'bar)
+#+END_SRC
+
+** Add Padding to the Window Edges
+Add a one pixel padding to the edges of Emacs window.
+
+#+BEGIN_SRC emacs-lisp
+(set-fringe-mode 1)
+#+END_SRC
+
+** A Better Mode Line
+[[https://github.com/Malabarba/smart-mode-line][Smart Mode Line]] makes Emacs mode line beautiful.
+
+#+BEGIN_SRC emacs-lisp
+(use-package smart-mode-line
+  :init
+  (setq sml/name-width 65
+        sml/no-confirm-load-theme t
+        sml/shorten-directory t
+        sml/show-file-name t
+        sml/theme 'respectful
+        sml/use-projectile-p 'before-prefixes
+        rm-whitelist " FlyC*"
+        rm-blacklist " Fly\\'")
+
+  (sml/setup)
+
+  (--each '(("^~/Code/" ":Code:")
+            ("^~/Code/gh/" ":Github:")
+            ("^~/Code/forks/" ":forks:"))
+    (push it sml/replacer-regexp-list)))
+#+END_SRC
+
+** Solarized Theme
+[[https://github.com/bbatsov/solarized-emacs][Solarized]] is so good.
+
+#+BEGIN_SRC emacs-lisp
+(use-package zenburn-theme
+  :config
+  (set-face-attribute 'region nil
+                      :background "#5c5c5c"))
+#+END_SRC
+
+** Rainbow Delimiters
+[[https://github.com/Fanael/rainbow-delimiters][Rainbow Delimiters]] help with coloring parentheses and brackets and others. I mainly use
+it to change all the delimiters colors to one.
+
+#+BEGIN_SRC emacs-lisp
+(use-package rainbow-delimiters
+  :config
+  (setq rainbow-delimiters-max-face-count 1)
+
+  (--each '(prog-mode-hook
+            emacs-lisp-mode-hook
+            org-mode-hook
+            markdown-mode-hook
+            web-mode-hook)
+    (add-hook it #'rainbow-delimiters-mode))
+
+  (--each '(rainbow-delimiters-depth-1-face
+            rainbow-delimiters-depth-2-face
+            rainbow-delimiters-depth-3-face
+            rainbow-delimiters-depth-4-face
+            rainbow-delimiters-depth-5-face
+            rainbow-delimiters-depth-6-face
+            rainbow-delimiters-depth-7-face
+            rainbow-delimiters-depth-8-face
+            rainbow-delimiters-depth-9-face)
+    (set-face-attribute it nil :foreground "#FC5353"))
+
+  (set-face-attribute 'rainbow-delimiters-unmatched-face nil
+                      :foreground "8c5353"
+                      :background "#dfaf8f"
+                      :inverse-video nil))
+#+END_SRC
+
+** Prettify Symbols
+Automatically transform symbols like lambda into the greek letter =λ=
+
+#+BEGIN_SRC emacs-lisp
+(--each '(org-mode-hook
+          ruby-mode-hook)
+  (add-hook it
+            (lambda () (add-to-list 'prettify-symbols-alist '("lambda" . ?λ)))))
+
+(--each '(js-mode-hook
+          js2-mode-hook
+          rjsx-mode-hook)
+  (add-hook it
+            (lambda () (setq-local prettify-symbols-alist nil))))
+
+(--each '(python-mode-hook)
+  (add-hook it
+            (lambda () (setq-local prettify-symbols-alist '(("lambda" . ?λ))))))
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            (--each '(("*"        . ?●)
+                      ("**"       . ?●)
+                      ("***"      . ?●)
+                      ("****"     . ?●)
+                      ("*****"    . ?●)
+                      ("******"   . ?●)
+                      ("*******"  . ?●)
+                      ("********" . ?●))
+              (add-to-list 'prettify-symbols-alist it))))
+
+(global-prettify-symbols-mode)
+#+END_SRC
+
+** Highlight the Current Line
+For easily identification of the current line.
+
+#+BEGIN_SRC emacs-lisp
+(global-hl-line-mode)
+#+END_SRC
+
+** Set the Default Font
+I really like [[https://en.wikipedia.org/wiki/Menlo_(typeface)][Menlo]] font, it's shipped by default with OS X.
+
+#+BEGIN_SRC emacs-lisp
+(set-face-attribute 'default nil :font "Menlo" :height 120)
+#+END_SRC
+
+** Proportional Font
+For regular writing I like to have a proportional font. [[https://github.com/khaledhosny/sahl-naskh][Sahl Naskh]] is
+an improved fork of Droid Arabic Naskh.
+
+#+BEGIN_SRC emacs-lisp
+(set-face-attribute 'variable-pitch nil
+                    :font "Sahl Naskh"
+                    :height 160
+                    :width 'normal
+                    :weight 'normal)
+
+(bind-keys ("C-x t v" . variable-pitch-mode))
 #+END_SRC
 
 ** Tramp
@@ -738,168 +876,6 @@ Add a bigger offset to underline property (it makes smart-mode-line looks way ni
 (setq underline-minimum-offset 4)
 #+END_SRC
 
-** Set the Cursor Look
-I like my cursor to be a thin line.
-
-#+BEGIN_SRC emacs-lisp
-(setq-default cursor-type 'bar)
-#+END_SRC
-
-** Add Padding to the Window Edges
-Add a one pixel padding to the edges of Emacs window.
-
-#+BEGIN_SRC emacs-lisp
-(set-fringe-mode 1)
-#+END_SRC
-
-** A Better Mode Line
-[[https://github.com/Malabarba/smart-mode-line][Smart Mode Line]] makes Emacs mode line beautiful.
-
-#+BEGIN_SRC emacs-lisp
-(use-package smart-mode-line
-  :init
-  (setq sml/name-width 65
-        sml/no-confirm-load-theme t
-        sml/shorten-directory t
-        sml/show-file-name t
-        sml/theme 'respectful
-        sml/use-projectile-p 'before-prefixes
-        rm-whitelist " FlyC*"
-        rm-blacklist " Fly\\'")
-
-  (sml/setup)
-
-  (--each '(("^~/Code/" ":Code:")
-            ("^~/Code/gh/" ":Github:")
-            ("^~/Code/forks/" ":forks:"))
-    (push it sml/replacer-regexp-list)))
-#+END_SRC
-
-** Solarized Theme
-[[https://github.com/bbatsov/solarized-emacs][Solarized]] is so good.
-
-#+BEGIN_SRC emacs-lisp
-(use-package solarized-theme
-  :init
-  (setq solarized-scale-org-headlines nil)
-
-  (load-theme 'solarized-dark)
-
-  ;; Fix solarized region face by default has foreground set to black.
-  (set-face-attribute 'region nil :foreground nil)
-
-  ;; Slightly modify Solarized look
-  (set-face-attribute 'font-lock-builtin-face nil
-                      :foreground "#6193B3")
-
-  (set-face-attribute 'font-lock-constant-face nil
-                      :foreground "DeepSkyBlue3")
-
-  (set-face-attribute 'font-lock-function-name-face nil
-                      :weight 'bold)
-
-  (set-face-attribute 'minibuffer-prompt nil
-                      :foreground "#2076c8")
-
-  (set-face-attribute 'region nil
-                      :background "#175062"))
-#+END_SRC
-
-** Rainbow Delimiters
-[[https://github.com/Fanael/rainbow-delimiters][Rainbow Delimiters]] help with coloring parentheses and brackets and others. I mainly use
-it to change all the delimiters colors to one.
-
-#+BEGIN_SRC emacs-lisp
-(use-package rainbow-delimiters
-  :config
-  (setq rainbow-delimiters-max-face-count 1)
-
-  (--each '(prog-mode-hook
-            emacs-lisp-mode-hook
-            org-mode-hook
-            markdown-mode-hook
-            web-mode-hook)
-    (add-hook it #'rainbow-delimiters-mode))
-
-  (--each '(rainbow-delimiters-depth-1-face
-            rainbow-delimiters-depth-2-face
-            rainbow-delimiters-depth-3-face
-            rainbow-delimiters-depth-4-face
-            rainbow-delimiters-depth-5-face
-            rainbow-delimiters-depth-6-face
-            rainbow-delimiters-depth-7-face
-            rainbow-delimiters-depth-8-face
-            rainbow-delimiters-depth-9-face)
-    (set-face-attribute it nil :foreground "#c43062"))
-
-  (set-face-attribute 'rainbow-delimiters-unmatched-face nil
-                      :foreground "#A52E66"
-                      :background "#F169AB"
-                      :inverse-video nil))
-#+END_SRC
-
-** Prettify Symbols
-Automatically transform symbols like lambda into the greek letter =λ=
-
-#+BEGIN_SRC emacs-lisp
-(--each '(org-mode-hook
-          ruby-mode-hook)
-  (add-hook it
-            (lambda () (add-to-list 'prettify-symbols-alist '("lambda" . ?λ)))))
-
-(--each '(js-mode-hook
-          js2-mode-hook
-          rjsx-mode-hook)
-  (add-hook it
-            (lambda () (setq-local prettify-symbols-alist nil))))
-
-(--each '(python-mode-hook)
-  (add-hook it
-            (lambda () (setq-local prettify-symbols-alist '(("lambda" . ?λ))))))
-
-(add-hook 'org-mode-hook
-          (lambda ()
-            (--each '(("*"        . ?●)
-                      ("**"       . ?●)
-                      ("***"      . ?●)
-                      ("****"     . ?●)
-                      ("*****"    . ?●)
-                      ("******"   . ?●)
-                      ("*******"  . ?●)
-                      ("********" . ?●))
-              (add-to-list 'prettify-symbols-alist it))))
-
-(global-prettify-symbols-mode)
-#+END_SRC
-
-** Highlight the Current Line
-For easily identification of the current line.
-
-#+BEGIN_SRC emacs-lisp
-(global-hl-line-mode)
-#+END_SRC
-
-** Set the Default Font
-I really like [[https://en.wikipedia.org/wiki/Menlo_(typeface)][Menlo]] font, it's shipped by default with OS X.
-
-#+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :font "Menlo" :height 120)
-#+END_SRC
-
-** Proportional Font
-For regular writing I like to have a proportional font. [[https://github.com/khaledhosny/sahl-naskh][Sahl Naskh]] is
-an improved fork of Droid Arabic Naskh.
-
-#+BEGIN_SRC emacs-lisp
-(set-face-attribute 'variable-pitch nil
-                    :font "Sahl Naskh"
-                    :height 160
-                    :width 'normal
-                    :weight 'normal)
-
-(bind-keys ("C-x t v" . variable-pitch-mode))
-#+END_SRC
-
 
 * Global Modes
 Configuration for modes that are always running no matter which buffer
@@ -953,7 +929,8 @@ the closing pair.
               (sp-local-pair 'swift-mode "\\(" ")")))
 
   (set-face-attribute 'sp-show-pair-match-face nil
-                      :foreground "#F169AB")
+                      :foreground nil
+                      :background "#735757")
 
   (show-smartparens-global-mode))
 #+END_SRC
@@ -1136,8 +1113,7 @@ Show flycheck errors in a popup
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
   (set-face-attribute 'popup-tip-face nil
-                      :background "#073642"
-                      :foreground "#e46283"))
+                      :inherit 'company-tooltip))
 #+END_SRC
 
 Add flow integration to Flycheck javascript checker
@@ -1224,12 +1200,6 @@ Modes and configuration specific to managing and navigating projects.
         ivy-switch-buffer-faces-alist '((dired-mode . ivy-subdir)
                                         (org-mode . org-macro))
         ivy-ignore-buffers '("\\*HTTP Response\\*" "\\*magit.*"))
-
-  (set-face-attribute 'ivy-current-match nil
-                      :background "#0D4553")
-  (set-face-attribute 'ivy-highlight-face nil
-                      :background "#0A3641"
-                      :foreground "#A2B1B1")
 
   (ivy-mode))
 #+END_SRC
@@ -1367,28 +1337,6 @@ Presents a list of open project buffers instead of project files when switching 
         magit-diff-refine-hunk 't
         magit-completing-read-function 'ivy-completing-read
         magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1)
-
-  (set-face-attribute 'magit-blame-date nil
-                      :foreground "#D13A82"
-                      :background "#2D393D")
-  (set-face-attribute 'magit-blame-hash nil
-                      :foreground "#C4A449"
-                      :background "#2D393D")
-  (set-face-attribute 'magit-blame-heading nil
-                      :foreground "#D13A82"
-                      :background "#2D393D")
-  (set-face-attribute 'magit-blame-summary nil
-                      :foreground "#2D8CD0"
-                      :background "#2D393D")
-  (set-face-attribute 'magit-blame-name nil
-                      :foreground "#C4A449"
-                      :background "#2D393D")
-  (set-face-attribute 'magit-diff-context-highlight nil
-                      :background "#0b3b46")
-  (set-face-attribute 'smerge-refined-added nil
-                      :inherit 'magit-diff-added-highlight)
-  (set-face-attribute 'smerge-refined-removed nil
-                      :inherit 'magit-diff-removed)
 
   (use-package magit-popup :pin melpa-stable)
 

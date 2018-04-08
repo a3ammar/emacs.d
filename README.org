@@ -995,6 +995,13 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
         company-minimum-prefix-length 3
         company-dabbrev-downcase nil)
 
+  (add-hook 'company-mode-hook
+            (lambda ()
+              (set-face-attribute 'company-template-field nil
+                                  :foreground nil
+                                  :background nil
+                                  :inherit 'region)))
+
   (global-company-mode))
 #+END_SRC
 
@@ -1744,8 +1751,6 @@ if =universal-argument= is supplied it replaces it s-expression with its result.
   :config
   (setq ruby-indent-level 2
         ruby-insert-encoding-magic-comment nil)
-
-  (add-to-list 'company-dabbrev-code-modes 'ruby-mode)
 
   ;; Highlight `&&' and `||' as a builtin ruby keywords
   (font-lock-add-keywords 'ruby-mode

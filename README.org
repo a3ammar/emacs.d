@@ -2153,6 +2153,12 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
            ("r" . my/go-goto-return-value))
 #+END_SRC
 
+** TOML Mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package toml-mode)
+#+END_SRC
+
 
 * Extra Functionality
 Miscellaneous and extra functionality. The dump of my little functions.

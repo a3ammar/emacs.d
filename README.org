@@ -399,7 +399,9 @@ Add a one pixel padding to the edges of Emacs window.
         '(("zenburn-green-2" . "#6d926d")))
   :config
   (set-face-attribute 'region nil
-                      :background "#5c5c5c"))
+                      :background "#5c5c5c")
+  (set-face-attribute 'font-lock-type-face nil
+                      :weight 'bold))
 #+END_SRC
 
 ** Rainbow Delimiters

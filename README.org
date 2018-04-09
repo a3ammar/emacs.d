@@ -389,11 +389,14 @@ Add a one pixel padding to the edges of Emacs window.
     (push it sml/replacer-regexp-list)))
 #+END_SRC
 
-** Solarized Theme
+** Zenburn Theme
 [[https://github.com/bbatsov/solarized-emacs][Solarized]] is so good.
 
 #+BEGIN_SRC emacs-lisp
 (use-package zenburn-theme
+  :init
+  (setq zenburn-override-colors-alist
+        '(("zenburn-green-2" . "#6d926d")))
   :config
   (set-face-attribute 'region nil
                       :background "#5c5c5c"))

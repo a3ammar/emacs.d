@@ -1204,6 +1204,10 @@ Modes and configuration specific to managing and navigating projects.
                                         (org-mode . org-macro))
         ivy-ignore-buffers '("\\*HTTP Response\\*" "\\*magit.*"))
 
+  (set-face-attribute 'ivy-minibuffer-match-face-2 nil
+                      :background nil
+                      :inherit 'isearch)
+
   (ivy-mode))
 #+END_SRC
 

@@ -372,7 +372,7 @@ Add a one pixel padding to the edges of Emacs window.
 #+BEGIN_SRC emacs-lisp
 (use-package smart-mode-line
   :init
-  (setq sml/name-width 65
+  (setq sml/name-width 60
         sml/no-confirm-load-theme t
         sml/shorten-directory t
         sml/show-file-name t

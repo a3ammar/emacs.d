@@ -2066,7 +2066,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 
 (use-package company-go
   :config
-  (add-hook 'company-mode-hook
+  (add-hook 'go-mode-hook
             (lambda ()
               (add-to-list 'company-backends 'company-go))))
 #+END_SRC

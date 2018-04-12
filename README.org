@@ -1363,18 +1363,6 @@ Presents a list of open project buffers instead of project files when switching 
                         :background "#7C4343")))
 #+END_SRC
 
-Set the visibility of the =Unmerged into upstream= section to always be hidden, see [[http://emacs.stackexchange.com/questions/20754/change-the-default-visibility-of-a-magit-section/20767][this stackexchange question]].
-
-
-#+BEGIN_SRC emacs-lisp
-(defun my/magit-initially-hide-unmerged (section)
-  (and (not magit-insert-section--oldroot)
-       (eq (magit-section-type section) 'unpushed)
-       (equal (magit-section-value section) "@{upstream}..")
-       'hide))
-
-(add-hook 'magit-section-set-visibility-hook #'my/magit-initially-hide-unmerged)
-#+END_SRC
 
 ** Dirnev — Load Project Specific Environment Variables
 Integrating Emacs with [[https://direnv.net/][direnv]] allows us to put project specific environment variables in =.envrc=

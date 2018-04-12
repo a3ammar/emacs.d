@@ -1108,6 +1108,10 @@ Focus help popup so we can exit it easily with popwin.
   (add-hook 'emacs-lisp-mode-hook
             (lambda () (add-to-list 'flycheck-disabled-checkers 'emacs-lisp-checkdoc)))
 
+  (set-face-attribute 'flycheck-error nil
+                      :background "#885f5f"
+                      :underline '(:style wave :color "#BC8383"))
+
   (global-flycheck-mode))
 #+END_SRC
 

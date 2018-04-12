@@ -1380,6 +1380,13 @@ Presents a list of open project buffers instead of project files when switching 
                         :background "#7C4343")))
 #+END_SRC
 
+** Browse at Remote
+Browse current commit or file at its remote repo.
+
+#+BEGIN_SRC emacs-lisp
+(use-package browse-at-remote)
+#+END_SRC
+
 
 ** Dirnev — Load Project Specific Environment Variables
 Integrating Emacs with [[https://direnv.net/][direnv]] allows us to put project specific environment variables in =.envrc=

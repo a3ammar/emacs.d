@@ -2085,16 +2085,6 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   (add-hook 'go-mode-hook
             (lambda ()
               (add-to-list 'company-backends 'company-go))))
-
-(use-package flycheck-gometalinter
-  :pin melpa-stable
-  :config
-  (setq flycheck-gometalinter-executable "gometalinter.v2")
-
-  (flycheck-gometalinter-setup)
-
-  (add-hook 'go-mode-hook
-            (lambda () (add-to-list 'flycheck-disabled-checkers 'go-golint))))
 #+END_SRC
 
 Override the =go-goto-*= methods to push to the mark ring before jumping

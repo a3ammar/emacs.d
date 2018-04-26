@@ -1099,7 +1099,7 @@ Focus help popup so we can exit it easily with popwin.
 (use-package flycheck
   :pin melpa-stable
   :bind (("C-c ! ," . flycheck-list-errors))
-  :init
+  :config
   (setq flycheck-indication-mode 'right-fringe)
 
   (add-hook 'js2-mode-hook

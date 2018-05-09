@@ -734,6 +734,12 @@ I use =M-`= to toggle between two buffers.
 #+END_SRC
 
 *** Window Splitting
+Make windows splitting by default use horizontal split
+
+#+BEGIN_SRC emacs-lisp
+(setq split-height-threshold nil)
+#+END_SRC
+
 Copied from [[http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_tricks/chldury][reddit comment]]. Makes the newly created window set to the previous buffer.
 
 #+BEGIN_SRC emacs-lisp

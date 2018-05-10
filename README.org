@@ -1352,6 +1352,7 @@ Presents a list of open project buffers instead of project files when switching 
   :config
   (setq magit-push-always-verify nil
         magit-use-sticky-arguments 'current
+        magit-section-cache-visibility nil
         magit-revert-buffers 'silent
         magit-diff-refine-hunk 't
         magit-completing-read-function 'ivy-completing-read

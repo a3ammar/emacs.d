@@ -1275,7 +1275,6 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :pin melpa-stable
-  :bind ("C-c C-p" . projectile-command-map)
   :config
   (projectile-global-mode)
 
@@ -1301,6 +1300,7 @@ Add even more integration between Projectile and Ivy
 
 #+BEGIN_SRC emacs-lisp
 (use-package counsel-projectile
+  :bind-keymap ("C-c p" . counsel-projectile-command-map)
   :config
   (setq projectile-switch-project-action #'counsel-projectile-find-file)
 
@@ -1608,7 +1608,8 @@ General org-mode configuration
   :mode ("\\.org\\'" . org-mode)
   :bind (:map org-mode-map
               ("M-p" . org-move-subtree-up)
-              ("M-n" . org-move-subtree-down))
+              ("M-n" . org-move-subtree-down)
+              ("C-c C-p" . nil))
   :config
   (setq org-log-done t
         org-adapt-indentation nil

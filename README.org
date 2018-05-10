@@ -1307,19 +1307,6 @@ Add even more integration between Projectile and Ivy
   (counsel-projectile-mode))
 #+END_SRC
 
-Presents a list of open project buffers instead of project files when switching to between open projects
-
-#+BEGIN_SRC emacs-lisp
-(defun my/projectile-switch-open-project-buffers (&optional arg)
-  "Switch to open project's buffer"
-  (interactive "P")
-  (let ((projectile-switch-project-action 'counsel-projectile-switch-to-buffer))
-    (projectile-switch-open-project arg)))
-
-(bind-keys :map counsel-projectile-mode-map
-           ("C-c p q" . my/projectile-switch-open-project-buffers)
-           ("C-c C-p q" . my/projectile-switch-open-project-buffers))
-#+END_SRC
 
 ** Projectile Rails
 [[https://github.com/asok/projectile-rails][Projectile Rails]] adds Rails integration to projectile.

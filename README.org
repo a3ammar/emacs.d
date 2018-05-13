@@ -1300,7 +1300,8 @@ Add even more integration between Projectile and Ivy
 
 #+BEGIN_SRC emacs-lisp
 (use-package counsel-projectile
-  :bind-keymap ("C-c p" . counsel-projectile-command-map)
+  :bind-keymap (("C-c p" . counsel-projectile-command-map)
+                ("C-c C-p" . counsel-projectile-command-map))
   :config
   (setq projectile-switch-project-action #'counsel-projectile-find-file)
 

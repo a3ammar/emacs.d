@@ -1417,6 +1417,13 @@ leaving Emacs.
   :commands github-clone)
 #+END_SRC
 
+** Insert GitHub gitignore templates
+Using [[https://github.com/xuchunyang/gitignore-templates.el/tree/2b729c6b76ec940e15c1599a0105149c2e1f4b17][gitignore templates]]
+
+#+BEGIN_SRC emacs-lisp
+(use-package gitignore-templates)
+#+END_SRC
+
 
 * Invokable Modes
 Configuration to modes that are run by a keybinding or from =M-x=.

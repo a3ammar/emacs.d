@@ -2185,7 +2185,7 @@ Better comments, taken from [[http://www.opensubscriber.com/message/emacs-devel@
   (let ((column (current-column))
         (times (prefix-numeric-value args)))
     (-dotimes times
-      (lambda (n)
+      (lambda (_)
         (move-beginning-of-line 1)
         (kill-line)
         (yank)
@@ -2193,7 +2193,7 @@ Better comments, taken from [[http://www.opensubscriber.com/message/emacs-devel@
         (next-line 1)
         (yank)
         (move-beginning-of-line 1)
-        (forward-char column)))))
+        (move-to-column column)))))
 
 (bind-keys ("C-x C-y" . my/duplicate-line))
 #+END_SRC

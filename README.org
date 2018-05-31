@@ -1616,6 +1616,7 @@ General org-mode configuration
         org-adapt-indentation nil
         org-fontify-whole-heading-line t
         org-pretty-entities t
+        org-use-sub-superscripts nil
         org-goto-interface 'outline
         org-goto-max-level 10
         org-imenu-depth 5

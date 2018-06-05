@@ -2345,23 +2345,12 @@ If we are inside a project and have multiple buffers open then use =projectile-s
 The =my/counsel-projectile-switch-to-buffer= is exactly the same as the original one except that it pre-selects the second buffer instead of the first.
 
 #+BEGIN_SRC emacs-lisp
-(defun my/counsel-projectile-switch-to-buffer ()
-  "Switch to a project buffer."
-  (interactive)
-  (ivy-read (projectile-prepend-project-name "Switch to buffer: ")
-            (counsel-projectile--project-buffers)
-            :matcher #'ivy--switch-buffer-matcher
-            :preselect (buffer-name (other-buffer (current-buffer)))
-            :require-match t
-            :action #'counsel-projectile-switch-to-buffer-action
-            :caller 'counsel-projectile-switch-to-buffer))
-
 (defun my/switch-buffer-dwim (&optional prefix)
   (interactive "P")
   (if (and (null prefix)
            (projectile-project-p)
            (> (length (projectile-project-buffers)) 1))
-      (call-interactively 'my/counsel-projectile-switch-to-buffer)
+      (call-interactively 'counsel-projectile-switch-to-buffer)
     (call-interactively 'ivy-switch-buffer)))
 
 (bind-keys ("C-x b" . my/switch-buffer-dwim)

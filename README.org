@@ -1225,7 +1225,6 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
 (use-package counsel
   :bind (("C-x C-m" . counsel-M-x)
          ("C-x m" . counsel-M-x)
-         ("C-c s" . counsel-ag)
          ("M-y" . counsel-yank-pop)
          ("C-x C-f" . counsel-find-file)
          ("C-x C-i" . counsel-imenu)
@@ -1262,6 +1261,13 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
    `(("c" ,(given-file #'copy-file "Copy") "cp")
      ("d" my/kill-buffer-and-trash-file "rm")
      ("m" ,(given-file #'rename-file "Move") "mv"))))
+
+(defun my/counsel-ag ()
+  (interactive)
+  (counsel-ag "" default-directory))
+
+(bind-keys ("C-c s" . my/counsel-ag)
+           ("C-c C-s" . my/counsel-ag))
 #+END_SRC
 
 ** Projectile

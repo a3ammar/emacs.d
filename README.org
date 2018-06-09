@@ -1299,7 +1299,9 @@ Add even more integration between Projectile and Ivy
   :bind-keymap (("C-c p" . counsel-projectile-command-map)
                 ("C-c C-p" . counsel-projectile-command-map))
   :config
-  (setq projectile-switch-project-action #'counsel-projectile-find-file)
+  (setq counsel-projectile-remove-current-buffer t
+        counsel-projectile-remove-current-project t
+        projectile-switch-project-action #'counsel-projectile-find-file)
 
   (counsel-projectile-mode))
 #+END_SRC

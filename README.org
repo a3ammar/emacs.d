@@ -1156,6 +1156,7 @@ Show flycheck errors in a popup
 (use-package yasnippet
   :defer t
   :init
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets/"))
   (yas-global-mode))
 #+END_SRC
 

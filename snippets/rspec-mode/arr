@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: allow(Something).to receive(:method).and_return(value)
+# --
+allow(${1:Something}).to receive(:${2:thing}).and_return(${3:value})$0

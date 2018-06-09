@@ -1,0 +1,4 @@
+# -*- mode: snippet -*-
+# name: expect(Something).to receive(:thing)
+# --
+expect(${1:Something}).to receive(:${2:thing})$0

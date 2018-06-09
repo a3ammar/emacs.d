@@ -1624,7 +1624,6 @@ General org-mode configuration
         org-src-fontify-natively t
         org-src-tab-acts-natively nil
         org-src-window-setup 'current-window
-        org-src-strip-leading-and-trailing-blank-lines t
         org-edit-src-content-indentation 0
         org-startup-folded nil)
 

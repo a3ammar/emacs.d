@@ -1634,6 +1634,7 @@ General org-mode configuration
             (lambda ()
               (toggle-truncate-lines)))
 
+  (set-face-attribute 'org-block nil :inherit 'default)
   (--each '(org-document-title
             org-level-1
             org-level-2

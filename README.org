@@ -342,15 +342,17 @@ Clean a file on save according to various rules, like trailing whitespaces or em
 lines, etc.
 
 #+BEGIN_SRC emacs-lisp
-(setq whitespace-action '(auto-cleanup)
-      whitespace-style '(trailing
-                         lines
-                         empty
-                         space-before-tab
-                         indentation
-                         space-after-tab))
+(use-package whitespace
+  :config
+  (setq whitespace-action '(auto-cleanup)
+        whitespace-style '(trailing
+                           lines
+                           empty
+                           space-before-tab
+                           indentation
+                           space-after-tab))
 
-(global-whitespace-mode)
+  (global-whitespace-mode))
 #+END_SRC
 
 ** Set the Cursor Look

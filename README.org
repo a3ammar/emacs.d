@@ -102,26 +102,26 @@ If you want the meaning of these variables move the point to the desired variabl
 and press =C-h v=.
 
 #+BEGIN_SRC emacs-lisp
-(setq gc-cons-threshold (* 50 1024 1024)
-      inhibit-startup-message t
-      inhibit-startup-echo-area-message t
+(setq comment-style 'multi-line
+      create-lockfiles nil
+      delete-by-moving-to-trash t
       echo-keystrokes 0.1
+      font-lock-maximum-decoration t
+      gc-cons-threshold (* 50 1024 1024)
+      hscroll-step 1
+      inhibit-startup-echo-area-message t
+      inhibit-startup-message t
+      large-file-warning-threshold nil
+      mouse-wheel-flip-direction t
+      mouse-wheel-progressive-speed nil
+      mouse-wheel-scroll-amount '(0.01)
+      mouse-wheel-tilt-scroll t
       ring-bell-function 'ignore
       scroll-conservatively 10
-      hscroll-step 1
-      mouse-wheel-scroll-amount '(0.01)
-      mouse-wheel-progressive-speed nil
-      mouse-wheel-tilt-scroll t
-      mouse-wheel-flip-direction t
-      font-lock-maximum-decoration t
-      transient-mark-mode t
-      delete-by-moving-to-trash t
       shift-select-mode nil
-      comment-style 'multi-line
-      uniquify-buffer-name-style 'forward
+      transient-mark-mode t
       truncate-partial-width-windows nil
-      large-file-warning-threshold nil
-      create-lockfiles nil)
+      uniquify-buffer-name-style 'forward)
 
 (setq-default comment-column 0)
 #+END_SRC

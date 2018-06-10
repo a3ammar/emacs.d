@@ -787,6 +787,17 @@ This function will help us determine if we are on OS X
   (eq system-type 'darwin))
 #+END_SRC
 
+** Use Dark Frames
+
+A feature of Emacs 26.1
+
+#+BEGIN_SRC emacs-lisp
+(when (and (on-osx-p)
+           (version<= emacs-version "26.1"))
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
+#+END_SRC
+
 ** Fix Emacs Environment Variables on OS X
 Emacs on OS X can't access the environment variables set in the shell profile. This help
 us workaround that.

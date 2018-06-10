@@ -111,6 +111,8 @@ and press =C-h v=.
       hscroll-step 1
       mouse-wheel-scroll-amount '(0.01)
       mouse-wheel-progressive-speed nil
+      mouse-wheel-tilt-scroll t
+      mouse-wheel-flip-direction t
       font-lock-maximum-decoration t
       transient-mark-mode t
       delete-by-moving-to-trash t

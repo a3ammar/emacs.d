@@ -102,7 +102,8 @@ If you want the meaning of these variables move the point to the desired variabl
 and press =C-h v=.
 
 #+BEGIN_SRC emacs-lisp
-(setq comment-style 'multi-line
+(setq auto-hscroll-mode 'current-line
+      comment-style 'multi-line
       create-lockfiles nil
       delete-by-moving-to-trash t
       echo-keystrokes 0.1

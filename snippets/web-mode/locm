@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: locale margins
+# key: locm
+# --
+margin-left: $1;
+margin-right: $2;
+&:lang(en) {
+  margin-left: $2;
+  margin-right: $1;
+}

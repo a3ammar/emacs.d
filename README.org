@@ -491,6 +491,15 @@ I really like [[https://en.wikipedia.org/wiki/Menlo_(typeface)][Menlo]] font, it
 (set-face-attribute 'default nil :font "Menlo" :height 120)
 #+END_SRC
 
+Use an Arabic font for Arabic unicode characters
+
+#+BEGIN_SRC emacs-lisp
+(let ((my-font "Noto Sans Arabic UI"))
+  (set-fontset-font "fontset-startup" '(#x000600 . #x0006FF) my-font)
+  (set-fontset-font "fontset-default" '(#x000600 . #x0006FF) my-font)
+  (set-fontset-font "fontset-standard" '(#x000600 . #x0006FF) my-font))
+#+END_SRC
+
 ** Proportional Font
 For regular writing I like to have a proportional font. [[https://github.com/khaledhosny/sahl-naskh][Sahl Naskh]] is
 an improved fork of Droid Arabic Naskh.

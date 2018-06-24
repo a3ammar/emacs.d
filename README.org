@@ -698,6 +698,14 @@ The built in view-mode is useful when you just want to read a file. This ease th
   :init (pixel-scroll-mode))
 #+END_SRC
 
+** Hide Show Minor Mode
+
+Hideshow is a builtin minor mode for code folding
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+#+END_SRC
+
 
 ** Change Emacs Keybinding
 *** Unbinding

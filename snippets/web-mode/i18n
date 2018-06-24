@@ -1,0 +1,14 @@
+# key: i18n
+# name: i18n: { ... },
+# --
+i18n: {
+  messages: {
+    en: {
+      ${1:message}
+    },
+
+    ar: {
+      $1
+    },
+  },
+},

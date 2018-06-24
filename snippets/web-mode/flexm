@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: flexm
+# key: flexm
+# --
+
+margin-right: ${1:0px};
+margin-left: ${2:initial};
+&:lang(ar) {
+  margin-right: $2;
+  margin-left: $1;
+}

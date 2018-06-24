@@ -1,0 +1,8 @@
+# key: data
+# name: data() { return { ... }; },
+# --
+data() {
+  return {
+    $0
+  };
+},

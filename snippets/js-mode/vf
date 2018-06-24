@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: vf
+# key: vf
+# --
+
+${1:doSomething}($2) {
+  $0
+},

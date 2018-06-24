@@ -1,0 +1,6 @@
+# key: meth
+# name: methods: { | },
+# --
+methods: {
+  $0
+},

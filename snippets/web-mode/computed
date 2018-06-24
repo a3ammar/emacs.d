@@ -1,0 +1,6 @@
+# key: comp
+# name: computed: { | },
+# --
+computed: {
+  $0
+},

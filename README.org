@@ -973,7 +973,8 @@ the closing pair.
   (add-hook 'web-mode-hook
             (lambda ()
               (sp-local-pair 'web-mode "<" nil :actions :rem)
-              (sp-local-pair 'web-mode "<%" "%>" :post-handlers '(("| " "SPC") (" | " "=")))))
+              (sp-local-pair 'web-mode "<%" "%>" :post-handlers '(("| " "SPC") (" | " "=")))
+              (sp-local-pair 'web-mode "{%" "%}" :post-handlers '(("| " "SPC")))))
 
   ;; Do not escape closing pair in string interpolation
   (add-hook 'swift-mode-hook

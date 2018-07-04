@@ -1987,6 +1987,9 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   :config
   (setq markdown-fontify-code-blocks-natively t
         markdown-command "kramdown")
+
+  (unbind-key "C-c C-p" markdown-mode-map)
+
   (set-face-attribute 'markdown-bold-face nil
                       :weight 'bold
                       :inherit 'font-lock-builtin-face)

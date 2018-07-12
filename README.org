@@ -1302,12 +1302,12 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
      ("d" my/kill-buffer-and-trash-file "rm")
      ("m" ,(given-file #'rename-file "Move") "mv"))))
 
-(defun my/counsel-ag ()
+(defun my/counsel-rg ()
   (interactive)
-  (counsel-ag "" default-directory))
+  (counsel-rg "" default-directory))
 
-(bind-keys ("C-c s" . my/counsel-ag)
-           ("C-c C-s" . my/counsel-ag))
+(bind-keys ("C-c s" . my/counsel-rg)
+           ("C-c C-s" . my/counsel-rg))
 #+END_SRC
 
 ** Projectile

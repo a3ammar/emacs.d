@@ -1154,6 +1154,10 @@ Focus help popup so we can exit it easily with popwin.
   (add-hook 'js2-mode-hook
             (lambda () (setq-local flycheck-checker 'javascript-eslint)))
 
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (add-hook 'web-mode-hook
+            (lambda () (setq-local flycheck-checker 'javascript-eslint)))
+
   (add-hook 'emacs-lisp-mode-hook
             (lambda () (add-to-list 'flycheck-disabled-checkers 'emacs-lisp-checkdoc)))
 

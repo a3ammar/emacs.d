@@ -1920,7 +1920,9 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 (use-package web-mode
   :mode ("\\.html$" "\\.xml$" "\\.erb$" "\\.vue$" "\\.svg$" "\\.ts$")
   :config
-  (setq web-mode-css-indent-offset 2
+  (setq web-mode-enable-block-face 't
+        web-mode-enable-current-element-highlight 't
+        web-mode-css-indent-offset 2
         web-mode-markup-indent-offset 2
         web-mode-code-indent-offset 2
         web-mode-auto-close-style 2
@@ -1936,6 +1938,16 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
                 '(("java" . "/*")
                   ("javascript" . "//")
                   ("php" . "/*")))
+
+  (set-face-attribute 'web-mode-block-face nil
+                      :foreground nil
+                      :background nil
+                      :inherit 'hl-line)
+
+  (set-face-attribute 'web-mode-current-element-highlight-face nil
+                      :foreground nil
+                      :background nil
+                      :inherit 'sp-show-pair-match-face)
 
   (add-hook 'web-mode-hook #'aggressive-indent-mode))
 #+END_SRC

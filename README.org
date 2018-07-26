@@ -105,6 +105,7 @@ and press =C-h v=.
 (setq auto-hscroll-mode 'current-line
       comment-style 'multi-line
       create-lockfiles nil
+      confirm-kill-emacs 'y-or-n-p
       delete-by-moving-to-trash t
       echo-keystrokes 0.1
       font-lock-maximum-decoration t

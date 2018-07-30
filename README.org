@@ -1618,21 +1618,6 @@ Configuration to modes that are run by a keybinding or from =M-x=.
   :bind ("M-\\" . shrink-whitespace))
 #+END_SRC
 
-** Eyebrowse
-[[https://github.com/wasamasa/eyebrowse][A workplace manager]]
-
-#+BEGIN_SRC emacs-lisp
-(use-package eyebrowse
-  :bind (:map eyebrowse-mode-map
-              ("C-c C-w `" . eyebrowse-last-window-config))
-  :init (eyebrowse-mode)
-  :config
-  (setq eyebrowse-new-workspace t)
-
-  (set-face-attribute 'eyebrowse-mode-line-active nil
-                      :inherit font-lock-preprocessor-face))
-#+END_SRC
-
 ** Writable Grep
 
 [[https://github.com/mhayashi1120/Emacs-wgrep/][wgrep]] makes [[http://manuel-uberti.github.io/emacs/2018/02/10/occur/][refactoring]] easier

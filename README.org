@@ -1262,6 +1262,13 @@ Modes and configuration specific to managing and navigating projects.
                       :background nil
                       :inherit 'isearch)
 
+  (use-package ivy-rich
+    :config
+    (setq ivy-rich-path-style 'abbrev
+          ivy-rich-switch-buffer-align-virtual-buffer 't
+          ivy-virtual-abbreviate 'full)
+    (ivy-rich-mode))
+
   (ivy-mode))
 #+END_SRC
 

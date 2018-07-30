@@ -560,7 +560,8 @@ A few configuration for Emacs Dired mode.
   :bind (:map dired-mode-map
               ("C-l" . dired-up-directory))
   :config
-  (setq dired-listing-switches "-alh"))
+  (setq dired-listing-switches "-alh"
+        dired-recursive-deletes 'always))
 #+END_SRC
 
 ** Winner

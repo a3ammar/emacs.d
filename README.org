@@ -1997,6 +1997,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   :mode ("\\.md\\'" "\\.markdown\\'")
   :config
   (setq markdown-fontify-code-blocks-natively t
+        markdown-list-indent-width 2
         markdown-command "kramdown")
 
   (unbind-key "C-c C-p" markdown-mode-map)

@@ -439,8 +439,8 @@ it to change all the delimiters colors to one.
     (set-face-attribute it nil :foreground "#FC5353"))
 
   (set-face-attribute 'rainbow-delimiters-unmatched-face nil
-                      :foreground "8c5353"
-                      :background "#dfaf8f"
+                      :foreground "#dfaf8f"
+                      :background "#FC5353"
                       :inverse-video nil))
 #+END_SRC
 

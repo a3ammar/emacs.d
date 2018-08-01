@@ -1944,7 +1944,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
   (set-face-attribute 'web-mode-current-element-highlight-face nil
                       :foreground nil
-                      :background nil
+                      :background "#383838"
                       :inherit 'sp-show-pair-match-face)
 
   (add-hook 'web-mode-hook #'aggressive-indent-mode))

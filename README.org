@@ -1116,8 +1116,7 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
             "*Flycheck errors*"
             ("*Flycheck error messages*" :noselect t)
             "*js*"
-            "*Python*"
-            ("\*ivy-occur.*" :regexp 't))
+            "*Python*")
     (push it popwin:special-display-config)))
 #+END_SRC
 

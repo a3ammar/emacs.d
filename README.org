@@ -1538,10 +1538,12 @@ Configuration to modes that are run by a keybinding or from =M-x=.
 #+BEGIN_SRC emacs-lisp
 (use-package avy
   :commands avy-goto-char-timer
-  :bind ("C-r" . avy-goto-char-timer)
+  :bind ("C-r" . avy-goto-word-1)
   :config
   ;; Displays the full of the match `af' instead of `a' then `f'.
-  (setq avy-style 'de-bruijn)
+  (setq avy-style 'de-bruijn
+        avy-all-windows nil
+        avy-all-window-alt 't)
 
   (avy-setup-default))
 #+END_SRC

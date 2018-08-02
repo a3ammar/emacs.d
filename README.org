@@ -1357,6 +1357,8 @@ Add even more integration between Projectile and Ivy
 (use-package counsel-projectile
   :bind-keymap (("C-c p" . counsel-projectile-command-map)
                 ("C-c C-p" . counsel-projectile-command-map))
+  :bind (:map counsel-projectile-mode-map
+              ("C-c p s" . counsel-projectile-rg))
   :config
   (setq counsel-projectile-remove-current-buffer t
         counsel-projectile-remove-current-project t

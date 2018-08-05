@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: vf
-# key: vf
+# name: Vue Function
+# key: ff
 # --
 
 ${1:doSomething}($2) {

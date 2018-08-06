@@ -1149,7 +1149,8 @@ Focus help popup so we can exit it easily with popwin.
   :pin melpa-stable
   :bind (("C-c ! ," . flycheck-list-errors))
   :config
-  (setq flycheck-indication-mode 'right-fringe)
+  (setq flycheck-indication-mode 'right-fringe
+        flycheck-check-syntax-automatically '(save idle-change))
 
   (add-hook 'js2-mode-hook
             (lambda () (setq-local flycheck-checker 'javascript-eslint)))

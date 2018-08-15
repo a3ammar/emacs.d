@@ -13,10 +13,8 @@ Setup ELPA package sources and initialize =package.el=.
 
 (package-initialize)
 
-(setq package-archives
-      '(("gnu" . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")
-        ("melpa-stable" . "http://stable.melpa.org/packages/")))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 
 (unless package-archive-contents
   (package-refresh-contents))
@@ -1581,7 +1579,9 @@ Configuration to modes that are run by a keybinding or from =M-x=.
         paradox-lines-per-entry 1
         paradox-github-token t)
 
-  (defalias 'pkg 'paradox-list-packages))
+  (paradox-enable)
+
+  (defalias 'pkg 'list-packages))
 #+END_SRC
 
 ** REST Client

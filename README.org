@@ -760,7 +760,7 @@ I use =M-`= to toggle between two buffers.
 #+BEGIN_SRC emacs-lisp
 (defun my/previous-buffer ()
   (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
+  (switch-to-buffer (other-buffer (current-buffer))))
 
 (bind-key "M-`" 'my/previous-buffer)
 #+END_SRC

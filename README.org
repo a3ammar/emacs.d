@@ -1150,6 +1150,7 @@ Focus help popup so we can exit it easily with popwin.
   :bind (("C-c ! ," . flycheck-list-errors))
   :config
   (setq flycheck-indication-mode 'right-fringe
+        flycheck-navigation-minimum-level 'error
         flycheck-check-syntax-automatically '(save idle-change))
 
   (add-hook 'js2-mode-hook

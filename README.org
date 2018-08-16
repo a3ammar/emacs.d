@@ -1152,11 +1152,19 @@ Focus help popup so we can exit it easily with popwin.
         flycheck-check-syntax-automatically '(save idle-change))
 
   (add-hook 'js2-mode-hook
-            (lambda () (setq-local flycheck-checker 'javascript-eslint)))
+            (lambda ()
+              (direnv-update-environment default-directory)
+              (when (executable-find "eslint_d")
+                (setq flycheck-javascript-eslint-executable "eslint_d"))
+              (setq-local flycheck-checker 'javascript-eslint)))
 
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (add-hook 'web-mode-hook
-            (lambda () (setq-local flycheck-checker 'javascript-eslint)))
+            (lambda ()
+              (direnv-update-environment default-directory)
+              (when (executable-find "eslint_d")
+                (setq flycheck-javascript-eslint-executable "eslint_d"))
+              (setq-local flycheck-checker 'javascript-eslint)))
 
   (add-hook 'emacs-lisp-mode-hook
             (lambda () (add-to-list 'flycheck-disabled-checkers 'emacs-lisp-checkdoc)))

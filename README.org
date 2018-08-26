@@ -1362,9 +1362,9 @@ Add even more integration between Projectile and Ivy
 
 #+BEGIN_SRC emacs-lisp
 (use-package counsel-projectile
-  :bind-keymap (("C-c p" . counsel-projectile-command-map)
-                ("C-c C-p" . counsel-projectile-command-map))
-  :bind (:map counsel-projectile-mode-map
+  :bind-keymap (("C-c p" . projectile-command-map)
+                ("C-c C-p" . projectile-command-map))
+  :bind (:map projectile-mode-map
               ("C-c p s" . counsel-projectile-rg))
   :init
   (setq counsel-projectile-remove-current-buffer t

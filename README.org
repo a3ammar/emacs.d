@@ -220,8 +220,8 @@ This saves our position in files other things between Emacs sessions.
 Remembers visited files names.
 
 #+BEGIN_SRC emacs-lisp
-(setq recentf-auto-cleanup 'never
-      recentf-max-saved-items 1000
+(setq recentf-auto-cleanup 'mode
+      recentf-max-saved-items 100
       recentf-save-file (concat my/history-dir "recentf"))
 
 (recentf-mode)
@@ -1267,6 +1267,8 @@ Modes and configuration specific to managing and navigating projects.
   (set-face-attribute 'ivy-minibuffer-match-face-2 nil
                       :background nil
                       :inherit 'isearch)
+
+  (set-face-attribute 'ivy-virtual nil :inherit 'ivy-remote)
 
   (use-package ivy-rich
     :config

@@ -1268,7 +1268,10 @@ Modes and configuration specific to managing and navigating projects.
                       :background nil
                       :inherit 'isearch)
 
-  (set-face-attribute 'ivy-virtual nil :inherit 'ivy-remote)
+  (set-face-attribute 'ivy-virtual nil
+                      :foreground "#c2d2d3"
+                      :weight 'bold
+                      :inherit nil)
 
   (use-package ivy-rich
     :config

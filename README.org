@@ -702,7 +702,16 @@ The built in view-mode is useful when you just want to read a file. This ease th
 Hideshow is a builtin minor mode for code folding
 
 #+BEGIN_SRC emacs-lisp
+(defun my/hs-hide-rest ()
+  "Hide everything in the buffer and only show the current block"
+  (interactive)
+  (hs-hide-all)
+  (hs-show-block))
+
+(bind-key "C-c @ @" 'my/hs-hide-rest)
+
 (add-hook 'prog-mode-hook #'hs-minor-mode)
+
 #+END_SRC
 
 

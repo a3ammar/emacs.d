@@ -1434,6 +1434,7 @@ Add even more integration between Projectile and Ivy
         magit-section-cache-visibility nil
         magit-revert-buffers 'silent
         magit-diff-refine-hunk 't
+        magit-rebase-arguments '("--autostash")
         magit-completing-read-function 'ivy-completing-read
         magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1
         magit-status-sections-hook '(magit-insert-status-headers

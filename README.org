@@ -1628,13 +1628,14 @@ Configuration to modes that are run by a keybinding or from =M-x=.
   :commands restclient-mode)
 #+END_SRC
 
-** Discover Mode Keybindings
-[[https://github.com/steckerhalter/discover-my-major][Discover My Major]] is a better replacement for =C-h m=.
+** Which Key Mode
+[[https://github.com/justbur/emacs-which-key][Which Key]] displays available keybindings in a popup
 
 #+BEGIN_SRC emacs-lisp
-(use-package discover-my-major
-  :commands discover-my-major
-  :bind ("C-h C-m" . discover-my-major))
+(use-package which-key
+  :config
+  (which-key-setup-side-window-bottom)
+  (which-key-mode))
 #+END_SRC
 
 ** Easy Increment & Decrement Numbers

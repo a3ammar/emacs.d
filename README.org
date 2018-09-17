@@ -1951,7 +1951,10 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
          ("M-n" . python-nav-forward-block)
          ("M-p" . python-nav-backward-block))
   :config
-  (unbind-key "C-c C-p" python-mode-map))
+  (unbind-key "C-c C-p" python-mode-map)
+
+  ;; Run pylint after flake8
+  (flycheck-add-next-checker 'python-flake8 'python-pylint))
 #+END_SRC
 
 ** Web Mode

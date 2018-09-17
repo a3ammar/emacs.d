@@ -1337,8 +1337,9 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
      command prompt))
 
   (defun my/kill-buffer-and-trash-file (file)
-    (and (kill-buffer (get-file-buffer file))
-         (move-file-to-trash file)))
+    (when file
+      (kill-buffer (get-file-buffer file)))
+    (move-file-to-trash file))
 
   (ivy-add-actions
    'counsel-find-file

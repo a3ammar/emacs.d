@@ -1202,6 +1202,8 @@ Show flycheck errors in a popup
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
   (set-face-attribute 'popup-tip-face nil
+                      :background nil
+                      :foreground nil
                       :inherit 'company-tooltip))
 #+END_SRC
 

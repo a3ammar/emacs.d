@@ -198,6 +198,17 @@ And save lots.
       auto-save-list-file-prefix (concat my/history-dir "auto-save-list/saves-"))
 #+END_SRC
 
+Make =save-buffer= always creates a backup by passing two =C-u=
+
+#+BEGIN_SRC emacs-lisp
+(defun my/save-buffer ()
+  (interactive)
+  (let ((current-prefix-arg '(4 4)))
+    (call-interactively 'save-buffer)))
+
+(bind-key "C-x C-s" 'my/save-buffer)
+#+END_SRC
+
 ** Session History
 This saves our position in files other things between Emacs sessions.
 

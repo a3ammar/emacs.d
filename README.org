@@ -1336,7 +1336,7 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
   :config
   (setq counsel-preselect-current-file 't
         counsel-yank-pop-separator "\n\n"
-        counsel-find-file-ignore-regexp "\\(\\`\\.\\|.*\\.pyc\\'\\)")
+        counsel-find-file-ignore-regexp "\\`\\(\\..*\\|__pycache__\\|.*\\.pyc\\)")
 
   (defalias 'cpkg 'counsel-package)
 
@@ -1393,6 +1393,7 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
                     "~/.rbenv/"))))
 
   (push "node_modules" projectile-globally-ignored-directories)
+  (push ".direnv" projectile-globally-ignored-directories)
 
   (projectile-load-known-projects))
 #+END_SRC

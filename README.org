@@ -2497,11 +2497,8 @@ Taken from [[http://emacsredux.com/blog/2013/05/04/rename-file-and-buffer/][this
     (if (not (and filename (file-exists-p filename)))
         (message "Buffer is not visiting a file!")
       (let ((new-name (read-file-name "New name: " filename)))
-        (cond
-         ((vc-backend filename) (vc-rename-file filename new-name))
-         (t
-          (rename-file filename new-name t)
-          (set-visited-file-name new-name t t)))))))
+        (rename-file filename new-name t)
+        (set-visited-file-name new-name t t)))))
 #+END_SRC
 
 

@@ -2109,6 +2109,18 @@ I use [[https://github.com/sorin-ionescu/prezto][prezto]] and I want to associat
                . sh-mode))
 #+END_SRC
 
+** Conf Mode
+
+Associate systemd files with conf-mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package conf-mode
+  :mode ("\\.service\\'" "\\.target\\'" "\\.path\\'" "\\.timer\\'")
+  :config
+  ;; Unbind C-c C-p because it conflicts with projectile
+  (unbind-key "C-c C-p" conf-mode-map))
+#+END_SRC
+
 ** HAML Mode
 
 #+BEGIN_SRC emacs-lisp

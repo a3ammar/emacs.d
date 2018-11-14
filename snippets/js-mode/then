@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Promise then
+# key: thn
+# --
+
+.then(($1) => {
+  $0
+});

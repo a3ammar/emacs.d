@@ -1307,6 +1307,9 @@ Modes and configuration specific to managing and navigating projects.
                                         (org-mode . org-macro))
         ivy-ignore-buffers '("\\*HTTP Response\\*" "\\*magit.*"))
 
+  ;; Don't wrap lines in ivy-occur
+  (add-hook 'ivy-occur-grep-mode-hook #'toggle-truncate-lines)
+
   (set-face-attribute 'ivy-minibuffer-match-face-2 nil
                       :background nil
                       :inherit 'isearch)

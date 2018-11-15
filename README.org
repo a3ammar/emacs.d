@@ -1591,7 +1591,9 @@ Configuration to modes that are run by a keybinding or from =M-x=.
 Makes you able to [[https://github.com/emacsfodder/move-text][move line]] or region up or down
 
 #+BEGIN_SRC emacs-lisp
-(use-package move-text)
+(use-package move-text
+  :init
+  (move-text-default-bindings))
 #+END_SRC
 
 ** Easy Kill Mode

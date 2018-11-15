@@ -1587,14 +1587,24 @@ Configuration to modes that are run by a keybinding or from =M-x=.
   :bind ("C-;" . iedit-mode))
 #+END_SRC
 
-** Expand Region
-[[https://github.com/magnars/expand-region.el][Expand Region]] to fit the sexp
+** Move Text Mode
+Makes you able to [[https://github.com/emacsfodder/move-text][move line]] or region up or down
 
 #+BEGIN_SRC emacs-lisp
-(use-package expand-region
-  :commands er/expand-region
-  :bind ("M-2" . er/expand-region))
+(use-package move-text)
 #+END_SRC
+
+** Easy Kill Mode
+Makes marking and killing regions much [[https://github.com/leoliu/easy-kill][easier]]
+
+#+BEGIN_SRC emacs-lisp
+(use-package easy-kill
+  :config
+  :bind (("M-2" . easy-mark))
+  :config
+  (global-set-key [remap kill-ring-save] #'easy-kill))
+#+END_SRC
+
 
 ** Avy
 [[https://github.com/abo-abo/avy][Avy]] lets you jump to things.
@@ -2526,23 +2536,6 @@ Taken from [[http://emacsredux.com/blog/2013/05/04/rename-file-and-buffer/][this
         (rename-file filename new-name t)
         (set-visited-file-name new-name t t)))))
 #+END_SRC
-
-** Move Text Mode
-Makes you able to [[https://github.com/emacsfodder/move-text][move line]] or region up or down
-
-#+BEGIN_SRC emacs-lisp
-(use-package move-text)
-#+END_SRC
-
-** Easy Kill Mode
-Makes marking and killing regions much [[https://github.com/leoliu/easy-kill][easier]]
-
-#+BEGIN_SRC emacs-lisp
-(use-package easy-kill
-  :config
-  (global-set-key [remap kill-ring-save] #'easy-kill))
-#+END_SRC
-
 
 * Load Private Information
 This file contains private information, like API keys, that I want to keep out of this repo.

@@ -1484,6 +1484,10 @@ Add even more integration between Projectile and Ivy
                                      magit-insert-unpushed-to-upstream
                                      magit-insert-recent-commits))
 
+  ;; Set the initial visibility of magit sections
+  (setq magit-section-initial-visibility-alist '((stashes . show)
+                                                 (unpushed . show)))
+
   (use-package magit-popup :pin melpa-stable)
 
   (use-package git-commit

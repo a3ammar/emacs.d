@@ -1605,9 +1605,8 @@ Makes marking and killing regions much [[https://github.com/leoliu/easy-kill][ea
 
 #+BEGIN_SRC emacs-lisp
 (use-package easy-kill
-  :config
   :bind (("M-2" . easy-mark))
-  :config
+  :init
   (global-set-key [remap kill-ring-save] #'easy-kill))
 #+END_SRC
 

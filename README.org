@@ -1486,7 +1486,8 @@ Add even more integration between Projectile and Ivy
 
   ;; Set the initial visibility of magit sections
   (setq magit-section-initial-visibility-alist '((stashes . show)
-                                                 (unpushed . show)))
+                                                 (unpushed . show)
+                                                 (recent . show)))
 
   (use-package magit-popup :pin melpa-stable)
 

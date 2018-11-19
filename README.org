@@ -608,7 +608,8 @@ Emacs spell checker, and flyspell runs ispell on the fly. Use hunspell because i
       ispell-dictionary "en_US"
       ispell-really-hunspell t
       ispell-keep-choices-win t
-      ispell-use-framepop-p nil)
+      ispell-use-framepop-p nil
+      ispell-local-dictionary-alist '(("en_US" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil ("-d" "en_US") nil utf-8)))
 
 (add-to-list 'ispell-skip-region-alist '("#\\+BEGIN_SRC" . "#\\+END_SRC"))
 #+END_SRC

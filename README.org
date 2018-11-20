@@ -2013,6 +2013,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
+  :pin melpa-stable
   :mode ("\\.html$" "\\.xml$" "\\.erb$" "\\.vue$" "\\.svg$" "\\.ts$")
   :config
   (setq web-mode-enable-block-face 't

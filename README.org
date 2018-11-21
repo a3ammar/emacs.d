@@ -1375,12 +1375,6 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
      ("d" my/kill-buffer-and-trash-file "rm")
      ("m" ,(given-file #'rename-file "Move") "mv"))))
 
-(defun my/counsel-rg ()
-  (interactive)
-  (counsel-rg "" default-directory))
-
-(bind-keys ("C-c s" . my/counsel-rg)
-           ("C-c C-s" . my/counsel-rg))
 #+END_SRC
 
 ** Projectile
@@ -1427,6 +1421,34 @@ Add even more integration between Projectile and Ivy
         projectile-switch-project-action #'counsel-projectile-find-file)
 
   (counsel-projectile-mode))
+#+END_SRC
+
+Override =counsel-rg= and =counsel-projectile-rg= with my preference
+
+#+BEGIN_SRC emacs-lisp
+(defun my/counsel-rg ()
+  "Search in the current directory"
+  (interactive)
+  (counsel-rg "" default-directory))
+
+(defun my/counsel-projectile-rg (arg)
+  "Called with two prefix arguments it prompts for `rg' arguments.
+Called with one prefix arugment it searches for files with the same extension as the current buffer
+Otherwise it passes its argument to `counsel-projectile-rg'"
+  (interactive "P")
+  (cond ((equal arg '(16))
+         (counsel-projectile-rg 4))
+        ((equal arg '(4))
+         (counsel-projectile-rg (concat "-t " (file-name-extension (buffer-file-name)))))
+        (t
+         (counsel-projectile-rg arg))))
+
+(bind-keys ("C-c s" . my/counsel-rg)
+           ("C-c C-s" . my/counsel-rg)
+           :map projectile-mode-map
+           ("C-c p s" . my/counsel-projectile-rg))
+
+
 #+END_SRC
 
 

@@ -1431,15 +1431,24 @@ Override =counsel-rg= and =counsel-projectile-rg= with my preference
   (interactive)
   (counsel-rg "" default-directory))
 
+(defun get-ripgrep-type ()
+  "Returns the approriate ripgrep type for an extension"
+  (let ((extension (file-name-extension (buffer-file-name))))
+    (cond ((string= extension "vue")
+           "-t js")
+          (t
+           (concat "-t " extension)))))
+
 (defun my/counsel-projectile-rg (arg)
   "Called with two prefix arguments it prompts for `rg' arguments.
 Called with one prefix arugment it searches for files with the same extension as the current buffer
 Otherwise it passes its argument to `counsel-projectile-rg'"
   (interactive "P")
   (cond ((equal arg '(16))
-         (counsel-projectile-rg 4))
+         (let ((current-prefix-arg '(4))) (counsel-projectile-rg)))
         ((equal arg '(4))
-         (counsel-projectile-rg (concat "-t " (file-name-extension (buffer-file-name)))))
+         ()
+         (counsel-projectile-rg (get-ripgrep-type)))
         (t
          (counsel-projectile-rg arg))))
 

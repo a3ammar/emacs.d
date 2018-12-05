@@ -883,7 +883,8 @@ us workaround that.
 
 #+BEGIN_SRC emacs-lisp
 (when (on-osx-p)
-  (setq browse-url-browser-function 'browse-url-firefox))
+  (setq browse-url-browser-function 'browse-url-chromium
+        browse-url-chromium-program "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"))
 #+END_SRC
 
 ** OS X Arabic Keybaord

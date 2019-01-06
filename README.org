@@ -1385,6 +1385,8 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
 #+BEGIN_SRC emacs-lisp
 (use-package projectile
   :pin melpa-stable
+  :bind-keymap (("C-c p" . projectile-command-map)
+                ("C-c C-p" . projectile-command-map))
   :init
   (setq projectile-known-projects-file (concat my/history-dir "projectile-bookmarks.eld"))
   :config
@@ -1412,10 +1414,6 @@ Add even more integration between Projectile and Ivy
 
 #+BEGIN_SRC emacs-lisp
 (use-package counsel-projectile
-  :bind-keymap (("C-c p" . projectile-command-map)
-                ("C-c C-p" . projectile-command-map))
-  :bind (:map projectile-mode-map
-              ("C-c p s" . counsel-projectile-rg))
   :init
   (setq counsel-projectile-remove-current-buffer t
         counsel-projectile-remove-current-project t
@@ -1455,10 +1453,8 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
 
 (bind-keys ("C-c s" . my/counsel-rg)
            ("C-c C-s" . my/counsel-rg)
-           :map projectile-mode-map
-           ("C-c p s" . my/counsel-projectile-rg))
-
-
+           :map projectile-command-map
+           ("s" . my/counsel-projectile-rg))
 #+END_SRC
 
 

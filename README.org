@@ -1811,6 +1811,11 @@ General org-mode configuration
             (lambda ()
               (toggle-truncate-lines)))
 
+  ;; Allow org to run shell commands in source blocks
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               '((shell . t)
+                                 (emacs-lisp . t)))
+
   (set-face-attribute 'org-block nil :inherit 'default)
   (--each '(org-document-title
             org-level-1

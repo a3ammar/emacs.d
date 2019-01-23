@@ -576,7 +576,8 @@ A few configuration for Emacs Dired mode.
 (use-package dired
   :ensure nil
   :bind (:map dired-mode-map
-              ("C-l" . dired-up-directory))
+              ("C-l" . dired-up-directory)
+              ("w" . wdired-change-to-wdired-mode))
   :config
   (setq dired-listing-switches "-alh"
         dired-recursive-deletes 'always))

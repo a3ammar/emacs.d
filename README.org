@@ -3,7 +3,7 @@
 This is is inspired by [[http://pages.sachachua.com/.emacs.d/Sacha.html][Sacha's]] Emacs configuration.
 
 * Emacs Initialization
-Setup the necessary things that should happen before everything else.
+Setup the necessary things that should happen before anything else.
 
 ** Initialize Packages
 Setup ELPA package sources and initialize =package.el=.

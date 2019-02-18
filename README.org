@@ -1086,12 +1086,6 @@ More backends to Company Mode
   (add-hook 'web-mode-hook
             (lambda ()
               (add-to-list 'company-backends 'company-web-html))))
-
-(use-package company-restclient
-  :config
-  (add-hook 'restclient-mode-hook
-            (lambda ()
-              (add-to-list 'company-backends 'company-restclient))))
 #+END_SRC
 
 When Company suggestions is shown pressing =C-w= will be captured by Company and will not execute =backward-kill-word=.
@@ -1705,7 +1699,13 @@ Makes marking and killing regions much [[https://github.com/leoliu/easy-kill][ea
 #+BEGIN_SRC emacs-lisp
 (use-package restclient
   :mode ("\\.restclient" . restclient-mode)
-  :commands restclient-mode)
+  :commands restclient-mode
+  :config
+  (use-package company-restclient
+    :config
+    (add-hook 'restclient-mode-hook
+              (lambda ()
+                (add-to-list 'company-backends 'company-restclient)))))
 #+END_SRC
 
 ** Which Key Mode

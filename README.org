@@ -1150,7 +1150,8 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
             "*Flycheck errors*"
             ("*Flycheck error messages*" :noselect t)
             "*js*"
-            "*Python*")
+            "*Python*"
+            "*cider-error*")
     (push it popwin:special-display-config)))
 #+END_SRC
 
@@ -2345,6 +2346,16 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 
 #+BEGIN_SRC emacs-lisp
 (use-package toml-mode)
+#+END_SRC
+
+
+** Clojure Mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package clojure-mode
+  :config
+  (use-package cider
+    :pin melpa-stable))
 #+END_SRC
 
 

@@ -2158,8 +2158,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   :mode ("\\.zsh\\'" "\\.gitignore\\'" "\\.envrc\\'" "\\.flowconfig\\'")
   :interpreter "zsh"
   :init
-  (setq-default sh-indentation 2
-                sh-basic-offset 2))
+  (setq-default sh-basic-offset 2))
 #+END_SRC
 
 I use [[https://github.com/sorin-ionescu/prezto][prezto]] and I want to associate zsh files without extension to =sh-mode=

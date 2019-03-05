@@ -2353,8 +2353,17 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 #+BEGIN_SRC emacs-lisp
 (use-package clojure-mode
   :config
+  (add-hook 'clojure-mode-hook #'turn-on-eldoc-mode)
+  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+
   (use-package cider
-    :pin melpa-stable))
+    :pin melpa-stable
+    :bind (:map cider-mode-map
+                ("C-." . cider-find-var)
+                ("C-," . cider-pop-back))
+    :config
+    (unbind-key "M-." cider-mode-map)
+    (unbind-key "M-," cider-mode-map)))
 #+END_SRC
 
 

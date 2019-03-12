@@ -2367,6 +2367,18 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 #+END_SRC
 
 
+** EIN mode
+
+[[https://tkf.github.io/emacs-ipython-notebook/][Emacs IPython Notebook]] mode makes working with jupyter easier
+
+#+BEGIN_SRC emacs-lisp
+(use-package ein
+  :config
+  (unbind-key "M-," ein:notebook-mode-map)
+  (unbind-key "M-." ein:notebook-mode-map))
+#+END_SRC
+
+
 * Extra Functionality
 Miscellaneous and extra functionality. The dump of my little functions.
 

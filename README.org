@@ -483,15 +483,9 @@ Automatically transform symbols like lambda into the greek letter =λ=
 
 (add-hook 'org-mode-hook
           (lambda ()
-            (--each '(("*"        . ?●)
-                      ("**"       . ?●)
-                      ("***"      . ?●)
-                      ("****"     . ?●)
-                      ("*****"    . ?●)
-                      ("******"   . ?●)
-                      ("*******"  . ?●)
-                      ("********" . ?●))
-              (add-to-list 'prettify-symbols-alist it))))
+            ;; Prettify Org headers
+            (setq-local prettify-symbols-compose-predicate (lambda (_start _end _match) t))
+            (add-to-list 'prettify-symbols-alist '("*" . ?●))))
 
 (global-prettify-symbols-mode)
 #+END_SRC

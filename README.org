@@ -2386,6 +2386,13 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 #+END_SRC
 
 
+** Yang Mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package yang-mode)
+#+END_SRC
+
+
 * Extra Functionality
 Miscellaneous and extra functionality. The dump of my little functions.
 

@@ -1314,7 +1314,7 @@ Modes and configuration specific to managing and navigating projects.
   (use-package ivy-rich
     :config
     (setq ivy-rich-path-style 'abbrev
-          ivy-rich-switch-buffer-align-virtual-buffer 't
+          ivy-rich-parse-remote-buffer nil
           ivy-virtual-abbreviate 'full)
     (ivy-rich-mode))
 

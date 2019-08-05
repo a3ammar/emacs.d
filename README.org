@@ -573,7 +573,7 @@ A few configuration for Emacs Dired mode.
               ("C-l" . dired-up-directory)
               ("w" . wdired-change-to-wdired-mode))
   :config
-  (setq dired-listing-switches "-alh"
+  (setq dired-listing-switches "-alh --group-directories-first"
         dired-recursive-deletes 'always))
 #+END_SRC
 

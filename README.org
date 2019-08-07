@@ -567,11 +567,22 @@ A few configurations and styles for Emacs Ediff.
 A few configuration for Emacs Dired mode.
 
 #+BEGIN_SRC emacs-lisp
+(defun my/dired-view-file ()
+  "Exactly like `dired-view-file' expect it uses `view-file-other-window' instead of `view-file'"
+  (interactive)
+  (let ((file (dired-get-file-for-visit)))
+    (if (file-directory-p file)
+        (or (and (cdr dired-subdir-alist)
+                 (dired-goto-subdir file))
+            (dired file))
+      (view-file-other-window file))))
+
 (use-package dired
   :ensure nil
   :bind (:map dired-mode-map
               ("C-l" . dired-up-directory)
-              ("w" . wdired-change-to-wdired-mode))
+              ("w" . wdired-change-to-wdired-mode)
+              ("v" . my/dired-view-file))
   :config
   (setq dired-listing-switches "-alh"
         dired-recursive-deletes 'always)

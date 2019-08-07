@@ -573,8 +573,12 @@ A few configuration for Emacs Dired mode.
               ("C-l" . dired-up-directory)
               ("w" . wdired-change-to-wdired-mode))
   :config
-  (setq dired-listing-switches "-alh --group-directories-first"
-        dired-recursive-deletes 'always))
+  (setq dired-listing-switches "-alh"
+        dired-recursive-deletes 'always)
+  ;; Group directories first on OS X if coreutils `ls' is installed
+  (when (and (on-osx-p) (executable-find "gls"))
+    (setq insert-directory-program "gls"
+          dired-listing-switches (concat dired-listing-switches " --group-directories-first"))))
 #+END_SRC
 
 ** Winner

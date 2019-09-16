@@ -2067,7 +2067,12 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   (unbind-key "C-c C-p" python-mode-map)
 
   ;; Run pylint after flake8
-  (flycheck-add-next-checker 'python-flake8 'python-pylint))
+  (flycheck-add-next-checker 'python-flake8 'python-pylint)
+
+  ;; Remove `:' from `electric-indent-chars'
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (setq electric-indent-chars (remq ?: electric-indent-chars)))))
 #+END_SRC
 
 ** Web Mode

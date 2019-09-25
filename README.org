@@ -2201,7 +2201,7 @@ Associate systemd files with conf-mode
 
 #+BEGIN_SRC emacs-lisp
 (use-package conf-mode
-  :mode ("\\.service\\'" "\\.target\\'" "\\.path\\'" "\\.timer\\'")
+  :mode ("\\(?:\\.service\\|\\.target\\|\\.path\\|\\.timer\\)\\'" . conf-unix-mode)
   :config
   ;; Unbind C-c C-p because it conflicts with projectile
   (unbind-key "C-c C-p" conf-mode-map))

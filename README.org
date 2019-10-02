@@ -81,6 +81,16 @@ Avoid breaking packages by pinning those dependencies to their stable version.
     (add-to-list 'package-pinned-packages package)))
 #+END_SRC
 
+** Are We on OS X Helper
+This function will help us determine if we are on OS X
+
+#+BEGIN_SRC emacs-lisp
+(defun on-osx-p ()
+  (eq system-type 'darwin))
+#+END_SRC
+
+
+
 
 * Defaults Configuration
 Change the default Emacs configuration, from default variables to keybindings.
@@ -846,14 +856,6 @@ Copied from [[http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_t
 
 * OS Specific Configuration
 These are configuration specific to OSs. Mostly OS X for now.
-
-** Are We on OS X Helper
-This function will help us determine if we are on OS X
-
-#+BEGIN_SRC emacs-lisp
-(defun on-osx-p ()
-  (eq system-type 'darwin))
-#+END_SRC
 
 ** Use Dark Frames
 

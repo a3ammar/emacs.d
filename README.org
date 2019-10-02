@@ -2311,7 +2311,10 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   (add-hook 'before-save-hook
             (lambda ()
               (when (string= major-mode "go-mode")
-                (gofmt-before-save)))))
+                (gofmt-before-save))))
+
+  (use-package go-eldoc
+    :hook go-mode))
 
 (use-package company-go
   :config

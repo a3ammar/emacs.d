@@ -691,18 +691,22 @@ I want =C-c C-c= to end the editing session.
 The built in view-mode is useful when you just want to read a file. This ease the file navigation
 
 #+BEGIN_SRC emacs-lisp
-(use-package view-mode
+(use-package view
   :ensure nil
-  :bind ("C-x C-q" . view-mode)
-  :init
+  :bind (("C-x C-q" . view-mode)
+         :map view-mode-map
+         ("n" . next-line)
+         ("j" . next-line)
+         ("p" . previous-line)
+         ("k" . previous-line)
+         ("/" . swiper))
+  :config
   (add-hook 'view-mode-hook
             (lambda ()
-              (bind-keys :map view-mode-map
-                         ("n" . scroll-up-line)
-                         ("j" . scroll-up-line)
-                         ("p" . scroll-down-line)
-                         ("k" . scroll-down-line)
-                         ("/" . swiper)))))
+              (make-variable-buffer-local 'line-move-visual)
+              (setq-local line-move-visual nil)
+              (setq-local hl-line-changed-cookie
+                          (face-remap-add-relative 'hl-line '((:background "#734242")))))))
 #+END_SRC
 
 ** Imenu Mode

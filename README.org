@@ -1844,7 +1844,7 @@ General org-mode configuration
                                '((shell . t)
                                  (emacs-lisp . t)))
 
-  (set-face-attribute 'org-block nil :inherit 'default)
+  (set-face-attribute 'org-block nil :background "#3f3f3f")
   (--each '(org-document-title
             org-level-1
             org-level-2

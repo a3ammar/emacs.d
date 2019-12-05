@@ -2438,6 +2438,7 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
                       indent-tabs-mode nil
                       c-basic-offset 4))))
 
+  (setq c-basic-offset 4)
   (add-hook 'c-mode-common-hook
             (lambda ()
               (setq sp-escape-quotes-after-insert nil)))

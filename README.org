@@ -822,9 +822,11 @@ Make =C-x o= switch to next window and =C-x C-o= switch to previous window.
 I use =M-`= to toggle between two buffers.
 
 #+BEGIN_SRC emacs-lisp
-(defun my/previous-buffer ()
-  (interactive)
-  (switch-to-buffer (other-buffer (current-buffer))))
+(defun my/previous-buffer (args)
+  (interactive "P")
+  (if args
+      (ff-find-other-file)
+    (switch-to-buffer (other-buffer (current-buffer)))))
 
 (bind-key "M-`" 'my/previous-buffer)
 #+END_SRC

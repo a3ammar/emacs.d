@@ -2445,6 +2445,7 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
   (add-hook 'c-mode-common-hook
             (lambda ()
               (c-set-offset 'brace-list-intro '+)
+              (c-set-offset 'arglist-cont-nonempty '++)
               (setq sp-escape-quotes-after-insert nil)))
 
   (use-package uncrustify-mode

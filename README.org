@@ -599,7 +599,10 @@ A few configuration for Emacs Dired mode.
   ;; Group directories first on OS X if coreutils `ls' is installed
   (when (and (on-osx-p) (executable-find "gls"))
     (setq insert-directory-program "gls"
-          dired-listing-switches (concat dired-listing-switches " --group-directories-first"))))
+          dired-listing-switches (concat dired-listing-switches " --group-directories-first")))
+
+  (use-package dired-x
+    :ensure nil))
 #+END_SRC
 
 ** Winner

@@ -2433,20 +2433,19 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 (use-package cc-mode
   :mode ("\\.p4\\'" . c++-mode)         ; Use cc-mode for P4 files
   :config
-  (add-hook 'c++-mode-hook
-            (lambda ()
-              (when (my/current-buffer-is-a "p4")
-                (electric-indent-mode nil)
-                (setq c-default-style "stroustrup"
-                      indent-tabs-mode nil
-                      c-basic-offset 4))))
-
+  (unbind-key "C-c C-p" c-mode-map)
   (setq c-basic-offset 4)
+
   (add-hook 'c-mode-common-hook
             (lambda ()
               (c-set-offset 'brace-list-intro '+)
               (c-set-offset 'arglist-cont-nonempty '++)
               (setq sp-escape-quotes-after-insert nil)))
+
+  (add-hook 'c++-mode-hook
+            (lambda ()
+              (when (my/current-buffer-is-a "p4")
+                (electric-indent-mode nil))))
 
   (use-package uncrustify-mode
     :config

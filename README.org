@@ -130,7 +130,8 @@ and press =C-h v=.
       shift-select-mode nil
       transient-mark-mode t
       truncate-partial-width-windows nil
-      uniquify-buffer-name-style 'forward)
+      uniquify-buffer-name-style 'forward
+      shell-file-name "/bin/sh")
 
 (setq-default comment-column 0)
 #+END_SRC

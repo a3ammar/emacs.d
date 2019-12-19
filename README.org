@@ -2450,11 +2450,7 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
                 (electric-indent-mode nil))))
 
   (use-package uncrustify-mode
-    :config
-    (add-hook 'c-mode-common-hook
-              (lambda ()
-                (setq uncrustify-bin "uncrustify -q")
-                (uncrustify-mode 1)))))
+    :bind ("C-c C-f" . uncrustify-buffer)))
 #+END_SRC
 
 

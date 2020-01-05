@@ -1320,7 +1320,6 @@ Modes and configuration specific to managing and navigating projects.
   (setq ivy-use-virtual-buffers t
         ivy-height 15
         ivy-extra-directories nil
-        ivy-initial-inputs-alist nil
         ivy-magic-tilde nil
         ivy-switch-buffer-faces-alist '((dired-mode . ivy-subdir)
                                         (org-mode . org-macro))
@@ -1367,7 +1366,8 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
          :map counsel-find-file-map
          ("C-l" . ivy-backward-delete-char))
   :config
-  (setq counsel-preselect-current-file 't
+  (setq ivy-initial-inputs-alist nil
+        counsel-preselect-current-file 't
         counsel-yank-pop-separator "\n\n"
         counsel-find-file-ignore-regexp "\\`\\(\\..*\\|__pycache__\\|.*\\.pyc\\|.*\\.o\\)\\'")
 

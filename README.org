@@ -2446,6 +2446,8 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 
   (add-hook 'c++-mode-hook
             (lambda ()
+              (setq flycheck-clang-language-standard "c++11"
+                    flycheck-clang-pedantic 't)
               (when (my/current-buffer-is-a "p4")
                 (electric-indent-mode nil))))
 

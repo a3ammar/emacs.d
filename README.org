@@ -2441,6 +2441,7 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
               (c-set-offset 'brace-list-intro '+)
               (c-set-offset 'arglist-intro '++)
               (c-set-offset 'arglist-cont-nonempty '++)
+              (c-set-offset 'inextern-lang 0)
               (setq sp-escape-quotes-after-insert nil)))
 
   (add-hook 'c++-mode-hook

@@ -1785,6 +1785,23 @@ Makes marking and killing regions much [[https://github.com/leoliu/easy-kill][ea
 (use-package wgrep-ag)
 #+END_SRC
 
+** Dumb Jump
+
+[[https://github.com/jacktasia/dumb-jump][dumb-jump]] is a simple jump-to command
+
+#+BEGIN_SRC emacs-lisp
+(defun my/dumb-jump (arg)
+  (interactive "P")
+  (if arg
+      (dumb-jump-go-other-window)
+    (dumb-jump-go)))
+
+(use-package dumb-jump
+  :bind (("M-g j" . my/dumb-jump)
+         ("M-g b" . dumb-jump-back)
+         ("M-g l" . dumb-jump-quick-look)))
+#+END_SRC
+
 ** Docker
 [[https://github.com/Silex/docker.el][Docker Interface]] to emacs
 

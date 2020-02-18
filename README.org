@@ -1354,7 +1354,7 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
          ("C-x m" . counsel-M-x)
          ("M-y" . counsel-yank-pop)
          ("C-x C-f" . counsel-find-file)
-         ("C-x C-i" . counsel-imenu)
+         ("C-x C-i" . counsel-semantic-or-imenu)
          ("C-x c p" . counsel-list-processes)
          ("M-?" . counsel-company)
          ("C-h f" . counsel-describe-function)
@@ -2459,7 +2459,8 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
               (c-set-offset 'arglist-intro '++)
               (c-set-offset 'arglist-cont-nonempty '++)
               (c-set-offset 'inextern-lang 0)
-              (setq sp-escape-quotes-after-insert nil)))
+              (setq sp-escape-quotes-after-insert nil)
+              (semantic-mode)))
 
   (add-hook 'c++-mode-hook
             (lambda ()

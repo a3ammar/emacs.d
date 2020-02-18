@@ -2473,6 +2473,17 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 #+END_SRC
 
 
+** Protobuf Mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package protobuf-mode
+  :config
+  (c-add-style "my/protobuf-style"
+               '((c-basic-offset . 2)))
+  (add-hook 'protobuf-mode-hook
+            (lambda () (c-set-style "my/protobuf-style"))))
+#+END_SRC
+
 * Extra Functionality
 Miscellaneous and extra functionality. The dump of my little functions.
 

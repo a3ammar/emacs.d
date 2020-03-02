@@ -1084,8 +1084,8 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
 (use-package company
   :config
   (setq company-global-modes '(not inf-ruby-mode eshell-mode)
-        company-idle-delay 0.3
-        company-minimum-prefix-length 3
+        company-idle-delay 0.1
+        company-minimum-prefix-length 2
         company-dabbrev-downcase nil)
 
   (add-hook 'company-mode-hook
@@ -1096,16 +1096,6 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
                                   :inherit 'region)))
 
   (global-company-mode))
-#+END_SRC
-
-More backends to Company Mode
-
-#+BEGIN_SRC emacs-lisp
-(use-package company-web
-  :config
-  (add-hook 'web-mode-hook
-            (lambda ()
-              (add-to-list 'company-backends 'company-web-html))))
 #+END_SRC
 
 When Company suggestions is shown pressing =C-w= will be captured by Company and will not execute =backward-kill-word=.
@@ -1120,6 +1110,20 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
 (bind-keys :map company-active-map
           ("C-w" . my/company-abort))
 #+END_SRC
+
+** LSP Mode
+
+[[https://github.com/emacs-lsp/][LSP Mode]] is emacs' integration for the Language Server Protocol
+
+#+BEGIN_SRC emacs-lisp
+(use-package lsp-mode
+  :hook (prog-mode . lsp-deferred)
+  :commands (lsp lsp-deferred)
+  :config
+  (setq lsp-session-file (concat my/history-dir "lsp-session")
+        lsp-enable-symbol-highlighting nil))
+#+END_SRC
+
 
 ** Ace Window
 [[https://github.com/abo-abo/ace-window][ace-window]] is a replacment for the =other-window= command
@@ -1493,8 +1497,9 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
 #+BEGIN_SRC emacs-lisp
 (use-package magit
   :pin melpa-stable
-  :commands magit-status
-  :bind ("C-c <return>" . magit-status)
+  :commands (magit-status magit-file-popup)
+  :bind (("C-c <return>" . magit-status)
+         ("C-c M-g" . magit-file-popup))
   :config
   (setq magit-push-always-verify nil
         magit-use-sticky-arguments 'current
@@ -1724,13 +1729,7 @@ Makes marking and killing regions much [[https://github.com/leoliu/easy-kill][ea
 #+BEGIN_SRC emacs-lisp
 (use-package restclient
   :mode ("\\.restclient" . restclient-mode)
-  :commands restclient-mode
-  :config
-  (use-package company-restclient
-    :config
-    (add-hook 'restclient-mode-hook
-              (lambda ()
-                (add-to-list 'company-backends 'company-restclient)))))
+  :commands restclient-mode)
 #+END_SRC
 
 ** Which Key Mode
@@ -2278,9 +2277,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 (use-package elm-mode
   :mode "\\.elm\\'"
   :bind (:map elm-mode-map
-              ("<return>" . newline-and-indent))
-  :config
-  (add-to-list 'company-backends 'company-elm))
+              ("<return>" . newline-and-indent)))
 #+END_SRC
 
 ** Haskell Mode
@@ -2335,16 +2332,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   (add-hook 'before-save-hook
             (lambda ()
               (when (string= major-mode "go-mode")
-                (gofmt-before-save))))
-
-  (use-package go-eldoc
-    :hook go-mode))
-
-(use-package company-go
-  :config
-  (add-hook 'go-mode-hook
-            (lambda ()
-              (add-to-list 'company-backends 'company-go))))
+                (gofmt-before-save)))))
 #+END_SRC
 
 Override the =go-goto-*= methods to push to the mark ring before jumping

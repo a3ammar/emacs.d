@@ -1391,6 +1391,16 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
 
 #+END_SRC
 
+[[https://github.com/Yevgnen/ivy-rich][ivy-rich]] provides extra information to ivy buffers
+
+#+BEGIN_SRC emacs-lisp
+(use-package ivy-rich
+  :config
+  (ivy-rich-mode)
+  (setq ivy-rich-parse-remote-buffer nil
+        ivy-rich-parse-remote-file-path nil))
+#+END_SRC
+
 ** Projectile
 [[https://github.com/bbatsov/projectile][Projectile]] mode is one the best packages Emacs have, more information is in this
 [[http://tuhdo.github.io/helm-projectile.html][blog]] post.

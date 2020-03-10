@@ -1121,7 +1121,8 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
   :commands (lsp lsp-deferred)
   :config
   (setq lsp-session-file (concat my/history-dir "lsp-session")
-        lsp-enable-symbol-highlighting nil))
+        lsp-enable-symbol-highlighting nil
+        lsp-restart 'ignore))
 #+END_SRC
 
 

@@ -2466,6 +2466,12 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
               (when (my/current-buffer-is-a "p4")
                 (electric-indent-mode nil))))
 
+  ;; Workaround semantic and company issue
+  (--each '(semantic-analyze-completion-at-point-function
+            semantic-analyze-notc-completion-at-point-function
+            semantic-analyze-nolongprefix-completion-at-point-function)
+    (remove-hook 'completion-at-point-functions it))
+
   (use-package uncrustify-mode
     :bind ("C-c C-f" . uncrustify-buffer)))
 #+END_SRC

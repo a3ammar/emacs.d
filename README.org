@@ -1084,8 +1084,8 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
 (use-package company
   :config
   (setq company-global-modes '(not inf-ruby-mode eshell-mode)
-        company-idle-delay 0.1
-        company-minimum-prefix-length 2
+        company-idle-delay 0.3
+        company-minimum-prefix-length 3
         company-dabbrev-downcase nil)
 
   (add-hook 'company-mode-hook

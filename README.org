@@ -1117,8 +1117,9 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
 
 #+BEGIN_SRC emacs-lisp
 (use-package lsp-mode
+  :bind (("C-c C-d" . lsp-describe-thing-at-point))
   :hook (prog-mode . lsp-deferred)
-  :commands (lsp lsp-deferred)
+  :commands (lsp lsp-deferred lsp-describe-thing-at-point)
   :config
   (setq lsp-session-file (concat my/history-dir "lsp-session")
         lsp-enable-symbol-highlighting nil
@@ -2345,6 +2346,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 #+BEGIN_SRC emacs-lisp
 (use-package go-mode
   :config
+  (unbind-key "C-c C-d" go-mode-map)
   (add-hook 'before-save-hook
             (lambda ()
               (when (string= major-mode "go-mode")
@@ -2453,6 +2455,8 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
   :mode ("\\.p4\\'" . c++-mode)         ; Use cc-mode for P4 files
   :config
   (unbind-key "C-c C-p" c-mode-map)
+  (unbind-key "C-c C-d" c-mode-map)
+
   (setq c-basic-offset 4)
 
   (add-hook 'c-mode-common-hook

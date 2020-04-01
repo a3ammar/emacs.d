@@ -782,6 +782,8 @@ Unbind these keys because they are used for something else.
 #+BEGIN_SRC emacs-lisp
 (unbind-key "C-;")
 (unbind-key "C-x m")
+;; I don't like the `upcase-region' command, always use it by mistake
+(unbind-key "C-x C-u")
 #+END_SRC
 
 *** Preferred Binding for Default Commands

@@ -1131,7 +1131,11 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
         lsp-enable-symbol-highlighting nil
         lsp-restart 'ignore
         lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd"
-        company-lsp-cache-candidates 'auto)
+        company-lsp-cache-candidates 'auto
+        ;; Disable LSP auto formatting
+        lsp-before-save-edits nil
+        lsp-enable-indentation nil
+        )
   ;; Ignore these directories
   (--each '("[/\\\\]venv$")
     (push it lsp-file-watch-ignored)))

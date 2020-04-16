@@ -130,7 +130,9 @@ and press =C-h v=.
       shift-select-mode nil
       transient-mark-mode t
       truncate-partial-width-windows nil
-      uniquify-buffer-name-style 'forward)
+      uniquify-buffer-name-style 'forward
+      vc-follow-symlinks 't
+      )
 
 (setq-default comment-column 0)
 #+END_SRC

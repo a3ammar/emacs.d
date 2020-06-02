@@ -1444,6 +1444,17 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
   (push "node_modules" projectile-globally-ignored-directories)
   (push ".direnv" projectile-globally-ignored-directories)
 
+  ;; Add prefix to project names in ~/Code/{pb,wf4g}.
+  (setq projectile-project-name-function
+        (lambda (path)
+          (let ((project-name (projectile-default-project-name path)))
+            (cond ((s-starts-with? (expand-file-name "~/Code/pb") path)
+                   (concat "pb/" project-name))
+                  ((s-starts-with? (expand-file-name "~/Code/wf4g") path)
+                   (concat "wf4g/" project-name))
+                  (t
+                   project-name)))))
+
   (projectile-load-known-projects))
 #+END_SRC
 

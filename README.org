@@ -1001,7 +1001,6 @@ the closing pair.
 
 #+BEGIN_SRC emacs-lisp
 (use-package smartparens
-  :pin melpa-stable
   :bind (:map sp-keymap
               ("M-<backspace>" . sp-unwrap-sexp)
               ("M-." . sp-slurp-hybrid-sexp)

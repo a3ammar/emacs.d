@@ -478,7 +478,8 @@ Automatically transform symbols like lambda into the greek letter =λ=
   (add-hook it
             (lambda () (add-to-list 'prettify-symbols-alist '("lambda" . ?λ)))))
 
-(--each '(js-mode-hook
+(--each '(web-mode-hook
+          js-mode-hook
           js2-mode-hook
           rjsx-mode-hook)
   (add-hook it

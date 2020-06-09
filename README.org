@@ -1014,7 +1014,9 @@ the closing pair.
   (setq sp-base-key-bindings 'sp
         sp-highlight-pair-overlay nil
         sp-highlight-wrap-overlay nil
-        sp-highlight-wrap-tag-overlay nil)
+        sp-highlight-wrap-tag-overlay nil
+        sp-navigate-consider-sgml-tags '() ; Don't treat HTML tags as sexps
+        )
 
   (use-package smartparens-config :ensure nil)
   (sp-use-smartparens-bindings)

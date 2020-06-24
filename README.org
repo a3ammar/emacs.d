@@ -1134,6 +1134,10 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
         ;; Disable LSP auto formatting
         lsp-before-save-edits nil
         lsp-enable-indentation nil
+        lsp-signature-render-documentation nil
+        lsp-eslint-server-command '("node"
+                                    (expand-file-name "~/.config/vscode-eslint/server/src/eslintServer.ts")
+                                    "--stdio")
         )
   ;; Ignore these directories
   (--each '("[/\\\\]venv$")

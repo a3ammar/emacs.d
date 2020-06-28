@@ -2206,7 +2206,12 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   :bind (:map yaml-mode-map
               ("<return>" . newline-and-indent))
   :config
-  (add-hook 'yaml-mode-hook #'turn-off-flyspell))
+  (add-hook 'yaml-mode-hook #'turn-off-flyspell)
+  ;; Fix yaml newline which was broken by https://github.com/yoshiki/yaml-mode/commit/ac21293ee6d66bb04e0fc6ebc332ee038a5a3824
+  (add-hook 'yaml-mode-hook
+            (lambda ()
+              (setq yaml-nested-map-re ".*: *\\(?:&.*\\|{ *\\|!!?[^
+]+ *\\)?$"))))
 #+END_SRC
 
 ** Lua Mode

@@ -1015,7 +1015,6 @@ the closing pair.
         sp-highlight-pair-overlay nil
         sp-highlight-wrap-overlay nil
         sp-highlight-wrap-tag-overlay nil
-        sp-navigate-consider-sgml-tags '() ; Don't treat HTML tags as sexps
         )
 
   (use-package smartparens-config :ensure nil)
@@ -1037,7 +1036,9 @@ the closing pair.
             (lambda ()
               (sp-local-pair 'web-mode "<" nil :actions :rem)
               (sp-local-pair 'web-mode "<%" "%>" :post-handlers '(("| " "SPC") (" | " "=")))
-              (sp-local-pair 'web-mode "{%" "%}" :post-handlers '(("| " "SPC")))))
+              (sp-local-pair 'web-mode "{%" "%}" :post-handlers '(("| " "SPC")))
+              (setq sp-navigate-consider-sgml-tags '()) ; Don't treat HTML tags as sexps
+              ))
 
   ;; Do not escape closing pair in string interpolation
   (add-hook 'swift-mode-hook

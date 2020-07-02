@@ -2138,7 +2138,8 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   ;; Remove `:' from `electric-indent-chars'
   (add-hook 'python-mode-hook
             (lambda ()
-              (setq electric-indent-chars (remq ?: electric-indent-chars)))))
+              (setq electric-indent-chars (remq ?: electric-indent-chars))
+              (set (make-local-variable 'comment-inline-offset) 2))))
 #+END_SRC
 
 ** Web Mode

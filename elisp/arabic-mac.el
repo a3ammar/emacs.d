@@ -42,8 +42,8 @@ Based on Arabic table in X Keyboard Configuration DB.
  ("Y" ?ٌ)
  ("U" ?ْ)
  ("I" ?ّ)
- ("O" ?[)
- ("P" ?])
+ ("O" ?\[)
+ ("P" ?\])
  ("{" ?{)
  ("}" ?})
 

@@ -1,15 +1,17 @@
 # -*- mode: snippet -*-
-# name: Vue signle file template
-# key: skltn
+# name: Vue component skeleton
+# key: vue
 # --
 <template>
+  <div class="$1-container">
 
+  </div>
 </template>
 
 
 <script>
 export default {
-  name: '$0',
+  name: '${1:name}',$0
 };
 </script>
 

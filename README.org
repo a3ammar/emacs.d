@@ -426,10 +426,9 @@ Add a one pixel padding to the edges of Emacs window.
 
 #+BEGIN_SRC emacs-lisp
 (use-package zenburn-theme
-  :init
+  :config
   (setq zenburn-override-colors-alist
         '(("zenburn-green-2" . "#6d926d")))
-  :config
   (set-face-attribute 'region nil
                       :background "#5c5c5c")
   (set-face-attribute 'font-lock-type-face nil
@@ -1498,7 +1497,8 @@ Called with one prefix arugment it searches for files with the same extension as
 Otherwise it passes its argument to `counsel-projectile-rg'"
   (interactive "P")
   (cond ((equal arg '(16))
-         (let ((current-prefix-arg '(4))) (counsel-projectile-rg)))
+         (let ((current-prefix-arg '(4)))
+           (counsel-projectile-rg)))
         ((equal arg '(4))
          ()
          (counsel-projectile-rg (get-ripgrep-type)))
@@ -1517,6 +1517,7 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package projectile-rails
+  :commands (projectile-rails-on)
   :config
   (setq projectile-rails-font-lock-face-name 'font-lock-builtin-face
         projectile-rails-stylesheet-re "\\.scss\\'")
@@ -1656,7 +1657,8 @@ leaving Emacs.
 Using [[https://github.com/xuchunyang/gitignore-templates.el/tree/2b729c6b76ec940e15c1599a0105149c2e1f4b17][gitignore templates]]
 
 #+BEGIN_SRC emacs-lisp
-(use-package gitignore-templates)
+(use-package gitignore-templates
+  :commands (gitignore-template-insert))
 #+END_SRC
 
 
@@ -2375,6 +2377,7 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
 
 #+BEGIN_SRC emacs-lisp
 (use-package go-mode
+  :mode "\\.go\\'"
   :config
   (unbind-key "C-c C-d" go-mode-map)
   (add-hook 'before-save-hook
@@ -2421,20 +2424,24 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
   (push-mark)
   (go-goto-method-receiver))
 
-(bind-keys :map go-goto-map
-           ("a" . my/go-goto-arguments)
-           ("d" . my/go-goto-docstring)
-           ("f" . my/go-goto-function)
-           ("i" . my/go-goto-imports)
-           ("m" . my/go-goto-method-receiver)
-           ("n" . my/go-goto-function-name)
-           ("r" . my/go-goto-return-value))
+(add-hook 'go-mode-hook
+          (lambda ()
+            (bind-keys :map go-goto-map
+                       ("a" . my/go-goto-arguments)
+                       ("d" . my/go-goto-docstring)
+                       ("f" . my/go-goto-function)
+                       ("i" . my/go-goto-imports)
+                       ("m" . my/go-goto-method-receiver)
+                       ("n" . my/go-goto-function-name)
+                       ("r" . my/go-goto-return-value))))
+
 #+END_SRC
 
 ** TOML Mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package toml-mode)
+(use-package toml-mode
+  :mode "\\.toml\\'")
 #+END_SRC
 
 
@@ -2442,6 +2449,7 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 
 #+BEGIN_SRC emacs-lisp
 (use-package clojure-mode
+  :mode "\\.clj\\'"
   :config
   (add-hook 'clojure-mode-hook #'turn-on-eldoc-mode)
   (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
@@ -2463,6 +2471,7 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 
 #+BEGIN_SRC emacs-lisp
 (use-package ein
+  :mode "\\.ipynb\\'"
   :config
   (add-hook 'ein:notebook-mode-hook
             (lambda ()
@@ -2474,7 +2483,8 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 ** Yang Mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package yang-mode)
+(use-package yang-mode
+  :mode "\\.yang\\'")
 #+END_SRC
 
 
@@ -2520,6 +2530,7 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 
 #+BEGIN_SRC emacs-lisp
 (use-package protobuf-mode
+  :mode "\\.proto\\'"
   :config
   (c-add-style "my/protobuf-style"
                '((c-basic-offset . 2)))

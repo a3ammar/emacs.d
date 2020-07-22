@@ -1704,16 +1704,12 @@ Makes you able to [[https://github.com/emacsfodder/move-text][move line]] or reg
   (move-text-default-bindings))
 #+END_SRC
 
-** Easy Kill Mode
-Makes marking and killing regions much [[https://github.com/leoliu/easy-kill][easier]]
+** Expand Region
 
 #+BEGIN_SRC emacs-lisp
-(use-package easy-kill
-  :bind (("M-2" . easy-mark))
-  :init
-  (global-set-key [remap kill-ring-save] #'easy-kill))
+(use-package expand-region
+  :bind (("M-2" . er/expand-region)))
 #+END_SRC
-
 
 ** Avy
 [[https://github.com/abo-abo/avy][Avy]] lets you jump to things.

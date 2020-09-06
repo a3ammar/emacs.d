@@ -426,13 +426,17 @@ Add a one pixel padding to the edges of Emacs window.
 
 #+BEGIN_SRC emacs-lisp
 (use-package zenburn-theme
+  :init
+  (load-theme 'zenburn 't)
   :config
   (setq zenburn-override-colors-alist
         '(("zenburn-green-2" . "#6d926d")))
   (set-face-attribute 'region nil
-                      :background "#5c5c5c")
+                      :background "#5c5c5c"
+                      :extend 't)
   (set-face-attribute 'font-lock-type-face nil
-                      :weight 'bold))
+                      :weight 'bold
+                      :extend 't))
 #+END_SRC
 
 ** Rainbow Delimiters
@@ -460,12 +464,13 @@ it to change all the delimiters colors to one.
             rainbow-delimiters-depth-7-face
             rainbow-delimiters-depth-8-face
             rainbow-delimiters-depth-9-face)
-    (set-face-attribute it nil :foreground "#FC5353"))
+    (set-face-attribute it nil :foreground "#FC5353" :extend 't))
 
   (set-face-attribute 'rainbow-delimiters-unmatched-face nil
                       :foreground "#dfaf8f"
                       :background "#FC5353"
-                      :inverse-video nil))
+                      :inverse-video nil
+                      :extend 't))
 #+END_SRC
 
 ** Prettify Symbols
@@ -505,10 +510,10 @@ For easily identification of the current line.
 #+END_SRC
 
 ** Set the Default Font
-I really like [[https://en.wikipedia.org/wiki/Menlo_(typeface)][Menlo]] font, it's shipped by default with OS X.
+I really like the [[https://www.jetbrains.com/lp/mono/][JetBrains Mono]] font.
 
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :font "Menlo" :height 120)
+(set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
 #+END_SRC
 
 Use an Arabic font for Arabic unicode characters
@@ -561,13 +566,13 @@ A few configurations and styles for Emacs Ediff.
 #+BEGIN_SRC emacs-lisp
 (add-hook 'ediff-mode-hook
           (lambda ()
-(setq ediff-merge-split-window-function 'split-window-vertically
-      ediff-split-window-function  'split-window-horizontally
-      ediff-window-setup-function 'ediff-setup-windows-plain)
-
-(set-face-attribute 'ediff-current-diff-C nil :background "#41421c")
-(set-face-attribute 'ediff-fine-diff-A nil :background "#630813")
-(set-face-attribute 'ediff-fine-diff-B nil :background "#0a4c1b")))
+            (setq ediff-merge-split-window-function 'split-window-vertically
+                  ediff-split-window-function  'split-window-horizontally
+                  ediff-window-setup-function 'ediff-setup-windows-plain)
+            (set-face-attribute 'ediff-current-diff-C nil :background "#41421c" :extend 't)
+            (set-face-attribute 'ediff-fine-diff-A nil :background "#630813" :extend 't)
+            (set-face-attribute 'ediff-fine-diff-B nil :background "#0a4c1b" :extend 't)
+            ))
 #+END_SRC
 
 ** Dired
@@ -1047,7 +1052,8 @@ the closing pair.
 
   (set-face-attribute 'sp-show-pair-match-face nil
                       :foreground nil
-                      :background "#735757")
+                      :background "#735757"
+                      :extend 't)
 
   (show-smartparens-global-mode))
 #+END_SRC
@@ -1094,7 +1100,8 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
               (set-face-attribute 'company-template-field nil
                                   :foreground nil
                                   :background nil
-                                  :inherit 'region)))
+                                  :inherit 'region
+                                  :extend 't)))
 
   (global-company-mode))
 #+END_SRC
@@ -1253,7 +1260,8 @@ Focus help popup so we can exit it easily with popwin.
 
   (set-face-attribute 'flycheck-error nil
                       :background "#885f5f"
-                      :underline '(:style wave :color "#BC8383"))
+                      :underline '(:style wave :color "#BC8383")
+                      :extend 't)
 
   (global-flycheck-mode))
 #+END_SRC
@@ -1267,7 +1275,8 @@ Show flycheck errors in a popup
   (set-face-attribute 'popup-tip-face nil
                       :background nil
                       :foreground nil
-                      :inherit 'company-tooltip))
+                      :inherit 'company-tooltip
+                      :extend 't))
 #+END_SRC
 
 ** Aggressive Indent
@@ -1352,12 +1361,14 @@ Modes and configuration specific to managing and navigating projects.
 
   (set-face-attribute 'ivy-minibuffer-match-face-2 nil
                       :background nil
-                      :inherit 'isearch)
+                      :inherit 'isearch
+                      :extend 't)
 
   (set-face-attribute 'ivy-virtual nil
                       :foreground "#c2d2d3"
                       :weight 'bold
-                      :inherit nil)
+                      :inherit nil
+                      :extend 't)
 
   (ivy-mode))
 #+END_SRC
@@ -1583,11 +1594,13 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
   (--each '(diff-added diff-refine-added)
     (set-face-attribute it nil
                         :foreground "#d9e9d9"
-                        :background "#3F5F3F"))
+                        :background "#3F5F3F"
+                        :extend 't))
   (--each '(diff-removed diff-refine-removed)
     (set-face-attribute it nil
                         :foreground "#e2d1d1"
-                        :background "#7C4343"))
+                        :background "#7C4343"
+                        :extend 't))
 
   (defun my/parse-repo-url (url)
     "convert a git remote location as a HTTP URL"
@@ -1683,7 +1696,8 @@ Configuration to modes that are run by a keybinding or from =M-x=.
   (set-face-attribute 'mc/cursor-bar-face nil
                       :foreground nil
                       :background "#022B35"
-                      :inverse-video nil))
+                      :inverse-video nil
+                      :extend 't))
 #+END_SRC
 
 ** Iedit
@@ -1899,7 +1913,7 @@ General org-mode configuration
                                '((shell . t)
                                  (emacs-lisp . t)))
 
-  (set-face-attribute 'org-block nil :background "#3f3f3f")
+  (set-face-attribute 'org-block nil :background "#3f3f3f" :extend 't)
   (--each '(org-document-title
             org-level-1
             org-level-2
@@ -1909,7 +1923,7 @@ General org-mode configuration
             org-level-6
             org-level-7
             org-level-8)
-    (set-face-attribute it nil :font "Raleway" :height 180 :weight 'bold)))
+    (set-face-attribute it nil :font "Raleway" :height 180 :weight 'bold :extend 't)))
 #+END_SRC
 
 When I'm editing org documents, sometimes I like to narrow to an org-mode section and use Next Section and Previous Section to move between the sections. (taken from this [[https://www.reddit.com/r/emacs/comments/60nb8b/favorite_builtin_emacs_commands/df8b7vm/][reddit comment]])
@@ -2072,7 +2086,7 @@ For [[http://emacsblog.org/2007/07/21/package-faves-rcodetools/][more informatio
 
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
-  :mode ("\\.js$")
+  :mode ("\\.[m]?js$")
   :config
   (setq js2-mode-show-parse-errors nil
         js2-mode-show-strict-warnings nil
@@ -2087,7 +2101,8 @@ For [[http://emacsblog.org/2007/07/21/package-faves-rcodetools/][more informatio
 
   (set-face-attribute 'js2-function-param nil
                       :foreground nil
-                      :inherit 'font-lock-constant-face)
+                      :inherit 'font-lock-constant-face
+                      :extend 't)
 
   (use-package js-comint))
 #+END_SRC
@@ -2169,12 +2184,14 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   (set-face-attribute 'web-mode-block-face nil
                       :foreground nil
                       :background nil
-                      :inherit 'hl-line)
+                      :inherit 'hl-line
+                      :extend 't)
 
   (set-face-attribute 'web-mode-current-element-highlight-face nil
                       :foreground nil
                       :background "#383838"
-                      :inherit 'sp-show-pair-match-face))
+                      :inherit 'sp-show-pair-match-face
+                      :extend 't))
 #+END_SRC
 
 ** CSS Mode
@@ -2236,13 +2253,16 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
   (set-face-attribute 'markdown-bold-face nil
                       :weight 'bold
-                      :inherit 'font-lock-builtin-face)
+                      :inherit 'font-lock-builtin-face
+                      :extend 't)
   (set-face-attribute 'markdown-header-face nil
                       :font "Raleway"
                       :height 180
-                      :weight 'bold)
+                      :weight 'bold
+                      :extend 't)
   (set-face-attribute 'markdown-pre-face nil
-                      :inherit 'default))
+                      :inherit 'default
+                      :extend 't))
 #+END_SRC
 
 ** Shell Conf Mode

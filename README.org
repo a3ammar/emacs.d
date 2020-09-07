@@ -1591,16 +1591,19 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
     :config
     (add-to-list 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
 
-  (--each '(diff-added diff-refine-added)
-    (set-face-attribute it nil
-                        :foreground "#d9e9d9"
-                        :background "#3F5F3F"
-                        :extend 't))
-  (--each '(diff-removed diff-refine-removed)
-    (set-face-attribute it nil
-                        :foreground "#e2d1d1"
-                        :background "#7C4343"
-                        :extend 't))
+  (--each '(diff-added
+            diff-refine-added
+            diff-removed
+            diff-refine-removed
+            magit-diff-added
+            magit-diff-added-highlight
+            magit-diff-removed
+            magit-diff-removed-highlight
+            magit-diff-context-highlight)
+    (set-face-attribute it nil :extend 't))
+
+  (--each '()
+    (set-face-attribute it nil :extend 't))
 
   (defun my/parse-repo-url (url)
     "convert a git remote location as a HTTP URL"

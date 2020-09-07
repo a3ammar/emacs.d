@@ -513,7 +513,7 @@ For easily identification of the current line.
 I really like the [[https://www.jetbrains.com/lp/mono/][JetBrains Mono]] font.
 
 #+BEGIN_SRC emacs-lisp
-(set-face-attribute 'default nil :font "JetBrains Mono" :height 120)
+(set-face-attribute 'default nil :font "JetBrains Mono NL" :height 120)
 #+END_SRC
 
 Use an Arabic font for Arabic unicode characters

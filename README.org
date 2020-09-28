@@ -1552,7 +1552,6 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
 
 #+BEGIN_SRC emacs-lisp
 (use-package magit
-  :pin melpa-stable
   :commands (magit-status magit-file-popup)
   :bind (("C-c <return>" . magit-status)
          ("C-c M-g" . magit-file-popup))

@@ -1559,6 +1559,7 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
   :config
   (setq magit-push-always-verify nil
         magit-use-sticky-arguments 'current
+        magit-bury-buffer-function 'magit-mode-quit-window
         magit-section-cache-visibility nil
         magit-revert-buffers 'silent
         magit-diff-refine-hunk 't
@@ -1593,20 +1594,6 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
   (use-package git-commit
     :config
     (add-to-list 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
-
-  (--each '(diff-added
-            diff-refine-added
-            diff-removed
-            diff-refine-removed
-            magit-diff-added
-            magit-diff-added-highlight
-            magit-diff-removed
-            magit-diff-removed-highlight
-            magit-diff-context-highlight)
-    (set-face-attribute it nil :extend 't))
-
-  (--each '()
-    (set-face-attribute it nil :extend 't))
 
   (defun my/parse-repo-url (url)
     "convert a git remote location as a HTTP URL"

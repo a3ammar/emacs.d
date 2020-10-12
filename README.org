@@ -132,6 +132,8 @@ and press =C-h v=.
       truncate-partial-width-windows nil
       uniquify-buffer-name-style 'forward
       vc-follow-symlinks 't
+      default-directory "~/"
+      command-line-default-directory "~/"
       )
 
 (setq-default comment-column 0)

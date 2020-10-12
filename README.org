@@ -892,7 +892,7 @@ us workaround that.
   :if (on-osx-p)
   :config
   (setq exec-path-from-shell-arguments nil
-        exec-path-from-shell-variables '("PATH" "MANPATH" "BROWSER" "DICPATH"))
+        exec-path-from-shell-variables '("PATH" "MANPATH" "BROWSER" "DICPATH" "GOROOT" "GOPATH"))
 
   (exec-path-from-shell-initialize))
 #+END_SRC

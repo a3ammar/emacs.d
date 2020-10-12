@@ -246,7 +246,8 @@ This saves our position in files other things between Emacs sessions.
                                       global-mark-ring
                                       search-ring
                                       regex-search-ring
-                                      extended-command-history))
+                                      extended-command-history)
+      transient-history-file (concat my/history-dir "transient"))
 
 (savehist-mode)
 #+END_SRC

@@ -1139,7 +1139,7 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
   (setq lsp-session-file (concat my/history-dir "lsp-session")
         lsp-enable-symbol-highlighting nil
         lsp-enable-snippet nil
-        lsp-imenu-index-symbol-kinds '(Method Function Class)
+        lsp-enable-imenu nil
         lsp-modeline-diagnostics-enable nil
         lsp-pyls-plugins-pylint-enabled 't
         lsp-restart 'ignore

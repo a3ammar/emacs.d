@@ -1130,7 +1130,7 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
 #+BEGIN_SRC emacs-lisp
 (use-package lsp-mode
   :bind (("C-c C-d" . lsp-describe-thing-at-point)
-         ("C-c C-f o" . lsp-organize-imports))
+         ("C-c C-o" . lsp-organize-imports))
   :hook ((go-mode
           c-mode
           python-mode

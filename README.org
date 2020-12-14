@@ -2165,6 +2165,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
         web-mode-enable-auto-pairing nil
         web-mode-enable-auto-indentation nil
         web-mode-script-padding 0
+        web-mode-prettify-symbols-alist nil
         web-mode-style-padding 0)
 
   ;; Don't let web-mode align JS methods call

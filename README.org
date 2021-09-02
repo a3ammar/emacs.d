@@ -1386,11 +1386,18 @@ Modes and configuration specific to managing and navigating projects.
 Counsel adds a lot of extra functionality & integraion to ivy-mode
 
 #+BEGIN_SRC emacs-lisp
+(defun my/counsel-find-file (&optional initial-input initial-directory)
+  (interactive)
+  (let ((default-directory (or initial-directory default-directory)))
+    (if (file-remote-p default-directory)
+        (call-interactively 'find-file)
+      (counsel-find-file initial-input initial-directory))))
+
 (use-package counsel
   :bind (("C-x C-m" . counsel-M-x)
          ("C-x m" . counsel-M-x)
          ("M-y" . counsel-yank-pop)
-         ("C-x C-f" . counsel-find-file)
+         ("C-x C-f" . my/counsel-find-file)
          ("C-x C-i" . counsel-semantic-or-imenu)
          ("C-x c p" . counsel-list-processes)
          ("M-?" . counsel-company)
@@ -1428,7 +1435,6 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
    `(("c" ,(given-file #'copy-file "Copy") "cp")
      ("d" my/kill-buffer-and-trash-file "rm")
      ("m" ,(given-file #'rename-file "Move") "mv"))))
-
 #+END_SRC
 
 [[https://github.com/Yevgnen/ivy-rich][ivy-rich]] provides extra information to ivy buffers

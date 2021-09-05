@@ -1045,7 +1045,6 @@ the closing pair.
               (sp-local-pair 'web-mode "<" nil :actions :rem)
               (sp-local-pair 'web-mode "<%" "%>" :post-handlers '(("| " "SPC") (" | " "=")))
               (sp-local-pair 'web-mode "{%" "%}" :post-handlers '(("| " "SPC")))
-              (setq sp-navigate-consider-sgml-tags '()) ; Don't treat HTML tags as sexps
               ))
 
   ;; Do not escape closing pair in string interpolation

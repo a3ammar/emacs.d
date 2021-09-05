@@ -1055,7 +1055,7 @@ the closing pair.
 
   (set-face-attribute 'sp-show-pair-match-face nil
                       :foreground nil
-                      :background "#735757"
+                      :background "#2B2B2B"
                       :extend 't)
 
   (show-smartparens-global-mode))
@@ -2191,7 +2191,6 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 
   (set-face-attribute 'web-mode-current-element-highlight-face nil
                       :foreground nil
-                      :background "#383838"
                       :inherit 'sp-show-pair-match-face
                       :extend 't))
 #+END_SRC

@@ -1082,9 +1082,17 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
         (goto-char (1+ end))
       (sp-end-of-sexp))))
 
+(defun my/sp-down-sexp (arg)
+  "Normal `sp-down-sexp' but with prefix it uses `sp-backward-down-sexp'"
+  (interactive "P")
+  (if arg
+      (sp-backward-down-sexp)
+    (sp-down-sexp)))
+
 (bind-keys :map sp-keymap
            ("C-M-a" . my/sp-beginning-of-sexp)
-           ("C-M-e" . my/sp-end-of-sexp))
+           ("C-M-e" . my/sp-end-of-sexp)
+           ("C-M-d" . my/sp-down-sexp))
 #+END_SRC
 
 ** Company Mode

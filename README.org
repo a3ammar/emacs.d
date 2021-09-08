@@ -2565,6 +2565,16 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
             (lambda () (c-set-style "my/protobuf-style"))))
 #+END_SRC
 
+
+** PO Mode
+
+PO mode is used to edit and manipulate =gettext= translation files
+
+#+begin_src emacs-lisp
+(use-package po-mode)
+#+end_src
+
+
 * Extra Functionality
 Miscellaneous and extra functionality. The dump of my little functions.
 

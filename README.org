@@ -1400,9 +1400,18 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
         (call-interactively 'find-file)
       (counsel-find-file initial-input initial-directory))))
 
+(defun my/kmacro-end-and-call-macro (arg &optional no-repeat)
+  "Prompt for macro selection when used with prefix"
+  (interactive "P")
+  (if arg
+      (let ((current-prefix-arg nil))
+        (counsel-kmacro))
+    (kmacro-end-and-call-macro no-repeat)))
+
 (use-package counsel
   :bind (("C-x C-m" . counsel-M-x)
          ("C-x m" . counsel-M-x)
+         ("C-x e" . my/kmacro-end-and-call-macro)
          ("M-y" . counsel-yank-pop)
          ("C-x C-f" . my/counsel-find-file)
          ("C-x C-i" . counsel-semantic-or-imenu)

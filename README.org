@@ -726,7 +726,7 @@ The built in view-mode is useful when you just want to read a file. This ease th
     (setq-local imenu-create-index-function
                 (lambda () (imenu--generic-function
                        '(("Style" "^\\(<style.*>\\)" 1)
-                         ("Function" "^\\s-*\\([[:alnum:]]+(.*)\\)\\s-*{" 1)
+                         ("Function" "^\\s-*\\(?:async \\)?\\([[:alnum:]]+(.*)\\)\\s-*{" 1)
                          ("Localization" "^\\s-*\\(i18n:\\s-*{\\)" 1)
                          ("Methods" "^\\s-*\\(methods:\\s-*{\\)" 1)
                          ("Watch" "^\\s-*\\(watch:\\s-*{\\)" 1)

@@ -600,7 +600,7 @@ A few configuration for Emacs Dired mode.
               ("v" . my/dired-view-file))
   :config
   (setq dired-dwim-target 't
-        dired-listing-switches "-alh"
+        dired-listing-switches "-alhtr"
         dired-recursive-deletes 'always)
   ;; Group directories first on OS X if coreutils `ls' is installed
   (when (and (on-osx-p) (executable-find "gls"))

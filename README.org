@@ -600,12 +600,9 @@ A few configuration for Emacs Dired mode.
               ("v" . my/dired-view-file))
   :config
   (setq dired-dwim-target 't
-        dired-listing-switches "-alhtr"
+        insert-directory-program "gls"
+        dired-listing-switches "-alht --group-directories-first"
         dired-recursive-deletes 'always)
-  ;; Group directories first on OS X if coreutils `ls' is installed
-  (when (and (on-osx-p) (executable-find "gls"))
-    (setq insert-directory-program "gls"
-          dired-listing-switches (concat dired-listing-switches " --group-directories-first")))
 
   (use-package dired-x
     :ensure nil))
@@ -1359,6 +1356,18 @@ Modes and configuration specific to managing and navigating projects.
 [[https://github.com/abo-abo/swiper][Ivy]] is a lightweight completion system
 
 #+BEGIN_SRC emacs-lisp
+(defun my/sort-files-by-date-directories-first (_name candidates)
+  "Re-sort CANDIDATES according to file modification date."
+  (let ((default-directory ivy--directory))
+    (sort (copy-sequence candidates)
+          (lambda (file1 file2)
+            (cond ((and (file-directory-p file1) (not (file-directory-p file2)))
+                   't)
+                  ((and (not (file-directory-p file1)) (file-directory-p file2))
+                   nil)
+                  (t
+                   (file-newer-than-file-p file1 file2)))))))
+
 (use-package ivy
   :bind (("C-s" . swiper)
          ("C-x c b" . ivy-resume)
@@ -1372,6 +1381,8 @@ Modes and configuration specific to managing and navigating projects.
         ivy-switch-buffer-faces-alist '((dired-mode . ivy-subdir)
                                         (org-mode . org-macro))
         ivy-ignore-buffers '("\\*HTTP Response\\*" "\\*magit.*"))
+  (add-to-list 'ivy-sort-matches-functions-alist
+               '(read-file-name-internal . my/sort-files-by-date-directories-first))
 
   ;; Don't wrap lines in ivy-occur
   (add-hook 'ivy-occur-grep-mode-hook #'toggle-truncate-lines)

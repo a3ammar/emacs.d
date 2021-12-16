@@ -801,7 +801,8 @@ These are my personal preference to the default Emacs keybindings.
            ("C-<tab>" . indent-for-tab-command)
            ("C-x s" . save-buffer)
            ("C-h a" . apropos)
-           ("C-x C-<tab>" . indent-rigidly))
+           ("C-x C-<tab>" . indent-rigidly)
+           ("C-x r w" . copy-rectangle-as-kill))
 #+END_SRC
 
 *** Window Movement

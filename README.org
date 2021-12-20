@@ -1658,7 +1658,9 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
 
   (bind-keys :map magit-status-mode-map
              ("I" . my/magit-open-repo)
-             ("SPC" . my/magit-visit-file)))
+             ("SPC" . my/magit-visit-file)
+             :map magit-blob-mode-map
+             ("RET" . magit-show-commit)))
 #+END_SRC
 
 ** Browse at Remote

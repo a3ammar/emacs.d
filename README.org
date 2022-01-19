@@ -1882,6 +1882,18 @@ Makes you able to [[https://github.com/emacsfodder/move-text][move line]] or reg
   (setq dumb-jump-selector 'ivy))
 #+END_SRC
 
+
+** Edit Indirect
+
+Allows you edit region in a separate buffer
+
+#+begin_src emacs-lisp
+(use-package edit-indirect
+  :bind (("C-c C-'" . edit-indirect-region)
+         ("C-c '" . edit-indirect-region)))
+#+end_src
+
+
 ** Docker
 [[https://github.com/Silex/docker.el][Docker Interface]] to emacs
 

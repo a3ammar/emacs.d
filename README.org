@@ -1148,7 +1148,7 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
         lsp-enable-imenu nil
         lsp-headerline-breadcrumb-enable nil
         lsp-modeline-diagnostics-enable nil
-        lsp-pyls-plugins-pylint-enabled 't
+        lsp-pylsp-plugins-pylint-enabled 't
         lsp-restart 'ignore
         lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd"
         company-lsp-cache-candidates 'auto

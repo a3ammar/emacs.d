@@ -777,6 +777,16 @@ Minor mode that buttonizes URLs
               ("M-<return>" . goto-address-at-point)))
 #+END_SRC
 
+** Change default mode persistent files location
+
+Change the location of these modes config/cache files to the proper path
+
+#+begin_src emacs-lisp
+(setq semanticdb-default-save-directory (concat my/history-dir "semanticdb"))
+(setq eshell-directory-name (concat my/history-dir "eshell"))
+#+end_src
+
+
 
 ** Change Emacs Keybinding
 *** Unbinding

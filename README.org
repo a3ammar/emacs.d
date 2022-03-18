@@ -134,6 +134,7 @@ and press =C-h v=.
       vc-follow-symlinks 't
       default-directory "~/"
       command-line-default-directory "~/"
+      kill-ring-max 1000
       )
 
 (setq-default comment-column 0)
@@ -777,7 +778,7 @@ Minor mode that buttonizes URLs
               ("M-<return>" . goto-address-at-point)))
 #+END_SRC
 
-** Change default mode persistent files location
+** Change default modes persistent files location
 
 Change the location of these modes config/cache files to the proper path
 

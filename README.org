@@ -258,11 +258,14 @@ This saves our position in files other things between Emacs sessions.
 Remembers visited files names.
 
 #+BEGIN_SRC emacs-lisp
-(setq recentf-auto-cleanup 'mode
-      recentf-max-saved-items 100
-      recentf-save-file (concat my/history-dir "recentf"))
+(use-package recentf
+  :defer 1
+  :config
+  (setq recentf-auto-cleanup 'mode
+        recentf-max-saved-items 100
+        recentf-save-file (concat my/history-dir "recentf"))
+  (recentf-mode))
 
-(recentf-mode)
 #+END_SRC
 
 ** Bookmarks File
@@ -367,7 +370,10 @@ Whenever a file opened by Emacs changed by an external program, this mode
 automatically reload the file
 
 #+BEGIN_SRC emacs-lisp
-(global-auto-revert-mode)
+(use-package autorevert
+  :defer 1
+  :config
+  (global-auto-revert-mode))
 #+END_SRC
 
 Set a better keybinding for =revert-buffer= No one likes =s-u=
@@ -382,6 +388,7 @@ lines, etc.
 
 #+BEGIN_SRC emacs-lisp
 (use-package whitespace
+  :defer 1
   :config
   (setq whitespace-action '(auto-cleanup)
         whitespace-style '(trailing
@@ -450,6 +457,7 @@ it to change all the delimiters colors to one.
 
 #+BEGIN_SRC emacs-lisp
 (use-package rainbow-delimiters
+  :defer 1
   :config
   (setq rainbow-delimiters-max-face-count 1)
 
@@ -747,6 +755,7 @@ The built in view-mode is useful when you just want to read a file. This ease th
 
 #+BEGIN_SRC emacs-lisp
 (use-package pixel-scroll
+  :defer 1
   :ensure nil
   :init (pixel-scroll-mode))
 #+END_SRC

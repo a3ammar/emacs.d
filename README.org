@@ -135,6 +135,7 @@ and press =C-h v=.
       default-directory "~/"
       command-line-default-directory "~/"
       kill-ring-max 1000
+      show-paren-mode nil
       )
 
 (setq-default comment-column 0)
@@ -1310,7 +1311,8 @@ Show flycheck errors in a popup
 
 #+BEGIN_SRC emacs-lisp
 (defun in-web-mode-js? ()
-  (string= (plist-get (web-mode-point-context (point)) :language) "javascript"))
+  (and (boundp 'web-mode-point-context)
+       (string= (plist-get (web-mode-point-context (point)) :language) "javascript")))
 
 (use-package aggressive-indent
   :commands aggressive-indent-mode

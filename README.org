@@ -1356,8 +1356,9 @@ Use the [[https://github.com/AndreaCrotti/yasnippet-snippets][Yasnippet official
 
 #+BEGIN_SRC emacs-lisp
 (use-package undo-tree
-  :bind ("C-M-_" . undo-tree-visualize)
-  :init
+  :bind (("C-M-_" . undo-tree-visualize))
+  :config
+  (setq undo-tree-auto-save-history nil)
   (global-undo-tree-mode))
 #+END_SRC
 

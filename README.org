@@ -2341,7 +2341,8 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   :ensure nil
   :mode ("\\.zsh\\'" "\\.gitignore\\'" "\\.envrc\\'" "\\.flowconfig\\'")
   :interpreter "zsh"
-  :init
+  :config
+  (unbind-key "C-c C-c" sh-mode-map)
   (setq-default sh-basic-offset 2))
 #+END_SRC
 

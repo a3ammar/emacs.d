@@ -2438,13 +2438,6 @@ I edit jinja files with names like =example.conf.j2= so I want Emacs to strip th
   :mode "\\.feature\\'")
 #+END_SRC
 
-** PHP Mode
-
-#+BEGIN_SRC emacs-lisp
-(use-package php-mode
-  :mode "\\.php\\'")
-#+END_SRC
-
 ** GraphQL Mode
 
 #+BEGIN_SRC emacs-lisp

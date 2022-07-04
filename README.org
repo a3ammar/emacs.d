@@ -2230,8 +2230,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   :pin melpa-stable
   :mode ("\\.html$" "\\.xml$" "\\.erb$" "\\.vue$" "\\.svg$" "\\.ts$")
   :config
-  (setq web-mode-enable-block-face 't
-        web-mode-enable-current-element-highlight 't
+  (setq web-mode-enable-current-element-highlight 't
         web-mode-css-indent-offset 2
         web-mode-markup-indent-offset 2
         web-mode-code-indent-offset 2

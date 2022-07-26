@@ -2250,6 +2250,12 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
                   ("javascript" . "//")
                   ("php" . "/*")))
 
+  ;; Set web-mode engin in django projects
+  (add-hook 'web-mode-hook (lambda ()
+                             (if (and (projectile-project-p)
+                                      (file-exists-p (concat (projectile-project-root) "apps/manage.py")))
+                                 (web-mode-set-engine "django"))))
+
   (set-face-attribute 'web-mode-block-face nil
                       :foreground nil
                       :background nil
@@ -2259,6 +2265,16 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   (set-face-attribute 'web-mode-current-element-highlight-face nil
                       :foreground nil
                       :inherit 'sp-show-pair-match-face
+                      :extend 't)
+
+  (set-face-attribute 'web-mode-block-control-face nil
+                      :foreground nil
+                      :inherit 'font-lock-keyword-face
+                      :extend 't)
+
+  (set-face-attribute 'web-mode-block-delimiter-face nil
+                      :foreground nil
+                      :inherit 'rainbow-delimiters-depth-1-face
                       :extend 't))
 #+END_SRC
 

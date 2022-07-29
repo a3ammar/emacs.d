@@ -1061,6 +1061,7 @@ the closing pair.
 
   (add-hook 'web-mode-hook
             (lambda ()
+              (setq sp-navigate-consider-sgml-tags '(html-mode))
               (sp-local-pair 'web-mode "<" nil :actions :rem)
               (sp-local-pair 'web-mode "<%" "%>" :post-handlers '(("| " "SPC") (" | " "=")))
               (sp-local-pair 'web-mode "{%" "%}" :post-handlers '(("| " "SPC")))

@@ -2276,6 +2276,11 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
   (set-face-attribute 'web-mode-block-delimiter-face nil
                       :foreground nil
                       :inherit 'rainbow-delimiters-depth-1-face
+                      :extend 't)
+
+  (set-face-attribute 'web-mode-html-attr-engine-face nil
+                      :foreground "#94BFF3"
+                      :weight 'bold
                       :extend 't))
 #+END_SRC
 

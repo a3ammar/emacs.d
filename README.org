@@ -1623,6 +1623,7 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
         magit-section-cache-visibility nil
         magit-revert-buffers 'silent
         magit-diff-refine-hunk 't
+        magit-published-branches nil
         magit-rebase-arguments '("--autostash")
         magit-completing-read-function 'ivy-completing-read
         magit-display-buffer-function #'magit-display-buffer-fullcolumn-most-v1

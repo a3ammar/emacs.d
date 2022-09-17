@@ -1178,9 +1178,6 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
         lsp-before-save-edits nil
         lsp-enable-indentation nil
         lsp-signature-render-documentation nil
-        lsp-eslint-server-command '("node"
-                                    (expand-file-name "~/.config/vscode-eslint/server/src/eslintServer.ts")
-                                    "--stdio")
         )
   ;; Ignore these directories
   (--each '("[/\\\\]venv$")
@@ -2799,6 +2796,8 @@ Taken from [[https://github.com/magnars/.emacs.d/blob/master/defuns/buffer-defun
 (defun indent-buffer ()
   (interactive)
   (indent-region (point-min) (point-max)))
+
+(bind-keys ("C-x TAB" . indent-buffer))
 #+END_SRC
 
 ** Clean the Buffer

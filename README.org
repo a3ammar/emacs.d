@@ -2797,7 +2797,7 @@ Taken from [[https://github.com/magnars/.emacs.d/blob/master/defuns/buffer-defun
   (interactive)
   (indent-region (point-min) (point-max)))
 
-(bind-keys ("C-x TAB" . indent-buffer))
+(bind-keys ("C-c TAB" . indent-buffer))
 #+END_SRC
 
 ** Clean the Buffer

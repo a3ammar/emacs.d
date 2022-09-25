@@ -10,3 +10,4 @@ games/
 /adafruit-wisdom.cache
 /semanticdb
 .yas-compiled-snippets.el
+/.cache/

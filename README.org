@@ -729,7 +729,8 @@ The built in view-mode is useful when you just want to read a file. This ease th
 
 #+BEGIN_SRC emacs-lisp
 (defun my/vue-imenu-index ()
-  (when (equal "vue" (file-name-extension (buffer-file-name)))
+  (when (or (equal "vue" (file-name-extension (buffer-file-name)))
+            (equal "js" (file-name-extension (buffer-file-name))))
     (setq-local imenu-create-index-function
                 (lambda () (imenu--generic-function
                        '(("Style" "^\\(<style.*>\\)" 1)
@@ -749,6 +750,7 @@ The built in view-mode is useful when you just want to read a file. This ease th
   (recenter))
 
 (add-hook 'web-mode-hook #'my/vue-imenu-index)
+(add-hook 'js2-mode-hook #'my/vue-imenu-index)
 (setq-default imenu-default-goto-function 'my/imenu-default-goto-function)
 #+END_SRC
 

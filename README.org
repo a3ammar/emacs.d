@@ -1353,7 +1353,8 @@ Use the [[https://github.com/AndreaCrotti/yasnippet-snippets][Yasnippet official
 (use-package undo-tree
   :bind (("C-M-_" . undo-tree-visualize))
   :config
-  (setq undo-tree-auto-save-history nil)
+  (setq undo-tree-auto-save-history 't
+        undo-tree-history-directory-alist `(("." . ,(concat my/history-dir "undo-tree"))))
   (global-undo-tree-mode))
 #+END_SRC
 

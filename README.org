@@ -2225,6 +2225,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
 #+BEGIN_SRC emacs-lisp
 (use-package web-mode
   :pin melpa-stable
+  :bind (("C-c C-e C-r" . web-mode-element-rename))
   :mode ("\\.html$" "\\.xml$" "\\.erb$" "\\.vue$" "\\.svg$" "\\.ts$" "\\.php$")
   :config
   (setq web-mode-enable-current-element-highlight 't

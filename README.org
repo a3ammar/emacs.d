@@ -1153,6 +1153,7 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
 
 #+BEGIN_SRC emacs-lisp
 (use-package lsp-mode
+  :pin melpa-stable
   :bind (("C-c C-d" . lsp-describe-thing-at-point)
          ("C-c C-o" . lsp-organize-imports))
   :hook ((go-mode
@@ -1273,6 +1274,7 @@ Focus help popup so we can exit it easily with popwin.
     (s-ends-with? extension file)))
 
 (use-package flycheck
+  :pin melpa-stable
   :bind (("C-c ! ," . flycheck-list-errors))
   :config
   (setq flycheck-indication-mode 'right-fringe

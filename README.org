@@ -1167,6 +1167,7 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
         lsp-enable-imenu nil
         lsp-headerline-breadcrumb-enable nil
         lsp-modeline-diagnostics-enable nil
+        lsp-modeline-code-actions-enable nil
         lsp-pylsp-plugins-pylint-enabled 't
         lsp-restart 'ignore
         lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd"
@@ -1178,7 +1179,15 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
         )
   ;; Ignore these directories
   (--each '("[/\\\\]venv$")
-    (push it lsp-file-watch-ignored)))
+    (push it lsp-file-watch-ignored))
+
+  (set-face-attribute 'lsp-flycheck-error-unnecessary-face nil
+                      :foreground nil
+                      :background nil
+                      :underline nil
+                      :inherit 'flycheck-warning))
+
+
 #+END_SRC
 
 

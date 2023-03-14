@@ -1910,7 +1910,8 @@ Makes you able to [[https://github.com/emacsfodder/move-text][move line]] or reg
          ("M-g b" . dumb-jump-back)
          ("M-g l" . dumb-jump-quick-look))
   :config
-  (setq dumb-jump-selector 'ivy))
+  (setq dumb-jump-selector 'ivy
+        dumb-jump-force-searcher 'rg))
 #+END_SRC
 
 

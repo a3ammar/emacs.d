@@ -1846,7 +1846,9 @@ Makes you able to [[https://github.com/emacsfodder/move-text][move line]] or reg
 #+BEGIN_SRC emacs-lisp
 (use-package restclient
   :mode ("\\.restclient" . restclient-mode)
-  :commands restclient-mode)
+  :commands restclient-mode
+  :config
+  (unbind-key "C-c C-p" restclient-mode-map))
 #+END_SRC
 
 ** Which Key Mode

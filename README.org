@@ -930,14 +930,6 @@ us workaround that.
         ns-control-modifier 'control))
 #+END_SRC
 
-** Set the Default Browser
-
-#+BEGIN_SRC emacs-lisp
-(when (on-osx-p)
-  (setq browse-url-browser-function 'browse-url-chromium
-        browse-url-chromium-program "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"))
-#+END_SRC
-
 ** OS X Arabic Keybaord
 Emacs default Arabic keyboard layout doesn't match with the default OS X layout, this
 fixes that.

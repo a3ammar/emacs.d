@@ -2895,6 +2895,22 @@ Taken from [[http://emacsredux.com/blog/2013/05/04/rename-file-and-buffer/][this
         (set-visited-file-name new-name t t)))))
 #+END_SRC
 
+
+** Parse Timestamp
+
+A helper for parsing timestamps (seconds or microseconds)
+
+#+begin_src emacs-lisp
+(defun my/totime ()
+  (interactive)
+  (let ((thing (thing-at-point 'number))
+        (fmt "%Y/%m/%d %a %I:%M:%S.%3N %p"))
+    (if (> thing (+ -1 (expt 10 10)))
+        (message "%s" (format-time-string fmt (seconds-to-time (/ thing (expt 10 6))) "Asia/Riyadh"))
+      (message "%s" (format-time-string fmt (seconds-to-time thing) "Asia/Riyadh")))))
+#+end_src
+
+
 * Load Private Information
 This file contains private information, like API keys, that I want to keep out of this repo.
 

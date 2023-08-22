@@ -1920,16 +1920,6 @@ Allows you edit region in a separate buffer
 #+end_src
 
 
-** Docker
-[[https://github.com/Silex/docker.el][Docker Interface]] to emacs
-
-#+BEGIN_SRC emacs-lisp
-(use-package docker
-  :pin melpa-stable
-  :bind (("C-c d" . docker)))
-#+END_SRC
-
-
 * Associative Modes
 Configuration to modes that are associated with file extensions.
 

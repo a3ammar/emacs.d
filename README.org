@@ -1150,7 +1150,6 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
          ("C-c C-o" . lsp-organize-imports))
   :hook ((go-mode
           c-mode
-          python-mode
           ) . lsp-deferred)
   :commands (lsp lsp-deferred lsp-describe-thing-at-point)
   :config

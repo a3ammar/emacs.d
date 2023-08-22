@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Vue component skeleton
+# key: vue3
+# --
+<script setup>
+$0
+</script>
+
+
+<template>
+</template>
+
+
+<style scoped>
+</style>

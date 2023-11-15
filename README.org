@@ -1519,7 +1519,12 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
         projectile-indexing-method 'hybrid
         projectile-cache-file (concat my/history-dir "projectile.cache")
         projectile-completion-system 'ivy
-        projectile-file-exists-remote-cache-expire nil)
+        projectile-file-exists-remote-cache-expire nil
+        )
+  ;; Open magit as the default action when switching to a project
+  (counsel-projectile-modify-action
+   'counsel-projectile-switch-project-action
+   '((default counsel-projectile-switch-project-action-vc)))
 
   (setq projectile-ignored-project-function
         (lambda (project)

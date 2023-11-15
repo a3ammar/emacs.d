@@ -556,7 +556,12 @@ an improved fork of Droid Arabic Naskh.
 Tramp allows Emacs to edit files over SSH.
 
 #+BEGIN_SRC emacs-lisp
-(setq tramp-persistency-file-name (concat my/history-dir "tramp"))
+(setq tramp-persistency-file-name (concat my/history-dir "tramp")
+      remote-file-name-inhibit-cache nil
+      remote-file-name-inhibit-locks 't
+      vc-ignore-dir-regexp (format "\\(%s\\)\\|\\(%s\\)"
+                                   vc-ignore-dir-regexp
+                                   tramp-file-name-regexp))
 #+END_SRC
 
 ** Eshell

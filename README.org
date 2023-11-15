@@ -1521,11 +1521,6 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
         projectile-completion-system 'ivy
         projectile-file-exists-remote-cache-expire nil
         )
-  ;; Open magit as the default action when switching to a project
-  (counsel-projectile-modify-action
-   'counsel-projectile-switch-project-action
-   '((default counsel-projectile-switch-project-action-vc)))
-
   (setq projectile-ignored-project-function
         (lambda (project)
           (--any? (s-starts-with? (expand-file-name it) project)
@@ -1550,13 +1545,29 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
 Add even more integration between Projectile and Ivy
 
 #+BEGIN_SRC emacs-lisp
+(defun my/counsel-projectile-switch-project-action-dwim (project)
+  "Open magit as the default action when switching to a project"
+  (let ((projectile-switch-project-action
+         (lambda ()
+           (if (file-directory-p (concat project "/.git"))
+               (counsel-projectile-switch-project-action-vc project)
+             (counsel-projectile-switch-project-action-find-file project)))))
+    (counsel-projectile-switch-project-by-name project)))
+
+
 (use-package counsel-projectile
   :init
   (setq counsel-projectile-remove-current-buffer t
         counsel-projectile-remove-current-project t
         projectile-switch-project-action #'counsel-projectile-find-file)
 
-  (counsel-projectile-mode))
+  (counsel-projectile-mode)
+  :config
+  (counsel-projectile-modify-action
+   'counsel-projectile-switch-project-action
+   '((add ("O" my/counsel-projectile-switch-project-action-dwim "Open project in magit or find file"))
+     (default my/counsel-projectile-switch-project-action-dwim))))
+
 #+END_SRC
 
 Override =counsel-rg= and =counsel-projectile-rg= with my preference

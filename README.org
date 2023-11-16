@@ -1549,8 +1549,8 @@ Add even more integration between Projectile and Ivy
   "Open magit as the default action when switching to a project"
   (let ((projectile-switch-project-action
          (lambda ()
-           (if (file-directory-p (concat project "/.git"))
-               (counsel-projectile-switch-project-action-vc project)
+           (progn
+             (counsel-projectile-switch-project-action-vc project)
              (counsel-projectile-switch-project-action-find-file project)))))
     (counsel-projectile-switch-project-by-name project)))
 

@@ -2913,13 +2913,18 @@ Taken from [[http://emacsredux.com/blog/2013/05/04/rename-file-and-buffer/][this
 A helper for parsing timestamps (seconds or microseconds)
 
 #+begin_src emacs-lisp
-(defun my/totime ()
-  (interactive)
+(defun my/totime (prefix)
+  (interactive "p")
   (let ((thing (thing-at-point 'number))
-        (fmt "%Y/%m/%d %a %I:%M:%S.%3N %p"))
+        (fmt "%Y/%m/%d %a %I:%M:%S.%3N %p")
+        (out (lambda (val)
+               (if (< prefix 4)
+                   (message "%s" val)
+                 (delete-region (region-beginning) (region-end))
+                 (insert val)))))
     (if (> thing (+ -1 (expt 10 10)))
-        (message "%s" (format-time-string fmt (seconds-to-time (/ thing (expt 10 6))) "Asia/Riyadh"))
-      (message "%s" (format-time-string fmt (seconds-to-time thing) "Asia/Riyadh")))))
+        (funcall out (format-time-string fmt (seconds-to-time (/ thing (expt 10 6))) "Asia/Riyadh"))
+      (funcall out (format-time-string fmt (seconds-to-time thing) "Asia/Riyadh")))))
 #+end_src
 
 

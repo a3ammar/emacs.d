@@ -2552,6 +2552,19 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 
 #+END_SRC
 
+** Rust Mode
+
+#+begin_src emacs-lisp
+(use-package rust-mode
+  :hook ((rust-mode . flycheck-rust-setup))
+  :config
+  ;; Turn off the rust prettify symbols
+  (setq rust-prettify-symbols-alist '())
+  ;; Fix flycheck
+  (use-package flycheck-rust))
+#+end_src
+
+
 ** TOML Mode
 
 #+BEGIN_SRC emacs-lisp

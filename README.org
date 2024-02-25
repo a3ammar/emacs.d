@@ -2679,7 +2679,10 @@ Override the =go-goto-*= methods to push to the mark ring before jumping
 PO mode is used to edit and manipulate =gettext= translation files
 
 #+begin_src emacs-lisp
-(use-package po-mode)
+(use-package po-mode
+  :config
+  (add-hook 'po-subedit-mode-hook (lambda ()
+                                    (activate-input-method "arabic-mac"))))
 #+end_src
 
 

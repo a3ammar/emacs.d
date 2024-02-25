@@ -1150,7 +1150,6 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
 
 #+BEGIN_SRC emacs-lisp
 (use-package lsp-mode
-  :pin melpa-stable
   :bind (("C-c C-d" . lsp-describe-thing-at-point)
          ("C-c C-o" . lsp-organize-imports))
   :hook ((go-mode
@@ -1183,8 +1182,6 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
                       :background nil
                       :underline nil
                       :inherit 'flycheck-warning))
-
-
 #+END_SRC
 
 
@@ -1357,13 +1354,21 @@ Use the [[https://github.com/AndreaCrotti/yasnippet-snippets][Yasnippet official
 [[http://www.dr-qubit.org/Emacs_Undo_Tree_package.html][Undo Tree]] is a better undo/redo alternative.
 
 #+BEGIN_SRC emacs-lisp
-(use-package undo-tree
-  :bind (("C-M-_" . undo-tree-visualize))
-  :config
-  (setq undo-tree-auto-save-history nil
-        undo-tree-history-directory-alist `(("." . ,(concat my/history-dir "undo-tree"))))
-  (global-undo-tree-mode))
+;; (use-package undo-tree
+;;   :bind (("C-M-_" . undo-tree-visualize))
+;;   :config
+;;   (setq undo-tree-auto-save-history nil
+;;         undo-tree-history-directory-alist `(("." . ,(concat my/history-dir "undo-tree"))))
+;;   (global-undo-tree-mode))
 #+END_SRC
+
+** Vundo
+
+#+begin_src emacs-lisp
+(use-package vundo
+  :bind ("C-M-_" . vundo))
+#+end_src
+
 
 ** Smex
 [[https://github.com/nonsequitur/smex][Smex]] sorts used commands by frequency. Ivy automatically uses it for sorting when it's present.

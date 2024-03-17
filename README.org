@@ -2435,7 +2435,8 @@ Associate systemd files with conf-mode
 
 #+BEGIN_SRC emacs-lisp
 (use-package sql
-  :mode "\\.sql"
+  :commands sql-mode
+  :mode ("\\.sql\\'" . sql-mode)
   :config
   (add-hook 'sql-interactive-mode-hook #'toggle-truncate-lines))
 #+END_SRC

@@ -1366,7 +1366,10 @@ Use the [[https://github.com/AndreaCrotti/yasnippet-snippets][Yasnippet official
 
 #+begin_src emacs-lisp
 (use-package vundo
-  :bind ("C-M-_" . vundo))
+  :bind ("C-M-_" . vundo)
+  :config
+  (setq vundo-roll-back-on-quit nil)
+  )
 #+end_src
 
 

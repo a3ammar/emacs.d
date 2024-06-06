@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: Vue 3 component skeleton
-# key: vue3
+# key: vue
 # --
 <script setup>
 $0

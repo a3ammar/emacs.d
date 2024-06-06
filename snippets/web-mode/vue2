@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: Vue component skeleton
-# key: vue
+# key: vue2
 # --
 <template>
   <div class="$1-container">

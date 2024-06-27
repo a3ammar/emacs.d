@@ -136,6 +136,10 @@ and press =C-h v=.
       command-line-default-directory "~/"
       kill-ring-max 1000
       show-paren-mode nil
+      ;; Double the default undo limits
+      undo-limit 320000
+      undo-strong-limit 480000
+      undo-outer-limit 48000000
       )
 
 (setq-default comment-column 0)

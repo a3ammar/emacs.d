@@ -1683,6 +1683,7 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
                                                  (recent . show)))
 
   (use-package magit-popup :pin melpa-stable)
+  (use-package magit-section :pin melpa-stable)
 
   (use-package git-commit
     :config

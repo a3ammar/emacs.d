@@ -2182,7 +2182,7 @@ For [[http://emacsblog.org/2007/07/21/package-faves-rcodetools/][more informatio
 
 #+BEGIN_SRC emacs-lisp
 (use-package js2-mode
-  :mode ("\\.[m]?js$")
+  :mode ("\\.[m]?js\\'" "\\.cjs\\'")
   :config
   (setq js2-mode-show-parse-errors nil
         js2-mode-show-strict-warnings nil

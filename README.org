@@ -1313,10 +1313,6 @@ Show flycheck errors in a popup
 [[https://github.com/Malabarba/aggressive-indent-mode][Agggressive Indent Mode]] automatically indents s-expression. It's magical.
 
 #+BEGIN_SRC emacs-lisp
-(defun in-web-mode-js? ()
-  (and (boundp 'web-mode-point-context)
-       (string= (plist-get (web-mode-point-context (point)) :language) "javascript")))
-
 (use-package aggressive-indent
   :commands aggressive-indent-mode
   :config
@@ -1324,7 +1320,7 @@ Show flycheck errors in a popup
                '(and (derived-mode-p 'sgml-mode)
                      (string-match "^[[:space:]]*{%"
                                    (thing-at-point 'line))))
-  (add-to-list 'aggressive-indent-dont-indent-if '(in-web-mode-js?)))
+  )
 #+END_SRC
 
 ** Yasnippet
@@ -2262,6 +2258,7 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
         web-mode-prettify-symbols-alist nil
         web-mode-style-padding 0)
 
+  (add-hook 'web-mode-hook #'aggressive-indent-mode)
   ;; Don't let web-mode align JS methods call
   (setq web-mode-indentation-params (remove '("lineup-calls" . t) web-mode-indentation-params))
 

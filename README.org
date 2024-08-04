@@ -763,15 +763,6 @@ The built in view-mode is useful when you just want to read a file. This ease th
 (setq-default imenu-default-goto-function 'my/imenu-default-goto-function)
 #+END_SRC
 
-** Pixel Scroll Mode
-
-#+BEGIN_SRC emacs-lisp
-(use-package pixel-scroll
-  :defer 1
-  :ensure nil
-  :init (pixel-scroll-mode))
-#+END_SRC
-
 ** Hide Show Minor Mode
 
 Hideshow is a builtin minor mode for code folding

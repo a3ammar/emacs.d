@@ -1072,7 +1072,7 @@ the closing pair.
               (sp-local-pair 'swift-mode "\\(" ")")))
 
   (set-face-attribute 'sp-show-pair-match-face nil
-                      :foreground nil
+                      :foreground 'unspecified
                       :background "#2B2B2B"
                       :extend 't)
 
@@ -1127,8 +1127,8 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
   (add-hook 'company-mode-hook
             (lambda ()
               (set-face-attribute 'company-template-field nil
-                                  :foreground nil
-                                  :background nil
+                                  :foreground 'unspecified
+                                  :background 'unspecified
                                   :inherit 'region
                                   :extend 't)))
 
@@ -1312,8 +1312,8 @@ Show flycheck errors in a popup
   :config
   (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
   (set-face-attribute 'popup-tip-face nil
-                      :background nil
-                      :foreground nil
+                      :background 'unspecified
+                      :foreground 'unspecified
                       :inherit 'company-tooltip
                       :extend 't))
 #+END_SRC
@@ -1427,7 +1427,7 @@ Modes and configuration specific to managing and navigating projects.
   (add-hook 'ivy-occur-grep-mode-hook #'toggle-truncate-lines)
 
   (set-face-attribute 'ivy-minibuffer-match-face-2 nil
-                      :background nil
+                      :background 'unspecified
                       :inherit 'isearch
                       :extend 't)
 

@@ -367,7 +367,7 @@ By default Emacs doesn't change the content of the selection when you type or ya
 No one likes to type a full =yes=, =y= is enough as a confirmation.
 
 #+BEGIN_SRC emacs-lisp
-(defalias 'yes-or-no-p 'y-or-n-p)
+(setq use-short-answers t)
 #+END_SRC
 
 ** Automatically Extract Compressed Files

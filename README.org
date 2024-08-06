@@ -5,6 +5,21 @@ This is is inspired by [[http://pages.sachachua.com/.emacs.d/Sacha.html][Sacha's
 * Emacs Initialization
 Setup the necessary things that should happen before anything else.
 
+** Setup Default Path Constants
+I prefer to have all Emacs history and temporary files under one directory (=~/emacs.d/history/=).
+
+#+BEGIN_SRC emacs-lisp
+(defvar my/history-dir (expand-file-name "history/" user-emacs-directory))
+(defvar my/elisp-dir (expand-file-name "elisp/" user-emacs-directory))
+#+END_SRC
+
+** Set native compilation directory
+
+#+begin_src emacs-lisp
+(startup-redirect-eln-cache (concat my/history-dir "eln-cache/"))
+(setcar native-comp-eln-load-path (concat my/history-dir "eln-cache/"))
+#+end_src
+
 ** Initialize Packages
 Setup ELPA package sources and initialize =package.el=.
 
@@ -47,6 +62,7 @@ This will help [[https://github.com/tarsius/auto-compile][auto compile]] each li
 
   (auto-compile-on-load-mode))
 #+END_SRC
+
 
 ** Depend on Dash and S Libraries
 This whole configuration depends on [[https://github.com/magnars/dash.el][dash.el]] and [[https://github.com/magnars/s.el][s.el]] so load them early.
@@ -188,14 +204,6 @@ And protect it from accidental killing
 ** Start Emacs Server
 #+BEGIN_SRC emacs-lisp
 (when window-system (add-hook 'after-init-hook 'server-start t))
-#+END_SRC
-
-** Setup Default Path Constants
-I prefer to have all Emacs history and temporary files under one directory (=~/emacs.d/history/=).
-
-#+BEGIN_SRC emacs-lisp
-(defvar my/history-dir (expand-file-name "history/" user-emacs-directory))
-(defvar my/elisp-dir (expand-file-name "elisp/" user-emacs-directory))
 #+END_SRC
 
 ** Add My Custom Libraries to Emacs Load Path

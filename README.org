@@ -1403,7 +1403,7 @@ Modes and configuration specific to managing and navigating projects.
                    (file-newer-than-file-p file1 file2)))))))
 
 (use-package ivy
-  :bind (("C-s" . swiper)
+  :bind (("C-s" . swiper-isearch)
          ("C-x c b" . ivy-resume)
          :map ivy-minibuffer-map
          ("<return>" . ivy-alt-done))

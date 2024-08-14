@@ -605,6 +605,22 @@ A few configurations and styles for Emacs Ediff.
             ))
 #+END_SRC
 
+Save window layout and restore them after ediff session
+
+#+begin_src emacs-lisp
+(defvar my/ediff-last-windows nil)
+
+(defun my/store-pre-ediff-winconfig ()
+  (setq my/ediff-last-windows (current-window-configuration)))
+
+(defun my/restore-pre-ediff-winconfig ()
+  (set-window-configuration my/ediff-last-windows))
+
+(add-hook 'ediff-before-setup-hook #'my/store-pre-ediff-winconfig)
+(add-hook 'ediff-quit-hook #'my/restore-pre-ediff-winconfig)
+#+end_src
+
+
 ** Dired
 A few configuration for Emacs Dired mode.
 

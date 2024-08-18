@@ -2458,7 +2458,11 @@ Associate systemd files with conf-mode
   :commands sql-mode
   :mode ("\\.sql\\'" . sql-mode)
   :config
-  (add-hook 'sql-interactive-mode-hook #'toggle-truncate-lines))
+  (add-hook 'sql-mode-hook
+            (lambda ()
+              (setq tab-width 4)
+              (toggle-truncate-lines)))
+  )
 #+END_SRC
 
 ** Jinja Mode

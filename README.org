@@ -2463,6 +2463,9 @@ Associate systemd files with conf-mode
               (setq tab-width 4)
               (toggle-truncate-lines)))
   )
+
+(use-package sql-indent
+  :custom (sqlind-basic-offset 4))
 #+END_SRC
 
 ** Jinja Mode

@@ -2465,7 +2465,22 @@ Associate systemd files with conf-mode
   )
 
 (use-package sql-indent
-  :custom (sqlind-basic-offset 4))
+  :custom (sqlind-basic-offset 4)
+  :config
+  (defvar my/sql-indentation-offsets-alist
+    `((select-clause 0)
+      (insert-clause 0)
+      (delete-clause 0)
+      (update-clause 0)
+      (case-clause +)
+      (case-clause-item 0)
+      (in-select-clause +)
+      (select-join-condition +)
+      ,@sqlind-default-indentation-offsets-alist))
+  (add-hook 'sqlind-minor-mode-hook
+            (lambda ()
+              (setq sqlind-indentation-offsets-alist my/sql-indentation-offsets-alist)))
+  )
 #+END_SRC
 
 ** Jinja Mode

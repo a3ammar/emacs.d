@@ -2465,7 +2465,6 @@ Associate systemd files with conf-mode
   )
 
 (use-package sql-indent
-  :custom (sqlind-basic-offset 4)
   :config
   (defvar my/sql-indentation-offsets-alist
     `((select-clause 0)
@@ -2479,7 +2478,8 @@ Associate systemd files with conf-mode
       ,@sqlind-default-indentation-offsets-alist))
   (add-hook 'sqlind-minor-mode-hook
             (lambda ()
-              (setq sqlind-indentation-offsets-alist my/sql-indentation-offsets-alist)))
+              (setq sqlind-basic-offset 4
+                    sqlind-indentation-offsets-alist my/sql-indentation-offsets-alist)))
   )
 #+END_SRC
 

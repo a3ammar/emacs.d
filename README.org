@@ -1079,6 +1079,9 @@ the closing pair.
               (sp-local-pair 'web-mode "<%" "%>" :post-handlers '(("| " "SPC") (" | " "=")))
               (sp-local-pair 'web-mode "{%" "%}" :post-handlers '(("| " "SPC")))
               ))
+  (add-hook 'sql-mode-hook
+            (lambda ()
+              (sp-local-pair 'sql-mode "{%" "%}" :post-handlers '(("| " "SPC")))))
 
   ;; Do not escape closing pair in string interpolation
   (add-hook 'swift-mode-hook

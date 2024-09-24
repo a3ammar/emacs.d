@@ -1691,7 +1691,8 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
   ;; Set the initial visibility of magit sections
   (setq magit-section-initial-visibility-alist '((stashes . show)
                                                  (unpushed . show)
-                                                 (recent . show)))
+                                                 (recent . show))
+        magit-section-visibility-indicator nil)
 
   (use-package magit-popup :pin melpa-stable)
   (use-package magit-section :pin melpa-stable)

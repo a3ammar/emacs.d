@@ -974,12 +974,12 @@ See my [[https://github.com/a3ammar/homebrew-emacs-emoji][homebrew formula]]
 #+END_SRC
 
 ** Trash Files Instead of Deleting Them
-I [[https://github.com/ali-rantakari/trash][trash]] command to move files to the system trash instead of deleting them. Make Emacs use it.
+Use AppleScript to move files to trash
 
 #+BEGIN_SRC emacs-lisp
 (defun my/system-move-file-to-trash (file)
   "Use the command `trash' to move `file' to the system trash"
-  (call-process (executable-find "trash") nil 0 nil file))
+  (do-applescript (format "tell application \"Finder\" to move the POSIX file \"%s\" to trash" file)))
 
 (when (on-osx-p)
   (defalias 'move-file-to-trash 'my/system-move-file-to-trash))

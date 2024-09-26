@@ -2464,6 +2464,7 @@ Associate systemd files with conf-mode
   :config
   (add-hook 'sql-mode-hook
             (lambda ()
+              (sqlind-minor-mode)
               (setq tab-width 4)
               (toggle-truncate-lines)))
   )

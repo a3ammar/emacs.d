@@ -1091,7 +1091,7 @@ the closing pair.
 
   (set-face-attribute 'sp-show-pair-match-face nil
                       :foreground 'unspecified
-                      :background "#2B2B2B"
+                      :background "#802A2A"
                       :extend 't)
 
   (show-smartparens-global-mode))

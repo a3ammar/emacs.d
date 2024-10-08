@@ -1693,6 +1693,7 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
 
   ;; Set the initial visibility of magit sections
   (setq magit-section-initial-visibility-alist '((stashes . show)
+                                                 (untracked . show)
                                                  (unpushed . show)
                                                  (recent . show))
         magit-section-visibility-indicator nil)

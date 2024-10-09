@@ -2481,6 +2481,7 @@ Associate systemd files with conf-mode
       (case-clause-item 0)
       (in-select-clause +)
       (select-join-condition +)
+      (in-block sqlind-use-anchor-indentation)
       ,@sqlind-default-indentation-offsets-alist))
   (add-hook 'sqlind-minor-mode-hook
             (lambda ()

@@ -11,3 +11,4 @@ games/
 /semanticdb
 .yas-compiled-snippets.el
 /.cache/
+/eln-cache/

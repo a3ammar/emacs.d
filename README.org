@@ -1668,7 +1668,7 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
   (setq magit-push-always-verify nil
         magit-use-sticky-arguments 'current
         magit-bury-buffer-function 'magit-mode-quit-window
-        magit-section-cache-visibility nil
+        magit-section-cache-visibility 't
         magit-revert-buffers 'silent
         magit-diff-refine-hunk 't
         magit-published-branches nil

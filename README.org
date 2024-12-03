@@ -1662,6 +1662,7 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
 (use-package magit
   :commands (magit-status magit-file-dispatch)
   :bind (("C-c <return>" . magit-status)
+         ("C-c C-<return>" . magit-status)
          ("C-c M-g" . magit-file-dispatch))
   :config
   (setq magit-push-always-verify nil

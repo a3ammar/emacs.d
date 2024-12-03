@@ -152,6 +152,7 @@ and press =C-h v=.
       command-line-default-directory "~/"
       kill-ring-max 1000
       show-paren-mode nil
+      suggest-key-bindings nil
       ;; Double the default undo limits
       undo-limit 320000
       undo-strong-limit 480000

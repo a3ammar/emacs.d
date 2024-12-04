@@ -842,9 +842,23 @@ Unbind these keys because they are used for something else.
 These are my personal preference to the default Emacs keybindings.
 
 #+BEGIN_SRC emacs-lisp
+(defun kill-dwim ()
+  (interactive)
+  (if (region-active-p)
+      (call-interactively 'kill-region)
+    (call-interactively 'kill-line)))
+
+(defun kill-buffer-dwim (arg)
+  (interactive "P")
+  (if arg
+      (call-interactively 'kill-buffer)
+    (call-interactively 'kill-current-buffer)))
+
 (bind-keys ("RET" . reindent-then-newline-and-indent)
            ("C-w" . backward-kill-word)
-           ("C-x C-k" . kill-region)
+           ("C-k" . kill-dwim)
+           ("C-x C-k" . kill-buffer-dwim)
+           ("C-x k" . kill-buffer-dwim)
            ("M-/" . hippie-expand)
            ("C-x t l" . toggle-truncate-lines)
            ("C-<tab>" . indent-for-tab-command)

@@ -1477,6 +1477,7 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
 (use-package counsel
   :bind (("C-x C-m" . counsel-M-x)
          ("C-x m" . counsel-M-x)
+         ("M-x" . counsel-M-x)
          ("C-x e" . my/kmacro-end-and-call-macro)
          ("M-y" . counsel-yank-pop)
          ("C-x C-f" . my/counsel-find-file)

@@ -1306,7 +1306,12 @@ Focus help popup so we can exit it easily with popwin.
 
 (use-package flycheck
   :pin melpa-stable
-  :bind (("C-c ! ," . flycheck-list-errors))
+  :bind (("C-c ! ," . flycheck-list-errors)
+         ("M-g ," . flycheck-list-errors)
+         ("M-g c" . flycheck-buffer)
+         ("M-g n" . flycheck-next-error)
+         ("M-g p" . flycheck-previous-error)
+         )
   :config
   (setq flycheck-indication-mode 'right-fringe
         flycheck-navigation-minimum-level 'error

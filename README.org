@@ -1864,22 +1864,6 @@ Makes you able to [[https://github.com/emacsfodder/move-text][move line]] or reg
   :bind ("C-'" . embrace-change))
 #+END_SRC
 
-** Paradox
-[[https://github.com/Malabarba/paradox][Paradox]] is a better alternative to =package-list-packages=
-
-#+BEGIN_SRC emacs-lisp
-(use-package paradox
-  :commands pkg
-  :config
-  (setq paradox-automatically-star t
-        paradox-execute-asynchronously t
-        paradox-lines-per-entry 1
-        paradox-github-token t)
-
-  (paradox-enable)
-
-  (defalias 'pkg 'list-packages))
-#+END_SRC
 
 ** REST Client
 [[https://github.com/pashky/restclient.el][REST Client]] help explore HTTP REST webservices.

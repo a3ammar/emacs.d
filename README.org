@@ -290,7 +290,8 @@ Remembers visited files names.
 These files show up in my =.emacs.d=, so lets stick them in the history file.
 
 #+BEGIN_SRC emacs-lisp
-(setq image-dired-dir (concat my/history-dir "image-dired/"))
+(setq image-dired-dir (concat my/history-dir "image-dired/")
+      project-list-file (concat my/history-dir "projects"))
 #+END_SRC
 
 ** Load Customization File

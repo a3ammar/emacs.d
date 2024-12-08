@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: Pinia Store Skeleton
+# key: pinia
+# --
+
+import { defineStore } from 'pinia'
+
+export const useStore = defineStore('$0',{
+  state: () => ({
+
+  }),
+  getters: {
+
+  },
+  actions: {
+
+  },
+});

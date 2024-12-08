@@ -1165,7 +1165,10 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
                                   :foreground 'unspecified
                                   :background 'unspecified
                                   :inherit 'region
-                                  :extend 't)))
+                                  :extend 't)
+              (set-face-attribute 'company-preview nil
+                                  :foreground 'unspecified
+                                  :background "#526652")))
 
   (global-company-mode))
 #+END_SRC

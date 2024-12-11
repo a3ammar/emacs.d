@@ -1180,7 +1180,7 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
   "Make company mode not steal C-w and instead pass it down"
   (interactive)
   (company-abort)
-  (execute-kbd-macro (kbd "C-w")))
+  (call-interactively 'backward-kill-word))
 
 (bind-keys :map company-active-map
           ("C-w" . my/company-abort))

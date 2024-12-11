@@ -965,10 +965,10 @@ us workaround that.
 ** Set Command as Meta
 
 #+BEGIN_SRC emacs-lisp
-(when (on-osx-p)
-  (setq ns-alternate-modifier 'super
-        ns-command-modifier 'meta
-        ns-control-modifier 'control))
+;; (when (on-osx-p)
+;;   (setq ns-alternate-modifier 'super
+;;         ns-command-modifier 'meta
+;;         ns-control-modifier 'control))
 #+END_SRC
 
 ** OS X Arabic Keybaord

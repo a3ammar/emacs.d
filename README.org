@@ -1525,7 +1525,14 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
   :config
   (ivy-rich-mode)
   (setq ivy-rich-parse-remote-buffer nil
-        ivy-rich-parse-remote-file-path nil))
+        ivy-rich-parse-remote-file-path nil)
+
+  (defun ivy-rich-switch-buffer-project (candidate)
+    (let ((path (or (ivy-rich-switch-buffer-root candidate) "")))
+      (f-join
+       (f-filename (f-dirname path))
+       (f-filename path))))
+  )
 #+END_SRC
 
 ** Projectile

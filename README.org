@@ -1847,7 +1847,7 @@ Makes you able to [[https://github.com/emacsfodder/move-text][move line]] or reg
 #+BEGIN_SRC emacs-lisp
 (use-package avy
   :commands avy-goto-char-timer
-  :bind ("C-r" . avy-goto-word-1)
+  :bind ("C-r" . avy-goto-char-timer)
   :config
   ;; Displays the full of the match `af' instead of `a' then `f'.
   (setq avy-style 'de-bruijn

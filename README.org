@@ -1096,6 +1096,12 @@ the closing pair.
               (sp-local-pair 'web-mode "<%" "%>" :post-handlers '(("| " "SPC") (" | " "=")))
               (sp-local-pair 'web-mode "{%" "%}" :post-handlers '(("| " "SPC")))
               ))
+
+  (add-hook 'js2-mode-hook
+            (lambda ()
+              (sp-with-modes '(js-mode javascript-mode js2-mode)
+                (sp-local-pair "<" ">" :actions :rem))))
+
   (add-hook 'sql-mode-hook
             (lambda ()
               (sp-local-pair 'sql-mode "{%" "%}" :post-handlers '(("| " "SPC")))))

@@ -1149,7 +1149,7 @@ Change beginning/end of s-expression movement to go outside of the s-expression 
       (sp-backward-down-sexp)
     (sp-down-sexp)))
 
-(bind-keys :map sp-keymap
+(bind-keys :map smartparens-mode-map
            ("C-M-a" . my/sp-beginning-of-sexp)
            ("C-M-e" . my/sp-end-of-sexp)
            ("C-M-d" . my/sp-down-sexp))

@@ -143,6 +143,7 @@ and press =C-h v=.
       mouse-wheel-tilt-scroll t
       ring-bell-function 'ignore
       scroll-conservatively 10
+      scroll-preserve-screen-position 'always
       shift-select-mode nil
       transient-mark-mode t
       truncate-partial-width-windows nil

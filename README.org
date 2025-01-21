@@ -647,7 +647,7 @@ A few configuration for Emacs Dired mode.
   :config
   (setq dired-dwim-target 't
         insert-directory-program "gls"
-        dired-listing-switches "-alht --group-directories-first"
+        dired-listing-switches "-alhtG1v --group-directories-first"
         dired-recursive-deletes 'always)
 
   (use-package dired-x

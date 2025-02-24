@@ -79,7 +79,6 @@ Avoid breaking packages by pinning those dependencies to their stable version.
 (-each '((diminish . "melpa-stable")
          (epl . "melpa-stable")
          (f . "melpa-stable")
-         (git-commit . "melpa-stable")
          (hydra . "melpa-stable")
          (inflections . "melpa-stable")
          (logito . "melpa-stable")
@@ -1717,9 +1716,7 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
   (use-package magit-popup :pin melpa-stable)
   (use-package magit-section :pin melpa-stable)
 
-  (use-package git-commit
-    :config
-    (add-to-list 'git-commit-setup-hook 'git-commit-turn-on-flyspell))
+  (add-to-list 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
 
   (defun my/parse-repo-url (url)
     "convert a git remote location as a HTTP URL"

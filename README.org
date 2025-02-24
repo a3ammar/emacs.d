@@ -1415,17 +1415,32 @@ Modes and configuration specific to managing and navigating projects.
 [[https://github.com/abo-abo/swiper][Ivy]] is a lightweight completion system
 
 #+BEGIN_SRC emacs-lisp
-(defun my/sort-files-by-date-directories-first (_name candidates)
+(defun my/sort-matches (_name candidates)
   "Re-sort CANDIDATES according to file modification date."
   (let ((default-directory ivy--directory))
     (sort (copy-sequence candidates)
           (lambda (file1 file2)
-            (cond ((and (file-directory-p file1) (not (file-directory-p file2)))
-                   't)
-                  ((and (not (file-directory-p file1)) (file-directory-p file2))
-                   nil)
-                  (t
-                   (file-newer-than-file-p file1 file2)))))))
+            (cond
+             ;; Directories first
+             ((and (file-directory-p file1) (not (file-directory-p file2)))
+              't)
+             ((and (not (file-directory-p file1)) (file-directory-p file2))
+              nil)
+             ;; Sort based on mtime
+             (t
+              (file-newer-than-file-p file1 file2)))))))
+
+(defun my/sort-function (file1 file2)
+  "Sort directories first then by alphanumric order"
+  (cond
+   ;; Directories first
+   ((and (file-directory-p file1) (not (file-directory-p file2)))
+    't)
+   ((and (not (file-directory-p file1)) (file-directory-p file2))
+    nil)
+   ;; Sort based on filename (alphanumric)
+   (t
+    (string-version-lessp file1 file2))))
 
 (use-package ivy
   :bind (("C-s" . swiper-isearch)
@@ -1441,7 +1456,9 @@ Modes and configuration specific to managing and navigating projects.
                                         (org-mode . org-macro))
         ivy-ignore-buffers '("\\*HTTP Response\\*" "\\*magit.*"))
   (add-to-list 'ivy-sort-matches-functions-alist
-               '(read-file-name-internal . my/sort-files-by-date-directories-first))
+               '(read-file-name-internal . my/sort-matches))
+  (add-to-list 'ivy-sort-functions-alist
+               '(read-file-name-internal . my/sort-function))
 
   ;; Don't wrap lines in ivy-occur
   (add-hook 'ivy-occur-grep-mode-hook #'toggle-truncate-lines)

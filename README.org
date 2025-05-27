@@ -1332,14 +1332,14 @@ Focus help popup so we can exit it easily with popwin.
 Show flycheck errors in a popup
 
 #+BEGIN_SRC emacs-lisp
-(use-package flycheck-popup-tip
-  :config
-  (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
-  (set-face-attribute 'popup-tip-face nil
-                      :background 'unspecified
-                      :foreground 'unspecified
-                      :inherit 'company-tooltip
-                      :extend 't))
+;; (use-package flycheck-popup-tip
+;;   :config
+;;   (add-hook 'flycheck-mode-hook #'flycheck-popup-tip-mode)
+;;   (set-face-attribute 'popup-tip-face nil
+;;                       :background 'unspecified
+;;                       :foreground 'unspecified
+;;                       :inherit 'company-tooltip
+;;                       :extend 't))
 #+END_SRC
 
 ** Aggressive Indent

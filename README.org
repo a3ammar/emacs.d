@@ -1196,15 +1196,15 @@ When Company suggestions is shown pressing =C-w= will be captured by Company and
 
 
 #+BEGIN_SRC emacs-lisp
-(use-package eglot
-  :hook ((python-mode
-          go-mode
-          c-mode
-          ) . eglot)
-  :config
-  (setq eglot-report-progress nil
-        eldoc-echo-area-use-multiline-p nil)
-  )
+;; (use-package eglot
+;;   :hook ((python-mode
+;;           go-mode
+;;           c-mode
+;;           ) . eglot)
+;;   :config
+;;   (setq eglot-report-progress nil
+;;         eldoc-echo-area-use-multiline-p nil)
+;;   )
 #+END_SRC
 
 

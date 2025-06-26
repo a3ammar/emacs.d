@@ -2970,11 +2970,7 @@ The =my/counsel-projectile-switch-to-buffer= is exactly the same as the original
 #+BEGIN_SRC emacs-lisp
 (defun my/switch-buffer-dwim (&optional prefix)
   (interactive "P")
-  (if (and (null prefix)
-           (projectile-project-p)
-           (> (length (projectile-project-buffers)) 1))
-      (call-interactively 'counsel-projectile-switch-to-buffer)
-    (call-interactively 'ivy-switch-buffer)))
+  (call-interactively 'counsel-switch-buffer))
 
 (bind-keys ("C-x b" . my/switch-buffer-dwim)
            ("C-x C-b" . my/switch-buffer-dwim))

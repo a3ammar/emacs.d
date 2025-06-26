@@ -1297,11 +1297,16 @@ Focus help popup so we can exit it easily with popwin.
          ("M-g n" . flycheck-next-error)
          ("M-g p" . flycheck-previous-error)
          )
+  :init (global-flycheck-mode)
   :config
   (setq flycheck-indication-mode 'right-fringe
         flycheck-navigation-minimum-level 'error
         flycheck-idle-change-delay 2
         flycheck-check-syntax-automatically '(save idle-change))
+
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (flycheck-add-next-checker 'python-flake8 'python-pylint)))
 
   (add-hook 'js2-mode-hook
             (lambda ()
@@ -1325,8 +1330,7 @@ Focus help popup so we can exit it easily with popwin.
                       :background "#885f5f"
                       :underline '(:style wave :color "#BC8383")
                       :extend 't)
-
-  (global-flycheck-mode))
+  )
 #+END_SRC
 
 Show flycheck errors in a popup
@@ -2270,9 +2274,6 @@ Add [[https://github.com/felipeochoa/rjsx-mode][rjsx-mode]] to handle jsx files
          ("M-p" . python-nav-backward-block))
   :config
   (unbind-key "C-c C-p" python-mode-map)
-
-  ;; Run pylint after flake8
-  (flycheck-add-next-checker 'python-flake8 'python-pylint)
 
   ;; Remove `:' from `electric-indent-chars'
   (add-hook 'python-mode-hook

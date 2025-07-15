@@ -1503,6 +1503,8 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
   :bind (("C-x C-m" . counsel-M-x)
          ("C-x m" . counsel-M-x)
          ("M-x" . counsel-M-x)
+         ("C-x b" . counsel-switch-buffer)
+         ("C-x C-b" . counsel-switch-buffer)
          ("C-x e" . my/kmacro-end-and-call-macro)
          ("M-y" . counsel-yank-pop)
          ("C-x C-f" . my/counsel-find-file)
@@ -1518,6 +1520,7 @@ Counsel adds a lot of extra functionality & integraion to ivy-mode
          ("C-l" . ivy-backward-delete-char))
   :config
   (setq ivy-initial-inputs-alist nil
+        counsel-switch-buffer-preview-virtual-buffers nil
         counsel-preselect-current-file 't
         counsel-yank-pop-separator "\n\n"
         counsel-find-file-ignore-regexp "\\`\\(\\..*\\|__pycache__\\|.*\\.pyc\\|.*\\.o\\)\\'")
@@ -2962,19 +2965,6 @@ I use =open-line= a lot and most of the time I have to manually indent the new l
 (bind-key "C-o" 'my/open-line)
 #+END_SRC
 
-** Switch Buffer — Do What I Mean
-If we are inside a project and have multiple buffers open then use =projectile-switch-buffer= otherwise fallback to the normal =switch-buffer=
-
-The =my/counsel-projectile-switch-to-buffer= is exactly the same as the original one except that it pre-selects the second buffer instead of the first.
-
-#+BEGIN_SRC emacs-lisp
-(defun my/switch-buffer-dwim (&optional prefix)
-  (interactive "P")
-  (call-interactively 'counsel-switch-buffer))
-
-(bind-keys ("C-x b" . my/switch-buffer-dwim)
-           ("C-x C-b" . my/switch-buffer-dwim))
-#+END_SRC
 
 ** Rename File — Do What I Mean
 

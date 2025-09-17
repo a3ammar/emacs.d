@@ -1739,6 +1739,8 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
 
   (use-package magit-popup :pin melpa-stable)
   (use-package magit-section :pin melpa-stable)
+  (use-package magit-todos
+    :config (magit-todos-mode))
 
   (add-to-list 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
 

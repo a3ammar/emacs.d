@@ -1737,8 +1737,10 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
                                                  (recent . show))
         magit-section-visibility-indicator nil)
 
-  (use-package magit-popup :pin melpa-stable)
-  (use-package magit-section :pin melpa-stable)
+  (use-package magit-popup)
+  (use-package magit-section)
+  (use-package magit-org-todos
+    :config (magit-org-todos-autoinsert))
   (use-package magit-todos
     :config (magit-todos-mode))
 

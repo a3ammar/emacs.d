@@ -1996,6 +1996,19 @@ Allows you edit region in a separate buffer
 #+end_src
 
 
+** Claude Code IDE
+
+#+begin_src emacs-lisp
+(use-package claude-code-ide
+  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+  :bind ("C-x C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+  ;; :custom
+  ;; (claude-code-ide-terminal-backend 'eat)
+  :config
+  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+#+end_src
+
+
 * Associative Modes
 Configuration to modes that are associated with file extensions.
 

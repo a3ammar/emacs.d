@@ -1701,6 +1701,10 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
   :bind (("C-c <return>" . magit-status)
          ("C-c C-<return>" . magit-status)
          ("C-c M-g" . magit-file-dispatch))
+  :hook ((git-commit-setup . (lambda ()
+                               (electric-indent-local-mode -1)
+                               (git-commit-turn-on-flyspell)))
+         (magit-status-mode . (lambda () (magit-section-show-level-2))))
   :config
   (setq magit-push-always-verify nil
         magit-use-sticky-arguments 'current
@@ -1743,8 +1747,6 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
     :config (magit-org-todos-autoinsert))
   (use-package magit-todos
     :config (magit-todos-mode))
-
-  (add-to-list 'git-commit-setup-hook 'git-commit-turn-on-flyspell)
 
   (defun my/parse-repo-url (url)
     "convert a git remote location as a HTTP URL"

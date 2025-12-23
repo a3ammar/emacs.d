@@ -1412,6 +1412,15 @@ Use the [[https://github.com/AndreaCrotti/yasnippet-snippets][Yasnippet official
         smex-save-file (concat my/history-dir "smex-items")))
 #+END_SRC
 
+** Dimmer
+
+Highlights selected buffer and dims others
+
+#+begin_src emacs-lisp
+(use-package dimmer)
+#+end_src
+
+
 
 * Project Management & Navigation
 Modes and configuration specific to managing and navigating projects.

@@ -2017,9 +2017,9 @@ Allows you edit region in a separate buffer
 
 (use-package claude-code-ide
   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-x C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+  :bind ("C-x C-'" . claude-code-ide-menu)
   :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+  (claude-code-ide-emacs-tools-setup))
 #+end_src
 
 

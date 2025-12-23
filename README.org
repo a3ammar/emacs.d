@@ -187,6 +187,7 @@ This is important to set early on so Emacs initializes with the correct language
 
 #+BEGIN_SRC emacs-lisp
 (setenv "LANG" "en_US.UTF-8")
+(setenv "EDITOR" "emacsclient")
 #+END_SRC
 
 ** Set the Scratch Buffer's Default Mode

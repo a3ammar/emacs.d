@@ -2009,7 +2009,11 @@ Allows you edit region in a separate buffer
 ** Claude Code IDE
 
 #+begin_src emacs-lisp
-(use-package vterm)
+(use-package vterm
+  :bind (:map vterm-mode-map
+              ("C-z" . ignored))
+  :init
+  (add-to-list 'vterm-keymap-exceptions "C-z"))
 
 (use-package vterm-anti-flicker-filter
   :vc (:url "https://github.com/martinbaillie/vterm-anti-flicker-filter" :rev :newest)

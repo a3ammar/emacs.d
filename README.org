@@ -2012,7 +2012,7 @@ Allows you edit region in a separate buffer
 (use-package vterm
   :bind (:map vterm-mode-map
               ("C-z" . ignored))
-  :init
+  :config
   (add-to-list 'vterm-keymap-exceptions "C-z"))
 
 (use-package vterm-anti-flicker-filter

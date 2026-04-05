@@ -1747,7 +1747,7 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
   ;; Set the initial visibility of magit sections
   (setq magit-section-initial-visibility-alist '((stashes . show)
                                                  (untracked . show)
-                                                 (unpushed . show)
+                                                 (unpushed . my/hide-unmerged-section)
                                                  (recent . show))
         magit-section-visibility-indicator nil)
 
@@ -1755,6 +1755,11 @@ Otherwise it passes its argument to `counsel-projectile-rg'"
   (use-package magit-section)
   (use-package magit-org-todos
     :config (magit-org-todos-autoinsert))
+
+  (defun my/hide-unmerged-section (section)
+    (if (string-prefix-p "@{upstream}" (oref section value))
+        'hide
+      'show))
 
   (defun my/parse-repo-url (url)
     "convert a git remote location as a HTTP URL"

@@ -2016,7 +2016,8 @@ Allows you edit region in a separate buffer
 #+begin_src emacs-lisp
 (use-package vterm
   :bind (:map vterm-mode-map
-              ("C-z" . ignored))
+              ("C-z" . ignored)
+              ("C-c C-t" . vterm-copy-mode))
   :config
   (add-to-list 'vterm-keymap-exceptions "C-z"))
 

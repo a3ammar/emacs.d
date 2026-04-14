@@ -2019,7 +2019,10 @@ Allows you edit region in a separate buffer
               ("C-z" . ignored)
               ("C-c C-t" . vterm-copy-mode))
   :config
-  (add-to-list 'vterm-keymap-exceptions "C-z"))
+  (add-to-list 'vterm-keymap-exceptions "C-z")
+  (add-hook 'vterm-copy-mode-hook
+            (lambda ()
+              (setq cursor-type (if vterm-copy-mode 'bar nil)))))
 
 (use-package vterm-anti-flicker-filter
   :vc (:url "https://github.com/martinbaillie/vterm-anti-flicker-filter" :rev :newest)
